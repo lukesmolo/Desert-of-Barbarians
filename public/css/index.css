@@ -1,0 +1,30 @@
+#container {
+	margin-top:10px;
+	height: 100%;
+	}
+
+#right{
+	height: 100%;
+
+}
+#left{
+	height: 100%;
+
+}
+
+#coding {
+	height: 85%;
+
+}
+
+#details {
+
+	background-color: green;
+}
+html, body {
+	    height: 100%;
+}
+#text_editor {
+	height: 100%;
+	width: 100%;
+}
