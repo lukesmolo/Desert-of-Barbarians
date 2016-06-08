@@ -1,4 +1,4 @@
-# Missile Command
+# IL DESERTO DEI BARBARI
 
 A clone of the classic game [Missile Command](http://en.wikipedia.org/wiki/Missile_Command "Missile Command") in an HTML Canvas for The Odin Project's [Project: Using Canvas to Build Games in the Browser](http://www.theodinproject.com/javascript-and-jquery/building-games-with-canvas).
 
