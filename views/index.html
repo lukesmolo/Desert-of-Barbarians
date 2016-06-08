@@ -3,19 +3,50 @@
   <head>
     <meta charset="utf-8">
     <title>Missile Command</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="icon shortcut" href="images/favicon.ico">
   </head>
   <body>
-    <div>
-      <h1>Missile Command</h1>
-      <div class="container">
-        <div class="crosshair"></div>
-      </div>
-      <canvas width="1010" height="360"></canvas>
-    </div>
 
-    <script src="js/jquery-2.1.0.min.js"></script>
-    <script src="js/missile_command.js"></script>
+	  <div id="container" class="fill">
+
+		  <div id="left" class="col-md-7">
+			  <div id="game">
+				  <div >
+					  <div class="crosshair"></div>
+				  </div>
+				  <canvas width="700" height="350"></canvas>
+			  </div>
+			  <div id="details">
+				  CIAO
+			  </div>
+		  </div>
+		  <div id="right" class="col-md-5 pull-right">
+			  <div id="coding">
+
+				  <textarea id="text_editor" class="form-control" rows="5"
+						 id="comment"></textarea>
+				  <div id="text_controller">
+					  <button type="button" class="btn
+					  btn-warning ">Warning</button>
+					  <button type="button" class="btn
+					  btn-success pull-right">Success</button>
+				  </div>
+			  </div>
+
+		  </div>
+		  <nav class="navbar navbar-default navbar-fixed-bottom .navbar-inverse">
+			    <div class="container">
+				    <button type="button" class="btn btn-default
+				    navbar-btn">Sign in</button>
+					    </div>
+		  </nav>
+
+	  </div>
+
+	  <script src="js/jquery-2.1.0.min.js"></script>
+	  <script src="js/bootstrap.min.js"></script>
+	  <script src="js/missile_command.js"></script>
   </body>
 </html>
