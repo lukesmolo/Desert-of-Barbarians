@@ -25,17 +25,17 @@ var missileCommand = (function() {
   // Create cities and anti missile batteries at the start of the game
   var initialize = function() {
     // Bottom left position of city
-    cities.push( new City( 80,  430 ) );
-    cities.push( new City( 130, 430 ) );
-    cities.push( new City( 180, 430 ) );
-    cities.push( new City( 300, 430 ) );
-    cities.push( new City( 350, 430 ) );
-    cities.push( new City( 400, 430 ) );
+    cities.push( new City( CANVAS_WIDTH*2/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    cities.push( new City( CANVAS_WIDTH*3/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    cities.push( new City( CANVAS_WIDTH*4/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    cities.push( new City( CANVAS_WIDTH*6/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    cities.push( new City( CANVAS_WIDTH*7/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    cities.push( new City( CANVAS_WIDTH*8/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
 
     // Top middle position of anti missile battery
-    antiMissileBatteries.push( new AntiMissileBattery( 35,  410 ) );
-    antiMissileBatteries.push( new AntiMissileBattery( 255, 410 ) );
-    antiMissileBatteries.push( new AntiMissileBattery( 475, 410 ) );
+    antiMissileBatteries.push( new AntiMissileBattery( (CANVAS_WIDTH*1/9)+25, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    antiMissileBatteries.push( new AntiMissileBattery( CANVAS_WIDTH*5/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    antiMissileBatteries.push( new AntiMissileBattery( (CANVAS_WIDTH*9/9)-25, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
     initializeLevel();
   };
 
@@ -58,7 +58,7 @@ var missileCommand = (function() {
       enemyMissiles.push( new EnemyMissile(targets) );
     }
   };
-  
+
   // Get a random number between min and max, inclusive
   var rand = function( min, max ) {
     return Math.floor( Math.random() * (max - min + 1) ) + min;
@@ -81,40 +81,42 @@ var missileCommand = (function() {
   var drawScore = function() {
     ctx.fillStyle = 'red';
     ctx.font = 'bold 20px arial';
-    ctx.fillText( 'Score ' + score, 80, 15 );
+    ctx.fillText( 'Punti ' + score, CANVAS_WIDTH/20, CANVAS_HEIGHT/20 );
   };
 
   // Show message before a level begins
   var drawLevelMessage = function() {
     ctx.fillStyle = 'blue';
     ctx.font = 'bold 20px arial';
-    ctx.fillText( 'CLICK TO START LEVEL', 130, 180 );
+    //to center the text
+    ctx.textAlign="center";
+    ctx.fillText( 'CLICK TO START BATTLE', CANVAS_WIDTH/2, CANVAS_HEIGHT/5 );
     ctx.fillStyle = 'red';
-    ctx.fillText( ' ' + level, 370, 180 );
+    ctx.fillText( ' ' + level, (CANVAS_WIDTH/2) +165, CANVAS_HEIGHT/5 );
 
-    ctx.fillText( '' + getMultiplier(), 195, 245 );
+    ctx.fillText( '' + getMultiplier(), (CANVAS_WIDTH/2) -65, CANVAS_HEIGHT/3 );
     ctx.fillStyle = 'blue';
-    ctx.fillText( 'X  POINTS', 215, 245 );
+    ctx.fillText( 'X  POINTS', CANVAS_WIDTH/2, CANVAS_HEIGHT/3 );
 
-    ctx.fillText( 'DEFEND', 100, 355 );
-    ctx.fillText( 'CITIES', 330, 355 );
+    ctx.fillText( 'DEFEND', CANVAS_WIDTH*2/6, CANVAS_HEIGHT/2 );
+    ctx.fillText( 'THE FORTESS', CANVAS_WIDTH*4/6, CANVAS_HEIGHT/2 );
   };
 
   // Show bonus points at end of a level
-  var drawEndLevel = function( missilesLeft, missilesBonus, 
+  var drawEndLevel = function( missilesLeft, missilesBonus,
                                citiesSaved, citiesBonus ) {
     drawGameState();
     ctx.fillStyle = 'blue';
     ctx.font = 'bold 20px arial';
-    ctx.fillText( 'BONUS POINTS', 150, 149 );
+    ctx.fillText( 'BONUS POINTS', 150, CANVAS_HEIGHT/6 );
     ctx.fillStyle = 'red';
-    ctx.fillText( '' + missilesBonus, 170, 213 );
+    ctx.fillText( '' + missilesBonus, 170, CANVAS_HEIGHT/5 );
     ctx.fillStyle = 'blue';
-    ctx.fillText( 'Missiles Left: ' + missilesLeft, 230, 213 );
+    ctx.fillText( 'Missiles Left: ' + missilesLeft, 230, CANVAS_HEIGHT/5 );
     ctx.fillStyle = 'red';
-    ctx.fillText( '' + citiesBonus, 170, 277 );
+    ctx.fillText( '' + citiesBonus, 170, CANVAS_HEIGHT/4 );
     ctx.fillStyle = 'blue';
-    ctx.fillText( 'Cities Saved: ' + citiesSaved, 230, 277 );
+    ctx.fillText( 'Castles Saved: ' + citiesSaved, 230, CANVAS_HEIGHT/4 );
   };
 
   // Show simple graphic at end of game
@@ -138,12 +140,12 @@ var missileCommand = (function() {
 
     ctx.fillStyle = 'red';
     ctx.font = 'bold 85px arial';
-    ctx.fillText( 'THE END', 70, 260 );
+    ctx.fillText( 'FINE', 70, 260 );
 
     ctx.fillStyle = 'yellow';
     ctx.font = 'bold 26px arial';
-    ctx.fillText( 'Final Score: ' + score, 80, 20 );
-    ctx.fillText( 'CLICK TO PLAY NEW GAME', 80, 458 );
+    ctx.fillText( 'Punteggio Finale: ' + score, 80, 20 );
+    ctx.fillText( 'CLICCA PER RICOMINCIARE A COMBATTERE', 80, 458 ); //new game
   };
 
   // Draw all active cities
@@ -170,28 +172,37 @@ var missileCommand = (function() {
 
   // Show the basic game background
   var drawBackground = function() {
-    // Black background
-    ctx.fillStyle = 'black';
+
+    //ctx.fillStyle = 'black';
+    //necessary to refersh the screen
     ctx.fillRect( 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT );
 
-    // Yellow area at bottom of screen for cities and
-    // anti missile batteries
+    var img = new Image();
+    img.src = "../images/fondale.png";
+    img.onload = function () {
+      var pattern = ctx.createPattern(img, "repeat");
+      ctx.fillStyle = pattern;
+      ctx.fillRect(0, 0, w, h);
+    };
+
+
+
     ctx.fillStyle = 'yellow';
     ctx.beginPath();
-    ctx.moveTo( 0, 460 );
-    ctx.lineTo( 0,  430 );
-    ctx.lineTo( 25, 410 );
-    ctx.lineTo( 45, 410 );
-    ctx.lineTo( 70, 430 );
-    ctx.lineTo( 220, 430 );
-    ctx.lineTo( 245, 410 );
-    ctx.lineTo( 265, 410 );
-    ctx.lineTo( 290, 430 );
-    ctx.lineTo( 440, 430 );
-    ctx.lineTo( 465, 410 );
-    ctx.lineTo( 485, 410 );
-    ctx.lineTo( 510, 430 );
-    ctx.lineTo( 510, 460 );
+    ctx.moveTo( 0, 360 );
+    ctx.lineTo( 0,  330 );
+    ctx.lineTo( 25, 310 );
+    ctx.lineTo( 45, 310 );
+    ctx.lineTo( 70, 330 );
+    ctx.lineTo( 220, 330 );
+    ctx.lineTo( 245, 310 );
+    ctx.lineTo( 265, 310 );
+    ctx.lineTo( 290, 330 );
+    ctx.lineTo( 440, 330 );
+    ctx.lineTo( 465, 310 );
+    ctx.lineTo( 485, 310 );
+    ctx.lineTo( 510, 330 );
+    ctx.lineTo( 510, 360 );
     ctx.closePath();
     ctx.fill();
   };
@@ -258,7 +269,7 @@ var missileCommand = (function() {
 
   // Constructor for a Missile, which may be the player's missile or
   // the enemy's missile.
-  // The options argument used to create the missile is expected to 
+  // The options argument used to create the missile is expected to
   // have startX, startY, endX, and endY to define the missile's path
   // as well as color and trailColor for the missile's appearance
   function Missile( options ) {
@@ -328,16 +339,16 @@ var missileCommand = (function() {
     var amb = antiMissileBatteries[source];
 
     Missile.call( this, { startX: amb.x,  startY: amb.y,
-                          endX: endX,     endY: endY, 
+                          endX: endX,     endY: endY,
                           color: 'green', trailColor: 'blue' } );
 
     var xDistance = this.endX - this.startX,
         yDistance = this.endY - this.startY;
-    // Determine a value to be used to scale the orthogonal directions 
+    // Determine a value to be used to scale the orthogonal directions
     // of travel so the missiles travel at a constant speed and in the
-    // right direction 
+    // right direction
     var scale = (function() {
-      var distance = Math.sqrt( Math.pow(xDistance, 2) + 
+      var distance = Math.sqrt( Math.pow(xDistance, 2) +
                                 Math.pow(yDistance, 2) ),
           // Make missile fired from central anti missile battery faster
           distancePerFrame = ( source === 1 ) ? 20 : 12;
@@ -392,7 +403,7 @@ var missileCommand = (function() {
         target = targets[ rand(0, targets.length - 1) ],
         framesToTarget;
 
-    Missile.call( this, { startX: startX,  startY: startY, 
+    Missile.call( this, { startX: startX,  startY: startY,
                           endX: target[0], endY: target[1],
                           color: 'yellow', trailColor: 'red' } );
 
@@ -450,9 +461,9 @@ var missileCommand = (function() {
     }
   };
 
-  // Get targets that may be attacked in a game Level. All targets 
+  // Get targets that may be attacked in a game Level. All targets
   // selected here may not be attacked, but no target other than those
-  // selected here will be attacked in a game level. 
+  // selected here will be attacked in a game level.
   // Note that at most 3 cities may be attacked in any level.
   var viableTargets = function() {
     var targets = [];
@@ -473,7 +484,7 @@ var missileCommand = (function() {
     $.each( antiMissileBatteries, function( index, amb ) {
       targets.push( [amb.x, amb.y, amb]);
     });
-    
+
     return targets;
   };
 
@@ -497,7 +508,7 @@ var missileCommand = (function() {
       var missilesLeft = totalMissilesLeft(),
           citiesSaved  = totalCitiesSaved();
 
-      !citiesSaved ? endGame( missilesLeft ) 
+      !citiesSaved ? endGame( missilesLeft )
                    : endLevel( missilesLeft, citiesSaved );
     }
   };
@@ -507,13 +518,13 @@ var missileCommand = (function() {
     var missilesBonus = missilesLeft * 5 * getMultiplier(),
         citiesBonus = citiesSaved * 100 * getMultiplier();
 
-    drawEndLevel( missilesLeft, missilesBonus, 
+    drawEndLevel( missilesLeft, missilesBonus,
                   citiesSaved, citiesBonus );
 
     // Show the new game score after 2 seconds
     setTimeout( function() {
       score += missilesBonus + citiesBonus;
-      drawEndLevel( missilesLeft, missilesBonus, 
+      drawEndLevel( missilesLeft, missilesBonus,
                     citiesSaved, citiesBonus );
     }, 2000 );
 
@@ -602,9 +613,9 @@ var missileCommand = (function() {
     timerID = setInterval( nextFrame, 1000 / fps );
   };
 
-  // Determine which Anti Missile Battery will be used to serve a 
+  // Determine which Anti Missile Battery will be used to serve a
   // player's request to shoot a missile. Determining factors are
-  // where the missile will be fired to and which anti missile 
+  // where the missile will be fired to and which anti missile
   // batteries have missile(s) to serve the request
   var whichAntiMissileBattery = function( x ) {
     var firedToOuterThird = function( priority1, priority2, priority3) {
@@ -625,7 +636,7 @@ var missileCommand = (function() {
       }
     };
 
-    if( !antiMissileBatteries[0].hasMissile() && 
+    if( !antiMissileBatteries[0].hasMissile() &&
         !antiMissileBatteries[1].hasMissile() &&
         !antiMissileBatteries[2].hasMissile() ) {
       return -1;
@@ -650,7 +661,7 @@ var missileCommand = (function() {
       startLevel();
 
       $( '.container' ).on( 'click', function( event ) {
-        playerShoot( event.pageX - this.offsetLeft, 
+        playerShoot( event.pageX - this.offsetLeft,
                      event.pageY - this.offsetTop );
       });
     });
