@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Missile Command</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="icon shortcut" href="images/favicon.ico">
+	  <meta charset="utf-8">
+	  <title>Missile Command</title>
+	  <link rel="stylesheet" href="css/index.css">
+	  <link rel="stylesheet" href="css/bootstrap.min.css">
+	  <link rel="icon shortcut" href="images/favicon.ico">
   </head>
   <body>
+	  <div id="navbar" class="col-md-1">
+		  <nav class="navbar navbar-default" role="navigation">
+			  <!-- Brand and toggle get grouped for better mobile
+	     display -->
+	     <div class="navbar-header">
+		     <button type="button" class="navbar-toggle" data-toggle="collapse"
+	   data-target=".navbar-ex1-collapse">
+			     <span class="sr-only">Toggle navigation</span>
+			     <span class="icon-bar"></span>
+			     <span class="icon-bar"></span>
+			     <span class="icon-bar"></span>
+		     </button>
+		     <a class="navbar-brand" href="#">Brand</a>
+	     </div>
 
-	  <div id="container" class="fill">
+	     <!-- Collect
+		the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li class="active">
+					<a  href="#">Link</a></li>
+			</ul>
+		</div>
+		  </nav>
+	  </div>
+
+	  <div id="container" class="fill pull-right col-md-11">
 
 		  <div id="left" class="col-md-9">
 			  <div id="game">
 				  <div >
 					  <div class="crosshair"></div>
 				  </div>
-				  <canvas></canvas>
+				  <canvas id="game_canvas"></canvas>
 			  </div>
-			  <div id="details">
-				  CIAO
-			  </div>
-		  </div>
-		  <div id="right" class="col-md-3 pull-right">
 			  <div id="coding">
 
-				  <textarea id="text_editor" class="form-control" rows="5"
-						 id="comment"></textarea>
+				  <textarea id="text_editor" class="form-control" rows="5"></textarea>
 				  <div id="text_controller">
 					  <button type="button" class="btn
 					  btn-warning ">Warning</button>
@@ -36,12 +55,11 @@
 			  </div>
 
 		  </div>
-		  <nav class="navbar navbar-default navbar-fixed-bottom .navbar-inverse">
-			    <div class="container">
-				    <button type="button" class="btn btn-default
-				    navbar-btn">Sign in</button>
-					    </div>
-		  </nav>
+		  <div id="right" class="col-md-3 pull-right">
+			  <div id="details">
+				  CIAO
+			  </div>
+		  </div>
 
 	  </div>
 

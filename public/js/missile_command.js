@@ -1,3 +1,4 @@
+/*TODO runtime changing of canvas*/
 // Missile Command
 var missileCommand = (function() {
   var canvas = document.querySelector( 'canvas' ),
@@ -5,9 +6,11 @@ var missileCommand = (function() {
       //Set canvas size
       var container = $(canvas).parent();
 
-      //canvas.setAttribute('width', window.innerWidth*7/10);
-      //canvas.setAttribute('height', window.innerHeight*7/10);
+//	alert(($('canvas').parent().width())/2);
+      canvas.setAttribute('width', ($('#game_canvas').parent().width()));
+      canvas.setAttribute('height', ($('#game_canvas').parent().height()));
 
+	
 
   // Constants
   var CANVAS_WIDTH  = canvas.width,
