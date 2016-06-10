@@ -3,8 +3,8 @@ var missileCommand = (function() {
   var canvas = document.querySelector( 'canvas' ),
       ctx = canvas.getContext( '2d' );
       //Set canvas size
-      canvas.setAttribute('width', '800px');
-      canvas.setAttribute('heigth', '6000px');
+      canvas.setAttribute('width', $('canvas').width('100%'));
+      canvas.setAttribute('height', $('canvas').height('50%'));
 
 
   // Constants
