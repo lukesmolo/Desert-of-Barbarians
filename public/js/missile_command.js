@@ -6,10 +6,8 @@ var missileCommand = (function() {
       //Set canvas size
       var container = $(canvas).parent();
 
-//	alert(($('canvas').parent().width())/2);
       canvas.setAttribute('width', ($('#game_canvas').parent().width()));
       canvas.setAttribute('height', ($('#game_canvas').parent().height()));
-
 
 
   // Constants
@@ -25,26 +23,26 @@ var missileCommand = (function() {
   // Variables
   var score = 0,
       level = 1,
-      cities = [],
+      castles = [],
       antiMissileBatteries = [],
       playerMissiles = [],
       enemyMissiles = [],
       timerID;
 
-  // Create cities and anti missile batteries at the start of the game
+  // Create castles and anti missile batteries at the start of the game
   var initialize = function() {
-    // Bottom left position of city
-    cities.push( new City( CANVAS_WIDTH*2/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
-    cities.push( new City( CANVAS_WIDTH*3/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
-    cities.push( new City( CANVAS_WIDTH*4/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
-    cities.push( new City( CANVAS_WIDTH*6/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
-    cities.push( new City( CANVAS_WIDTH*7/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
-    cities.push( new City( CANVAS_WIDTH*8/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    // Bottom left position of castle
+    castles.push( new castle( CANVAS_WIDTH*3/18, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    castles.push( new castle( CANVAS_WIDTH*5/18, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    castles.push( new castle( CANVAS_WIDTH*7/18, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    castles.push( new castle( CANVAS_WIDTH*11/18, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    castles.push( new castle( CANVAS_WIDTH*13/18, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    castles.push( new castle( CANVAS_WIDTH*15/18, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
 
     // Top middle position of anti missile battery
-    antiMissileBatteries.push( new AntiMissileBattery( (CANVAS_WIDTH*1/9)+25, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
-    antiMissileBatteries.push( new AntiMissileBattery( CANVAS_WIDTH*5/9, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
-    antiMissileBatteries.push( new AntiMissileBattery( (CANVAS_WIDTH*9/9)-25, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
+    antiMissileBatteries.push( new AntiMissileBattery( (CANVAS_WIDTH*1/18), CANVAS_HEIGHT-(CANVAS_HEIGHT/10)-28 ) );
+    antiMissileBatteries.push( new AntiMissileBattery( (CANVAS_WIDTH*9/18), CANVAS_HEIGHT-(CANVAS_HEIGHT/10)-28 ) );
+    antiMissileBatteries.push( new AntiMissileBattery( (CANVAS_WIDTH*17/18), CANVAS_HEIGHT-(CANVAS_HEIGHT/10)-28 ) );
     initializeLevel();
   };
 
@@ -76,7 +74,7 @@ var missileCommand = (function() {
   // Show various graphics shown on most game screens
   var drawGameState = function() {
     drawBackground();
-    drawCities();
+    drawcastles();
     drawAntiMissileBatteries();
     drawScore();
   };
@@ -113,7 +111,7 @@ var missileCommand = (function() {
 
   // Show bonus points at end of a level
   var drawEndLevel = function( missilesLeft, missilesBonus,
-                               citiesSaved, citiesBonus ) {
+                               castlesSaved, castlesBonus ) {
     drawGameState();
     ctx.fillStyle = 'blue';
     ctx.font = 'bold 20px arial';
@@ -123,9 +121,9 @@ var missileCommand = (function() {
     ctx.fillStyle = 'blue';
     ctx.fillText( 'Missiles Left: ' + missilesLeft, 230, CANVAS_HEIGHT/5 );
     ctx.fillStyle = 'red';
-    ctx.fillText( '' + citiesBonus, 170, CANVAS_HEIGHT/4 );
+    ctx.fillText( '' + castlesBonus, 170, CANVAS_HEIGHT/4 );
     ctx.fillStyle = 'blue';
-    ctx.fillText( 'Castles Saved: ' + citiesSaved, 230, CANVAS_HEIGHT/4 );
+    ctx.fillText( 'Castles Saved: ' + castlesSaved, 230, CANVAS_HEIGHT/4 );
   };
 
   // Show simple graphic at end of game
@@ -157,11 +155,11 @@ var missileCommand = (function() {
     ctx.fillText( 'CLICK TO RESTART', 80, 458 ); //new game
   };
 
-  // Draw all active cities
-  var drawCities = function() {
-    $.each( cities, function( index, city ) {
-      if( city.active ) {
-        city.draw();
+  // Draw all active castles
+  var drawcastles = function() {
+    $.each( castles, function( index, castle ) {
+      if( castle.active ) {
+        castle.draw();
       }
     });
   };
@@ -189,49 +187,68 @@ var missileCommand = (function() {
       ctx.drawImage(img, 0, 0, img.width,    img.height,    // source rectangle
                          0, 0, canvas.width, canvas.height);  // destination rectangle
 
-
+    var l = CANVAS_WIDTH/70;
+    var h = CANVAS_HEIGHT/10;
     //yellow landscapes
     ctx.fillStyle = 'yellow';
     ctx.beginPath();
-    ctx.moveTo( 0, 360 );
-    ctx.lineTo( 0,  330 );
-    ctx.lineTo( 25, 310 );
-    ctx.lineTo( 45, 310 );
-    ctx.lineTo( 70, 330 );
-    ctx.lineTo( 220, 330 );
-    ctx.lineTo( 245, 310 );
-    ctx.lineTo( 265, 310 );
-    ctx.lineTo( 290, 330 );
-    ctx.lineTo( 440, 330 );
-    ctx.lineTo( 465, 310 );
-    ctx.lineTo( 485, 310 );
-    ctx.lineTo( 510, 330 );
-    ctx.lineTo( 510, 360 );
+    ctx.moveTo( 0,  10*h);
+    ctx.lineTo( 0,  9*h);
+    ctx.lineTo( l*3/2,  8*h);
+    ctx.lineTo( l*13/2,  8*h);
+    ctx.lineTo( l*8,  9*h);
+    ctx.lineTo( l*31,  9*h);
+    ctx.lineTo( l*31+l*3/2,  8*h);
+    ctx.lineTo( l*31+l*13/2,  8*h);
+    ctx.lineTo( l*31+l*8,  9*h);
+    ctx.lineTo( CANVAS_WIDTH-l*8,  9*h);
+    ctx.lineTo( CANVAS_WIDTH-l*13/2,  8*h);
+    ctx.lineTo( CANVAS_WIDTH-l*3/2,  8*h);
+    ctx.lineTo( CANVAS_WIDTH,  9*h);
+    ctx.lineTo( CANVAS_WIDTH,  10*h);
     ctx.closePath();
     ctx.fill();
   };
 
-  // Constructor for a City
-  function City( x, y ) {
+  // Constructor for a castle
+  function castle( x, y ) {
     this.x = x;
     this.y = y;
     this.active = true;
   }
 
-  // Show a city based on its position
-  City.prototype.draw = function() {
+  // Show a castle based on its position
+  castle.prototype.draw = function() {
     var x = this.x,
-        y = this.y;
-
-    ctx.fillStyle = 'cyan';
+        y = this.y,
+        l = CANVAS_WIDTH/70;
+    ctx.fillStyle = 'grey';
     ctx.beginPath();
     ctx.moveTo( x, y );
-    ctx.lineTo( x, y - 10 );
-    ctx.lineTo( x + 10, y - 10 );
-    ctx.lineTo( x + 15, y - 15 );
-    ctx.lineTo( x + 20, y - 10 );
-    ctx.lineTo( x + 30, y - 10 );
-    ctx.lineTo( x + 30, y );
+    ctx.lineTo( x , y - l);
+    ctx.lineTo( x -l/2, y - l);
+    ctx.lineTo( x -l/2, y - 2*l);
+    ctx.lineTo( x, y - 2*l);
+    ctx.lineTo( x, y - 3/2*l);
+    ctx.lineTo( x + l/3, y - 3/2*l);
+    ctx.lineTo( x + l/3, y - 2*l);
+    ctx.lineTo( x + l*2/3, y - 2*l);
+    ctx.lineTo( x + l*2/3, y - 3/2*l);
+    ctx.lineTo( x + l, y - 3/2*l);
+    ctx.lineTo( x + l, y - 2*l);
+    ctx.lineTo( x + 3/2*l, y - 2*l);
+    ctx.lineTo( x + 3/2*l, y - l);
+    ctx.lineTo( x + l, y - l);
+    ctx.lineTo( x + l, y);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = 'brown';
+    ctx.beginPath();
+    ctx.moveTo( x +l/5, y);
+    ctx.lineTo( x +l/5, y - l/2);
+    ctx.lineTo( x +l*5/10, y - l*7/10);
+    ctx.lineTo( x +l*4/5, y - l/2);
+    ctx.lineTo( x +l*4/5, y);
     ctx.closePath();
     ctx.fill();
   };
@@ -327,7 +344,7 @@ var missileCommand = (function() {
     if( this.state === MISSILE.imploding ) {
       this.explodeRadius--;
       if( this.groundExplosion ) {
-        ( this.target[2] instanceof City ) ? this.target[2].active = false
+        ( this.target[2] instanceof castle ) ? this.target[2].active = false
                                         : this.target[2].missilesLeft = 0;
       }
     }
@@ -387,7 +404,7 @@ var missileCommand = (function() {
 
   // Create a missile that will be shot at indicated location
   var playerShoot = function( x, y ) {
-    if( y >= 50 && y <= 370 ) {
+    if( y >= 0 && y <= 370 ) {
       var source = whichAntiMissileBattery( x );
       if( source === -1 ){ // No missiles left
         return;
@@ -436,7 +453,7 @@ var missileCommand = (function() {
       return;
     }
     if( this.state === MISSILE.active && this.y >= this.endY ) {
-      // Missile has hit a ground target (City or Anti Missile Battery)
+      // Missile has hit a ground target (castle or Anti Missile Battery)
       this.x = this.endX;
       this.y = this.endY;
       this.state = MISSILE.exploding;
@@ -468,18 +485,18 @@ var missileCommand = (function() {
   // Get targets that may be attacked in a game Level. All targets
   // selected here may not be attacked, but no target other than those
   // selected here will be attacked in a game level.
-  // Note that at most 3 cities may be attacked in any level.
+  // Note that at most 3 castles may be attacked in any level.
   var viableTargets = function() {
     var targets = [];
 
-    // Include all active cities
-    $.each( cities, function( index, city ) {
-      if( city.active ) {
-        targets.push( [city.x + 15, city.y - 10, city] );
+    // Include all active castles
+    $.each( castles, function( index, castle ) {
+      if( castle.active ) {
+        targets.push( [castle.x + 15, castle.y - 10, castle] );
       }
     });
 
-    // Randomly select at most 3 cities to target
+    // Randomly select at most 3 castles to target
     while( targets.length > 3 ) {
       targets.splice( rand(0, targets.length - 1), 1 );
     }
@@ -508,28 +525,28 @@ var missileCommand = (function() {
     if( !enemyMissiles.length ) {
       // Stop animation
       stopLevel();
-      $( '#container' ).off( 'click' );
+      $( '#game_canvas' ).off( 'click' );
       var missilesLeft = totalMissilesLeft(),
-          citiesSaved  = totalCitiesSaved();
+          castlesSaved  = totalcastlesSaved();
 
-      !citiesSaved ? endGame( missilesLeft )
-                   : endLevel( missilesLeft, citiesSaved );
+      !castlesSaved ? endGame( missilesLeft )
+                   : endLevel( missilesLeft, castlesSaved );
     }
   };
 
   // Handle the end of a level
-  var endLevel = function( missilesLeft, citiesSaved ) {
+  var endLevel = function( missilesLeft, castlesSaved ) {
     var missilesBonus = missilesLeft * 5 * getMultiplier(),
-        citiesBonus = citiesSaved * 100 * getMultiplier();
+        castlesBonus = castlesSaved * 100 * getMultiplier();
 
     drawEndLevel( missilesLeft, missilesBonus,
-                  citiesSaved, citiesBonus );
+                  castlesSaved, castlesBonus );
 
     // Show the new game score after 2 seconds
     setTimeout( function() {
-      score += missilesBonus + citiesBonus;
+      score += missilesBonus + castlesBonus;
       drawEndLevel( missilesLeft, missilesBonus,
-                    citiesSaved, citiesBonus );
+                    castlesSaved, castlesBonus );
     }, 2000 );
 
     setTimeout( setupNextLevel, 4000 );
@@ -561,11 +578,11 @@ var missileCommand = (function() {
     return total;
   };
 
-  // Get count of undestroyed cities
-  var totalCitiesSaved = function() {
+  // Get count of undestroyed castles
+  var totalcastlesSaved = function() {
     var total = 0;
-    $.each( cities, function(index, city) {
-      if( city.active ) {
+    $.each( castles, function(index, castle) {
+      if( castle.active ) {
         total++;
       }
     });
@@ -661,16 +678,13 @@ var missileCommand = (function() {
 
   // Attach event Listeners to handle the player's input
   var setupListeners = function() {
-    $( '#container' ).one( 'click', function() {
+    $( '#game_canvas' ).one( 'click', function() {
       startLevel();
 
-      /*$( '.container' ).on( 'click', function( event ) {
-        playerShoot( event.pageX - this.offsetLeft,
-                     event.pageY - this.offsetTop );
-      });*/
-      $( '#container' ).on( 'click', function( event ) {
-        playerShoot( event.pageX,
-                     event.pageY);
+      //subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
+      $( '#game_canvas' ).on( 'click', function( event ) {
+        playerShoot( event.pageX - $("#game_canvas").offset().left,
+                     event.pageY - $("#game_canvas").offset().top);
       });
     });
   };
