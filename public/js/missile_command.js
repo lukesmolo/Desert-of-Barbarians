@@ -3,8 +3,10 @@ var missileCommand = (function() {
   var canvas = document.querySelector( 'canvas' ),
       ctx = canvas.getContext( '2d' );
       //Set canvas size
-      canvas.setAttribute('width', $('canvas').width('100%'));
-      canvas.setAttribute('height', $('canvas').height('50%'));
+      var container = $(canvas).parent();
+
+      //canvas.setAttribute('width', window.innerWidth*7/10);
+      //canvas.setAttribute('height', window.innerHeight*7/10);
 
 
   // Constants
@@ -186,7 +188,6 @@ var missileCommand = (function() {
     img.onload = function () {
       var pattern = ctx.createPattern(img, "repeat");
       ctx.fillStyle = pattern;
-      ctx.fillRect(0, 0, w, h);
     };
 
 
@@ -683,6 +684,23 @@ var missileCommand = (function() {
 })();
 
 $( document ).ready( function() {
-  missileCommand.initialize();
-  missileCommand.setupListeners();
+  //Get the canvas &
+    /*canvas = $('canvas');
+    ctx = canvas.get(0).getContext('2d');
+    container = $(canvas).parent();
+
+    //Run function when browser resizes
+    $(window).resize( respondCanvas );
+*/
+    function respondCanvas(){
+       //canvas.attr('width', $(container).width() ); //max width
+       //canvas.attr('height', $(container).height() ); //max height
+
+       //Call a function to redraw other content (texts, images etc)*/
+         missileCommand.initialize();
+         missileCommand.setupListeners();
+     }
+
+     //Initial Call
+     respondCanvas();
 });
