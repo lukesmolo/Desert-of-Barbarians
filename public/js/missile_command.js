@@ -2,6 +2,9 @@
 var missileCommand = (function() {
   var canvas = document.querySelector( 'canvas' ),
       ctx = canvas.getContext( '2d' );
+      //Set canvas size
+      canvas.setAttribute('heigth', '460px');
+      canvas.setAttribute('width', '510px');
 
   // Constants
   var CANVAS_WIDTH  = canvas.width,
@@ -144,8 +147,8 @@ var missileCommand = (function() {
 
     ctx.fillStyle = 'yellow';
     ctx.font = 'bold 26px arial';
-    ctx.fillText( 'Punteggio Finale: ' + score, 80, 20 );
-    ctx.fillText( 'CLICCA PER RICOMINCIARE A COMBATTERE', 80, 458 ); //new game
+    ctx.fillText( 'Total Points: ' + score, 80, 20 );
+    ctx.fillText( 'CLICK TO RESTART', 80, 458 ); //new game
   };
 
   // Draw all active cities
@@ -186,7 +189,7 @@ var missileCommand = (function() {
     };
 
 
-
+    //yellow landscapes
     ctx.fillStyle = 'yellow';
     ctx.beginPath();
     ctx.moveTo( 0, 360 );
@@ -504,7 +507,7 @@ var missileCommand = (function() {
     if( !enemyMissiles.length ) {
       // Stop animation
       stopLevel();
-      $( '.container' ).off( 'click' );
+      $( '#container' ).off( 'click' );
       var missilesLeft = totalMissilesLeft(),
           citiesSaved  = totalCitiesSaved();
 
@@ -657,12 +660,16 @@ var missileCommand = (function() {
 
   // Attach event Listeners to handle the player's input
   var setupListeners = function() {
-    $( '.container' ).one( 'click', function() {
+    $( '#container' ).one( 'click', function() {
       startLevel();
 
-      $( '.container' ).on( 'click', function( event ) {
+      /*$( '.container' ).on( 'click', function( event ) {
         playerShoot( event.pageX - this.offsetLeft,
                      event.pageY - this.offsetTop );
+      });*/
+      $( '#container' ).on( 'click', function( event ) {
+        playerShoot( event.pageX,
+                     event.pageY);
       });
     });
   };
