@@ -10,7 +10,7 @@ var missileCommand = (function() {
       canvas.setAttribute('width', ($('#game_canvas').parent().width()));
       canvas.setAttribute('height', ($('#game_canvas').parent().height()));
 
-	
+
 
   // Constants
   var CANVAS_WIDTH  = canvas.width,
@@ -181,17 +181,13 @@ var missileCommand = (function() {
 
   // Show the basic game background
   var drawBackground = function() {
-
-    //ctx.fillStyle = 'black';
     //necessary to refersh the screen
-    ctx.fillRect( 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT );
+    ctx.fillRect( 0, 0,CANVAS_WIDTH, CANVAS_HEIGHT );
 
     var img = new Image();
     img.src = "../images/fondale.png";
-    img.onload = function () {
-      var pattern = ctx.createPattern(img, "repeat");
-      ctx.fillStyle = pattern;
-    };
+      ctx.drawImage(img, 0, 0, img.width,    img.height,    // source rectangle
+                         0, 0, canvas.width, canvas.height);  // destination rectangle
 
 
     //yellow landscapes
@@ -687,17 +683,8 @@ var missileCommand = (function() {
 })();
 
 $( document ).ready( function() {
-  //Get the canvas &
-    /*canvas = $('canvas');
-    ctx = canvas.get(0).getContext('2d');
-    container = $(canvas).parent();
 
-    //Run function when browser resizes
-    $(window).resize( respondCanvas );
-*/
     function respondCanvas(){
-       //canvas.attr('width', $(container).width() ); //max width
-       //canvas.attr('height', $(container).height() ); //max height
 
        //Call a function to redraw other content (texts, images etc)*/
          missileCommand.initialize();
