@@ -1,5 +1,5 @@
 var io   = require('socket.io'),
-	url  = require('url'),
+    url  = require('url'),
     express = require('express'),
     http=require('http');
 var path = require('path');
@@ -12,9 +12,7 @@ var server = http.createServer(app);
 var socket = io.listen(server);
 
 
-data = { "request": "paths_names",
-		"day": "ciao"};
-	data = JSON.stringify(data);
+var level = 1;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
 	  extended: true
@@ -26,13 +24,21 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
 app.get('/reset_code', function(req, res){
-	console.log('body: ' + JSON.stringify(req.body));
-	res.send({ status: 'SUCCESS' });
+//	console.log('body: ' + JSON.stringify(req.body));
+	console.log("reset_code");
+	code = return_level_code(level);
+	res.send({ status: 'SUCCESS', 'body': code});
 });
 
 app.post('/send_code', function(req, res){
-	console.log('body: ' + JSON.stringify(req.body));
-	res.send({ status: 'SUCCESS' });
+	//console.log('body: ' + JSON.stringify(req.body));
+	body = req.body;
+	level_code = body.body;
+	level_n = body.level;
+	testFunction = new Function(level_code);
+	testFunction();
+	//console.log(level_code);
+	res.send({ status: 'SUCCESS'});
 });
 
 app.post('/get_level', function(req, res){
@@ -40,7 +46,7 @@ app.post('/get_level', function(req, res){
 	code = return_level_code(1);
 	console.log(code);
 	if(code !== null) {
-	res.send({ 'status': 'SUCCESS', 'code': code });
+	res.send({ 'status': 'SUCCESS', 'body': code });
 	} else {
 		res.send({ 'status': 'ERROR', 'what': "file for level not found"});
 	}
@@ -53,10 +59,10 @@ app.get('/', function(req, res){
 
 function
 return_level_code(what) {
-	level = null;
-	level = fs.readFileSync( __dirname + '/public/levels/level1.js', 'utf8');
-	console.log(level);
-	return level;
+	code_level = null;
+	code_level = fs.readFileSync( __dirname + '/public/levels/level1.js', 'utf8');
+//	console.log(code_level);
+	return code_level;
 
 }
 

@@ -26,7 +26,9 @@ get_level(what) {
 		url: "/get_level",
 		data: data,
 		success: function (data, stato) {
-			$("#text_editor").append(data.code);	
+			$("#text_editor").empty();
+
+			$("#text_editor").append(data.body);	
 		},
 		error: function (request, stato) {
 			alert("E' evvenuto un errore in signal:\n" + stato);
@@ -47,18 +49,19 @@ reset_code(what, where) {
 		url: "/reset_code",
 		data: data,
 		success: function (data, stato) {
-			alert(data.status);
+			$("#text_editor").empty();
+			$("#text_editor").val(data.body);
 			
 		},
 		error: function (request, stato) {
-			alert("E' evvenuto un errore in signal:\n" + stato);
+			alert("ERROR:\n" + stato);
 		}});
 }
 
 function
-send_code(what, where) {
-
-	data = { "request": "send_code"};
+send_code(level) {
+	level_code = $("#text_editor").val();
+	data = { "request": "send_code", "level": level, "body": level_code};
 	data = JSON.stringify(data);
 
 	var paths = [];
@@ -70,11 +73,10 @@ send_code(what, where) {
 		url: "/send_code",
 		data: data,
 		success: function (data, stato) {
-			alert(data.status);
 			
 		},
 		error: function (request, stato) {
-			alert("E' evvenuto un errore in signal:\n" + stato);
+			alert("ERROR:\n" + "There is an syntax error in your code!");
 		}});
 }
 
