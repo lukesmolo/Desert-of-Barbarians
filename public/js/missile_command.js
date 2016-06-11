@@ -190,7 +190,7 @@ var missileCommand = (function() {
     var l = CANVAS_WIDTH/70;
     var h = CANVAS_HEIGHT/10;
     //yellow landscapes
-    ctx.fillStyle = 'yellow';
+    ctx.fillStyle = 'grey';
     ctx.beginPath();
     ctx.moveTo( 0,  10*h);
     ctx.lineTo( 0,  9*h);
