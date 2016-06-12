@@ -4,6 +4,7 @@
 	  <meta charset="utf-8">
 	  <title>Missile Command</title>
 	  <link rel="stylesheet" href="css/index.css">
+	  <link rel="stylesheet" href="css/bubbles.css">
 	  <link rel="stylesheet" href="css/bootstrap.min.css">
 	  <link rel="icon shortcut" href="images/favicon.ico">
   </head>
@@ -30,10 +31,10 @@
 				<li class="active">
 					<a  href="#">Link</a></li>
 			</ul>
- <button id="reset_code_btn" type="button" class="btn
+		 <button id="reset_code_btn" type="button" class="btn
 					  btn-warning ">Reset</button>
 					  <button id="send_code_btn" type="button" class="btn
-					  btn-success pull-right">Send</button>
+		  btn-success ">Send</button>
 
 		</div>
 		  </nav>
@@ -52,14 +53,38 @@
 
 				  <textarea id="text_editor" class="form-control" rows="5"></textarea>
 				  <div id="text_controller">
-					 				  </div>
+					
+				  </div>
 			  </div>
 
 		  </div>
 		  <div id="right" class="col-md-3 pull-right">
-			  <div id="details">
-				  CIAO
+			  <div id="chat">
+				  <div id="chat_text">
+					  <div class="chat_message">
+					   <div class="bubble">
+
+						   ciao, come state?
+						   <br>
+						   <br>
+						   ciao
+
+					   </div>
+					   </div>
+					   <div class="div_chat_image">
+						   <img class="chat_image" src="images/ale.jpg" alt="ale"> 
+					   </div>
+				  </div>
+				  <div id="chat_controller">
+					 <button id="first_chat_btn" type="button" class="btn
+					  btn-warning ">Cocilov</button>
+					  <button id="second_chat_btn" type="button" class="btn
+					  btn-success">luke</button>
+				  </div>
 			  </div>
+			  <div id="replies">
+			  </div>
+
 		  </div>
 
 	  </div>
