@@ -1,3 +1,6 @@
+#editor{
+	height: 100%;
+}
 
 @font-face {
 	    font-family: vt323;
@@ -26,7 +29,7 @@
 	height: 50%;
 }
 
-#chat{
+#chat_window{
 		height: 70%;
 		border: 1px;
 		border-style: solid;
@@ -47,7 +50,7 @@ html, body {
 	  font-weight: 400;
 	    letter-spacing: 0.05em;
 	      line-height: 1em;
-	background-color: black;
+/*	background-color: black;*/
 	color: green;
 	width: 100%;
 	height: 100%;
@@ -55,9 +58,19 @@ html, body {
 #chat_controller{
 	height: 10%;
 }
-#chat_text{
+#chat{
 	height: 90%;
 }
+#div_chat_image{
+	height: 80%;
+}
+#chat_text{
+	height: 20%;
+	background-color: black;
+	color: green;
+}
+
+
 #navbar{
 	width: 8%;
 	padding-left: 0px;
@@ -107,12 +120,7 @@ html, body {
 
 .chat_image {
 
-height: 72px;
-width: 72px;
+height: 100%;
+width: 100%;
 }
-
-.chat_image {
-	margin-top: 7%;
-}
-
 

@@ -50,40 +50,38 @@
 				  <canvas id="game_canvas"></canvas>
 			  </div>
 			  <div id="coding">
+<!--
+				  <textarea id="text_editor" class="form-control
+				  " rows="5"></textarea>-->
+<pre id="text_editor">function foo(items) {
+					      var x = "All this is syntax highlighted";
+						    return x;
+						    }</pre>
 
-				  <textarea id="text_editor" class="form-control" rows="5"></textarea>
-				  <div id="text_controller">
-					
-				  </div>
 			  </div>
 
 		  </div>
 		  <div id="right" class="col-md-3 pull-right">
-			  <div id="chat">
-				  <div id="chat_text">
-					  <div class="chat_message">
-					   <div class="bubble">
-
-						   ciao, come state?
-						   <br>
-						   <br>
-						   ciao
-
-					   </div>
-					   </div>
-					   <div class="div_chat_image">
-						   <img class="chat_image" src="images/ale.jpg" alt="ale"> 
-					   </div>
+			  <div id="chat_window">
+				  <div id="chat">
+					  <div id="div_chat_image">
+						  <img class="chat_image" src="images/ale.jpg" alt="ale">
+					  </div>
+					  <div id="chat_text">
+						  ciao
+						  <br>
+						  come state?
+					  </div>
 				  </div>
 				  <div id="chat_controller">
-					 <button id="first_chat_btn" type="button" class="btn
+					  <button id="first_chat_btn" type="button" class="btn
 					  btn-warning ">Cocilov</button>
 					  <button id="second_chat_btn" type="button" class="btn
 					  btn-success">luke</button>
 				  </div>
 			  </div>
 			  <div id="replies">
-			  </div>
+				  			  </div>
 
 		  </div>
 
@@ -93,5 +91,7 @@
 	  <script src="js/index.js"></script>
 	  <script src="js/bootstrap.min.js"></script>
 	  <script src="js/missile_command.js"></script>
+	<script src="ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+	
   </body>
 </html>

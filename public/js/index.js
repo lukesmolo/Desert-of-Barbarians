@@ -1,6 +1,11 @@
+var editor = null;
 $(document).ready(function() {
 
 	get_level(null);
+	editor = ace.edit("text_editor");
+	    editor.setTheme("ace/theme/terminal");
+	        editor.getSession().setMode("ace/mode/javascript");
+
 });
 
 $('#send_code_btn').on('click', function() {
@@ -26,9 +31,13 @@ get_level(what) {
 		url: "/get_level",
 		data: data,
 		success: function (data, stato) {
-			$("#text_editor").empty();
+//			$("#text_editor").empty();
 
-			$("#text_editor").append(data.body);	
+//			$("#text_editor").append(data.body);	
+
+			//editor.setValue(data.body);
+			editor.setValue('ciao');
+			
 		},
 		error: function (request, stato) {
 			alert("E' evvenuto un errore in signal:\n" + stato);
