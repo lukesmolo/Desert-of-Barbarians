@@ -12,9 +12,20 @@ $('#send_code_btn').on('click', function() {
 
 	send_code(null, null);
 });
+
 $('#reset_code_btn').on('click', function() {
 
 	reset_code(null, null);
+});
+
+$('.change_chat').on('click', function() {
+	what = $(this).attr('id');
+	what = what.replace("_chat_btn", "");
+	$('.div_chat_image').hide();
+	$('.chat_text').hide();
+	$('#'+what+'_div_chat_image').show();
+	$('#'+what+'_chat_text').show();
+	
 });
 
 function
@@ -35,8 +46,8 @@ get_level(what) {
 
 //			$("#text_editor").append(data.body);	
 
-			//editor.setValue(data.body);
-			editor.setValue('ciao');
+			editor.setValue(data.body);
+			//editor.setValue('ciao');
 			
 		},
 		error: function (request, stato) {

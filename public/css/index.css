@@ -1,3 +1,6 @@
+.hiddens {
+	display: none;
+}
 #editor{
 	height: 100%;
 }
@@ -61,13 +64,19 @@ html, body {
 #chat{
 	height: 90%;
 }
-#div_chat_image{
+.div_chat_image{
 	height: 80%;
 }
-#chat_text{
+.chat_text{
 	height: 20%;
 	background-color: black;
 	color: green;
+	font-family: vt323;
+	font-size: 100%;
+	  font-weight: 400;
+	    letter-spacing: 0.05em;
+	      line-height: 1em;
+
 }
 
 
