@@ -31,13 +31,13 @@ get_level(what) {
 		url: "/get_level",
 		data: data,
 		success: function (data, stato) {
-//			$("#text_editor").empty();
+			$("#text_editor").empty();
 
-//			$("#text_editor").append(data.body);	
+			$("#text_editor").append(data.body);
 
-			//editor.setValue(data.body);
-			editor.setValue('ciao');
-			
+			editor.setValue(data.body);
+			//editor.setValue('ciao');
+
 		},
 		error: function (request, stato) {
 			alert("E' evvenuto un errore in signal:\n" + stato);
@@ -60,7 +60,7 @@ reset_code(what, where) {
 		success: function (data, stato) {
 			$("#text_editor").empty();
 			$("#text_editor").val(data.body);
-			
+
 		},
 		error: function (request, stato) {
 			alert("ERROR:\n" + stato);
@@ -82,11 +82,9 @@ send_code(level) {
 		url: "/send_code",
 		data: data,
 		success: function (data, stato) {
-			
+
 		},
 		error: function (request, stato) {
 			alert("ERROR:\n" + "There is an syntax error in your code!");
 		}});
 }
-
-
