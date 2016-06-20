@@ -33,7 +33,7 @@
 			</ul>
 		 <button id="reset_code_btn" type="button" class="btn
 					  btn-warning ">Reset</button>
-					  <button id="send_code_btn" type="button" class="btn
+		  <button id="send_code_btn" type="button" class="btn
 		  btn-success ">Send</button>
 
 		</div>
@@ -64,20 +64,46 @@
 		  <div id="right" class="col-md-3 pull-right">
 			  <div id="chat_window">
 				  <div id="chat">
-					  <div id="div_chat_image">
-						  <img class="chat_image" src="images/ale.jpg" alt="ale">
+					<div class="div_chat_image"
+	    id="colonel_div_chat_image">
+						  <img class="chat_image"
+						  src="images/colonel.png" alt="colonel">
+					 </div>
+					  <div class="chat_text" id="colonel_chat_text">
+						  Colonel
 					  </div>
-					  <div id="chat_text">
-						  ciao
-						  <br>
-						  come state?
+
+					  <div class="div_chat_image hiddens"
+						  id="assistant_div_chat_image">
+						  <img class="chat_image"
+						  src="images/assistant.png"
+						  alt="Assistant">
+					  </div>
+					  <div class="chat_text hiddens" id="assistant_chat_text">
+						  Assistant
+					  </div>
+					<div class="div_chat_image hiddens"
+						id="crazy_doctor_div_chat_image">
+						  <img class="chat_image"
+						  src="images/crazy_doctor.png" alt="crazy
+						  doctor">
+					  </div>
+					  <div class="chat_text hiddens" id="crazy_doctor_chat_text">
+						  Crazy Doctor
 					  </div>
 				  </div>
 				  <div id="chat_controller">
-					  <button id="first_chat_btn" type="button" class="btn
-					  btn-warning ">Cocilov</button>
-					  <button id="second_chat_btn" type="button" class="btn
-					  btn-success">luke</button>
+					  <button id="colonel_chat_btn" type="button"
+					  class="change_chat btn
+					  btn-warning ">Colonel</button>
+					  <button id="assistant_chat_btn" type="button"
+						   class="change_chat btn
+					  btn-success">Assistant</button>
+					<button id="crazy_doctor_chat_btn" type="button"
+					class="change_chat btn
+					  btn-success">Doctor</button>
+
+
 				  </div>
 			  </div>
 			  <div id="replies">

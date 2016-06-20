@@ -12,9 +12,20 @@ $('#send_code_btn').on('click', function() {
 
 	send_code(null, null);
 });
+
 $('#reset_code_btn').on('click', function() {
 
 	reset_code(null, null);
+});
+
+$('.change_chat').on('click', function() {
+	what = $(this).attr('id');
+	what = what.replace("_chat_btn", "");
+	$('.div_chat_image').hide();
+	$('.chat_text').hide();
+	$('#'+what+'_div_chat_image').show();
+	$('#'+what+'_chat_text').show();
+	
 });
 
 function
@@ -31,13 +42,13 @@ get_level(what) {
 		url: "/get_level",
 		data: data,
 		success: function (data, stato) {
-			$("#text_editor").empty();
+//			$("#text_editor").empty();
 
-			$("#text_editor").append(data.body);
+//			$("#text_editor").append(data.body);	
 
 			editor.setValue(data.body);
 			//editor.setValue('ciao');
-
+			
 		},
 		error: function (request, stato) {
 			alert("E' evvenuto un errore in signal:\n" + stato);
@@ -60,7 +71,7 @@ reset_code(what, where) {
 		success: function (data, stato) {
 			$("#text_editor").empty();
 			$("#text_editor").val(data.body);
-
+			
 		},
 		error: function (request, stato) {
 			alert("ERROR:\n" + stato);
@@ -82,9 +93,11 @@ send_code(level) {
 		url: "/send_code",
 		data: data,
 		success: function (data, stato) {
-
+			
 		},
 		error: function (request, stato) {
 			alert("ERROR:\n" + "There is an syntax error in your code!");
 		}});
 }
+
+
