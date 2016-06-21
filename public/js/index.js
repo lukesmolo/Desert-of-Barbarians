@@ -10,28 +10,17 @@ $(document).ready(function() {
 
 $('#send_code_btn').on('click', function() {
 
-	send_code(null, null);
+	send_code(1);
 });
-
 $('#reset_code_btn').on('click', function() {
 
 	reset_code(null, null);
 });
 
-$('.change_chat').on('click', function() {
-	what = $(this).attr('id');
-	what = what.replace("_chat_btn", "");
-	$('.div_chat_image').hide();
-	$('.chat_text').hide();
-	$('#'+what+'_div_chat_image').show();
-	$('#'+what+'_chat_text').show();
-	
-});
-
 function
 get_level(what) {
 
-	data = { "request": "get_level", "level": 1};
+	data = { "request": "get_level", "level": 2};
 	data = JSON.stringify(data);
 
 	return $.ajax({
@@ -44,14 +33,14 @@ get_level(what) {
 		success: function (data, stato) {
 //			$("#text_editor").empty();
 
-//			$("#text_editor").append(data.body);	
+//			$("#text_editor").append(data.body);
 
 			editor.setValue(data.body);
 			//editor.setValue('ciao');
-			
+
 		},
 		error: function (request, stato) {
-			alert("E' evvenuto un errore in signal:\n" + stato);
+			alert("E' avvenuto un errore:\n" + stato);
 		}});
 }
 
@@ -69,9 +58,7 @@ reset_code(what, where) {
 		url: "/reset_code",
 		data: data,
 		success: function (data, stato) {
-			$("#text_editor").empty();
-			$("#text_editor").val(data.body);
-			
+			editor.setValue(data.body);
 		},
 		error: function (request, stato) {
 			alert("ERROR:\n" + stato);
@@ -80,7 +67,7 @@ reset_code(what, where) {
 
 function
 send_code(level) {
-	level_code = $("#text_editor").val();
+	level_code = editor.getValue();
 	data = { "request": "send_code", "level": level, "body": level_code};
 	data = JSON.stringify(data);
 
@@ -93,11 +80,9 @@ send_code(level) {
 		url: "/send_code",
 		data: data,
 		success: function (data, stato) {
-			
+
 		},
 		error: function (request, stato) {
 			alert("ERROR:\n" + "There is an syntax error in your code!");
 		}});
 }
-
-
