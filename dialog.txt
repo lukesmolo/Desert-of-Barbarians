@@ -1,0 +1,17 @@
+/*colonel-1
+""Ciao a tutti, come state?
+--bene
+--male
+
+/*assistant-1
+""Stavolta come va?
+--bene
+--male
+--ale
+
+/*colonel-1
+""Eccomi
+--ciao
+--ciaociao
+
+
