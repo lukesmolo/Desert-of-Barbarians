@@ -1,0 +1,31 @@
+{
+    "assistant": [
+        {
+            "answers": [
+                "bene", 
+                "male", 
+                "ale"
+            ], 
+            "id": 1, 
+            "text": "Stavolta come va?"
+        }
+    ], 
+    "colonel": [
+        {
+            "answers": [
+                "bene", 
+                "male"
+            ], 
+            "id": 2, 
+            "text": "Ciao a tutti, come state?"
+        }, 
+        {
+            "answers": [
+                "ciao", 
+                "ciaociao"
+            ], 
+            "id": 3, 
+            "text": "Eccomi"
+        }
+    ]
+}
