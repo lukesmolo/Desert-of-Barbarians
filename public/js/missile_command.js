@@ -1,6 +1,11 @@
 /*TODO runtime changing size of canvas*/
 // Missile Command
-var missileCommand = (function() {
+
+var missileCommand = function() {
+    initialize();
+    setupListeners();
+}
+
   var canvas = document.querySelector( 'canvas' ),
       ctx = canvas.getContext( '2d' );
       //Set canvas size
@@ -473,8 +478,7 @@ var missileCommand = (function() {
       $( '#game_canvas' ).off( 'click' );
 
       //TODO write in some global var the number of castles (and missiles) saved
-
-      if (castlesSaved > 0) {
+      if (totalcastlesSaved() > 0) {
         alert('win');
       }
       else {
@@ -604,20 +608,14 @@ var missileCommand = (function() {
     });
   };
 
-  return {
-    initialize: initialize,
-    setupListeners: setupListeners
-  };
-
-})();
 
 $( document ).ready( function() {
-
-    function respondCanvas(){
-
+  initializeLevel = new Function("$.each( antiMissileBatteries, function( index, amb ) {\r\n      if (index == 1) {amb.missilesLeft = 10;}\r\n      else {amb.missilesLeft = 0;}\r\n    });\r\n    playerMissiles = [];\r\n    enemyMissiles = [];\r\n    createEmemyMissiles();\r\n    drawBeginLevel()");
+  function respondCanvas(){
+        missileCommand();
        //Call a function to redraw other content (texts, images etc)*/
-         missileCommand.initialize();
-         missileCommand.setupListeners();
+         //missileCommand.initialize();
+         //missileCommand.setupListeners();
      }
 
      //Initial Call
