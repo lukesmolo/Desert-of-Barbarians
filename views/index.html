@@ -6,7 +6,7 @@
 	  <link rel="stylesheet" href="css/index.css">
 	  <link rel="stylesheet" href="css/bubbles.css">
 	  <link rel="stylesheet" href="css/bootstrap.min.css">
-	  <link rel="icon shortcut" href="images/favicon.ico">
+	  <link rel="icon shortcut" href="images/circle.png">
   </head>
   <body>
 	  <div id="navbar" class="col-md-1">
@@ -15,13 +15,13 @@
 	     display -->
 	     <div class="navbar-header">
 		     <button type="button" class="navbar-toggle" data-toggle="collapse"
-	   data-target=".navbar-ex1-collapse">
+								   data-target=".navbar-ex1-collapse">
 			     <span class="sr-only">Toggle navigation</span>
 			     <span class="icon-bar"></span>
 			     <span class="icon-bar"></span>
 			     <span class="icon-bar"></span>
 		     </button>
-		     <a class="navbar-brand" href="#">Brand</a>
+		     <a class="navbar-brand" href="#">Home</a>
 	     </div>
 
 	     <!-- Collect
@@ -29,12 +29,15 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
 				<li class="active">
-					<a  href="#">Link</a></li>
+					<a id="conversations_btn" class="change_panel"
+					 href="#conversations">Conv</a>
+					<a id="manual_btn" class="change_panel" href="#manual">Man</a>
+				</li>
 			</ul>
-		 <button id="reset_code_btn" type="button" class="btn
-					  btn-warning ">Reset</button>
-		  <button id="send_code_btn" type="button" class="btn
-		  btn-success ">Send</button>
+			<button id="reset_code_btn"  type="button" class="btn
+			btn-warning ">Reset</button>
+			<button id="send_code_btn" type="button" class="btn
+			btn-success ">Send</button>
 
 		</div>
 		  </nav>
@@ -42,82 +45,163 @@
 
 	  <div id="container" class="fill pull-right col-md-11">
 
-		  <div id="left" class="col-md-9">
-			  <div id="game">
-				  <div >
-					  <div class="crosshair"></div>
-				  </div>
-				  <canvas id="game_canvas"></canvas>
+		  <div id="conversations_panel" class="col-md-12 hiddens panels">
+			  <div id="conversations_close_btn" class="change_panel">
+				  <img class="pull-right close_img" src="images/circle.png"
+						    alt="close panel">
 			  </div>
-			  <div id="coding">
-<!--
-				  <textarea id="text_editor" class="form-control
-				  " rows="5"></textarea>-->
-<pre id="text_editor">function foo(items) {
-					      var x = "All this is syntax highlighted";
-						    return x;
-						    }</pre>
+			  <div id="colonel_conversation" class="col-md-3
+			  summary_conversation">
+				  <div id="colonel_conversation_img_div" class="">
+					  <img class="pull-left close_img" src="images/circle.png"
+						    alt="close panel"> COLONEL
+				  </div>
+				  <div id="colonel_conversation_text"
+	     class="conversations_text">
+			  </div>
+			  </div>
+			  <div id="assistant_conversation" class="col-md-3
+			  summary_conversation">
+ <div id="assistant_conversation_img_div" class="">
+					  <img class="pull-left close_img" src="images/circle.png"
+						    alt="close panel">ASSISTANT
+				  </div>
+				  <div id="assistant_conversation_text"
+	     class="conversations_text">
+			  </div>
 
 			  </div>
+			  <div id="crazy_doctor_conversation" class="col-md-3
+			  summary_conversation">
+ <div id="crazy_doctor_conversation_img_div" class="">
+					  <img class="pull-left close_img" src="images/circle.png"
+						    alt="close panel">CRAZY_DOCTOR
+				  </div>
+				  <div id="crazy_doctor_conversation_text"
+	     class="conversations_text">
+			  </div>
+
+			  </div>
+
 
 		  </div>
-		  <div id="right" class="col-md-3 pull-right">
-			  <div id="chat_window">
-				  <div id="chat">
-					<div class="div_chat_image"
-	    id="colonel_div_chat_image">
-						  <img class="chat_image"
-						  src="images/colonel.png" alt="colonel">
-					 </div>
-					  <div class="chat_text" id="colonel_chat_text">
-						  Colonel
-					  </div>
+		  <div id="manual_panel" class="col-md-12 hiddens panels">
+			  <div id="manual_close_btn" class="change_panel"><img
+					  class="pull-right close_img"
 
-					  <div class="div_chat_image hiddens"
-						  id="assistant_div_chat_image">
-						  <img class="chat_image"
-						  src="images/assistant.png"
-						  alt="Assistant">
+	 src="images/circle.png"
+  alt="colonel"></div>
+
+			  MANUAL
+
+		  </div>
+		  <div id="main_panel" class="panels">
+			  <div id="left" class="col-md-9">
+				  <div id="game">
+					  <div >
+						  <div class="crosshair"></div>
 					  </div>
-					  <div class="chat_text hiddens" id="assistant_chat_text">
-						  Assistant
-					  </div>
-					<div class="div_chat_image hiddens"
-						id="crazy_doctor_div_chat_image">
-						  <img class="chat_image"
-						  src="images/crazy_doctor.png" alt="crazy
-						  doctor">
-					  </div>
-					  <div class="chat_text hiddens" id="crazy_doctor_chat_text">
-						  Crazy Doctor
-					  </div>
+					  <canvas id="game_canvas"></canvas>
 				  </div>
-				  <div id="chat_controller">
-					  <button id="colonel_chat_btn" type="button"
-					  class="change_chat btn
-					  btn-warning ">Colonel</button>
-					  <button id="assistant_chat_btn" type="button"
-						   class="change_chat btn
-					  btn-success">Assistant</button>
-					<button id="crazy_doctor_chat_btn" type="button"
-					class="change_chat btn
-					  btn-success">Doctor</button>
-
+				  <div id="coding">
+					  <pre id="text_editor"></pre>
 
 				  </div>
+
 			  </div>
-			  <div id="replies">
-				  			  </div>
+			  <div id="right" class="col-md-3 pull-right">
+				  <div id="chat_window">
+					  <div id="chat">
+						  <div class="div_chat_image"
+		 id="colonel_div_chat_image">
+							  <img class="chat_image"
+		  src="images/colonel.png" alt="colonel">
+						  </div>
+						  <div class="chat_text typewriter" id="colonel_chat_text">
+							  Colonel
+						  </div>
 
+						  <div class="div_chat_image hiddens"
+		 id="assistant_div_chat_image">
+							  <img class="chat_image"
+		  src="images/assistant.png"
+    alt="Assistant">
+						  </div>
+						  <div class="chat_text typewriter hiddens" id="assistant_chat_text">
+							  Assistant
+						  </div>
+						  <div class="div_chat_image hiddens"
+		 id="crazy_doctor_div_chat_image">
+							  <img class="chat_image"
+		  src="images/crazy_doctor.png" alt="crazy
+		  doctor">
+						  </div>
+						  <div class="chat_text typewriter hiddens" id="crazy_doctor_chat_text">
+							  Crazy Doctor
+						  </div>
+					  </div>
+					  <div id="chat_controller">
+						  <button id="colonel_chat_btn" type="button"
+						  class="change_chat btn
+						  btn-warning ">Colonel</button>
+						  <button id="assistant_chat_btn" type="button"
+						    class="change_chat btn
+						    btn-success">Assistant</button>
+						  <button id="crazy_doctor_chat_btn" type="button"
+							 class="change_chat btn
+							 btn-success">Doctor</button>
+					  </div>
+				  </div>
+				  <div id="replies">
+					  <div id="colonel_replies" class="replies">
+						  <button id="colonel_answer_1" type="button"
+						  class="send_answer btn btn-success hiddens">Next</button>
+						  <button id="colonel_answer_2" type="button"
+						  class="btn
+						  btn-success hiddens send_answer"></button>
+						  <button id="colonel_answer_3" type="button"
+						  class="btn
+						  btn-success hiddens send_answer"></button>
+					  </div>
+					  <div id="assistant_replies" class="replies">
+						  <button id="assistant_answer_1" type="button"
+						    class="send_answer btn btn-success hiddens">Next</button>
+						  <button id="assistant_answer_2" type="button"
+						    class="btn
+						    btn-success hiddens send_answer"></button>
+						  <button id="assistant_answer_3" type="button"
+						    class="btn
+						    btn-success hiddens send_answer"></button>
+					  </div>
+					  <div id="crazy_doctor_replies" class="replies">
+						  <button id="crazy_doctor_answer_1" type="button"
+							 class="send_answer btn btn-success hiddens">Next</button>
+						  <button id="crazy_doctor_answer_2" type="button"
+							 class="btn
+							 btn-success hiddens send_answer"></button>
+						  <button id="crazy_doctor_answer_3" type="button"
+							 class="btn
+							 btn-success hiddens send_answer"></button>
+					  </div>
+
+
+				  </div>
+
+			  </div>
 		  </div>
 
 	  </div>
 
 	  <script src="js/jquery-2.1.0.min.js"></script>
 	  <script src="js/bootstrap.min.js"></script>
+	  <script type="text/javascript" src="js/jquerytypewriter.js"></script>
 	  <script src="js/missile_command.js"></script>
+<<<<<<< HEAD
     <script src="js/index.js"></script>
 	<script src="ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+=======
+	  <script src="ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+>>>>>>> refs/remotes/origin/master
 
   </body>
 </html>

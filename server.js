@@ -1,3 +1,4 @@
+/*jshint -W069 */
 var io   = require('socket.io'),
     url  = require('url'),
     express = require('express'),
@@ -48,10 +49,12 @@ app.post('/send_code', function(req, res){
 
 app.post('/get_level', function(req, res){
 	console.log('body: ' + JSON.stringify(req.body));
-	code = return_level_code(req.body.level);
+	level = req.body.level;
+	dialogs = return_level_dialog(level);
+	code = return_level_code(level);
 	console.log(code);
 	if(code !== null) {
-	res.send({ 'status': 'SUCCESS', 'body': code });
+	res.send({ 'status': 'SUCCESS', 'body': code, 'dialogs': dialogs});
 	} else {
 		res.send({ 'status': 'ERROR', 'what': "file for level not found"});
 	}
@@ -68,6 +71,36 @@ return_level_code(what) {
 	code_level = fs.readFileSync( __dirname + '/public/levels/level'+what+'.js', 'utf8');
 //	console.log(code_level);
 	return code_level;
+
+}
+
+function
+return_level_dialog(what) {
+	dialogs = {};
+	var obj = {};
+	obj = JSON.parse(fs.readFileSync('public/static/dialog_level'+what+'.json', 'utf8'));
+	/*
+	dialogs['colonel'] = [];
+	dialogs['assistant'] = [];
+	dialogs['crazy_doctor'] = [];
+	if('colonel' in obj) {
+		if(what in obj['colonel']) {
+			dialogs['colonel'] = obj['colonel'][what];
+		}
+	}
+	if('assistant' in obj) {
+		if(what in obj['assistant']) {
+			dialogs['assistant'] = obj['assistant'][what];
+		}
+	}
+	if('crazy_doctor' in obj) {
+		if(what in obj['crazy_doctor']) {
+			dialogs['crazy_doctor'] = obj['crazy_doctor'][what];
+		}
+	}
+*/
+	return obj;
+
 
 }
 

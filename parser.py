@@ -4,9 +4,10 @@ import json
 import copy
 
 
-obj = {}
+
 
 def main(file):
+    obj = {}
     id = 0
     with open(file) as f:
         content = f.readlines()
@@ -50,23 +51,26 @@ def main(file):
                     tmp_text['answers'].append(copy.deepcopy(answer))
         obj[key]['what'].append(copy.deepcopy(tmp_text))
 
+    #print(obj)
 
     tmp_obj = {}
-
     for key in obj:
         who = key.partition("-")[0]
         level = key.partition("-")[2]
-        if who not in tmp_obj:
-            tmp_obj[who] = {}
-        if level not in tmp_obj[who]:
-            tmp_obj[who][level] = []
+        if level not in tmp_obj:
+            tmp_obj[level] = {}
+        if who not in tmp_obj[level]:
+            tmp_obj[level][who] = []
             for el in obj[key]['what']:
-                tmp_obj[who][level].append(el)
-
-
+                tmp_obj[level][who].append(el)
     #print(tmp_obj)
-    with open('public/static/'+file+'.json', 'w') as outfile:
-     json.dump(tmp_obj, outfile, indent=4, sort_keys=True)
+
+
+    for key in tmp_obj:
+        obj = {}
+        obj = tmp_obj[key]
+        with open('public/static/dialog_level'+key+'.json', 'w') as outfile:
+         json.dump(obj, outfile, indent=4, sort_keys=True)
 
 
 
