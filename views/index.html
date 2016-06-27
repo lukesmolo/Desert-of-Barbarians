@@ -4,46 +4,52 @@
 	  <meta charset="utf-8">
 	  <title>Missile Command</title>
 	  <link rel="stylesheet" href="css/index.css">
-	  <link rel="stylesheet" href="css/bubbles.css">
+	  <link rel="stylesheet" href="css/introjs.css">
 	  <link rel="stylesheet" href="css/bootstrap.min.css">
 	  <link rel="icon shortcut" href="images/circle.png">
   </head>
   <body>
-	  <div id="navbar" class="col-md-1">
-		  <nav class="navbar navbar-default" role="navigation">
-			  <!-- Brand and toggle get grouped for better mobile
-	     display -->
-	     <div class="navbar-header">
-		     <button type="button" class="navbar-toggle" data-toggle="collapse"
-								   data-target=".navbar-ex1-collapse">
-			     <span class="sr-only">Toggle navigation</span>
-			     <span class="icon-bar"></span>
-			     <span class="icon-bar"></span>
-			     <span class="icon-bar"></span>
-		     </button>
-		     <a class="navbar-brand" href="#">Home</a>
-	     </div>
+	  <div id="navbar" class="pull-left">
+		  <nav data-intro='Hello step one!' data-position='right'  data-step='1' class="navbar navbar-default" id="nav_navbar" role="navigation">
 
-	     <!-- Collect
-		the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav">
-				<li class="active">
-					<a id="conversations_btn" class="change_panel"
-					 href="#conversations">Conv</a>
-					<a id="manual_btn" class="change_panel" href="#manual">Man</a>
-				</li>
-			</ul>
-			<button id="reset_code_btn"  type="button" class="btn
-			btn-warning ">Reset</button>
-			<button id="send_code_btn" type="button" class="btn
-			btn-success ">Send</button>
+			  <ul class="nav navbar-nav">
+				  <li >
+					  <a id="main_btn" class="change_panel"
+				href="#game">
+						  <img class="navbar_img"
+		 src="images/play.png" alt="game navbar button"></a>
 
-		</div>
+					  <a id="conversations_btn" class="change_panel"
+					   href="#conversations">
+						  <img class="navbar_img"
+		 src="images/chat.png" alt="conversations navbar button"></a>
+					  <a id="manual_btn" class="change_panel"
+				  href="#manual">
+						  <img class="navbar_img"
+		 src="images/manual.png" alt="manual navbar button"></a>
+					  <a id="tutorial_btn" class="change_panel"
+				    href="#tutorial"><img
+								 class="navbar_img"
+	   src="images/circle.png"
+    alt="tutorial navbar button"></a>
+<a id="settings_btn" class="change_panel" href="#settings"><img
+								 class="navbar_img"
+	   src="images/settings.png"
+    alt="settings navbar button"></a>
+
+<a id="exit_btn"
+				href="#log_out">
+						  <img class="navbar_img"
+		 src="images/exit.png" alt="log out navbar button"></a>
+				  </li>
+			  </ul>
+
+
+
 		  </nav>
 	  </div>
 
-	  <div id="container" class="fill pull-right col-md-11">
+	  <div id="container" class="fill pull-right col-md-12">
 
 		  <div id="conversations_panel" class="col-md-12 hiddens panels">
 			  <div id="conversations_close_btn" class="change_panel">
@@ -58,28 +64,28 @@
 				  </div>
 				  <div id="colonel_conversation_text"
 	     class="conversations_text">
-			  </div>
+				  </div>
 			  </div>
 			  <div id="assistant_conversation" class="col-md-3
 			  summary_conversation">
- <div id="assistant_conversation_img_div" class="">
+				  <div id="assistant_conversation_img_div" class="">
 					  <img class="pull-left close_img" src="images/circle.png"
 						    alt="close panel">ASSISTANT
 				  </div>
 				  <div id="assistant_conversation_text"
 	     class="conversations_text">
-			  </div>
+				  </div>
 
 			  </div>
 			  <div id="crazy_doctor_conversation" class="col-md-3
 			  summary_conversation">
- <div id="crazy_doctor_conversation_img_div" class="">
+				  <div id="crazy_doctor_conversation_img_div" class="">
 					  <img class="pull-left close_img" src="images/circle.png"
 						    alt="close panel">CRAZY_DOCTOR
 				  </div>
 				  <div id="crazy_doctor_conversation_text"
 	     class="conversations_text">
-			  </div>
+				  </div>
 
 			  </div>
 
@@ -95,6 +101,29 @@
 			  MANUAL
 
 		  </div>
+		  <div id="settings_panel" class="col-md-12 hiddens panels">
+			  <div id="settings_close_btn" class="change_panel"><img
+					    class="pull-right close_img"
+
+	   src="images/circle.png"
+    alt="close_panel"></div>
+
+			  Please, insert a level you want to play.
+			  <br>
+			  <div class="form-group">
+				  <label for="level_hash_key_input_text">Level Key:</label>
+				  <input type="text" maxlength="8" class="form-control"
+						   id="level_hash_key_input_text">
+			  </div>
+			  <button id="reset_level_hash_key_btn"  type="button" class="btn
+			  btn-success">Reset</button>
+			  <button id="send_level_hash_key_btn" type="button" class="btn
+			  btn-success ">Send</button>
+			  <div id="alert_level_hash_key">
+			  </div>
+
+		  </div>
+
 		  <div id="main_panel" class="panels">
 			  <div id="left" class="col-md-9">
 				  <div id="game">
@@ -110,7 +139,8 @@
 
 			  </div>
 			  <div id="right" class="col-md-3 pull-right">
-				  <div id="chat_window">
+				  <div id="chat_window" data-intro='Hello step two!'
+					  data-position='left' data-step='2' >
 					  <div id="chat">
 						  <div class="div_chat_image"
 		 id="colonel_div_chat_image">
@@ -183,6 +213,12 @@
 							 class="btn
 							 btn-success hiddens send_answer"></button>
 					  </div>
+					  <button id="reset_code_btn"  type="button" class="btn
+					  btn-success">Reset</button>
+					  <button id="send_code_btn" type="button" class="btn
+					  btn-success ">Send</button>
+
+
 
 
 				  </div>
@@ -194,6 +230,7 @@
 
 	  <script src="js/jquery-2.1.0.min.js"></script>
 	  <script src="js/index.js"></script>
+	  <script src="js/intro.js"></script>
 	  <script src="js/bootstrap.min.js"></script>
 	  <script type="text/javascript" src="js/jquerytypewriter.js"></script>
 	  <script src="js/missile_command.js"></script>

@@ -5,12 +5,14 @@ var level_dialogs = {};
 var n_dialog = { "colonel": -1, "assistant": -1, "crazy_doctor": -1};
 var current_level = 1;
 var current_character = "colonel";
-var current_panel = "colonel";
+var current_panel = "main";
 var maximum_n_answers = 3;
+
+
 
 $(document).ready(function() {
 
-	get_level(1);
+	get_level(-1);
 	editor = ace.edit("text_editor");
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
@@ -19,6 +21,12 @@ $(document).ready(function() {
 	$('.send_answer:contains("Next")').show();
 	$('#'+current_character+'_replies').show();
 
+	
+});
+
+$('#tutorial_btn').on('click', function() {
+
+	introJs().start();
 });
 
 $('#send_code_btn').on('click', function() {
@@ -28,6 +36,26 @@ $('#reset_code_btn').on('click', function() {
 
 	reset_code(null, null);
 });
+
+$('#send_level_hash_key_btn').on('click', function() {
+	$('#alert_level_hash_key').empty();
+
+	lev = $('#level_hash_key_input_text').val();
+	check_key(lev);
+
+});
+
+$('#reset_level_hash_key_btn').on('click', function() {
+	$('#alert_level_hash_key').empty();
+	lev = $('#level_hash_key_input_text').val('');
+});
+
+$('#reset_code_btn').on('click', function() {
+
+	reset_code(null, null);
+});
+
+
 
 $('.change_chat').on('click', function() {
 	what = $(this).attr('id');
@@ -49,10 +77,13 @@ $('.change_panel').on('click', function() {
 		$('#main_panel').show('slide');
 	} else {
 		what = what.replace("_btn", "");
-		$('.panels').hide();
-		$('#'+what+'_panel').show('slide');
+		if(what != current_panel) {
+			current_panel = what;
+			$('.panels').hide();
+			$('#'+what+'_panel').show('slide');
+		}
 	}
-	
+
 
 });
 
@@ -92,9 +123,6 @@ show_answers() {
 		}
 	}
 }
-
-
-
 
 function
 append_dialogs(level) {
@@ -151,7 +179,9 @@ get_level(level) {
 		url: "/get_level",
 		data: data,
 		success: function (data, stato) {
-			
+
+			if(current_level == -1)
+				current_level = data.level;
 			level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
 			$('.conversations_text').append(level_text);
 			editor.setValue(data.body);
@@ -160,9 +190,43 @@ get_level(level) {
 		},
 		error: function (request, stato) {
 			alert("E' avvenuto un errore:\n" + stato);
-	}});
+		}});
 
 }
+
+function
+check_key(key) {
+
+	data = { "request": "change_level", "level_hash_key": key};
+	data = JSON.stringify(data);
+
+
+	return $.ajax({
+		type: "POST",
+		dataType: "json",
+		processData: false,
+		contentType: 'application/json; charset=utf-8',
+		url: "/check_key",
+		data: data,
+		success: function (data, stato) {
+			if(data.status == 'ERROR') {
+				al = '<p>Key not found. Please try to insert another one<p>';
+				$('#alert_level_hash_key').append(al);
+
+			} else {
+				lev = data.level;
+				get_level(lev);
+				$('#level_hash_key_input_text').val('');
+				$('#settings_close_btn').trigger('click');
+			}
+
+		},
+		error: function (request, stato) {
+			alert("E' avvenuto un errore:\n" + stato);
+		}});
+
+}
+
 
 function
 reset_code(what, where) {
