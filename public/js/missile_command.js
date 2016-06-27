@@ -2,9 +2,22 @@
 // Missile Command
 
 var missileCommand = function() {
+    resetVars();
     initialize();
     setupListeners();
+    clearInterval( timerID ); // FIXME fixes everithing if first time called after playing the game once, otherwise same bug
 }
+
+  var resetVars = function(){
+    // Variables
+    score = 0;
+    level = 1;
+    castles = [];
+    antiMissileBatteries = [];
+    playerMissiles = [];
+    enemyMissiles = [];
+    clearInterval( timerID );
+  }
 
   var canvas = document.querySelector( 'canvas' ),
       ctx = canvas.getContext( '2d' );
@@ -67,7 +80,7 @@ var missileCommand = function() {
     playerMissiles = [];
     enemyMissiles = [];
     createEmemyMissiles();
-    drawBeginLevel();
+    drawBeginLevel()
   };
 
   // Create a certain number of enemy missiles based on the game level
@@ -320,7 +333,7 @@ var missileCommand = function() {
     var scale = (function() {
       var distance = Math.sqrt( Math.pow(xDistance, 2) +
                                 Math.pow(yDistance, 2) ),
-          distancePerFrame = 7
+          distancePerFrame = 10
 
       return distance / distancePerFrame;
     })();
@@ -378,7 +391,9 @@ var missileCommand = function() {
                           color: 'yellow', trailColor: 'red' } );
 
     //lower is this value, higher will be the speed of the missiles
-    framesToTarget = ( 230 - 10 * level ) / offSpeed;
+    //framesToTarget = ( 230 - 10 * level ) / offSpeed;
+    //TODO put in back level!
+    framesToTarget = ( 230)
     if( framesToTarget < 20 ) {
       framesToTarget = 20;
     }
@@ -550,6 +565,7 @@ var missileCommand = function() {
   // Start animating a game level
   var startLevel = function() {
     var fps = 30;
+    //calls a function or evaluates an expression at specified intervals
     timerID = setInterval( nextFrame, 1000 / fps );
   };
 
@@ -610,12 +626,9 @@ var missileCommand = function() {
 
 
 $( document ).ready( function() {
-  initializeLevel = new Function("$.each( antiMissileBatteries, function( index, amb ) {\r\n      if (index == 1) {amb.missilesLeft = 10;}\r\n      else {amb.missilesLeft = 0;}\r\n    });\r\n    playerMissiles = [];\r\n    enemyMissiles = [];\r\n    createEmemyMissiles();\r\n    drawBeginLevel()");
+  //initializeLevel = new Function("$.each( antiMissileBatteries, function( index, amb ) {\r\n      if (index == 1) {amb.missilesLeft = 10;}\r\n      else {amb.missilesLeft = 0;}\r\n    });\r\n    playerMissiles = [];\r\n    enemyMissiles = [];\r\n    createEmemyMissiles();\r\n    drawBeginLevel()");
   function respondCanvas(){
         missileCommand();
-       //Call a function to redraw other content (texts, images etc)*/
-         //missileCommand.initialize();
-         //missileCommand.setupListeners();
      }
 
      //Initial Call
