@@ -5,6 +5,7 @@ var io   = require('socket.io'),
     http=require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
+var crypto = require('crypto');
 
 var fs = require('fs');
 
@@ -13,7 +14,12 @@ var server = http.createServer(app);
 var socket = io.listen(server);
 
 //to be update everytime the user changes level, so not necessary a post for reset_code
+var max_n_levels = 9;
+var username = null;
 var level = 1;
+
+var levels_keys = ['level1', 'level-2', 'Level3', 'LEVEL4', 'LeVel5', 'level6', 'l-evel7', 'l8', 'L-e-v-e-l9'];
+var levels_hash_keys = [];
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
@@ -24,6 +30,32 @@ app.use(bodyParser.json());
 app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
+
+function
+make_levels_keys() {
+for(var i = 0; i < max_n_levels; i++) {
+		levels_hash_keys.push(levels_keys[i]);
+//		levels_hash_keys.push(crypto.createHash('md5').update(username+levels_keys[i]).digest("hex"));
+	}
+}
+
+app.post('/login', function(req, res){
+	console.log('body: ' + JSON.stringify(req.body));
+	body = req.body;
+	username = body.username;
+	level_hash_key = body.level_hash_key;
+	console.log(level_hash_key);
+	make_levels_keys();
+
+	if(level_hash_key !== "" && level_hash_key in levels_hash_keys) {
+		level = levels_hash_keys.indexOf(level_hash_key) + 1;
+	} else if(level_hash_key === ""){
+		level = 1;
+		res.send({ status: 'OK', 'redirect':'/index'});
+	} else {
+	res.send({ status: 'ERROR'});
+	}
+});
 
 app.get('/reset_code', function(req, res){
 	console.log("reset_code");
@@ -49,19 +81,39 @@ app.post('/send_code', function(req, res){
 
 app.post('/get_level', function(req, res){
 	console.log('body: ' + JSON.stringify(req.body));
-	level = req.body.level;
+	req_level = req.body.level;
+	if(req_level != -1)
+		level = req_level;
 	dialogs = return_level_dialog(level);
 	code = return_level_code(level);
 	console.log(code);
 	if(code !== null) {
-	res.send({ 'status': 'SUCCESS', 'body': code, 'dialogs': dialogs});
+		res.send({ 'status': 'SUCCESS', 'body': code, 'dialogs': dialogs, 'level': level});
 	} else {
 		res.send({ 'status': 'ERROR', 'what': "file for level not found"});
 	}
 });
 
 
+app.post('/check_key', function(req, res){
+	console.log('body: ' + JSON.stringify(req.body));
+
+	hash_key = req.body.level_hash_key;
+
+	lev = levels_hash_keys.indexOf(hash_key) + 1;
+	if(lev === 0) {
+		res.send({ 'status': 'ERROR', 'what': "key not found"});
+	} else {
+		res.send({ 'status': 'OK', 'level': lev});
+	}
+});
+
 app.get('/', function(req, res){
+	res.render('login');
+	//res.render('index');
+});
+
+app.get('/index', function(req, res){
 	res.render('index');
 });
 

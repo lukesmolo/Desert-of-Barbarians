@@ -12,6 +12,7 @@
 #container {
 	padding-top:10px;
 	height: 100%;
+	width: 95%;
 	}
 
 #main_panel{
@@ -29,7 +30,6 @@
 
 #game {
 	height: 50%;
-	background-color: red;
 }
 
 #coding {
@@ -48,7 +48,11 @@
 		height: 30%;
 
 }
-html, body {
+body {
+	    height: 100%;
+}
+
+html {
 	    height: 100%;
 }
 #text_editor {
@@ -86,7 +90,7 @@ html, body {
 
 
 #navbar{
-	width: 8%;
+	width: 5%;
 	padding-left: 0px;
 	height:100%;
 }
@@ -156,4 +160,17 @@ width: 100%;
 }
 #conversations_panel {
 	height: 100%;
+}
+.navbar_img {
+	width: 120%;
+}
+
+#nav_navbar {
+	width: 100%;
+}
+
+#alert_level_hash_key {
+	margin-top: 3%;
+	color: red;
+	font-weight: bold;
 }

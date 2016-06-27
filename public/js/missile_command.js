@@ -391,9 +391,8 @@ var missileCommand = function() {
                           color: 'yellow', trailColor: 'red' } );
 
     //lower is this value, higher will be the speed of the missiles
-    //framesToTarget = ( 230 - 10 * level ) / offSpeed;
     //TODO put in back level!
-    framesToTarget = ( 230)
+    framesToTarget = ( 300 - 10 * level ) / offSpeed;
     if( framesToTarget < 20 ) {
       framesToTarget = 20;
     }
