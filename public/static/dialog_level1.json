@@ -2,29 +2,46 @@
     "assistant": [
         {
             "answers": [
-                "bene", 
-                "male", 
-                "ale"
-            ], 
-            "id": 1, 
-            "text": "Stavolta come va?"
+                "certo",
+                "me la sto facendo sotto"
+            ],
+            "id": 1,
+            "text": "Pronto per combattere?"
         }
-    ], 
+    ],
     "colonel": [
         {
             "answers": [
-                "bene", 
+                "bene",
                 "male"
-            ], 
-            "id": 2, 
+            ],
+            "id": 2,
             "text": "Ciao a tutti, come state?"
-        }, 
+        },
         {
             "answers": [
-                "ciao", 
+                "ciao",
                 "ciaociao"
-            ], 
-            "id": 3, 
+            ],
+            "id": 3,
+            "text": "Eccomi"
+        }
+    ],
+    "crazy_doctor": [
+        {
+            "answers": [
+                "bene",
+                "male"
+            ],
+            "id": 1,
+            "text": "Ti vedo in difficoltà, novellino..."
+        },
+        {
+            "answers": [
+                "ciao",
+                "ciaociao"
+            ],
+            "id": 2,
             "text": "Eccomi"
         }
     ]

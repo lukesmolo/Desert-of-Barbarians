@@ -21,8 +21,57 @@ $(document).ready(function() {
 	$('.send_answer:contains("Next")').show();
 	$('#'+current_character+'_replies').show();
 
-
+	//makeReadonly();
 });
+
+function makeReadonly(){
+	editor.keyBinding.addKeyboardHandler({
+        handleKeyboard : function(data, hash, keyString, keyCode, event) {
+            if (hash === -1 || (keyCode <= 40 && keyCode >= 37)) return false;
+
+            if (intersects(range)) {
+                return {command:"null", passEvent:false};
+            }
+        }
+    });
+		var Range = require("ace/range").Range
+		var range1 = (0, 0, 0, 10);
+		var range2 = (3, 0, 3, 10);
+		markerId = editor.session.addMarker(range1, "readonly-highlight")
+		markerId2 = editor.session.addMarker(range2, "readonly-highlight");
+
+    //prevent cut and paste
+    before(editor, 'onPaste', preventReadonly);
+    before(editor, 'onCut',   preventReadonly);
+
+    //prevent keyboard editing
+    range.start  = editor.session.doc.createAnchor(range.start);
+    range.end = editor.session.doc.createAnchor(range.end);
+    range.end.$insertRight = true;
+
+    function before(obj, method, wrapper) {
+        var orig = obj[method];
+        obj[method] = function() {
+            var args = Array.prototype.slice.call(arguments);
+            return wrapper.call(this, function(){
+                return orig.apply(obj, args);
+            }, args);
+        }
+
+        return obj[method];
+    }
+
+    function intersects(range) {
+        return editor.getSelectionRange().intersects(range);
+    }
+
+    function preventReadonly(next, args) {
+        if (intersects(range)) return;
+        if (intersects(range2)) return;
+        next();
+    }
+
+}
 
 $('#tutorial_btn').on('click', function() {
 
@@ -251,7 +300,11 @@ reset_code(what, where) {
 
 function
 send_code(level_id) {
-	level_code = editor.getValue();
+	numlines = editor.session.getLength();
+	level_code_strings = editor.session.getLines(1, numlines -3); //starts from zero, minus last free line and line with }
+	level_code = level_code_strings[0];
+	for (i = 1; i<numlines - 3; i++) level_code = level_code + level_code_strings[i];
+	//level_code = level_code_strings.join(); //FIXME more elegant but doesn't work
 	console.log('codice mandato dall\'utente: ' + JSON.stringify(level_code));
 
 	if (level_id == 1){

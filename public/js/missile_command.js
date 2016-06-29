@@ -40,7 +40,6 @@ missileCommand() {
 	resetVars();
 	initialize();
 	setupListeners();
-	clearInterval( timerID ); // FIXME fixes everithing if first time called after playing the game once, otherwise same bug
 }
 
 function
@@ -52,7 +51,8 @@ resetVars() {
 	antiMissileBatteries = [];
 	playerMissiles = [];
 	enemyMissiles = [];
-	clearInterval( timerID );
+	clearInterval( timerID ); //FIXME praticamente rimangono due piccoli bug: quando l'utente fa il send code senza giocare prima, si rirompe (ma questo lo sapevamo) e quando l'utente gioca dopo aver mandato il codice, appena clicca sul canvas parte un razzo per quel punto!
+ //Il secondo in particolare accade solo quando l'utente fa il send code prima di aver finito di giocare una partita
 }
 
 
@@ -94,8 +94,10 @@ initializeLevel() {
 // Create a certain number of enemy missiles based on the game level
 function
 createEmemyMissiles(){
-	var targets = viableTargets(),
-	numMissiles = ( (level + 7) < 30 ) ? level + 7 : 30;
+	var targets = viableTargets();
+	switch (level){
+			case 1: numMissiles = 7;
+	}
 	for( var i = 0; i < numMissiles; i++ ) {
 		enemyMissiles.push( new EnemyMissile(targets) );
 	}
@@ -350,7 +352,7 @@ function PlayerMissile( source, endX, endY ) {
 	var scale = (function() {
 		var distance = Math.sqrt( Math.pow(xDistance, 2) +
 				Math.pow(yDistance, 2) ),
-		distancePerFrame = 10;
+		distancePerFrame = 15;
 
 			return distance / distancePerFrame;
 	})();
@@ -384,7 +386,7 @@ PlayerMissile.prototype.update = function() {
 function
 playerShoot(x,y) {
 	//cannot shoot in the lower fifth part of canvas and in the upper fifth
-	if( y >= CANVAS_HEIGHT/5 && y <= CANVAS_HEIGHT*4/5 ) {
+	if( y >= CANVAS_HEIGHT/8 && y <= CANVAS_HEIGHT*7/8 ) {
 		var source = whichAntiMissileBattery( x );
 		if( source === -1 ){ // No missiles left
 			return;
@@ -411,7 +413,7 @@ EnemyMissile(targets) {
 
 	//lower is this value, higher will be the speed of the missiles
 	//TODO put in back level!
-	framesToTarget = ( 300 - 10 * level ) / offSpeed;
+	framesToTarget = ( 390 - 10 * level ) / offSpeed;
 	if( framesToTarget < 20 ) {
 		framesToTarget = 20;
 	}
@@ -481,10 +483,10 @@ viableTargets(){
 		}
 	});
 
-	// Randomly select at most 3 castles to target
-	while( targets.length > 3 ) {
+	// Randomly select at most 4 castles to target
+	/*while( targets.length > 4) {
 		targets.splice( rand(0, targets.length - 1), 1 );
-	}
+	}*/
 
 	// Include all anti missile batteries
 	$.each( antiMissileBatteries, function( index, amb ) {
@@ -658,7 +660,6 @@ setupListeners() {
 
 
 $( document ).ready( function() {
-	//initializeLevel = new Function("$.each( antiMissileBatteries, function( index, amb ) {\r\n      if (index == 1) {amb.missilesLeft = 10;}\r\n      else {amb.missilesLeft = 0;}\r\n    });\r\n    playerMissiles = [];\r\n    enemyMissiles = [];\r\n    createEmemyMissiles();\r\n    drawBeginLevel()");
 	function respondCanvas(){
 		missileCommand();
 	}
