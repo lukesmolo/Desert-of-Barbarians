@@ -6,6 +6,7 @@ exports.cssText = ".ace-terminal-theme .ace_gutter {\
 background: #1a0005;\
 color: steelblue\
 }\
+
 .ace-terminal-theme .ace_print-margin {\
 width: 1px;\
 background: #1a1a1a\

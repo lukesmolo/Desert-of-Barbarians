@@ -15,15 +15,15 @@
                 "bene",
                 "male"
             ],
-            "id": 2,
-            "text": "Ciao a tutti, come state?"
+            "id": 1,
+            "text": "Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani"
         },
         {
             "answers": [
                 "ciao",
                 "ciaociao"
             ],
-            "id": 3,
+            "id": 2,
             "text": "Eccomi"
         }
     ],

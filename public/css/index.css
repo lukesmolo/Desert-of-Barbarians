@@ -121,7 +121,7 @@ html {
 		margin-right: 0;
 		margin-left: 0;
 		height:100%;
-	}	
+	}
 
 	.navbar-nav,
 	.navbar-nav > li,
@@ -173,4 +173,10 @@ width: 100%;
 	margin-top: 3%;
 	color: red;
 	font-weight: bold;
+}
+
+.readonly-highlight{
+    background-color: red;
+    opacity: 0.2;
+    position: absolute;
 }

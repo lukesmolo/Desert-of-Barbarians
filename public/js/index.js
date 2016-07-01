@@ -12,42 +12,55 @@ var maximum_n_answers = 3;
 
 $(document).ready(function() {
 
-	get_level(-1); //FIXME get level defined by server!
 	editor = ace.edit("text_editor");
+	get_level(-1); //FIXME get level defined by server!
+	makeReadonly();
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
 	$('.send_answer').hide();
 	$('.send_answer:contains("Next")').show();
 	$('#'+current_character+'_replies').show();
-
-	//makeReadonly();
 });
 
 function makeReadonly(){
+	var Range = ace.require('ace/range').Range;
+	var range1    = new Range(0,0,0,100);
+	switch (current_level) {
+		case -1:   var range2  = new Range(9, 0, 10 ,100);
+
+	}
+	var markerId1 = editor.getSession().addMarker(range1, "readonly-highlight");
+  var markerId2 = editor.getSession().addMarker(range2, "readonly-highlight");
+
 	editor.keyBinding.addKeyboardHandler({
         handleKeyboard : function(data, hash, keyString, keyCode, event) {
             if (hash === -1 || (keyCode <= 40 && keyCode >= 37)) return false;
 
-            if (intersects(range)) {
+            if (intersects(range1)) {
+                return {command:"null", passEvent:false};
+            }
+
+						if (intersects(range2)) {
                 return {command:"null", passEvent:false};
             }
         }
     });
-		var Range = require("ace/range").Range
-		var range1 = (0, 0, 0, 10);
-		var range2 = (3, 0, 3, 10);
-		markerId = editor.session.addMarker(range1, "readonly-highlight")
-		markerId2 = editor.session.addMarker(range2, "readonly-highlight");
 
-    //prevent cut and paste
-    before(editor, 'onPaste', preventReadonly);
-    before(editor, 'onCut',   preventReadonly);
+		function intersects(range) {
+        return editor.getSelectionRange().intersects(range);
+    }
 
+		/*
+		//FIXME to prevent cut and paste
     //prevent keyboard editing
-    range.start  = editor.session.doc.createAnchor(range.start);
-    range.end = editor.session.doc.createAnchor(range.end);
-    range.end.$insertRight = true;
+    range1.start  = editor.getSession().doc.createAnchor(range1.start);
+    range1.end = editor.getSession().doc.createAnchor(range1.end);
+    range1.end.$insertRight = true;
+		//prevent keyboard editing
+    range2.start  = editor.getSession().doc.createAnchor(range2.start);
+    range2.end = editor.getSession().doc.createAnchor(range2.end);
+    range2.end.$insertRight = true;
 
     function before(obj, method, wrapper) {
         var orig = obj[method];
@@ -61,15 +74,11 @@ function makeReadonly(){
         return obj[method];
     }
 
-    function intersects(range) {
-        return editor.getSelectionRange().intersects(range);
-    }
-
     function preventReadonly(next, args) {
-        if (intersects(range)) return;
+        if (intersects(range1)) return;
         if (intersects(range2)) return;
         next();
-    }
+    }*/
 
 }
 
@@ -300,8 +309,8 @@ reset_code(what, where) {
 
 function
 send_code(level_id) {
-	numlines = editor.session.getLength();
-	level_code_strings = editor.session.getLines(1, numlines -3); //starts from zero, minus last free line and line with }
+	numlines = editor.getSession().getLength();
+	level_code_strings = editor.getSession().getLines(1, numlines -3); //array starts from zero, minus last free line and line with }
 	level_code = level_code_strings[0];
 	for (i = 1; i<numlines - 3; i++) level_code = level_code + level_code_strings[i];
 	//level_code = level_code_strings.join(); //FIXME more elegant but doesn't work
