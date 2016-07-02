@@ -153,6 +153,7 @@ $('.send_answer').on('click', function() {
 		$('#'+current_character+'_conversation_text').append(answer_text);
 	}
 	n_dialog[current_character]++;
+	$('.send_answer').hide();
 	append_dialogs(current_level);
 });
 
