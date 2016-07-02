@@ -14,7 +14,6 @@ $(document).ready(function() {
 
 	editor = ace.edit("text_editor");
 	get_level(-1); //FIXME get level defined by server!
-	alert(current_level);
 	makeReadonly();
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
@@ -84,7 +83,6 @@ function makeReadonly(){
 }
 
 $('#tutorial_btn').on('click', function() {
-
 	introJs().start();
 });
 
@@ -128,7 +126,7 @@ $('.change_chat').on('click', function() {
 	current_character = what;
 });
 
-$('.change_panel').on('click', function() {
+$('.change_panel').not("#tutorial_btn").on('click', function() {
 	what = $(this).attr('id');
 	if(what.indexOf('close') > -1) {
 		what = what.replace("_close_btn", "");
@@ -241,7 +239,6 @@ get_level(level) {
 
 			//if(current_level == -1)
 			current_level = data.level;
-			alert(current_level);
 			level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
 			$('.conversations_text').append(level_text);
 			editor.setValue(data.body);
