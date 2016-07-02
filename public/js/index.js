@@ -83,7 +83,6 @@ function makeReadonly(){
 }
 
 $('#tutorial_btn').on('click', function() {
-
 	introJs().start();
 });
 
@@ -127,7 +126,7 @@ $('.change_chat').on('click', function() {
 	current_character = what;
 });
 
-$('.change_panel').on('click', function() {
+$('.change_panel').not("#tutorial_btn").on('click', function() {
 	what = $(this).attr('id');
 	if(what.indexOf('close') > -1) {
 		what = what.replace("_close_btn", "");
@@ -226,7 +225,7 @@ get_level(level) {
 	data = JSON.stringify(data);
 
 	/*FIXME to do when ajax success*/
-	current_level = level;
+	//current_level = level;
 
 
 	return $.ajax({
@@ -238,8 +237,8 @@ get_level(level) {
 		data: data,
 		success: function (data, stato) {
 
-			if(current_level == -1)
-				current_level = data.level;
+			//if(current_level == -1)
+			current_level = data.level;
 			level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
 			$('.conversations_text').append(level_text);
 			editor.setValue(data.body);
