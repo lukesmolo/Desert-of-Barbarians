@@ -1,0 +1,48 @@
+{
+    "assistant": [
+        {
+            "answers": [
+                "certo",
+                "me la sto facendo sotto"
+            ],
+            "id": 1,
+            "text": "Pronto per combattere?"
+        }
+    ],
+    "colonel": [
+        {
+            "answers": [
+                "bene",
+                "male"
+            ],
+            "id": 1,
+            "text": "Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani"
+        },
+        {
+            "answers": [
+                "ciao",
+                "ciaociao"
+            ],
+            "id": 2,
+            "text": "Eccomi"
+        }
+    ],
+    "crazy_doctor": [
+        {
+            "answers": [
+                "bene",
+                "male"
+            ],
+            "id": 1,
+            "text": "Ti vedo in difficoltà, novellino..."
+        },
+        {
+            "answers": [
+                "ciao",
+                "ciaociao"
+            ],
+            "id": 2,
+            "text": "Eccomi"
+        }
+    ]
+}

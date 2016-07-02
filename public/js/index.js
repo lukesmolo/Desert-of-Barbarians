@@ -14,7 +14,6 @@ $(document).ready(function() {
 
 	editor = ace.edit("text_editor");
 	get_level(-1); //FIXME get level defined by server!
-	alert(current_level);
 	makeReadonly();
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
@@ -227,7 +226,7 @@ get_level(level) {
 	data = JSON.stringify(data);
 
 	/*FIXME to do when ajax success*/
-	//current_level = level;
+	current_level = level;
 
 
 	return $.ajax({
@@ -239,9 +238,8 @@ get_level(level) {
 		data: data,
 		success: function (data, stato) {
 
-			//if(current_level == -1)
-			current_level = data.level;
-			alert(current_level);
+			if(current_level == -1)
+				current_level = data.level;
 			level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
 			$('.conversations_text').append(level_text);
 			editor.setValue(data.body);

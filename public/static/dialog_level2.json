@@ -18,7 +18,7 @@
         {
             "answers": [],
             "id": 3,
-            "text": "We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
+            "text": "We we'll see. Hope you are as bold as lucky. Fighting Barbars is not a game."
         },
         {
             "answers": [],
@@ -28,29 +28,32 @@
     ],
     "colonel": [
       {
-          "answers": [],
+          "answers": [
+            "I'm so sorry, Sir",
+            "I'll fix it, Sir"
+          ],
           "id": 1,
-          "text": "Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time."
+          "text": "Good morning, Lieutenent Drogo, and congratulations for completing previous mission. Unluckily, your lack of experience damaged our Antimissile System: your missiles were too fast for our old System and last battle damaged the targeting system."
       },
         {
           "answers": [
-              "I have no competences, Sir",
               "Yes Sir!"
+              "May I skip push-ups?"
           ],
             "id": 2,
-            "text": "Times have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
+            "text": "200 push-ups of punishment, fix the targeting system and you'll be forgiven."
         },
         {
             "answers":[],
             "id": 3,
-            "text": "In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
+            "text": "Be quick, Barbarians won't wait for you and they surely will defeat us, with our targeting system broken."
         },
         {
           "answers": [
               "Yes Sir!"
           ],
             "id": 4,
-            "text": "You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
+            "text": "Also in this mission you can't lose any of our towers. I hope won't have to repeat it every time."
         }
     ],
     "crazy_doctor": [
