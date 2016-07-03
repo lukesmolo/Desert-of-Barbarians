@@ -1,3 +1,26 @@
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	25% {
+		opacity: 0.50;
+	}
+	50% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 0.75;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.blink_image {
+	animation: blink 0.3s;
+	animation-iteration-count: infinite;
+}
+
+
 .hiddens {
 	display: none;
 }
@@ -6,14 +29,14 @@
 }
 
 @font-face {
-	    font-family: vt323;
-	    src: url(../fonts/VT323-Regular.ttf);
-  }
+	font-family: vt323;
+	src: url(../fonts/VT323-Regular.ttf);
+}
 #container {
 	padding-top:10px;
 	height: 100%;
 	width: 95%;
-	}
+}
 
 #main_panel{
 	height: 100%;
@@ -37,32 +60,32 @@
 }
 
 #chat_window{
-		height: 70%;
-		border: 1px;
-		border-style: solid;
+	height: 70%;
+	border: 1px;
+	border-style: solid;
 }
 
 #replies {
-		border: 1px;
-		border-style: solid;
-		height: 30%;
+	border: 1px;
+	border-style: solid;
+	height: 30%;
 
 }
 body {
-	    height: 100%;
-	     overflow: hidden;
+	height: 100%;
+	overflow: hidden;
 }
 
 html {
-	    height: 100%;
+	height: 100%;
 }
 #text_editor {
 	font-family: vt323;
 	font-size: 100%;
-	  font-weight: 400;
-	    letter-spacing: 0.05em;
-	      line-height: 1em;
-/*	background-color: black;*/
+	font-weight: 400;
+	letter-spacing: 0.05em;
+	line-height: 1em;
+	/*	background-color: black;*/
 	color: green;
 	width: 100%;
 	height: 100%;
@@ -75,6 +98,7 @@ html {
 }
 .div_chat_image{
 	height: 80%;
+	background-color : black;
 }
 .chat_text{
 	height: 17%;
@@ -82,9 +106,9 @@ html {
 	color: green;
 	font-family: vt323;
 	font-size: 150%;
-	  font-weight: 400;
-	    letter-spacing: 0.05em;
-	      line-height: 1em;
+	font-weight: 400;
+	letter-spacing: 0.05em;
+	line-height: 1em;
 
 }
 
@@ -139,8 +163,8 @@ html {
 
 .chat_image {
 
-height: 100%;
-width: 100%;
+	height: 100%;
+	width: 100%;
 }
 
 #next_dialog {
@@ -189,7 +213,7 @@ width: 100%;
 }
 
 .readonly-highlight{
-    background-color: red;
-    opacity: 0.2;
-    position: absolute;
+	background-color: red;
+	opacity: 0.2;
+	position: absolute;
 }

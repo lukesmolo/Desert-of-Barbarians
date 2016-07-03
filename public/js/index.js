@@ -10,26 +10,8 @@ var maximum_n_answers = 3;
 var max_chat_length = 60;
 var tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+var left_text = false;
 
-
-function
-split_text(input) {
-	var len = 60;
-	var curr = len;
-	var prev = 0;
-
-	output = new Array();
-
-	while (input[curr]) {
-		if (input[curr++] == ' ') {
-			output.push(input.substring(prev,curr));
-			prev = curr;
-			curr += len;
-		}
-	}
-	output.push(input.substr(prev));
-	return output;
-}
 
 $(document).ready(function() {
 
@@ -43,6 +25,7 @@ $(document).ready(function() {
 	$('.send_answer:contains("Next")').show();
 	$('#'+current_character+'_replies').show();
 });
+
 
 function makeReadonly(){
 	var Range = ace.require('ace/range').Range;
@@ -102,6 +85,7 @@ function makeReadonly(){
 	}*/
 
 }
+
 
 $('#tutorial_btn').on('click', function() {
 	introJs().start();
@@ -201,13 +185,15 @@ if(go_to != "undefined") {
 
 
 function
-show_answers(text_left) {
+show_answers() {
+
+	$('.chat_image').removeClass('blink_image');
 	$('#next_dialog_img').show();
 	n_answers = (level_dialogs[current_character][n_dialog[current_character]]['answers']).length;
 	if(n_answers > maximum_n_answers) {
 		alert("Too many answers for this dialog");
 	} else {
-		if(n_answers === 0 || text_left === true) {
+		if(n_answers === 0 || left_text === true) {
 			id = current_character+'_answer_1';
 			$('#'+id).prop('value', 'Next');
 			$('#'+id).text('Next');
@@ -230,6 +216,26 @@ show_answers(text_left) {
 		}
 	}
 }
+
+function
+split_text(input) {
+	var len = 60;
+	var curr = len;
+	var prev = 0;
+
+	output = new Array();
+
+	while (input[curr]) {
+		if (input[curr++] == ' ') {
+			output.push(input.substring(prev,curr));
+			prev = curr;
+			curr += len;
+		}
+	}
+	output.push(input.substr(prev));
+	return output;
+}
+
 
 function
 append_dialogs(level) {
@@ -262,15 +268,15 @@ append_dialogs(level) {
 
 
 		if(tmp_chat_text_part[current_character] == level_dialogs[current_character][n_dialog[current_character]]['text'].length-1) {
-			text_left = false;
+			left_text = false;
 		} else {
-			text_left = true;
+			left_text = true;
 		}
 
 		if(tmp_chat_text_part[current_character] === 0) {
 			dialog_text = '<span class="dialog_text">'+current_character+': '+text+'</span>';
 		} else {
-			if(text_left) {
+			if(left_text) {
 				dialog_text = text;
 			} else {
 				dialog_text = text+'</span><p></p>';
@@ -279,10 +285,11 @@ append_dialogs(level) {
 		}
 		$('#'+current_character+'_conversation_text').append(dialog_text);
 		tmp_chat_text_part[current_character]++;
+		$('.chat_image').addClass('blink_image');
 		$('#'+id).typewrite({
 			'delay': 10,
 			//'delay': 100,
-			'callback': show_answers(text_left)
+			'callback': show_answers
 		});
 
 
