@@ -1,17 +1,60 @@
 /*colonel-1
-""Ciao a tutti, come state?
---bene
---male
+""Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time.
 
-/*assistant-1
-""Stavolta come va?
---bene
---male
---ale
 
 /*colonel-1
-""Eccomi
---ciao
---ciaociao
+""Times have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly
+--1--I have no competences, Sir
+--2--Yes Sir!
 
+/*colonel-1
+""1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa.
+
+/*colonel-1
+""2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle.
+--Yes Sir!
+
+
+/*assistant-1
+""Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask.
+--Sure
+
+
+
+/*assistant-1
+""The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript
+--1--I can do it
+--2--Tell me more for this mission
+
+/*assistant-1
+""1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game.
+
+/*assistant-1
+""2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value.
+
+/*crazy_doctor-1
+""It seems you're in trouble, kid...
+--Who are you?
+
+/*crazy_doctor-1
+""I'm your Guardian Angel!
+--I'm Atheist
+--I can't see wings
+
+/*crazy_doctor-1
+""I was joking, boy, I'm Doctor Gilbert Nichols, and many many years ago, when you weren't born already and Internet Explorer was considered a good Browser, I was in the team or programmers that created your Antimissile System
+
+
+/*crazy_doctor-1
+""Let's go to the point: I see that you've been defeated many times in this mission. Do you want some help? I can give you very specific hints
+--1--Yes, please
+--2--No, I can do it by myself
+
+
+/*crazy_doctor-1
+""1--Okay, let's reason using phisics: think that the function called "scale" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?
+
+
+/*crazy_doctor-1
+""2--In that case, I'll won't say a word.
 

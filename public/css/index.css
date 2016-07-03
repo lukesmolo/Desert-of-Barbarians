@@ -81,7 +81,7 @@ html {
 	background-color: black;
 	color: green;
 	font-family: vt323;
-	font-size: 100%;
+	font-size: 150%;
 	  font-weight: 400;
 	    letter-spacing: 0.05em;
 	      line-height: 1em;
@@ -157,7 +157,19 @@ width: 100%;
 	height: 60%;
 	border: 1px;
 	border-style: solid;
-	margin-left: 5%;
+	margin-left: 5% ;
+	padding-left: 5px !important;
+	padding-right:0 !important;
+
+}
+.conversations_text {
+	height: 90%;
+	width: 100%;
+	overflow-y: auto;
+}
+.conversations_header{
+	height: 10%;
+	width: 100%;
 }
 #conversations_panel {
 	height: 100%;
