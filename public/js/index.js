@@ -83,6 +83,7 @@ function makeReadonly(){
 }
 
 $('#tutorial_btn').on('click', function() {
+
 	introJs().start();
 });
 
@@ -126,7 +127,7 @@ $('.change_chat').on('click', function() {
 	current_character = what;
 });
 
-$('.change_panel').not("#tutorial_btn").on('click', function() {
+$('.change_panel').on('click', function() {
 	what = $(this).attr('id');
 	if(what.indexOf('close') > -1) {
 		what = what.replace("_close_btn", "");
@@ -225,8 +226,21 @@ get_level(level) {
 	data = JSON.stringify(data);
 
 	/*FIXME to do when ajax success*/
-	//current_level = level;
+	current_level = level;
 
+	/*return $.ajax( {type: "POST",dataType: "json",processData: false,contentType: 'application/json; charset=utf-8',url: "/get_level",data: data} )
+    .done( { function (data, stato) {
+			if(current_level == -1)
+				current_level = data.level;
+			level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
+			$('.conversations_text').append(level_text);
+			editor.setValue(data.body);
+			make_dialogs(level, data.dialogs);
+
+		}
+		})
+    .fail(function (jqXHR, textStatus, errorThrown) { alert("E' avvenuto un errore:\n" + textStatus); })
+    .always(function() { alert("complete"); });*/
 
 	return $.ajax({
 		type: "POST",

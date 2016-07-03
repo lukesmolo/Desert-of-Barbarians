@@ -28,12 +28,12 @@ var MISSILE = {
 
 // Variables
 var score = 0;
-var level = 1;
 var castles = [];
 var antiMissileBatteries = [];
 var playerMissiles = [];
 var enemyMissiles = [];
 var timerID;
+var buildTime = 0;
 
 function
 missileCommand() {
@@ -46,7 +46,7 @@ function
 resetVars() {
 	// Variables
 	score = 0;
-	level = 1;
+	buildTime = 0;
 	castles = [];
 	antiMissileBatteries = [];
 	playerMissiles = [];
@@ -78,11 +78,21 @@ initialize() {
 	initializeLevel();
 }
 
+// Create castles and anti missile batteries at the start of the game
+function
+initializeObf() {
+	for (i=1; i <=18; i+=1){
+		castles.push( new castle( i) );
+		antiMissileBatteries.push( new AntiMissileBattery(i) );
+	}
+	initializeLevel();
+}
+
 // Reset various variables at the start of a new level
 function
 initializeLevel() {
 	$.each( antiMissileBatteries, function( index, amb ) {
-		if (index == 1) {amb.missilesLeft = 1;}
+		if (index == 1) {amb.missilesLeft = 10;}
 		else {amb.missilesLeft = 0;}
 	});
 	playerMissiles = [];
@@ -95,8 +105,9 @@ initializeLevel() {
 function
 createEmemyMissiles(){
 	var targets = viableTargets();
-	switch (level){
+	switch (current_level){
 			case 1: numMissiles = 7;
+			default: numMissiles = 10;
 	}
 	for( var i = 0; i < numMissiles; i++ ) {
 		enemyMissiles.push( new EnemyMissile(targets) );
@@ -193,6 +204,20 @@ function castle( x, y ) {
 	this.active = true;
 }
 
+//alternative construtor (used only in level 4)
+function castleAlt(i) {
+	castleY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10);
+	slot = CANVAS_WIDTH/18;
+
+	if (i == 3 || i == 5 || i == 7 || i == 11 || i == 13 || i == 15) {
+		this.x = slot*i;
+		this.y = castleY;
+		this.active = true;
+	}
+	//time is lost even if castle is not built
+	buildTime++;
+}
+
 // Show a castle based on its position
 castle.prototype.draw = function() {
 	var x = this.x,
@@ -237,6 +262,21 @@ AntiMissileBattery( x, y ) {
 	this.x = x;
 	this.y = y;
 	this.missilesLeft = 10;
+}
+
+//alternative construtor (used only in level 4)
+function
+AntiMissileBatteryAlt(i) {
+	slot = CANVAS_WIDTH/18;
+	antiMissileY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10)-28 ;
+
+	if (i == 1 || i == 9 || i == 17){
+		this.x = slot*i;
+		this.y = antiMissileY;
+		this.missilesLeft = 10;
+	}
+	//time is lost even if castle is not built
+	buildTime++;
 }
 
 AntiMissileBattery.prototype.hasMissile = function() {
@@ -386,13 +426,58 @@ PlayerMissile.prototype.update = function() {
 function
 playerShoot(x,y) {
 	//cannot shoot in the lower fifth part of canvas and in the upper fifth
-	if( y >= CANVAS_HEIGHT/8 && y <= CANVAS_HEIGHT*7/8 ) {
+	if( checkHeight(y) ) {
 		var source = whichAntiMissileBattery( x );
 		if( source === -1 ){ // No missiles left
 			return;
 		}
 		playerMissiles.push( new PlayerMissile( source, x, y ) );
 	}
+}
+
+function checkHeight(y) {
+	if (y >= CANVAS_HEIGHT/8 && y <= CANVAS_HEIGHT*6/8) {return true}
+	else return false;
+}
+
+function checkHeightObf(y) {
+	var admitted = false;
+	var admittedTop = false;
+	var admittedBottom = false;
+	var alreadySetTop = false;
+	var alreadySetBottom = false;
+	for (i = 0; i <= CANVAS_HEIGHT*6/8; i++){
+		for (k = 0; k <= y; k++){
+			for (j = 0; j <= k; j++){
+				if (i == y == k == j) {
+					admittedBottom = true;
+					alreadySetBottom = true;
+				}
+				else {
+					if (!alreadySetBottom){
+						admittedBottom = false;
+					}
+				}
+			}
+		}
+	}
+	for (i = CANVAS_HEIGHT; i >= CANVAS_HEIGHT/8; i--){
+		for (k = 0; k <= y; k++){
+			for (j = 0; j <= k; j++){
+				if (i == y == k == j) {
+					admittedTop = true;
+					alreadySetTop = true;
+				}
+				else {
+					if (!alreadySetTop){
+						admittedTop = false;
+					}
+				}
+			}
+		}
+	}
+	admitted = admittedTop && admittedBottom;
+	return admitted;
 }
 
 // Constructor for the Enemy's Missile, which is a subclass of Missile
@@ -413,7 +498,7 @@ EnemyMissile(targets) {
 
 	//lower is this value, higher will be the speed of the missiles
 	//TODO put in back level!
-	framesToTarget = ( 390 - 10 * level ) / offSpeed;
+	framesToTarget = ( 390 - 10 * current_level ) / offSpeed;
 	if( framesToTarget < 20 ) {
 		framesToTarget = 20;
 	}
@@ -422,7 +507,7 @@ EnemyMissile(targets) {
 
 	this.target = target;
 	// Make missiles heading to their target at random times
-	this.delay = rand( 0, 50 + level * 15 );
+	this.delay = rand( 0, 50 + current_level * 15 );
 	this.groundExplosion = false;
 }
 
@@ -652,7 +737,7 @@ setupListeners() {
 
 		//subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
 		$( '#game_canvas' ).on( 'click', function( event ) {
-			playerShoot( event.pageX - $("#game_canvas").offset().left,
+			playerShoot3( event.pageX - $("#game_canvas").offset().left,
 					event.pageY - $("#game_canvas").offset().top);
 		});
 	});
