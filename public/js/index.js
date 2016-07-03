@@ -86,8 +86,12 @@ function makeReadonly(){
 
 }
 
+$('#exit_btn').on('click', function() {
+	window.location.href = '/';
+});
 
 $('#tutorial_btn').on('click', function() {
+	$('#main_btn').trigger('click');
 	introJs().start();
 });
 
@@ -261,12 +265,7 @@ append_dialogs(level) {
 			skip_dialog[current_character] = 1;
 			text = text.substring(3);
 		}
-
-
-
 		$('#'+id).append(text);
-
-
 		if(tmp_chat_text_part[current_character] == level_dialogs[current_character][n_dialog[current_character]]['text'].length-1) {
 			left_text = false;
 		} else {
@@ -287,8 +286,7 @@ append_dialogs(level) {
 		tmp_chat_text_part[current_character]++;
 		$('.chat_image').addClass('blink_image');
 		$('#'+id).typewrite({
-			'delay': 10,
-			//'delay': 100,
+			'delay': 30,
 			'callback': show_answers
 		});
 
