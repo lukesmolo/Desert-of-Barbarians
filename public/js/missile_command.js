@@ -604,6 +604,7 @@ checkEndLevel() {
 		//TODO write in some global var the number of castles (and missiles) saved
 		if (totalcastlesSaved() > 0) {
 			alert('win');
+			get_level(++current_level);
 		}
 		else {
 			alert('fail');
@@ -737,7 +738,7 @@ setupListeners() {
 
 		//subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
 		$( '#game_canvas' ).on( 'click', function( event ) {
-			playerShoot3( event.pageX - $("#game_canvas").offset().left,
+			playerShoot( event.pageX - $("#game_canvas").offset().left,
 					event.pageY - $("#game_canvas").offset().top);
 		});
 	});

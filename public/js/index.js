@@ -3,7 +3,7 @@
 var editor = null;
 var level_dialogs = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
-var current_level = 1;
+var current_level = 11;
 var current_character = "colonel";
 var current_panel = "main";
 var maximum_n_answers = 3;
@@ -35,7 +35,6 @@ $(document).ready(function() {
 
 	editor = ace.edit("text_editor");
 	get_level(-1); //FIXME get level defined by server!
-	makeReadonly();
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
@@ -49,6 +48,7 @@ function makeReadonly(){
 	var range1    = new Range(0,0,0,100);
 	switch (current_level) {
 		case -1:   var range2  = new Range(6, 0, 14 ,100);
+		case 1:   var range2  = new Range(10, 0, 14 ,100);
 
 	}
 	var markerId1 = editor.getSession().addMarker(range1, "readonly-highlight");
@@ -316,43 +316,19 @@ make_dialogs(level, dialogs) {
 			data = { "request": "get_level", "level": level};
 			data = JSON.stringify(data);
 
-			/*FIXME to do when ajax success*/
-			//current_level = level;
-
-	/*return $.ajax( {type: "POST",dataType: "json",processData: false,contentType: 'application/json; charset=utf-8',url: "/get_level",data: data} )
-    .done( { function (data, stato) {
-			if(current_level == -1)
-				current_level = data.level;
+	return $.ajax( {type: "POST",dataType: "json",processData: false,contentType: 'application/json; charset=utf-8',url: "/get_level",data: data} )
+    .done( function (data, stato) {
+			current_level = data.level;
 			level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
 			$('.conversations_text').append(level_text);
 			editor.setValue(data.body);
 			make_dialogs(level, data.dialogs);
-
-		}
 		})
     .fail(function (jqXHR, textStatus, errorThrown) { alert("E' avvenuto un errore:\n" + textStatus); })
-    .always(function() { alert("complete"); });*/
-
-	return $.ajax({
-		type: "POST",
-		dataType: "json",
-		processData: false,
-		contentType: 'application/json; charset=utf-8',
-		url: "/get_level",
-		data: data,
-		success: function (data, stato) {
-
-					//if(current_level == -1)
-					current_level = data.level;
-					level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
-					$('.conversations_text').append(level_text);
-					editor.setValue(data.body);
-					make_dialogs(level, data.dialogs);
-
-				},
-				error: function (request, stato) {
-					alert("E' avvenuto un errore:\n" + stato);
-				}});
+    .always(function() {
+			//called after the completion of get_level, because needs to know which level we are in
+			makeReadonly();
+ 		});
 
 		}
 
