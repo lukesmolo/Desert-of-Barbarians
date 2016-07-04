@@ -13,7 +13,7 @@ var app = express();
 var server = http.createServer(app);
 var socket = io.listen(server);
 
-//to be update everytime the user changes level, so not necessary a post for reset_code
+//to be updated everytime the user changes level, so not necessary a post for reset_code
 var max_n_levels = 9;
 var username = null;
 var level = 1;
@@ -155,6 +155,5 @@ return_level_dialog(what) {
 
 
 }
-
 
 app.listen(8000);

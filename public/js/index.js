@@ -7,7 +7,7 @@ var current_level = 1;
 var current_character = "colonel";
 var current_panel = "main";
 var maximum_n_answers = 3;
-var max_chat_length = 60;
+var max_chat_length = 140;
 var tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var left_text = false;
@@ -32,10 +32,8 @@ $(document).ready(function() {
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
 	$('.send_answer').hide();
-	$('.send_answer:contains("Next")').show();
+	//$('.send_answer:contains("Next")').show();
 	$('#'+current_character+'_replies').show();
-	w = $('.chat_image').width();
-	h = $('.chat_image').height();
 
 
 });
@@ -240,7 +238,7 @@ show_answers() {
 
 function
 split_text(input) {
-	var len = 60;
+	var len = max_chat_length;
 	var curr = len;
 	var prev = 0;
 
@@ -306,7 +304,7 @@ append_dialogs(level) {
 
 		grained('.tv_effect',options);
 		$('#'+id).typewrite({
-			'delay': 30,
+			'delay': 50,
 			'callback': show_answers
 		});
 

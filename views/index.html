@@ -143,12 +143,25 @@
 			  <div id="right" class="col-md-3 pull-right">
 				  <div id="chat_window"data-step="2" data-intro="Hello step two!"
 					  data-position="left"  >
+<div id="chat_controller">
+						  <button id="colonel_chat_btn" type="button"
+						  class="change_chat btn
+						  btn-warning ">Colonel</button>
+						  <button id="assistant_chat_btn" type="button"
+						    class="change_chat btn
+						    btn-success">Assistant</button>
+						  <button id="crazy_doctor_chat_btn" type="button"
+							 class="change_chat btn
+							 btn-success">Doctor</button>
+					  </div>
 					  <div id="chat">
+
 						  <div class="div_chat_image"
 		 id="colonel_div_chat_image">
 							  <img class="chat_image"
 		  src="images/colonel.png" alt="colonel">
 						  </div>
+
 						  <div class="chat_text typewriter" id="colonel_chat_text">
 							  Colonel
 						  </div>
@@ -172,19 +185,10 @@
 							  Crazy Doctor
 						  </div>
 					  </div>
-					  <div id="chat_controller">
-						  <button id="colonel_chat_btn" type="button"
-						  class="change_chat btn
-						  btn-warning ">Colonel</button>
-						  <button id="assistant_chat_btn" type="button"
-						    class="change_chat btn
-						    btn-success">Assistant</button>
-						  <button id="crazy_doctor_chat_btn" type="button"
-							 class="change_chat btn
-							 btn-success">Doctor</button>
-					  </div>
+					  
 				  </div>
-				  <div id="replies">
+				  <div id="replies_div">
+					  <div id="replies">
 					  <div id="colonel_replies" class="replies">
 						  <button id="colonel_answer_1" type="button"
 						  class="send_answer btn btn-success hiddens">Next</button>
@@ -215,10 +219,22 @@
 							 class="btn
 							 btn-success hiddens send_answer"></button>
 					  </div>
-					  <button id="reset_code_btn"  type="button" class="btn
-					  btn-success">Reset</button>
-					  <button id="send_code_btn" type="button" class="btn
-					  btn-success ">Send</button>
+					  </div>
+					  <div id="code_buttons_controller">
+
+						  <div id="div_send_code_btn" class="div_code_controller
+						  col-md-6">
+							  <img id="send_code_btn" 
+		  class="code_buttons_img center-block"
+    src="images/play.png" alt="code controller reset button">
+						  </div>
+						  <div id="div_reset_code_btn"
+		 class="div_code_controller col-md-6">
+							  <img id="reset_code_btn"
+		  class="code_buttons_img center-block"
+    src="images/play.png" alt="code controller reset button">
+						  </div>
+					  </div>
 
 
 
@@ -237,7 +253,7 @@
 	  <script src="js/bootstrap.min.js"></script>
 	  <script type="text/javascript" src="js/jquerytypewriter.js"></script>
 	  <script src="js/missile_command.js"></script>
-	<script src="ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 
   </body>
 
