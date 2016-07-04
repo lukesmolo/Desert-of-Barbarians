@@ -51,8 +51,8 @@ resetVars() {
 	antiMissileBatteries = [];
 	playerMissiles = [];
 	enemyMissiles = [];
-	clearInterval( timerID ); //FIXME praticamente rimangono due piccoli bug: quando l'utente fa il send code senza giocare prima, si rirompe (ma questo lo sapevamo) e quando l'utente gioca dopo aver mandato il codice, appena clicca sul canvas parte un razzo per quel punto!
- //Il secondo in particolare accade solo quando l'utente fa il send code prima di aver finito di giocare una partita
+	clearInterval( timerID ); //FIXME praticamente rimane un piccoli bug: quando l'utente fa il send code senza giocare prima, si rirompe
+ 	$( '#game_canvas' ).off( 'click' );
 }
 
 
