@@ -3,35 +3,28 @@
 var editor = null;
 var level_dialogs = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
-var current_level = 11;
+var current_level = 1;
 var current_character = "colonel";
 var current_panel = "main";
 var maximum_n_answers = 3;
 var max_chat_length = 60;
 var tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+var left_text = false;
 
+var options = {
+	animate: true,
+	patternWidth: 100,
+	patternHeight: 100,
+	grainOpacity: 0.2,
+	grainDensity: 3.6,
+	grainWidth: 9.3,
+	grainHeight: 2
+};
 
-function
-split_text(input) {
-	var len = 60;
-	var curr = len;
-	var prev = 0;
-
-	output = new Array();
-
-	while (input[curr]) {
-		if (input[curr++] == ' ') {
-			output.push(input.substring(prev,curr));
-			prev = curr;
-			curr += len;
-		}
-	}
-	output.push(input.substr(prev));
-	return output;
-}
 
 $(document).ready(function() {
+
 
 	editor = ace.edit("text_editor");
 	get_level(-1); //FIXME get level defined by server!
@@ -41,7 +34,12 @@ $(document).ready(function() {
 	$('.send_answer').hide();
 	$('.send_answer:contains("Next")').show();
 	$('#'+current_character+'_replies').show();
+	w = $('.chat_image').width();
+	h = $('.chat_image').height();
+
+
 });
+
 
 function makeReadonly(){
 	var Range = ace.require('ace/range').Range;
@@ -103,8 +101,12 @@ function makeReadonly(){
 
 }
 
-$('#tutorial_btn').on('click', function() {
+$('#exit_btn').on('click', function() {
+	window.location.href = '/';
+});
 
+$('#tutorial_btn').on('click', function() {
+	$('#main_btn').trigger('click');
 	introJs().start();
 });
 
@@ -178,13 +180,13 @@ $('.send_answer').on('click', function() {
 	answer_text = '<p class="answer_text">YOU:'+text+'</p>';
 	if(text != 'Next') {
 		$('#'+current_character+'_conversation_text').append(answer_text);
-if(go_to != "undefined") {
-				n_dialog[current_character] += parseInt(go_to);
-			} else {
-				n_dialog[current_character]++;
-			}
+		if(go_to != "undefined") {
+			n_dialog[current_character] += parseInt(go_to);
+		} else {
+			n_dialog[current_character]++;
+		}
 
-			tmp_chat_text_part[current_character] = 0;
+		tmp_chat_text_part[current_character] = 0;
 
 	} else {
 		if(tmp_chat_text_part[current_character] == level_dialogs[current_character][n_dialog[current_character]]['text'].length) {
@@ -202,13 +204,17 @@ if(go_to != "undefined") {
 
 
 function
-show_answers(text_left) {
+show_answers() {
+
+
+	$('#'+current_character+'_div_chat_image').removeClass('tv_effect');
+	$('style[id^="grained-animation"]').remove();
 	$('#next_dialog_img').show();
 	n_answers = (level_dialogs[current_character][n_dialog[current_character]]['answers']).length;
 	if(n_answers > maximum_n_answers) {
 		alert("Too many answers for this dialog");
 	} else {
-		if(n_answers === 0 || text_left === true) {
+		if(n_answers === 0 || left_text === true) {
 			id = current_character+'_answer_1';
 			$('#'+id).prop('value', 'Next');
 			$('#'+id).text('Next');
@@ -231,6 +237,26 @@ show_answers(text_left) {
 		}
 	}
 }
+
+function
+split_text(input) {
+	var len = 60;
+	var curr = len;
+	var prev = 0;
+
+	output = new Array();
+
+	while (input[curr]) {
+		if (input[curr++] == ' ') {
+			output.push(input.substring(prev,curr));
+			prev = curr;
+			curr += len;
+		}
+	}
+	output.push(input.substr(prev));
+	return output;
+}
+
 
 function
 append_dialogs(level) {
@@ -256,22 +282,17 @@ append_dialogs(level) {
 			skip_dialog[current_character] = 1;
 			text = text.substring(3);
 		}
-
-
-
 		$('#'+id).append(text);
-
-
 		if(tmp_chat_text_part[current_character] == level_dialogs[current_character][n_dialog[current_character]]['text'].length-1) {
-			text_left = false;
+			left_text = false;
 		} else {
-			text_left = true;
+			left_text = true;
 		}
 
 		if(tmp_chat_text_part[current_character] === 0) {
 			dialog_text = '<span class="dialog_text">'+current_character+': '+text+'</span>';
 		} else {
-			if(text_left) {
+			if(left_text) {
 				dialog_text = text;
 			} else {
 				dialog_text = text+'</span><p></p>';
@@ -280,10 +301,13 @@ append_dialogs(level) {
 		}
 		$('#'+current_character+'_conversation_text').append(dialog_text);
 		tmp_chat_text_part[current_character]++;
+
+		$('#'+current_character+'_div_chat_image').addClass('tv_effect');
+
+		grained('.tv_effect',options);
 		$('#'+id).typewrite({
-			'delay': 10,
-			//'delay': 100,
-			'callback': show_answers(text_left)
+			'delay': 30,
+			'callback': show_answers
 		});
 
 
