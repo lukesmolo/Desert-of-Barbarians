@@ -12,8 +12,19 @@ var tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var left_text = false;
 
+var options = {
+	animate: true,
+	patternWidth: 100,
+	patternHeight: 100,
+	grainOpacity: 0.2,
+	grainDensity: 3.6,
+	grainWidth: 9.3,
+	grainHeight: 2
+};
+
 
 $(document).ready(function() {
+
 
 	editor = ace.edit("text_editor");
 	get_level(-1); //FIXME get level defined by server!
@@ -24,6 +35,10 @@ $(document).ready(function() {
 	$('.send_answer').hide();
 	$('.send_answer:contains("Next")').show();
 	$('#'+current_character+'_replies').show();
+	w = $('.chat_image').width();
+	h = $('.chat_image').height();
+
+
 });
 
 
@@ -165,13 +180,13 @@ $('.send_answer').on('click', function() {
 	answer_text = '<p class="answer_text">YOU:'+text+'</p>';
 	if(text != 'Next') {
 		$('#'+current_character+'_conversation_text').append(answer_text);
-if(go_to != "undefined") {
-				n_dialog[current_character] += parseInt(go_to);
-			} else {
-				n_dialog[current_character]++;
-			}
+		if(go_to != "undefined") {
+			n_dialog[current_character] += parseInt(go_to);
+		} else {
+			n_dialog[current_character]++;
+		}
 
-			tmp_chat_text_part[current_character] = 0;
+		tmp_chat_text_part[current_character] = 0;
 
 	} else {
 		if(tmp_chat_text_part[current_character] == level_dialogs[current_character][n_dialog[current_character]]['text'].length) {
@@ -191,7 +206,9 @@ if(go_to != "undefined") {
 function
 show_answers() {
 
-	$('.chat_image').removeClass('blink_image');
+
+	$('#'+current_character+'_div_chat_image').removeClass('tv_effect');
+	$('style[id^="grained-animation"]').remove();
 	$('#next_dialog_img').show();
 	n_answers = (level_dialogs[current_character][n_dialog[current_character]]['answers']).length;
 	if(n_answers > maximum_n_answers) {
@@ -284,7 +301,10 @@ append_dialogs(level) {
 		}
 		$('#'+current_character+'_conversation_text').append(dialog_text);
 		tmp_chat_text_part[current_character]++;
-		$('.chat_image').addClass('blink_image');
+
+		$('#'+current_character+'_div_chat_image').addClass('tv_effect');
+
+		grained('.tv_effect',options);
 		$('#'+id).typewrite({
 			'delay': 30,
 			'callback': show_answers
