@@ -93,7 +93,7 @@ function
 initializeLevel() {
 	$.each( antiMissileBatteries, function( index, amb ) {
 		if (index == 1) {amb.missilesLeft = 10;}
-		else {amb.missilesLeft = 0;}
+		else {amb.missilesLeft = 10;}
 	});
 	playerMissiles = [];
 	enemyMissiles = [];
@@ -107,7 +107,7 @@ createEmemyMissiles(){
 	var targets = viableTargets();
 	switch (current_level){
 			case 1: numMissiles = 7;
-			default: numMissiles = 10;
+			default: numMissiles = 100;
 	}
 	for( var i = 0; i < numMissiles; i++ ) {
 		enemyMissiles.push( new EnemyMissile(targets) );
@@ -282,6 +282,8 @@ AntiMissileBatteryAlt(i) {
 AntiMissileBattery.prototype.hasMissile = function() {
 	//"cast to bool" "Operator": ! is not, !! turns our int!=0 in 1 (es. 7, !7=0, !0 = 1)
 	return !!this.missilesLeft;
+	//autofire
+	//return 1;
 };
 
 // Show the missiles left in an anti missile battery
@@ -741,7 +743,19 @@ setupListeners() {
 			playerShoot( event.pageX - $("#game_canvas").offset().left,
 					event.pageY - $("#game_canvas").offset().top);
 		});
+
 	});
+}
+
+
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }
 
 
