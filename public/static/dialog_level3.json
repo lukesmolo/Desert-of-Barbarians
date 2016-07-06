@@ -2,47 +2,95 @@
     "assistant": [
         {
             "answers": [
-                "certo",
-                "me la sto facendo sotto"
+                "Sure"
             ],
             "id": 1,
-            "text": "Pronto per combattere?"
+            "text": "Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
+        },
+        {
+            "answers": [
+                "1--I can do it",
+                "2--Tell me more for this mission"
+            ],
+            "id": 2,
+            "text": "The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript"
+        },
+        {
+            "answers": [],
+            "id": 3,
+            "text": "1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
+        },
+        {
+            "answers": [],
+            "id": 4,
+            "text": "2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value."
         }
     ],
     "colonel": [
         {
-            "answers": [
-                "bene",
-                "male"
-            ],
+            "answers": [],
             "id": 1,
-            "text": "Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani"
+            "text": "Good mooooorning, parapppapaaapppeees speedspeedspeedspeedspeedspeed speedspeedspeedspeed speedspeedspeed speedspeedspeedspe edspeedspeedspeed"
         },
         {
             "answers": [
-                "ciao",
-                "ciaociao"
+                "1--I have no competences, Sir",
+                "2--Yes Sir!"
             ],
             "id": 2,
-            "text": "Eccomi"
+            "text": "Tiiiiiiiiiiiiiimes have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
+        },
+        {
+            "answers": [],
+            "id": 3,
+            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
+        },
+        {
+            "answers": [
+                "Yes Sir!"
+            ],
+            "id": 4,
+            "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
         }
     ],
     "crazy_doctor": [
         {
             "answers": [
-                "bene",
-                "male"
+                "Who are you?"
             ],
             "id": 1,
-            "text": "Ti vedo in difficoltà, novellino..."
+            "text": "It seems you're in trouble, ki333333d..."
         },
         {
             "answers": [
-                "ciao",
-                "ciaociao"
+                "I'm Atheist",
+                "I can't see wings"
             ],
             "id": 2,
-            "text": "Eccomi"
+            "text": "I'm your Guardian Angel!"
+        },
+        {
+            "answers": [],
+            "id": 3,
+            "text": "I was joking, boy, I'm Doctor Gilbert Nichols, and many many years ago, when you weren't born already and Internet Explorer was considered a good Browser, I was in the team or programmers that created your Antimissile System"
+        },
+        {
+            "answers": [
+                "1--Yes, please",
+                "2--No, I can do it by myself"
+            ],
+            "id": 4,
+            "text": "Let's go to the point: I see that you've been defeated many times in this mission. Do you want some help? I can give you very specific hints"
+        },
+        {
+            "answers": [],
+            "id": 5,
+            "text": "1--Okay, let's reason using phisics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
+        },
+        {
+            "answers": [],
+            "id": 6,
+            "text": "2--In that case, I'll won't say a word."
         }
     ]
 }

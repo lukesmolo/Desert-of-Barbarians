@@ -350,7 +350,6 @@ make_dialogs(level, dialogs) {
     .always(function() {
 			//called after the completion of get_level, because needs to know which level we are in
 			//makeReadonly();
-			code_length = editor.getSession().getLength();
  		});
 
 		}
