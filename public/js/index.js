@@ -158,6 +158,7 @@ $('.change_panel').not("#tutorial_btn").on('click', function() {
 		what = what.replace("_close_btn", "");
 		$('#'+what+'_panel').hide('slide');
 		$('#main_panel').show('slide');
+		current_panel = 'main';
 	} else {
 		what = what.replace("_btn", "");
 		if(what != current_panel) {
