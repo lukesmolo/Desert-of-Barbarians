@@ -11,6 +11,7 @@ var max_chat_length = 140;
 var tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var left_text = false;
+var check_code = 0;
 
 var options = {
 	animate: true,
@@ -410,21 +411,58 @@ make_dialogs(level, dialogs) {
 				}});
 		}
 
-	function
-		send_code(level_id) {
-			numlines = editor.getSession().getLength();
-			level_code_strings = editor.getSession().getLines(1, numlines -3); //array starts from zero, minus last free line and line with }
+	function send_code(level_id) {
+		check_code = 1;
+		numlines = editor.getSession().getLength();
+		level_code_strings = editor.getSession().getLines(1, numlines -3); //array starts from zero, minus last free line and line with }
+	check_level_code = editor.getSession().getValue();
 	level_code = level_code_strings[0];
-	for (i = 1; i<numlines - 3; i++) level_code = level_code + level_code_strings[i];
+	for (i = 1; i<numlines - 3; i++)
+		level_code = level_code + level_code_strings[i];
 	//level_code = level_code_strings.join(); //FIXME more elegant but doesn't work
 	console.log('codice mandato dall\'utente: ' + JSON.stringify(level_code));
+
+
 	//check if too many code lines
 	//alert(editor.getSession().getLength());
-	switch (level_id){
-		case 1: scale = new Function('x, y', level_code); break;
-		case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
-		case 3: numMissiles = new Function(level_code); break;
+
+
+	error = null;
+	/*check code*/
+	check_code = sandbox(check_level_code, scope);
+	if(check_code === 1) {
+		switch (level_id) {
+			case 1: check_level_code = check_level_code+'scale();';
+				  break;
+				  /*	   case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
+					   case 3: numMissiles = new Function(level_code); break;*/
+		}
+
+		limitEval(check_level_code, function(success, returnValue) {
+			if (success) {
+				if(returnValue != 1) {
+					error = returnValue;
+					alert(error);
+				} else {
+					check_code = 1;
+				}
+			}
+			else {
+				alert('The code takes too long to run.  Is there is an infinite loop?');
+				check_code = 0;
+			}
+		}, 3000);
 	}
-	missileCommand();
+
+
+	if(check_code === 1) {
+		switch (level_id){
+			case 1: scale = new Function('x, y', level_code); break;
+			case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
+			case 3: numMissiles = new Function(level_code); break;
+		}
+		missileCommand();
+	}
+
 
 }
