@@ -1,14 +1,7 @@
-function initializeLevel(){
-	funtion foo(){
-		missilesLeft = 10
-		return missilesLeft
-	};
-	$.each( antiMissileBatteries, function( index, amb ) {
-		if (index == 1) {amb.missilesLeft = foo();}
-		else {amb.missilesLeft = foo();}
-	});
-	playerMissiles = [];
-	enemyMissiles = [];
-	createEmemyMissiles();
-	drawBeginLevel();
-}
+function scale(x, y) {
+	var distance = Math.sqrt( Math.pow(x, 2) +
+			Math.pow(y, 2) ),
+	distancePerFrame = 3;
+
+		return distance / distancePerFrame;
+};

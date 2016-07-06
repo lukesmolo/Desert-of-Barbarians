@@ -12,6 +12,7 @@ background.addEventListener('load', onImageLoad);
 background.src = "../images/fondale.png";
 
 var bool = 1;
+var code_length = 1;
 
 $(canvas).attr('width', ($('#game_canvas').parent().width()));
 $(canvas).attr('height', ($('#game_canvas').parent().height()));
@@ -61,20 +62,16 @@ resetVars() {
 function
 initialize() {
 	//Initialize the leftmost castles (3, 5, 7)
-	for (i=3; i <=7; i+=2){
-		// Bottom left relative position of castle
+	for (i=3; i <=7; i+=2)
+		//Bottom left relative position of castle
 		castles.push( new castle( CANVAS_WIDTH*i/18, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
-	}
 	//Initialize the rightmost castles (11, 13, 15)
-	for (i=11; i <=15; i+=2){
+	for (i=11; i <=15; i+=2)
 		// Bottom left relative position of castle
 		castles.push( new castle( CANVAS_WIDTH*i/18, CANVAS_HEIGHT-(CANVAS_HEIGHT/10) ) );
-	}
-
-	for (i=1; i <=17; i+=8){
+	for (i=1; i <=17; i+=8)
 		// Top middle position of anti missile battery
 		antiMissileBatteries.push( new AntiMissileBattery( (CANVAS_WIDTH*i/18), CANVAS_HEIGHT-(CANVAS_HEIGHT/10)-28 ) );
-	}
 	initializeLevel();
 }
 
@@ -91,14 +88,27 @@ initializeObf() {
 // Reset various variables at the start of a new level
 function
 initializeLevel() {
-	$.each( antiMissileBatteries, function( index, amb ) {
-		if (index == 1) {amb.missilesLeft = 10;}
-		else {amb.missilesLeft = 10;}
-	});
+	if (current_level == 3){
+		$.each( antiMissileBatteries, function( index, amb ) {
+			if (index == 1) {amb.missilesLeft = numMissiles();}
+			else {amb.missilesLeft = numMissiles() - 1;}
+		})
+	}
+	else {
+		$.each( antiMissileBatteries, function( index, amb ) {
+			if (index == 1) {amb.missilesLeft = 10;}
+			else {amb.missilesLeft = 10;}
+		})
+	}
 	playerMissiles = [];
 	enemyMissiles = [];
 	createEmemyMissiles();
 	drawBeginLevel();
+}
+
+function numMissiles(){
+	missilesLeft = 1;
+	return missilesLeft;
 }
 
 // Create a certain number of enemy missiles based on the game level
@@ -106,8 +116,8 @@ function
 createEmemyMissiles(){
 	var targets = viableTargets();
 	switch (current_level){
-			case 1: numMissiles = 7;
-			default: numMissiles = 100;
+			case 1: numMissiles = 7; break;
+			default: numMissiles = 10;
 	}
 	for( var i = 0; i < numMissiles; i++ ) {
 		enemyMissiles.push( new EnemyMissile(targets) );
@@ -199,23 +209,24 @@ drawBackground() {
 
 // Constructor for a castle
 function castle( x, y ) {
+	if (arguments.length === 2) {
 	this.x = x;
 	this.y = y;
 	this.active = true;
-}
-
-//alternative construtor (used only in level 4)
-function castleAlt(i) {
-	castleY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10);
-	slot = CANVAS_WIDTH/18;
-
-	if (i == 3 || i == 5 || i == 7 || i == 11 || i == 13 || i == 15) {
-		this.x = slot*i;
-		this.y = castleY;
-		this.active = true;
 	}
-	//time is lost even if castle is not built
-	buildTime++;
+	else if (arguments.length === 1){
+		castleY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10);
+		slot = CANVAS_WIDTH/18;
+
+		if (i == 3 || i == 5 || i == 7 || i == 11 || i == 13 || i == 15) {
+			this.x = slot*i;
+			this.y = castleY;
+			this.active = true;
+		}
+
+		//time is lost even if castle is not built
+		buildTime++;
+	}
 }
 
 // Show a castle based on its position
@@ -259,24 +270,23 @@ castle.prototype.draw = function() {
 // Constructor for an Anti Missile Battery
 function
 AntiMissileBattery( x, y ) {
-	this.x = x;
-	this.y = y;
-	this.missilesLeft = 10;
-}
-
-//alternative construtor (used only in level 4)
-function
-AntiMissileBatteryAlt(i) {
-	slot = CANVAS_WIDTH/18;
-	antiMissileY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10)-28 ;
-
-	if (i == 1 || i == 9 || i == 17){
-		this.x = slot*i;
-		this.y = antiMissileY;
+	if (arguments.length === 2) {
+		this.x = x;
+		this.y = y;
 		this.missilesLeft = 10;
 	}
-	//time is lost even if castle is not built
-	buildTime++;
+	else if (arguments.length === 1){
+		slot = CANVAS_WIDTH/18;
+		antiMissileY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10)-28 ;
+
+		if (i == 1 || i == 9 || i == 17){
+			this.x = slot*i;
+			this.y = antiMissileY;
+			this.missilesLeft = 10;
+		}
+		//time is lost even if castle is not built
+		buildTime++;
+	}
 }
 
 AntiMissileBattery.prototype.hasMissile = function() {
@@ -376,6 +386,15 @@ Missile.prototype.explode = function() {
 	}
 };
 
+function scale(x, y) {
+	var distance = Math.sqrt( Math.pow(x, 2) +
+			Math.pow(y, 2) )
+	distancePerFrame = 15;
+	if (current_level == 1) distancePerFrame = 3;
+
+		return distance / distancePerFrame;
+};
+
 // Constructor for the Player's Missile, which is a subclass of Missile
 // and uses Missile's constructor
 function PlayerMissile( source, endX, endY ) {
@@ -391,16 +410,9 @@ function PlayerMissile( source, endX, endY ) {
 	// Determine a value to be used to scale the orthogonal directions
 	// of travel so the missiles travel at a constant speed and in the
 	// right direction
-	var scale = (function() {
-		var distance = Math.sqrt( Math.pow(xDistance, 2) +
-				Math.pow(yDistance, 2) ),
-		distancePerFrame = 15;
 
-			return distance / distancePerFrame;
-	})();
-
-	this.dx = xDistance / scale;
-	this.dy = yDistance / scale;
+	this.dx = xDistance / scale(xDistance, yDistance);
+	this.dy = yDistance / scale(xDistance, yDistance);
 	amb.missilesLeft--;
 }
 
@@ -435,6 +447,15 @@ playerShoot(x,y) {
 		}
 		playerMissiles.push( new PlayerMissile( source, x, y ) );
 	}
+}
+
+function shootWithOffset(x, y, offLeft, offTop){
+	correctedX = x - offLeft;
+	correctedY = y - offTop;
+	if (current_level == 2){
+		playerShoot(1.5*correctedX, correctedY+45);
+	}
+	else playerShoot(correctedX, correctedY);
 }
 
 function checkHeight(y) {
@@ -604,13 +625,14 @@ checkEndLevel() {
 		$( '#game_canvas' ).off( 'click' );
 
 		//TODO write in some global var the number of castles (and missiles) saved
-		if (totalcastlesSaved() > 0) {
+		if (totalcastlesSaved() == 6) {
 			alert('win');
 			get_level(++current_level);
 		}
 		else {
 			alert('fail');
 		}
+		missileCommand();
 	}
 }
 
@@ -740,24 +762,11 @@ setupListeners() {
 
 		//subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
 		$( '#game_canvas' ).on( 'click', function( event ) {
-			playerShoot( event.pageX - $("#game_canvas").offset().left,
-					event.pageY - $("#game_canvas").offset().top);
+			shootWithOffset(event.pageX, event.pageY, $("#game_canvas").offset().left, $("#game_canvas").offset().top);
 		});
 
 	});
 }
-
-
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
-
 
 $( document ).ready( function() {
 	function respondCanvas(){

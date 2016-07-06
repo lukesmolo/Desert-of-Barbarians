@@ -349,7 +349,8 @@ make_dialogs(level, dialogs) {
     .fail(function (jqXHR, textStatus, errorThrown) { alert("E' avvenuto un errore:\n" + textStatus); })
     .always(function() {
 			//called after the completion of get_level, because needs to know which level we are in
-			makeReadonly();
+			//makeReadonly();
+			code_length = editor.getSession().getLength();
  		});
 
 		}
@@ -417,11 +418,13 @@ make_dialogs(level, dialogs) {
 	for (i = 1; i<numlines - 3; i++) level_code = level_code + level_code_strings[i];
 	//level_code = level_code_strings.join(); //FIXME more elegant but doesn't work
 	console.log('codice mandato dall\'utente: ' + JSON.stringify(level_code));
-
-	if (level_id == 1){
-		//here happens the magic
-		initializeLevel = new Function(level_code);
-		missileCommand();
+	//check if too many code lines
+	//alert(editor.getSession().getLength());
+	switch (level_id){
+		case 1: scale = new Function('x, y', level_code); break;
+		case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
+		case 3: numMissiles = new Function(level_code); break;
 	}
+	missileCommand();
 
 }
