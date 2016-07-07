@@ -1,7 +1,5 @@
 /*TODO runtime changing size of canvas*/
 
-
-
 // Missile Command
 var canvas = $('#game_canvas')[0];
 var ctx = canvas.getContext('2d');
@@ -85,7 +83,7 @@ initializeObf() {
 	initializeLevel();
 }
 
-function return_numMissiles(){
+function setNumMissiles(){
 	missilesLeft = 1;
 	return missilesLeft;
 }
@@ -96,10 +94,10 @@ initializeLevel() {
 	if (current_level == 3){
 		$.each( antiMissileBatteries, function( index, amb ) {
 			if (index == 1) {
-				amb.missilesLeft = return_numMissiles();
+				amb.missilesLeft = setNumMissiles();
 			}
 			else {
-				amb.missilesLeft = return_numMissiles() - 1;
+				amb.missilesLeft = setNumMissiles() - 1;
 			}
 		});
 	}
