@@ -447,12 +447,23 @@ PlayerMissile.prototype.update = function() {
 function
 playerShoot(x,y) {
 	//cannot shoot in the lower fifth part of canvas and in the upper fifth
-	if( checkHeight(y) ) {
-		var source = whichAntiMissileBattery( x );
-		if( source === -1 ){ // No missiles left
-			return;
+	if (current_level == 5){
+		if( checkHeightObf(y) ) {
+			var source = whichAntiMissileBattery( x );
+			if( source === -1 ){ // No missiles left
+				return;
+			}
+			playerMissiles.push( new PlayerMissile( source, x, y ) );
 		}
-		playerMissiles.push( new PlayerMissile( source, x, y ) );
+	}
+	else {
+		if( checkHeight(y) ) {
+			var source = whichAntiMissileBattery( x );
+			if( source === -1 ){ // No missiles left
+				return;
+			}
+			playerMissiles.push( new PlayerMissile( source, x, y ) );
+		}
 	}
 }
 

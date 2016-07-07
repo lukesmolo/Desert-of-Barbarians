@@ -3,7 +3,7 @@
 var editor = null;
 var level_dialogs = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
-var current_level = 1;
+var current_level = 5;
 var current_character = "colonel";
 var current_panel = "main";
 var maximum_n_answers = 3;
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
 
 	editor = ace.edit("text_editor");
-	get_level(-1); //FIXME get level defined by server!
+	get_level(5); //FIXME get level defined by server!
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
@@ -468,6 +468,7 @@ make_dialogs(level, dialogs) {
 				else alert('too many invocations of constructor!');
 				break;
 				}
+			case 5: checkHeightObf = new Function('y', level_code); break;
 		}
 		missileCommand();
 	}
