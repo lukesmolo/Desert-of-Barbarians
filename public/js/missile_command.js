@@ -489,13 +489,25 @@ playerShoot(x,y) {
 	}
 }
 
+function playerShoot3(x,y) {
+	//cannot shoot in the lower fifth part of canvas and in the upper fifth
+	if( checkHeight(y) ) {
+		var source = whichAntiMissileBattery( x );
+		if( source === -1 ){ // No missiles left
+			return;
+		}
+		playerMissiles.push( new PlayerMissile( source, x, y ) );
+	}
+}
+
 function shootWithOffset(x, y, offLeft, offTop){
 	correctedX = x - offLeft;
 	correctedY = y - offTop;
 	if (current_level == 2){
 		playerShoot(1.5*correctedX, correctedY+45);
 	}
-	else playerShoot(correctedX, correctedY);
+	else if (current_level == 7) playerShoot3(correctedX, correctedY)
+	else playerShoot3(correctedX, correctedY);
 }
 
 function checkHeight(y) {
