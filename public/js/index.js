@@ -12,6 +12,7 @@ var tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var left_text = false;
 var check_code = 0;
+var info_character = 'colonel';
 
 var options = {
 	animate: true,
@@ -137,18 +138,37 @@ $('#reset_code_btn').on('click', function() {
 
 
 
+
 $('.change_chat').on('click', function() {
-	what = $(this).attr('id');
-	what = what.replace("_chat_btn", "");
-	$('.div_chat_image').hide();
-	$('.chat_text').hide();
-	$('#'+what+'_div_chat_image').show();
-	$('#'+what+'_chat_text').show();
-	$('#'+current_character+'_replies').hide();
-	$('#'+what+'_replies').show();
-	current_character = what;
-	if(n_dialog[current_character] === 0 && tmp_chat_text_part[current_character] == 0) {
-		append_dialogs(current_character);
+	if(!$(this).hasClass('not_clickable')) {
+		stop_talking();
+		what = $(this).attr('id');
+		what = what.replace("_chat_btn", "");
+		stop_talking();
+		if(what != "info") {
+			$('.div_chat_image').hide();
+			$('.chat_text').hide();
+			$('#'+what+'_div_chat_image').show();
+			$('#'+what+'_chat_text').show();
+			$('#'+current_character+'_replies').hide();
+			$('#'+what+'_replies').show();
+			current_character = what;
+			if(n_dialog[current_character] === 0 && tmp_chat_text_part[current_character] === 0) {
+				$('#'+current_character+'_div_chat_image').addClass('tv_effect');
+
+
+				grained('.tv_effect',options);
+				append_dialogs(current_character);
+			}
+		} else {
+			$('.div_chat_image').hide();
+			$('.chat_text').hide();
+			$('#'+what+'_chat_text').show();
+			$('#'+info_character+'_div_chat_image').show();
+			$('#'+current_character+'_replies').hide();
+
+
+		}
 	}
 });
 
@@ -203,13 +223,38 @@ $('.send_answer').on('click', function() {
 });
 
 
+
+function
+append_info(what, who, show) {
+
+	$('#info_chat_text').empty();
+	$('#info_chat_text').append(what);
+	info_character = who;
+	if(show == 1) {
+		$('#info_chat_btn').trigger('click');
+		stop_talking();
+		$('#'+info_character+'_div_chat_image').addClass('tv_effect');
+		grained('.tv_effect',options);
+		$('#info_chat_text').typewrite({
+			'delay': 10,
+			'callback': stop_talking
+		});
+	}
+	
+
+}
+function
+stop_talking() {
+	$('#'+info_character+'_div_chat_image').removeClass('tv_effect');
+	$('#'+current_character+'_div_chat_image').removeClass('tv_effect');
+	$('style[id^="grained-animation"]').remove();
+}
+
 function
 show_answers() {
 
-
-	$('#'+current_character+'_div_chat_image').removeClass('tv_effect');
-	$('style[id^="grained-animation"]').remove();
-	$('#next_dialog_img').show();
+	$('.not_clickable').removeClass('not_clickable');
+	stop_talking();
 	n_answers = (level_dialogs[current_character][n_dialog[current_character]]['answers']).length;
 	if(n_answers > maximum_n_answers) {
 		alert("Too many answers for this dialog");
@@ -304,9 +349,12 @@ append_dialogs(level) {
 
 		$('#'+current_character+'_div_chat_image').addClass('tv_effect');
 
+		$('.change_chat').addClass('not_clickable');
+		$('.send_code_btn').addClass('not_clickable');
+
 		grained('.tv_effect',options);
 		$('#'+id).typewrite({
-			'delay': 50,
+			'delay': 10,
 			'callback': show_answers
 		});
 
@@ -340,19 +388,19 @@ make_dialogs(level, dialogs) {
 			data = { "request": "get_level", "level": level};
 			data = JSON.stringify(data);
 
-	return $.ajax( {type: "POST",dataType: "json",processData: false,contentType: 'application/json; charset=utf-8',url: "/get_level",data: data} )
-    .done( function (data, stato) {
-			current_level = data.level;
-			level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
-			$('.conversations_text').append(level_text);
-			editor.setValue(data.body);
-			make_dialogs(level, data.dialogs);
-		})
-    .fail(function (jqXHR, textStatus, errorThrown) { alert("E' avvenuto un errore:\n" + textStatus); })
-    .always(function() {
-			//called after the completion of get_level, because needs to know which level we are in
-			//makeReadonly();
- 		});
+			return $.ajax( {type: "POST",dataType: "json",processData: false,contentType: 'application/json; charset=utf-8',url: "/get_level",data: data} )
+				.done( function (data, stato) {
+					current_level = data.level;
+					level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
+					$('.conversations_text').append(level_text);
+					editor.setValue(data.body);
+					make_dialogs(level, data.dialogs);
+				})
+			.fail(function (jqXHR, textStatus, errorThrown) { alert("E' avvenuto un errore:\n" + textStatus); })
+				.always(function() {
+					//called after the completion of get_level, because needs to know which level we are in
+					//makeReadonly();
+				});
 
 		}
 
@@ -441,17 +489,22 @@ make_dialogs(level, dialogs) {
 		limitEval(check_level_code, function(success, returnValue) {
 			if (success) {
 				if(returnValue != 1) {
+
 					error = returnValue;
-					alert(error);
+					append_info(error, 'assistant', 1);
+
 				} else {
 					check_code = 1;
 				}
 			}
 			else {
-				alert('The code takes too long to run.  Is there is an infinite loop?');
+				error = 'The code takes too long to run.  Is there is an infinite loop?';
+				append_info(error, 'colonel', 1);
 				check_code = 0;
 			}
 		}, 3000);
+	} else {
+		append_info(check_code, 'assistant', 1);
 	}
 
 
@@ -467,7 +520,7 @@ make_dialogs(level, dialogs) {
 					initializeObf = new Function(level_code)
 				else alert('too many invocations of constructor!');
 				break;
-				}
+			}
 		}
 		missileCommand();
 	}
