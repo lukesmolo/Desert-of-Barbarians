@@ -39,7 +39,8 @@ var buildTime = 0;
 function
 missileCommand() {
 	resetVars();
-	initialize();
+	if (current_level == 4 || current_level == 6) initializeObf()
+	else initialize();
 	setupListeners();
 }
 
@@ -161,18 +162,20 @@ drawScore() {
 
 // Draw all active castles
 var drawcastles = function() {
-	$.each( castles, function( index, castle ) {
-		if( castle.active ) {
-			castle.draw();
-		}
-	});
+	if (buildTime <= 9)
+		$.each( castles, function( index, castle ) {
+			if( castle.active ) {
+				castle.draw();
+			}
+		});
 };
 
 // Draw missiles in all anti missile batteries
 var drawAntiMissileBatteries = function() {
-	$.each( antiMissileBatteries, function( index, amb ) {
-		amb.draw();
-	});
+	if (buildTime <= 9)
+		$.each( antiMissileBatteries, function( index, amb ) {
+			amb.draw();
+		});
 };
 
 // Show the basic game background

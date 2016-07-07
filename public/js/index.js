@@ -3,7 +3,7 @@
 var editor = null;
 var level_dialogs = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
-var current_level = 1;
+var current_level = 4;
 var current_character = "colonel";
 var current_panel = "main";
 var maximum_n_answers = 3;
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
 
 	editor = ace.edit("text_editor");
-	get_level(-1); //FIXME get level defined by server!
+	get_level(4); //FIXME get level defined by server!
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
@@ -459,6 +459,14 @@ make_dialogs(level, dialogs) {
 			case 1: scale = new Function('x, y', level_code); break;
 			case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
 			case 3: numMissiles = new Function(level_code); break;
+			case 4: {
+				//check how many times constructor is called
+				var count = (level_code.match(/push/g) || []).length;
+				if (count <= 3 )
+					initializeObf = new Function(level_code)
+				else alert('too many invocations of constructor!');
+				break;
+				}
 		}
 		missileCommand();
 	}
