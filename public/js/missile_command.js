@@ -85,20 +85,29 @@ initializeObf() {
 	initializeLevel();
 }
 
+function return_numMissiles(){
+	missilesLeft = 1;
+	return missilesLeft;
+}
+
 // Reset various variables at the start of a new level
 function
 initializeLevel() {
 	if (current_level == 3){
 		$.each( antiMissileBatteries, function( index, amb ) {
-			if (index == 1) {amb.missilesLeft = numMissiles();}
-			else {amb.missilesLeft = numMissiles() - 1;}
-		})
+			if (index == 1) {
+				amb.missilesLeft = return_numMissiles();
+			}
+			else {
+				amb.missilesLeft = return_numMissiles() - 1;
+			}
+		});
 	}
 	else {
 		$.each( antiMissileBatteries, function( index, amb ) {
 			if (index == 1) {amb.missilesLeft = 10;}
 			else {amb.missilesLeft = 10;}
-		})
+		});
 	}
 	playerMissiles = [];
 	enemyMissiles = [];
@@ -106,10 +115,7 @@ initializeLevel() {
 	drawBeginLevel();
 }
 
-function numMissiles(){
-	missilesLeft = 1;
-	return missilesLeft;
-}
+
 
 // Create a certain number of enemy missiles based on the game level
 function
