@@ -1,7 +1,12 @@
-function initializeObf() {
-	for (i=1; i <=18; i+=1){
+function initializeRec(i) {
+	if (i == 18){
 		castles.push( new castle( i) );
 		antiMissileBatteries.push( new AntiMissileBattery(i) );
+		initializeLevel();
 	}
-	initializeLevel();
+	else {
+		castles.push( new castle( i) );
+		antiMissileBatteries.push( new AntiMissileBattery(i) );
+		initializeRec(i+1);
+	}
 }

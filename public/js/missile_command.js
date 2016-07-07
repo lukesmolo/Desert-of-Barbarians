@@ -37,7 +37,8 @@ var buildTime = 0;
 function
 missileCommand() {
 	resetVars();
-	if (current_level == 4 || current_level == 6) initializeObf()
+	if (current_level == 4) initializeObf()
+	else if (current_level == 6) initializeRec(0);
 	else initialize();
 	setupListeners();
 }
@@ -82,6 +83,21 @@ initializeObf() {
 		antiMissileBatteries.push( new AntiMissileBattery(i) );
 	}
 	initializeLevel();
+}
+
+// Create castles and anti missile batteries at the start of the game
+function
+initializeRec(i) {
+	if (i == 18){
+		castles.push( new castle( i) );
+		antiMissileBatteries.push( new AntiMissileBattery(i) );
+		initializeLevel();
+	}
+	else {
+		castles.push( new castle( i) );
+		antiMissileBatteries.push( new AntiMissileBattery(i) );
+		initializeRec(i+1);
+	}
 }
 
 function setNumMissiles(){
@@ -224,9 +240,8 @@ function castle( x, y ) {
 	else if (arguments.length === 1){
 		castleY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10);
 		slot = CANVAS_WIDTH/18;
-
-		if (i == 3 || i == 5 || i == 7 || i == 11 || i == 13 || i == 15) {
-			this.x = slot*i;
+		if (x == 3 || x == 5 || x == 7 || x == 11 || x == 13 || x == 15) {
+			this.x = slot*x;
 			this.y = castleY;
 			this.active = true;
 		}
@@ -286,8 +301,8 @@ AntiMissileBattery( x, y ) {
 		slot = CANVAS_WIDTH/18;
 		antiMissileY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10)-28 ;
 
-		if (i == 1 || i == 9 || i == 17){
-			this.x = slot*i;
+		if (x == 1 || x == 9 || x == 17){
+			this.x = slot*x;
 			this.y = antiMissileY;
 			this.missilesLeft = 10;
 		}
@@ -453,7 +468,13 @@ playerShoot(x,y) {
 			if( source === -1 ){ // No missiles left
 				return;
 			}
-			playerMissiles.push( new PlayerMissile( source, x, y ) );
+			//Further check on y, to be sure that player is not cheating with a return 1
+			if (checkHeight(y))
+				playerMissiles.push( new PlayerMissile( source, x, y ) );
+			else {
+				error = 'Allowed missiles outside permitted range';
+				append_info(error, 'assistant', 1);
+			}
 		}
 	}
 	else {

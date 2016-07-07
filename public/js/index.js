@@ -530,8 +530,8 @@ make_dialogs(level, dialogs) {
 				var count = (level_code.match(/push/g) || []).length;
 				if (count <= 3 ){
 					//check if player used loops
-					if ( (level_code.match(/for/g) || []).length == 0 || (level_code.match(/while/g) || []).length == 0 ) {
-						initializeObf = new Function('i',level_code)
+					if ( (level_code.match(/for/g) || []).length == 0 && (level_code.match(/while/g) || []).length == 0 ) {
+						initializeRec = new Function('i',level_code)
 					}
 					else {
 						error = 'Loops are not allowed in this level!';
