@@ -33,6 +33,7 @@ var playerMissiles = [];
 var enemyMissiles = [];
 var timerID;
 var buildTime = 0;
+var fail = 0;
 
 function
 missileCommand() {
@@ -665,11 +666,17 @@ checkEndLevel() {
 
 		//TODO write in some global var the number of castles (and missiles) saved
 		if (totalcastlesSaved() == 6) {
-			alert('win');
+			append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 1);
 			get_level(++current_level);
 		}
 		else {
-			alert('fail');
+			fail++;
+			if(fail == max_n_fails) {
+				$('#crazy_doctor_chat_btn').trigger('click');
+			} else {
+				append_info("Come on boy! Try again!", 'colonel', 1);
+
+			}
 		}
 		missileCommand();
 	}

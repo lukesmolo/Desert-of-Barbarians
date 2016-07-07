@@ -3,7 +3,7 @@
 var editor = null;
 var level_dialogs = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
-var current_level = 6;
+var current_level = 0;
 var current_character = "colonel";
 var current_panel = "main";
 var maximum_n_answers = 3;
@@ -13,6 +13,7 @@ var skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var left_text = false;
 var check_code = 0;
 var info_character = 'colonel';
+var max_n_fails = 2;
 
 var options = {
 	animate: true,
@@ -29,7 +30,7 @@ $(document).ready(function() {
 
 
 	editor = ace.edit("text_editor");
-	get_level(6); //FIXME get level defined by server!
+	get_level(-1); //FIXME get level defined by server!
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
