@@ -110,20 +110,56 @@
 	   src="images/circle.png"
     alt="close_panel"></div>
 
-			  Please, insert a level you want to play.
-			  <br>
-			  <div class="form-group">
-				  <label for="level_hash_key_input_text">Level Key:</label>
-				  <input type="text" maxlength="8" class="form-control"
-						   id="level_hash_key_input_text">
-			  </div>
-			  <button id="reset_level_hash_key_btn"  type="button" class="btn
-			  btn-success">Reset</button>
-			  <button id="send_level_hash_key_btn" type="button" class="btn
-			  btn-success ">Send</button>
-			  <div id="alert_level_hash_key">
-			  </div>
+			  <div id="info_summary" class="col-md-5 settings_panels">
+				  <p id="info_summary_title" class="text-center"> About you </p>
+				  <div id="left_info_summary" class="col-md-6">
+					  <p>Username</p>
+					  <p>Military Rank</p>
+				  </div>
 
+				<div id="right_info_summary" class="col-md-6">
+					  <p id="username_summary"></p>
+					  <p id="military_rank_summary"></p>
+				  </div>
+
+		  	</div>
+			  <div id="jump_level" class="col-md-5 settings_panels">
+				  <p id="jump_level_summary_title" class="text-center">
+				  Levels Settings</p>
+
+				  <br>
+				  Please, insert a level you want to play.
+				  <div class="form-group col-xs-12">
+
+					  <label for="level_hash_key_input_text">Level Key:</label>
+					  <input type="text" maxlength="8" class="form-control"
+						    id="level_hash_key_input_text">
+					  <br>
+					  <button id="reset_level_hash_key_btn"  type="button" class="btn
+					  btn-success">Reset</button>
+					  <button id="send_level_hash_key_btn" type="button" class="btn
+					  btn-success ">Send</button>
+
+				  </div>
+			<br>
+				  <div id="alert_level_hash_key">
+				  </div>
+
+				  <div class="col-md-6">
+				  <p id="" class="text-center">
+				  Level</p>
+<div id="left_jump_level" class="col-md-6">
+
+				  </div>
+				  </div>
+				  <div id="" class="col-md-6">
+				<p id="" class="text-center">
+				  Key</p>
+				  <div id="right_jump_level" class="col-md-6">
+				  </div>
+				  </div>
+
+			  </div>
 		  </div>
 
 		  <div id="main_panel" class="panels">
@@ -142,92 +178,92 @@
 			  </div>
 			  <div id="right" class="col-md-3 pull-right">
 				  <div id="chat_window"data-step="2" data-intro="Hello step two!"
-					  data-position="left"  >
-<div id="chat_controller">
-						  <button id="colonel_chat_btn" type="button"
-						  class="change_chat btn
-						  btn-warning ">Colonel</button>
-						  <button id="assistant_chat_btn" type="button"
-						    class="change_chat btn
-						    btn-success">Assistant</button>
-						  <button id="info_chat_btn" type="button"
-							 class="change_chat btn
-							 btn-success">info</button>
-						  <button id="crazy_doctor_chat_btn" type="button"
-							 class="change_chat btn
-							 btn-success hidden">Crazy Doctor</button>
+						     data-position="left"  >
+						     <div id="chat_controller">
+							     <button id="colonel_chat_btn" type="button"
+							class="change_chat btn
+							btn-warning ">Colonel</button>
+							     <button id="assistant_chat_btn" type="button"
+							  class="change_chat btn
+							  btn-success">Assistant</button>
+							     <button id="info_chat_btn" type="button"
+						   class="change_chat btn
+						   btn-success">info</button>
+							     <button id="crazy_doctor_chat_btn" type="button"
+							     class="change_chat btn
+							     btn-success hidden">Crazy Doctor</button>
 
-					  </div>
-					  <div id="chat">
+						     </div>
+						     <div id="chat">
 
-						  <div class="div_chat_image"
-		 id="colonel_div_chat_image">
-							  <img class="chat_image"
-		  src="images/colonel.png" alt="colonel">
-						  </div>
+							     <div class="div_chat_image"
+		     id="colonel_div_chat_image">
+								     <img class="chat_image"
+			src="images/colonel.png" alt="colonel">
+							     </div>
 
-						  <div class="chat_text typewriter" id="colonel_chat_text">
-							  Colonel
-						  </div>
+							     <div class="chat_text typewriter" id="colonel_chat_text">
+								     Colonel
+							     </div>
 
-						  <div class="div_chat_image hiddens"
-		 id="assistant_div_chat_image">
-							  <img class="chat_image"
-		  src="images/assistant.png"
-    alt="Assistant">
-						  </div>
-						  <div class="chat_text typewriter hiddens" id="assistant_chat_text">
-							  Assistant
-						  </div>
-						  <div class="div_chat_image hiddens"
-		 id="crazy_doctor_div_chat_image">
-							  <img class="chat_image"
-		  src="images/crazy_doctor.png" alt="crazy
-		  doctor">
-						  </div>
-						  <div class="chat_text typewriter hiddens" id="crazy_doctor_chat_text">
-							  Crazy Doctor
-						  </div>
-						 <div class="chat_text typewriter hiddens"
-							 id="info_chat_text">
-							 There are no messages for you.
-						  </div>
+							     <div class="div_chat_image hiddens"
+		     id="assistant_div_chat_image">
+								     <img class="chat_image"
+			src="images/assistant.png"
+   alt="Assistant">
+							     </div>
+							     <div class="chat_text typewriter hiddens" id="assistant_chat_text">
+								     Assistant
+							     </div>
+							     <div class="div_chat_image hiddens"
+		     id="crazy_doctor_div_chat_image">
+								     <img class="chat_image"
+			src="images/crazy_doctor.png" alt="crazy
+			doctor">
+							     </div>
+							     <div class="chat_text typewriter hiddens" id="crazy_doctor_chat_text">
+								     Crazy Doctor
+							     </div>
+							     <div class="chat_text typewriter hiddens"
+		     id="info_chat_text">
+								     There are no messages for you.
+							     </div>
 
-					  </div>
+						     </div>
 
 				  </div>
 				  <div id="replies_div">
 					  <div id="replies">
-					  <div id="colonel_replies" class="replies">
-						  <button id="colonel_answer_1" type="button"
-						  class="send_answer btn btn-success hiddens">Next</button>
-						  <button id="colonel_answer_2" type="button"
-						  class="btn
-						  btn-success hiddens send_answer"></button>
-						  <button id="colonel_answer_3" type="button"
-						  class="btn
-						  btn-success hiddens send_answer"></button>
-					  </div>
-					  <div id="assistant_replies" class="replies">
-						  <button id="assistant_answer_1" type="button"
-						    class="send_answer btn btn-success hiddens">Next</button>
-						  <button id="assistant_answer_2" type="button"
-						    class="btn
-						    btn-success hiddens send_answer"></button>
-						  <button id="assistant_answer_3" type="button"
-						    class="btn
-						    btn-success hiddens send_answer"></button>
-					  </div>
-					  <div id="crazy_doctor_replies" class="replies">
-						  <button id="crazy_doctor_answer_1" type="button"
-							 class="send_answer btn btn-success hiddens">Next</button>
-						  <button id="crazy_doctor_answer_2" type="button"
-							 class="btn
-							 btn-success hiddens send_answer"></button>
-						  <button id="crazy_doctor_answer_3" type="button"
-							 class="btn
-							 btn-success hiddens send_answer"></button>
-					  </div>
+						  <div id="colonel_replies" class="replies">
+							  <button id="colonel_answer_1" type="button"
+						   class="send_answer btn btn-success hiddens">Next</button>
+							  <button id="colonel_answer_2" type="button"
+						   class="btn
+						   btn-success hiddens send_answer"></button>
+							  <button id="colonel_answer_3" type="button"
+						   class="btn
+						   btn-success hiddens send_answer"></button>
+						  </div>
+						  <div id="assistant_replies" class="replies">
+							  <button id="assistant_answer_1" type="button"
+						     class="send_answer btn btn-success hiddens">Next</button>
+							  <button id="assistant_answer_2" type="button"
+						     class="btn
+						     btn-success hiddens send_answer"></button>
+							  <button id="assistant_answer_3" type="button"
+						     class="btn
+						     btn-success hiddens send_answer"></button>
+						  </div>
+						  <div id="crazy_doctor_replies" class="replies">
+							  <button id="crazy_doctor_answer_1" type="button"
+							  class="send_answer btn btn-success hiddens">Next</button>
+							  <button id="crazy_doctor_answer_2" type="button"
+							  class="btn
+							  btn-success hiddens send_answer"></button>
+							  <button id="crazy_doctor_answer_3" type="button"
+							  class="btn
+							  btn-success hiddens send_answer"></button>
+						  </div>
 					  </div>
 					  <div id="code_buttons_controller">
 

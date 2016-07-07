@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 
 	editor = ace.edit("text_editor");
-	get_level(-1); //FIXME get level defined by server!
+	get_level(9); //FIXME get level defined by server!
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
@@ -389,19 +389,34 @@ make_dialogs(level, dialogs) {
 			data = { "request": "get_level", "level": level};
 			data = JSON.stringify(data);
 
-			return $.ajax( {type: "POST",dataType: "json",processData: false,contentType: 'application/json; charset=utf-8',url: "/get_level",data: data} )
-				.done( function (data, stato) {
-					current_level = data.level;
-					level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
-					$('.conversations_text').append(level_text);
-					editor.setValue(data.body);
-					make_dialogs(level, data.dialogs);
-				})
-			.fail(function (jqXHR, textStatus, errorThrown) { alert("E' avvenuto un errore:\n" + textStatus); })
-				.always(function() {
-					//called after the completion of get_level, because needs to know which level we are in
-					//makeReadonly();
+			return $.ajax( {
+				type: "POST",
+				dataType: "json",
+				processData: false,
+				contentType: 'application/json; charset=utf-8',
+				url: "/get_level",data: data
+			}).done( function (data, stato) {
+				current_level = data.level;
+				level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
+				$('.conversations_text').append(level_text);
+				editor.setValue(data.body);
+				make_dialogs(level, data.dialogs);
+				$('#left_jump_level').empty();
+				$('#right_jump_level').empty();
+				$.each(data.keys, function(index, value) {
+					k = '<p>Level '+(parseInt(index)+1)+'</p>';
+					v = '<p>'+value+'</p>';
+					
+					$('#left_jump_level').append(k);
+					$('#right_jump_level').append(v);
+
 				});
+			}).fail(function (jqXHR, textStatus, errorThrown) {
+				alert("E' avvenuto un errore:\n" + textStatus); 
+			}).always(function() {
+				//called after the completion of get_level, because needs to know which level we are in
+				//makeReadonly();
+			});
 
 		}
 
@@ -500,7 +515,7 @@ make_dialogs(level, dialogs) {
 			}
 			else {
 				error = 'The code takes too long to run.  Is there is an infinite loop?';
-				append_info(error, 'colonel', 1);
+				append_info(error, 'assistant', 1);
 				check_code = 0;
 			}
 		}, 3000);
@@ -524,7 +539,7 @@ make_dialogs(level, dialogs) {
 					append_info(error, 'assistant', 1);
 				}
 				break;
-				}
+			}
 			case 5: checkHeightObf = new Function('y', level_code); break;
 			case 6: {
 				//check how many times constructor is called
@@ -544,7 +559,7 @@ make_dialogs(level, dialogs) {
 					append_info(error, 'assistant', 1);
 				}
 				break;
-				}
+			}
 		}
 		missileCommand();
 	}
