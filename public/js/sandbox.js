@@ -2,7 +2,7 @@ var check = 1;
 var NOT_ALLOWED = function(name){
 
 	return function(){
-	check = 0;
+		check = name + "(); is not allowed.";
 		console.warn(name + "(); is not allowed.");
 		return function(){};
 	};
