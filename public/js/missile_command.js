@@ -1,4 +1,5 @@
 /*TODO runtime changing size of canvas*/
+/*FIXME check max number of missiles */
 
 // Missile Command
 var canvas = $('#game_canvas')[0];
@@ -11,6 +12,7 @@ background.src = "../images/fondale.png";
 
 var bool = 1;
 var code_length = 1;
+//var go_on = 1;
 
 $(canvas).attr('width', ($('#game_canvas').parent().width()));
 $(canvas).attr('height', ($('#game_canvas').parent().height()));
@@ -37,10 +39,15 @@ var fail = 0;
 
 function
 missileCommand() {
+	//go_on = 1;
 	resetVars();
-	if (current_level == 4) initializeObf()
-	else if (current_level == 6) initializeRec(0);
-	else initialize();
+	if (current_level == 4) {
+		initializeObf();
+	} else if (current_level == 6) {
+		initializeRec(0);
+	} else {
+		initialize();
+	}
 	setupListeners();
 }
 
@@ -139,6 +146,8 @@ createEmemyMissiles(){
 	var targets = viableTargets();
 	switch (current_level){
 			case 1: numMissiles = 7; break;
+			case 8: numMissiles = 100; break;
+			case 9: numMissiles = 15; break;
 			default: numMissiles = 10;
 	}
 	for( var i = 0; i < numMissiles; i++ ) {
@@ -313,10 +322,9 @@ AntiMissileBattery( x, y ) {
 }
 
 AntiMissileBattery.prototype.hasMissile = function() {
-	//"cast to bool" "Operator": ! is not, !! turns our int!=0 in 1 (es. 7, !7=0, !0 = 1)
-	return !!this.missilesLeft;
-	//autofire
-	//return 1;
+	if (current_level == 8 || current_level == 9) return 1
+	else if (this.missilesLeft <= 0) return 0
+	else return 1;
 };
 
 // Show the missiles left in an anti missile battery
@@ -481,6 +489,7 @@ playerShoot(x,y) {
 	else {
 		if( checkHeight(y) ) {
 			var source = whichAntiMissileBattery( x );
+			if (current_level == 9) source = whichAntiMissileBatteryObf(x);
 			if( source === -1 ){ // No missiles left
 				return;
 			}
@@ -489,18 +498,35 @@ playerShoot(x,y) {
 	}
 }
 
+function playerShoot3(x,y) {
+	//cannot shoot in the lower fifth part of canvas and in the upper fifth
+	if( checkHeight(y) ) {
+		var source = whichAntiMissileBattery( x );
+		if( source === -1 ){ // No missiles left
+			return;
+		}
+		playerMissiles.push( new PlayerMissile( source, x, y ) );
+	}
+}
+
 function shootWithOffset(x, y, offLeft, offTop){
 	correctedX = x - offLeft;
 	correctedY = y - offTop;
-	if (current_level == 2){
+	if (current_level == 2) {
 		playerShoot(1.5*correctedX, correctedY+45);
+	} else if(current_level == 7) {
+		playerShoot3(correctedX, correctedY);
+	} else {
+		playerShoot(correctedX, correctedY);
 	}
-	else playerShoot(correctedX, correctedY);
 }
 
 function checkHeight(y) {
-	if (y >= CANVAS_HEIGHT/8 && y <= CANVAS_HEIGHT*6/8) {return true}
-	else return false;
+	if (y >= CANVAS_HEIGHT/8 && y <= CANVAS_HEIGHT*6/8) {
+		return true;
+	} else{
+		return false;
+	}
 }
 
 function checkHeightObf(y) {
@@ -674,7 +700,7 @@ checkEndLevel() {
 			if(fail == max_n_fails) {
 				$('#crazy_doctor_chat_btn').trigger('click');
 			} else {
-				append_info("Come on boy! Try again!", 'colonel', 1);
+				append_info("We can't surrender! Are you ready to fight again?", 'colonel', 1);
 
 			}
 		}
@@ -757,47 +783,59 @@ startLevel() {
 	timerID = setInterval( nextFrame, 1000 / fps );
 }
 
+function firedToOuterThird( priority1, priority2, priority3) {
+	if( antiMissileBatteries[priority1].hasMissile() ) {
+		return priority1;
+	} else if ( antiMissileBatteries[priority2].hasMissile() ) {
+		return priority2;
+	} else if ( antiMissileBatteries[priority3].hasMissile() ){
+		return priority3;
+	} else return -1;
+};
+
+function firedtoMiddleThird ( priority1, priority2 ) {
+	if( antiMissileBatteries[priority1].hasMissile() ) {
+		return priority1;
+	} else if( antiMissileBatteries[priority2].hasMissile() ){
+		return priority2;
+	}
+	else return -1;
+};
+
+
 // Determine which Anti Missile Battery will be used to serve a
 // player's request to shoot a missile. Determining factors are
 // where the missile will be fired to and which anti missile
 // batteries have missile(s) to serve the request
 function
 whichAntiMissileBattery(x) {
-	var firedToOuterThird = function( priority1, priority2, priority3) {
-		if( antiMissileBatteries[priority1].hasMissile() ) {
-			return priority1;
-		} else if ( antiMissileBatteries[priority2].hasMissile() ) {
-			return priority2;
-		} else {
-			return priority3;
-		}
-	};
-
-	var firedtoMiddleThird = function( priority1, priority2 ) {
-		if( antiMissileBatteries[priority1].hasMissile() ) {
-			return priority1;
-		} else {
-			return priority2;
-		}
-	};
-
-	if( !antiMissileBatteries[0].hasMissile() &&
-			!antiMissileBatteries[1].hasMissile() &&
-			!antiMissileBatteries[2].hasMissile() ) {
-		return -1;
-	}
 	if( x <= CANVAS_WIDTH / 3 ){
 		return firedToOuterThird( 0, 1, 2 );
 	} else if( x <= (2 * CANVAS_WIDTH / 3) ) {
 		if ( antiMissileBatteries[1].hasMissile() ) {
 			return 1;
 		} else {
-			return ( x <= CANVAS_WIDTH / 2 ) ? firedtoMiddleThird( 0, 2 )
-				: firedtoMiddleThird( 2, 0 );
+			return ( x <= CANVAS_WIDTH / 2 ) ? firedtoMiddleThird( 0, 2 )	: firedtoMiddleThird( 2, 0 );
 		}
 	} else {
 		return firedToOuterThird( 2, 1, 0 );
 	}
+}
+
+//obfuscated for level 9
+function
+whichAntiMissileBatteryObf(x) {
+	if( x <= CANVAS_WIDTH / 3 ){
+		return firedToOuterThird( 2, 1, 0 );
+	} else if( x <= (2 * CANVAS_WIDTH / 3) ) {
+			return ( x <= CANVAS_WIDTH / 2 ) ? firedtoMiddleThird( 2, 0 )	: firedtoMiddleThird( 0, 2 );
+	} else {
+		return firedToOuterThird( 0, 1, 2 );
+	}
+}
+
+function autofire(x, y){
+		shootWithOffset(event.pageX, event.pageY, $("#game_canvas").offset().left, $("#game_canvas").offset().top);
 }
 
 // Attach event Listeners to handle the player's input
@@ -806,10 +844,17 @@ setupListeners() {
 	$( '#game_canvas' ).one( 'click', function() {
 		startLevel();
 
-		//subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
-		$( '#game_canvas' ).on( 'click', function( event ) {
-			shootWithOffset(event.pageX, event.pageY, $("#game_canvas").offset().left, $("#game_canvas").offset().top);
-		});
+		if (current_level == 8){
+			$( '#game_canvas' ).on( 'click', function( event ) {
+				autofire(event.pageX - $("#game_canvas").offset().left, event.pageY - $("#game_canvas").offset().top);
+			});
+		}
+		else {
+			//subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
+			$( '#game_canvas' ).on( 'click', function( event ) {
+				shootWithOffset(event.pageX, event.pageY, $("#game_canvas").offset().left, $("#game_canvas").offset().top);
+			});
+		}
 
 	});
 }

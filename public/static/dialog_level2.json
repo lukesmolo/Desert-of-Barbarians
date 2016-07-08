@@ -2,95 +2,96 @@
     "assistant": [
         {
             "answers": [
-                "Sure"
-            ],
-            "id": 1,
-            "text": "Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
-        },
+                "You're always very nice with me", 
+                "It's not my fault"
+            ], 
+            "id": 1, 
+            "text": "Hi newbie, you thought you were pretty good, after defeating Barbarians in last battle, but you caused more harm than good"
+        }, 
         {
             "answers": [
-                "1--I can do it",
-                "2--Tell me more for this mission"
-            ],
-            "id": 2,
-            "text": "The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript"
-        },
+                "1--Yes, please", 
+                "2--No, just wanted to say hi"
+            ], 
+            "id": 2, 
+            "text": "Anyway, why are you calling me? Do you need some help?"
+        }, 
         {
-            "answers": [],
-            "id": 3,
-            "text": "1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
-        },
+            "answers": [], 
+            "id": 3, 
+            "text": "1-- If you look at the code, it seems that some operations are performed on the coordinates you choose to shoot at, but I'm not sure they're all necessary. Start checking this!"
+        }, 
         {
-            "answers": [],
-            "id": 4,
-            "text": "2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value."
+            "answers": [], 
+            "id": 4, 
+            "text": "2-- Don't waste time. Enemy is close!"
+        }, 
+        {
+            "answers": [
+                "1--I would appreciate it", 
+                "2--Don't waste time, Melissa!"
+            ], 
+            "id": 5, 
+            "text": "Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle."
         }
-    ],
+    ], 
     "colonel": [
         {
-            "answers": [],
-            "id": 1,
-            "text": "Good mooooorning, parapppapaaapppeees speedspeedspeedspeedspeedspeed speedspeedspeedspeed speedspeedspeed speedspeedspeedspe edspeedspeedspeed"
-        },
+            "answers": [
+                "I'm so sorry, Sir", 
+                "I'll fix it, Sir"
+            ], 
+            "id": 1, 
+            "text": "Good morning, Lieutenent Drogo, and congratulations for completing previous mission. Unluckily, your lack of experience damaged our Antimissile System: your missiles were too fast for our old System and last battle damaged the targeting system."
+        }, 
         {
             "answers": [
-                "1--I have no competences, Sir",
-                "2--Yes Sir!"
-            ],
-            "id": 2,
-            "text": "Tiiiiiiiiiiiiiimes have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
-        },
-        {
-            "answers": [],
-            "id": 3,
-            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
-        },
+                "Yes Sir!", 
+                "May I skip push-ups?"
+            ], 
+            "id": 2, 
+            "text": "200 push-ups of punishment, fix the targeting system and you'll be forgiven."
+        }, 
         {
             "answers": [
                 "Yes Sir!"
-            ],
-            "id": 4,
-            "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
+            ], 
+            "id": 3, 
+            "text": "Be quick, Barbarians won't wait for you and they surely will defeat us, with our targeting system broken."
+        }, 
+        {
+            "answers": [], 
+            "id": 4, 
+            "text": "Also in this mission you can't lose any of our towers. I hope won't have to repeat it every time."
         }
-    ],
+    ], 
     "crazy_doctor": [
         {
             "answers": [
-                "Who are you?"
-            ],
-            "id": 1,
-            "text": "It seems you're in trouble, kid..."
-        },
+                "I admit it"
+            ], 
+            "id": 1, 
+            "text": "You're in trouble, again kid..."
+        }, 
         {
             "answers": [
-                "I'm Atheist",
-                "I can't see wings"
-            ],
-            "id": 2,
-            "text": "I'm your Guardian Angel!"
-        },
-        {
-            "answers": [],
-            "id": 3,
-            "text": "I was joking, boy, I'm Doctor Gilbert Nichols, and many many years ago, when you weren't born already and Internet Explorer was considered a good Browser, I was in the team or programmers that created your Antimissile System"
-        },
+                "1--I am afraid to say yes", 
+                "2--You're not my favorite in any field"
+            ], 
+            "id": 2, 
+            "text": "And you need your favorite Doctor's help?"
+        }, 
         {
             "answers": [
-                "1--Yes, please",
-                "2--No, I can do it by myself"
-            ],
-            "id": 4,
-            "text": "Let's go to the point: I see that you've been defeated many times in this mission. Do you want some help? I can give you very specific hints"
-        },
+                "Got it"
+            ], 
+            "id": 3, 
+            "text": "1--First rule of modifying someone else's code: understand what the code does. event.pageX and event.pageY are the coordinates - $eccecc are correction for the screen positioning, but what's the sense of these other numbers, it there's any?"
+        }, 
         {
-            "answers": [],
-            "id": 5,
-            "text": "1--Okay, let's reason using phisics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
-        },
-        {
-            "answers": [],
-            "id": 6,
-            "text": "2--In that case, I'll won't say a word."
+            "answers": [], 
+            "id": 4, 
+            "text": "2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore."
         }
     ]
 }

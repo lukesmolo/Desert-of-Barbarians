@@ -3,7 +3,7 @@
 
 
 /*colonel-1
-""Times have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly
+""Times have changed and nowadays their attacks are continuous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly
 --1--I have no competences, Sir
 --2--Yes Sir!
 
@@ -50,11 +50,108 @@
 --1--Yes, please
 --2--No, I can do it by myself
 
-
 /*crazy_doctor-1
-""1--Okay, let's reason using phisics: think that the function called "scale" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?
-
+""1--Okay, let's reason using physics: think that the function called "scale" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?
 
 /*crazy_doctor-1
 ""2--In that case, I'll won't say a word.
 
+/*colonel-2
+""Good morning, Lieutenent Drogo, and congratulations for completing previous mission. Unluckily, your lack of experience damaged our Antimissile System: your missiles were too fast for our old System and last battle damaged the targeting system.
+--I'm so sorry, Sir
+--I'll fix it, Sir
+
+/*colonel-2
+""200 push-ups of punishment, fix the targeting system and you'll be forgiven.
+--Yes Sir!
+--May I skip push-ups?
+
+/*colonel-2
+""Be quick, Barbarians won't wait for you and they surely will defeat us, with our targeting system broken.
+--Yes Sir!
+
+/*colonel-2
+""Also in this mission you can't lose any of our towers. I hope won't have to repeat it every time.
+
+/*assistant-2
+""Hi newbie, you thought you were pretty good, after defeating Barbarians in last battle, but you caused more harm than good
+--You're always very nice with me
+--It's not my fault
+
+/*assistant-2
+""Anyway, why are you calling me? Do you need some help?
+--1--Yes, please
+--2--No, just wanted to say hi
+
+/*assistant-2
+""1-- If you look at the code, it seems that some operations are performed on the coordinates you choose to shoot at, but I'm not sure they're all necessary. Start checking this!
+
+/*assistant-2
+""2-- Don't waste time. Enemy is close!
+
+/*crazy_doctor-2
+""You're in trouble, again kid...
+--I admit it
+
+/*crazy_doctor-2
+""And you need your favorite Doctor's help?
+--1--I am afraid to say yes
+--2--You're not my favorite in any field
+
+/*crazy_doctor-2
+""1--First rule of modifying someone else's code: understand what the code does. event.pageX and event.pageY are the coordinates - $eccecc are correction for the screen positioning, but what's the sense of these other numbers, it there's any?
+--Got it
+
+/*crazy_doctor-2
+""2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore.
+
+/*colonel-3
+""Good morning, Lieutenent Drogo, this time you completed last mission without any unpleasant sideffect. Are you ready for next mission?
+--I'm born ready, sir!
+
+/*colonel-3
+""Peace is temporary in these dangerous times. As you can see, after latest battles, we only have one missile in our cannons.
+--1--What is my mission sir?
+--2--So what?
+
+/*colonel-3
+""1--Your mission is to adjust and run the mechanism that autoloads the missiles in our cannons.
+--Yes Sir! Consider it as done!
+
+/*colonel-3
+""2--SO WHAT? First, always call me Sir. Second, don't dare to reply to me in such a arrogant way, or you'll be given to Barbarians as a breakfast cookie. Third, go to fix the mechanism that autoloads missiles in our cannons. NOW.
+--YESSIR!
+
+/*assistant-2
+""Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle.
+--1--I would appreciate it
+--2--Don't waste time, Melissa!
+
+/*assistant-3
+""1--Okay, Lieutenent, are you ready for the new mission? As you'll already know, we have to fix that old and rusty autoload mechanism
+
+/*assistant-3
+""2--As you prefer, newbie. So, let's ignore formalities. As you'll already know, we have to fix that old and rusty autoload mechanism
+
+/*assistant-3
+""After a couple of battles, I think that you can trust me. Shall I give you my opinion?
+--Yes, please
+
+/*assistant-3
+""The code seems generally correct, maybe there are just some details to be fixed and some little things that are missing
+
+/*crazy_doctor-3
+""Are you waitin' for an advice, boy?
+--Hi Gilbert, just in time!
+
+/*crazy_doctor-3
+""You want me to go direct to the point?
+--1--Yes, time is running out
+--2--No, please, talk me about the weather
+
+/*crazy_doctor-3
+""1--I'll let you know something that will be very useful also in next missions: you code console is smart. Not smart as its creator -me, modestly- but cant help you while you're coding: it highlights key words and, on the left of line numbers, tells you if there's something wrong. I said enough, for today
+--1--Thank you Gilbert!
+
+/*crazy_doctor-3
+""2-- The weather is sunny, with maximum degrees near to 35C. And since you're so nice with me, I won't help you for this mission.

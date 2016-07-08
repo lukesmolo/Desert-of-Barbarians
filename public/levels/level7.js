@@ -1,9 +1,7 @@
-function
-playerShoot3(x,y) {
-	//cannot shoot in the lower fifth part of canvas and in the upper fifth
+function playerShoot3(x,y) {
 	if( checkHeight(y) ) {
 		var source = whichAntiMissileBattery( x );
-		if( source === -1 ){ // No missiles left
+		if( source === -1 ){
 			return;
 		}
 		playerMissiles.push( new PlayerMissile( source, x, y ) );
