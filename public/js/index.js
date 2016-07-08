@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 
 	editor = ace.edit("text_editor");
-	get_level(1); //FIXME get level defined by server!
+	get_level(9); //FIXME get level defined by server!
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
@@ -380,7 +380,7 @@ make_dialogs(level, dialogs) {
 
 		}
 		});
-	append_dialogs(level);
+		append_dialogs(level);
 	}
 
 	function
@@ -403,6 +403,20 @@ make_dialogs(level, dialogs) {
 				make_dialogs(level, data.dialogs);
 				$('#left_jump_level').empty();
 				$('#right_jump_level').empty();
+				$('#username_summary').empty();
+				$('#military_rank_summary').empty();
+
+				$('#username_summary').append(data.username);
+				times = current_level % 3; //3  subsets of levels
+				if(times === 0) {
+					times = 3;
+				}
+				medal_n = parseInt(current_level/3-0.5)+1;
+				for(i = 0; i < times; i++) {
+				img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
+					$('#military_rank_summary').append(img);
+				}
+
 				$.each(data.keys, function(index, value) {
 					k = '<p>Level '+(parseInt(index)+1)+'</p>';
 					v = '<p>'+value+'</p>';

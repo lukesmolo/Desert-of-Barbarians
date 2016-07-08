@@ -141,6 +141,11 @@ html {
 	height: 100%;
 	width: 100%;
 }
+.rank_image {
+
+	height: 10%;
+	width: 10%;
+}
 
 .close_img {
 	width: 5%;

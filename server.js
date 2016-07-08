@@ -89,6 +89,7 @@ app.post('/get_level', function(req, res){
 	if(code !== null) {
 		res.send ({
 			'status': 'SUCCESS',
+			'username': username,
 			'body': code,
 			'dialogs': dialogs,
 			'level': level,
