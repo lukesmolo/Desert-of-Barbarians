@@ -38,7 +38,7 @@
                 "2--Yes Sir!"
             ], 
             "id": 2, 
-            "text": "Times have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
+            "text": "Times have changed and nowadays their attacks are continuous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
         }, 
         {
             "answers": [], 
@@ -85,7 +85,7 @@
         {
             "answers": [], 
             "id": 5, 
-            "text": "1--Okay, let's reason using phisics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
+            "text": "1--Okay, let's reason using physics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
         }, 
         {
             "answers": [], 
