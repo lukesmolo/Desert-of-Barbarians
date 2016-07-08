@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 
 	editor = ace.edit("text_editor");
-	get_level(9); //FIXME get level defined by server!
+	get_level(1); //FIXME get level defined by server!
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
@@ -526,7 +526,10 @@ make_dialogs(level, dialogs) {
 
 	if(check_code === 1) {
 		switch (level_id){
-			case 1: scale = new Function('x, y', level_code); break;
+			case 1:
+				//eval('scale = '+check_level_code);
+				scale = new Function('return '+check_level_code+';')();
+				break;
 			case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
 			case 3: setNumMissiles = new Function(level_code); break;
 			case 4: {
@@ -547,7 +550,7 @@ make_dialogs(level, dialogs) {
 				if (count <= 3 ){
 					//check if player used loops
 					if ( (level_code.match(/for/g) || []).length == 0 && (level_code.match(/while/g) || []).length == 0 ) {
-						initializeRec = new Function('i',level_code)
+						initializeRec = new Function('i',level_code);
 					}
 					else {
 						error = 'Loops are not allowed in this level!';
