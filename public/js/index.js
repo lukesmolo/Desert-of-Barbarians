@@ -30,13 +30,29 @@ $(document).ready(function() {
 
 
 	editor = ace.edit("text_editor");
-	get_level(9); //FIXME get level defined by server!
+	get_level(3); //FIXME get level defined by server!
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
 	$('.send_answer').hide();
 	//$('.send_answer:contains("Next")').show();
 	$('#'+current_character+'_replies').show();
+	$('.ttip').qtip({
+		position: {
+			target: 'mouse',
+			adjust: {
+				mouse: true,
+				x: 10,
+				y: 0
+			}
+		},
+		style: {
+			tip: {
+				corner: 'left center'
+			},
+			classes: 'ttip_css'
+		}
+	});
 
 
 });
@@ -380,7 +396,7 @@ make_dialogs(level, dialogs) {
 
 		}
 		});
-		append_dialogs(level);
+	append_dialogs(level);
 	}
 
 	function
@@ -413,14 +429,14 @@ make_dialogs(level, dialogs) {
 				}
 				medal_n = parseInt(current_level/3-0.5)+1;
 				for(i = 0; i < times; i++) {
-				img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
+					img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
 					$('#military_rank_summary').append(img);
 				}
 
 				$.each(data.keys, function(index, value) {
 					k = '<p>Level '+(parseInt(index)+1)+'</p>';
 					v = '<p>'+value+'</p>';
-					
+
 					$('#left_jump_level').append(k);
 					$('#right_jump_level').append(v);
 
@@ -544,27 +560,31 @@ make_dialogs(level, dialogs) {
 				//eval('scale = '+check_level_code);
 				scale = new Function('return '+check_level_code+';')();
 				break;
-			case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
-			case 3: setNumMissiles = new Function(level_code); break;
-			case 4: {
+			case 2:
+				shootWithOffset = new Function('return ' +level_code+';')();
+				break;
+			case 3: setNumMissiles = new Function('return '+level_code+';')();
+				  break;
+			case 4:
 				//check how many times constructor is called
-				var count = (level_code.match(/push/g) || []).length;
+				count = (level_code.match(/push/g) || []).length;
 				if (count <= 3 )
-					initializeObf = new Function(level_code)
+					initializeObf = new Function('return '+level_code+';')();
 				else {
-					error = 'too many invocations of constructor!';
+					error = 'too many constructor invocations!';
 					append_info(error, 'assistant', 1);
 				}
 				break;
-			}
-			case 5: checkHeightObf = new Function('y', level_code); break;
-			case 6: {
+			case 5:
+				checkHeightObf = new Function('return ' + level_code+';')();
+				break;
+			case 6:
 				//check how many times constructor is called
-				var count = (level_code.match(/push/g) || []).length;
+				count = (level_code.match(/push/g) || []).length;
 				if (count <= 3 ){
 					//check if player used loops
 					if ( (level_code.match(/for/g) || []).length == 0 && (level_code.match(/while/g) || []).length == 0 ) {
-						initializeRec = new Function('i',level_code);
+						initializeRec = new Function('return ',level_code+';')();
 					}
 					else {
 						error = 'Loops are not allowed in this level!';
@@ -572,11 +592,10 @@ make_dialogs(level, dialogs) {
 					}
 				}
 				else {
-					error = 'too many invocations of constructor!';
+					error = 'too many constructor invocations!';
 					append_info(error, 'assistant', 1);
 				}
 				break;
-			}
 		}
 		missileCommand();
 	}

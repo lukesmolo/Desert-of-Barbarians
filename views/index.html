@@ -4,6 +4,7 @@
 	  <meta charset="utf-8">
 	  <title>Missile Command</title>
 	  <link rel="stylesheet" href="css/index.css">
+	  <link rel="stylesheet" href="css/qtip.css">
 	  <link rel="stylesheet" href="css/introjs.css">
 	  <link rel="stylesheet" href="css/bootstrap.min.css">
 	  <link rel="icon shortcut" href="images/circle.png">
@@ -13,40 +14,45 @@
 		  <nav  class="navbar navbar-default" id="nav_navbar" role="navigation">
 
 			  <ul class="nav navbar-nav" data-step="1" data-intro='Ciao'
-	  data-position='right' data-hint="ciao" data-hintPosition="top-right" >
+	  data-position='right' data-hint="ciao"
+	  data-hintPosition="top-right">
 				  <li >
 					  <a id="main_btn" class="change_panel"
-				href="#game">
-						  <img class="navbar_img"
+				href="#game"  aria-label="game panel" >
+						  <img class="navbar_img ttip" title="Home"
 		 src="images/home.png" alt="game navbar button"></a>
 
 					  <a id="conversations_btn" class="change_panel"
-					   href="#conversations">
-						  <img class="navbar_img"
+					   href="#conversations"
+					   aria-label="conversations panel" >
+						  <img class="navbar_img ttip"
+		 title="Conversations"
 		 src="images/conversations.png" alt="conversations navbar button"></a>
 					  <a id="manual_btn" class="change_panel"
-				  href="#manual">
-						  <img class="navbar_img"
+				  href="#manual"  aria-label="manual panel" >
+						  <img class="navbar_img ttip"
+						  title="Manual"
 		 src="images/manual.png" alt="manual navbar button"></a>
 					  <a id="tutorial_btn" class="change_panel"
-				    href="#tutorial"><img
-								 class="navbar_img"
+				    href="#tutorial" data-toggle="tooltip"
+				aria-label="tutorial" ><img
+								 class="navbar_img ttip"
+								 title="Tutorial"
 	   src="images/tutorial.png"
     alt="tutorial navbar button"></a>
-<a id="settings_btn" class="change_panel" href="#settings"><img
-								 class="navbar_img"
+<a id="settings_btn" class="change_panel" href="#settings" aria-label="settings
+panel"><img
+								 class="navbar_img ttip"
+								 title="Settings"
 	   src="images/settings.png"
-    alt="settings navbar button"></a>
+    alt="settings navbar button" aria-label="logout panel"></a>
 
 <a id="exit_btn"
 				href="#log_out">
-						  <img class="navbar_img"
+						  <img class="navbar_img ttip" title="Logout"
 		 src="images/logout.png" alt="log out navbar button"></a>
 				  </li>
 			  </ul>
-
-
-
 		  </nav>
 	  </div>
 
@@ -267,17 +273,18 @@
 					  </div>
 					  <div id="code_buttons_controller">
 
-						  <div id="div_send_code_btn" class="div_code_controller
-						  col-md-6">
-							  <img id="send_code_btn"
-		  class="code_buttons_img center-block"
-    src="images/save.png" alt="code controller reset button">
+						  <div id="div_send_code_btn"
+						  class="div_code_controller col-md-6">
+							  <img id="send_code_btn" title="Exec
+							  Code"
+		  class="code_buttons_img center-block ttip "
+    src="images/save.png" alt="send code controller button">
 						  </div>
 						  <div id="div_reset_code_btn"
 		 class="div_code_controller col-md-6">
 							  <img id="reset_code_btn"
-		  class="code_buttons_img center-block"
-    src="images/discard.png" alt="code controller reset button">
+		  class="code_buttons_img center-block ttip" title="Reset Level"
+    src="images/discard.png" alt="reset code controller button">
 						  </div>
 					  </div>
 
@@ -293,6 +300,7 @@
 
 	  <script src="js/jquery-2.1.0.min.js"></script>
 	  <script src="js/index.js"></script>
+	  <script src="js/qtip.js"></script>
 	  <script src="js/sandbox.js"></script>
 	  <script src="js/intro.js"></script>
 	  <script src="js/grained.js"></script>
