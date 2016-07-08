@@ -95,16 +95,64 @@
 --I admit it
 
 /*crazy_doctor-2
-""And you need your favourite Doctor's help?
+""And you need your favorite Doctor's help?
 --1--I am afraid to say yes
---2--You're not my favourte in any field
+--2--You're not my favorite in any field
 
 /*crazy_doctor-2
-""1--First rule of modifing someone else's code: understand what the code does. event.pageX and event.pageY are the coohordinates - $eccecc are correction for the screen positioning, but what's the sense of these other numbers, it there's any?
---3--Got it
+""1--First rule of modifying someone else's code: understand what the code does. event.pageX and event.pageY are the coordinates - $eccecc are correction for the screen positioning, but what's the sense of these other numbers, it there's any?
+--Got it
 
 /*crazy_doctor-2
 ""2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore.
 
-/*crazy_doctor-2
-""3--provaprova
+/*colonel-3
+""Good morning, Lieutenent Drogo, this time you completed last mission without any unpleasant sideffect. Are you ready for next mission?
+--I'm born ready, sir!
+
+/*colonel-3
+""Peace is temporary in these dangerous times. As you can see, after latest battles, we only have one missile in our cannons.
+--1--What is my mission sir?
+--2--So what?
+
+/*colonel-3
+""1--Your mission is to adjust and run the mechanism that autoloads the missiles in our cannons.
+--Yes Sir! Consider it as done!
+
+/*colonel-3
+""2--SO WHAT? First, always call me Sir. Second, don't dare to reply to me in such a arrogant way, or you'll be given to Barbarians as a breakfast cookie. Third, go to fix the mechanism that autoloads missiles in our cannons. NOW.
+--YESSIR!
+
+/*assistant-2
+""Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle.
+--1--I would appreciate it
+--2--Don't waste time, Melissa!
+
+/*assistant-3
+""1--Okay, Lieutenent, are you ready for the new mission? As you'll already know, we have to fix that old and rusty autoload mechanism
+
+/*assistant-3
+""2--As you prefer, newbie. So, let's ignore formalities. As you'll already know, we have to fix that old and rusty autoload mechanism
+
+/*assistant-3
+""After a couple of battles, I think that you can trust me. Shall I give you my opinion?
+--Yes, please
+
+/*assistant-3
+""The code seems generally correct, maybe there are just some details to be fixed and some little things that are missing
+
+/*crazy_doctor-3
+""Are you waitin' for an advice, boy?
+--Hi Gilbert, just in time!
+
+/*crazy_doctor-3
+""You want me to go direct to the point?
+--1--Yes, time is running out
+--2--No, please, talk me about the weather
+
+/*crazy_doctor-3
+""1--I'll let you know something that will be very useful also in next missions: you code console is smart. Not smart as its creator -me, modestly- but cant help you while you're coding: it highlights key words and, on the left of line numbers, tells you if there's something wrong. I said enough, for today
+--1--Thank you Gilbert!
+
+/*crazy_doctor-3
+""2-- The weather is sunny, with maximum degrees near to 35C. And since you're so nice with me, I won't help you for this mission.

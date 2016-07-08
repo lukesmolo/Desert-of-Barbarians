@@ -25,6 +25,14 @@
             "answers": [], 
             "id": 4, 
             "text": "2-- Don't waste time. Enemy is close!"
+        }, 
+        {
+            "answers": [
+                "1--I would appreciate it", 
+                "2--Don't waste time, Melissa!"
+            ], 
+            "id": 5, 
+            "text": "Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle."
         }
     ], 
     "colonel": [
@@ -68,27 +76,22 @@
         {
             "answers": [
                 "1--I am afraid to say yes", 
-                "2--You're not my favourte in any field"
+                "2--You're not my favorite in any field"
             ], 
             "id": 2, 
-            "text": "And you need your favourite Doctor's help?"
+            "text": "And you need your favorite Doctor's help?"
         }, 
         {
             "answers": [
-                "3--Got it"
+                "Got it"
             ], 
             "id": 3, 
-            "text": "1--First rule of modifing someone else's code: understand what the code does. event.pageX and event.pageY are the coohordinates - $eccecc are correction for the screen positioning, but what's the sense of these other numbers, it there's any?"
+            "text": "1--First rule of modifying someone else's code: understand what the code does. event.pageX and event.pageY are the coordinates - $eccecc are correction for the screen positioning, but what's the sense of these other numbers, it there's any?"
         }, 
         {
             "answers": [], 
             "id": 4, 
             "text": "2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore."
-        }, 
-        {
-            "answers": [], 
-            "id": 5, 
-            "text": "3--provaprova"
         }
     ]
 }

@@ -1,96 +1,86 @@
 {
     "assistant": [
         {
-            "answers": [
-                "Sure"
-            ],
-            "id": 1,
-            "text": "Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
-        },
+            "answers": [], 
+            "id": 1, 
+            "text": "1--Okay, Lieutenent, are you ready for the new mission? As you'll already know, we have to fix that old and rusty autoload mechanism"
+        }, 
+        {
+            "answers": [], 
+            "id": 2, 
+            "text": "2--As you prefer, newbie. So, let's ignore formalities. As you'll already know, we have to fix that old and rusty autoload mechanism"
+        }, 
         {
             "answers": [
-                "1--I can do it",
-                "2--Tell me more for this mission"
-            ],
-            "id": 2,
-            "text": "The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript"
-        },
+                "Yes, please"
+            ], 
+            "id": 3, 
+            "text": "After a couple of battles, I think that you can trust me. Shall I give you my opinion?"
+        }, 
         {
-            "answers": [],
-            "id": 3,
-            "text": "1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
-        },
-        {
-            "answers": [],
-            "id": 4,
-            "text": "2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value."
+            "answers": [], 
+            "id": 4, 
+            "text": "The code seems generally correct, maybe there are just some details to be fixed and some little things that are missing"
         }
-    ],
+    ], 
     "colonel": [
         {
-            "answers": [],
-            "id": 1,
-            "text": "Good mooooorning, parapppapaaapppeees speedspeedspeedspeedspeedspeed speedspeedspeedspeed speedspeedspeed speedspeedspeedspe edspeedspeedspeed"
-        },
+            "answers": [
+                "I'm born ready, sir!"
+            ], 
+            "id": 1, 
+            "text": "Good morning, Lieutenent Drogo, this time you completed last mission without any unpleasant sideffect. Are you ready for next mission?"
+        }, 
         {
             "answers": [
-                "1--I have no competences, Sir",
-                "2--Yes Sir!"
-            ],
-            "id": 2,
-            "text": "Tiiiiiiiiiiiiiimes have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
-        },
-        {
-            "answers": [],
-            "id": 3,
-            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
-        },
+                "1--What is my mission sir?", 
+                "2--So what?"
+            ], 
+            "id": 2, 
+            "text": "Peace is temporary in these dangerous times. As you can see, after latest battles, we only have one missile in our cannons."
+        }, 
         {
             "answers": [
-                "Yes Sir!"
-            ],
-            "id": 4,
-            "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
+                "Yes Sir! Consider it as done!"
+            ], 
+            "id": 3, 
+            "text": "1--Your mission is to adjust and run the mechanism that autoloads the missiles in our cannons."
+        }, 
+        {
+            "answers": [
+                "YESSIR!"
+            ], 
+            "id": 4, 
+            "text": "2--SO WHAT? First, always call me Sir. Second, don't dare to reply to me in such a arrogant way, or you'll be given to Barbarians as a breakfast cookie. Third, go to fix the mechanism that autoloads missiles in our cannons. NOW."
         }
-    ],
+    ], 
     "crazy_doctor": [
         {
             "answers": [
-                "Who are you?"
-            ],
-            "id": 1,
-            "text": "It seems you're in trouble, ki333333d..."
-        },
+                "Hi Gilbert, just in time!"
+            ], 
+            "id": 1, 
+            "text": "Are you waitin' for an advice, boy?"
+        }, 
         {
             "answers": [
-                "I'm Atheist",
-                "I can't see wings"
-            ],
-            "id": 2,
-            "text": "I'm your Guardian Angel!"
-        },
-        {
-            "answers": [],
-            "id": 3,
-            "text": "I was joking, boy, I'm Doctor Gilbert Nichols, and many many years ago, when you weren't born already and Internet Explorer was considered a good Browser, I was in the team or programmers that created your Antimissile System"
-        },
+                "1--Yes, time is running out", 
+                "2--No, please, talk me about the weather"
+            ], 
+            "id": 2, 
+            "text": "You want me to go direct to the point?"
+        }, 
         {
             "answers": [
-                "1--Yes, please",
-                "2--No, I can do it by myself"
-            ],
-            "id": 4,
-            "text": "Let's go to the point: I see that you've been defeated many times in this mission. Do you want some help? I can give you very specific hints"
-        },
+                "1--Thank you Gilbert!"
+            ], 
+            "id": 3, 
+            "text": "1--I'll let you know something that will be very useful also in next missions: you code console is smart. Not smart as its creator -me, modestly- but cant help you while you're coding: it highlights key words and, on the left of line numbers, tells you if there's something wrong. I said enough, for today"
+        }, 
         {
-            "answers": [],
-            "id": 5,
-            "text": "1--Okay, let's reason using phisics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
-        },
-        {
-            "answers": [],
-            "id": 6,
-            "text": "2--In that case, I'll won't say a word."
+            "answers": [], 
+            "id": 4, 
+            "text": "2-- The weather is sunny, with maximum degrees near to 35C. And since you're so nice with me, I won't help you for this mission."
         }
     ]
 }
