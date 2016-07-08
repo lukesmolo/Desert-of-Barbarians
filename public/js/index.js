@@ -381,7 +381,7 @@ make_dialogs(level, dialogs) {
 
 		}
 		});
-	append_dialogs(level);
+		append_dialogs(level);
 	}
 
 	function
@@ -404,6 +404,20 @@ make_dialogs(level, dialogs) {
 				make_dialogs(level, data.dialogs);
 				$('#left_jump_level').empty();
 				$('#right_jump_level').empty();
+				$('#username_summary').empty();
+				$('#military_rank_summary').empty();
+
+				$('#username_summary').append(data.username);
+				times = current_level % 3; //3  subsets of levels
+				if(times === 0) {
+					times = 3;
+				}
+				medal_n = parseInt(current_level/3-0.5)+1;
+				for(i = 0; i < times; i++) {
+				img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
+					$('#military_rank_summary').append(img);
+				}
+
 				$.each(data.keys, function(index, value) {
 					k = '<p>Level '+(parseInt(index)+1)+'</p>';
 					v = '<p>'+value+'</p>';
@@ -527,7 +541,10 @@ make_dialogs(level, dialogs) {
 
 	if(check_code === 1) {
 		switch (level_id){
-			case 1: scale = new Function('x, y', level_code); break;
+			case 1:
+				//eval('scale = '+check_level_code);
+				scale = new Function('return '+check_level_code+';')();
+				break;
 			case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
 			case 3: setNumMissiles = new Function(level_code); break;
 			case 4: {
@@ -548,7 +565,7 @@ make_dialogs(level, dialogs) {
 				if (count <= 3 ){
 					//check if player used loops
 					if ( (level_code.match(/for/g) || []).length == 0 && (level_code.match(/while/g) || []).length == 0 ) {
-						initializeRec = new Function('i',level_code)
+						initializeRec = new Function('i',level_code);
 					}
 					else {
 						error = 'Loops are not allowed in this level!';
