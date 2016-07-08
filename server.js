@@ -15,7 +15,8 @@ var socket = io.listen(server);
 
 //to be updated everytime the user changes level, so not necessary a post for reset_code
 var max_n_levels = 9;
-var username = null;
+//var username = null;
+var username = 'ale';
 var level = 1;
 
 var levels_keys = ['level1', 'level-2', 'Level3', 'LEVEL4', 'LeVel5', 'level6', 'l-evel7', 'l8', 'L-e-v-e-l9'];
@@ -35,7 +36,7 @@ function
 make_levels_keys() {
 for(var i = 0; i < max_n_levels; i++) {
 		levels_hash_keys.push(levels_keys[i]);
-//		levels_hash_keys.push(crypto.createHash('md5').update(username+levels_keys[i]).digest("hex"));
+//		levels_hash_keys.push(crypto.createHash('md5').update(username+levels_keys[i]).digest("hex").substring(0,8););
 	}
 }
 
@@ -68,18 +69,10 @@ app.get('/reset_code', function(req, res){
 	}
 });
 
-app.post('/send_code', function(req, res){
-	console.log('body: ' + JSON.stringify(req.body));
-	body = req.body;
-	level_code = body.body;
-	level_n = body.level;
-	testFunction = new Function(level_code);
-	testFunction();
-	console.log(level_code);
-	res.send({ status: 'SUCCESS'});
-});
+
 
 app.post('/get_level', function(req, res){
+	make_levels_keys();
 	console.log('body: ' + JSON.stringify(req.body));
 	req_level = req.body.level;
 	if(req_level != -1)
@@ -87,8 +80,20 @@ app.post('/get_level', function(req, res){
 	dialogs = return_level_dialog(level);
 	code = return_level_code(level);
 	console.log(code);
+	//collect keys to send
+	tmp_keys = [];
+	for(i = 0; i < level; i++) {
+		tmp_keys.push(levels_hash_keys[i]);
+		console.log(levels_hash_keys[i]);
+	}
 	if(code !== null) {
-		res.send({ 'status': 'SUCCESS', 'body': code, 'dialogs': dialogs, 'level': level});
+		res.send ({
+			'status': 'SUCCESS',
+			'body': code,
+			'dialogs': dialogs,
+			'level': level,
+			'keys': tmp_keys
+		});
 	} else {
 		res.send({ 'status': 'ERROR', 'what': "file for level not found"});
 	}

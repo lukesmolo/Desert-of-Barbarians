@@ -4,7 +4,7 @@ var editor = null;
 var level_dialogs = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 //var current_level = 0;
-var current_level = 7;
+var current_level = 1;
 var current_character = "colonel";
 var current_panel = "main";
 var maximum_n_answers = 3;
@@ -31,7 +31,7 @@ $(document).ready(function() {
 
 
 	editor = ace.edit("text_editor");
-	get_level(7); //FIXME get level defined by server!
+	get_level(-1); //FIXME get level defined by server!
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
@@ -390,19 +390,34 @@ make_dialogs(level, dialogs) {
 			data = { "request": "get_level", "level": level};
 			data = JSON.stringify(data);
 
-			return $.ajax( {type: "POST",dataType: "json",processData: false,contentType: 'application/json; charset=utf-8',url: "/get_level",data: data} )
-				.done( function (data, stato) {
-					current_level = data.level;
-					level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
-					$('.conversations_text').append(level_text);
-					editor.setValue(data.body);
-					make_dialogs(level, data.dialogs);
-				})
-			.fail(function (jqXHR, textStatus, errorThrown) { alert("E' avvenuto un errore:\n" + textStatus); })
-				.always(function() {
-					//called after the completion of get_level, because needs to know which level we are in
-					//makeReadonly();
+			return $.ajax( {
+				type: "POST",
+				dataType: "json",
+				processData: false,
+				contentType: 'application/json; charset=utf-8',
+				url: "/get_level",data: data
+			}).done( function (data, stato) {
+				current_level = data.level;
+				level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
+				$('.conversations_text').append(level_text);
+				editor.setValue(data.body);
+				make_dialogs(level, data.dialogs);
+				$('#left_jump_level').empty();
+				$('#right_jump_level').empty();
+				$.each(data.keys, function(index, value) {
+					k = '<p>Level '+(parseInt(index)+1)+'</p>';
+					v = '<p>'+value+'</p>';
+
+					$('#left_jump_level').append(k);
+					$('#right_jump_level').append(v);
+
 				});
+			}).fail(function (jqXHR, textStatus, errorThrown) {
+				alert("E' avvenuto un errore:\n" + textStatus);
+			}).always(function() {
+				//called after the completion of get_level, because needs to know which level we are in
+				//makeReadonly();
+			});
 
 		}
 
@@ -464,10 +479,10 @@ make_dialogs(level, dialogs) {
 	function send_code(level_id) {
 		check_code = 1;
 		numlines = editor.getSession().getLength();
-		level_code_strings = editor.getSession().getLines(1, numlines -3); //array starts from zero, minus last free line and line with }
+		level_code_strings = editor.getSession().getLines(1, numlines-3); //array starts from zero, minus last free line and line with }
 	check_level_code = editor.getSession().getValue();
 	level_code = level_code_strings[0];
-	for (i = 1; i<numlines - 3; i++)
+	for (i = 1; i<numlines-3; i++)
 		level_code = level_code + level_code_strings[i];
 	//level_code = level_code_strings.join(); //FIXME more elegant but doesn't work
 	console.log('codice mandato dall\'utente: ' + JSON.stringify(level_code));
@@ -501,7 +516,7 @@ make_dialogs(level, dialogs) {
 			}
 			else {
 				error = 'The code takes too long to run.  Is there is an infinite loop?';
-				append_info(error, 'colonel', 1);
+				append_info(error, 'assistant', 1);
 				check_code = 0;
 			}
 		}, 3000);
@@ -525,7 +540,7 @@ make_dialogs(level, dialogs) {
 					append_info(error, 'assistant', 1);
 				}
 				break;
-				}
+			}
 			case 5: checkHeightObf = new Function('y', level_code); break;
 			case 6: {
 				//check how many times constructor is called
@@ -548,6 +563,8 @@ make_dialogs(level, dialogs) {
 				}
 
 			case 7: playerShoot3 = new Function('x, y', level_code); break;
+			case 8: autofire = new Function('x,y',level_code); break;
+			case 9: whichAntiMissileBatteryObf = new Function('x',level_code); break;
 		}
 		missileCommand();
 	}
