@@ -1,25 +1,33 @@
 {
     "assistant": [
         {
-            "answers": [], 
+            "answers": [
+                "1--I would appreciate it", 
+                "2--Don't waste time, Melissa!"
+            ], 
             "id": 1, 
-            "text": "1--Okay, Lieutenent, are you ready for the new mission? As you'll already know, we have to fix that old and rusty autoload mechanism"
+            "text": "Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle."
         }, 
         {
             "answers": [], 
             "id": 2, 
+            "text": "1--Okay, Lieutenent, are you ready for the new mission? As you'll already know, we have to fix that old and rusty autoload mechanism"
+        }, 
+        {
+            "answers": [], 
+            "id": 3, 
             "text": "2--As you prefer, newbie. So, let's ignore formalities. As you'll already know, we have to fix that old and rusty autoload mechanism"
         }, 
         {
             "answers": [
                 "Yes, please"
             ], 
-            "id": 3, 
+            "id": 4, 
             "text": "After a couple of battles, I think that you can trust me. Shall I give you my opinion?"
         }, 
         {
             "answers": [], 
-            "id": 4, 
+            "id": 5, 
             "text": "The code seems generally correct, maybe there are just some details to be fixed and some little things that are missing"
         }
     ], 

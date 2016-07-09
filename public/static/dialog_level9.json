@@ -2,95 +2,47 @@
     "assistant": [
         {
             "answers": [
-                "Sure"
+                "Let's defeat these Barbarians!"
             ], 
             "id": 1, 
-            "text": "Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
+            "text": "Ready for your last mission, Sir?"
         }, 
         {
             "answers": [
-                "1--I can do it", 
-                "2--Tell me more for this mission"
+                "Any advice?"
             ], 
             "id": 2, 
-            "text": "The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript"
+            "text": "The system you have to rebuild, deals with choosing the right cannon to shoot to a given enemy missile. For example, if you shoot to a missile in the right hand side of the landscape, the system made the rightmost cannon shoot. The original systems took care of the case in which a cannon has no missiles loaded: if a cannon is empty, you must shoot from the nearest of the ones with loaded missiles."
         }, 
         {
-            "answers": [], 
+            "answers": [
+                "Yes, Melissa, let's start!"
+            ], 
             "id": 3, 
-            "text": "1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
-        }, 
-        {
-            "answers": [], 
-            "id": 4, 
-            "text": "2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value."
+            "text": "To check if a cannon has missiles, use antiMissileBatteries[index].hasMissile(). You have to use firedToOuterThird(priority1, priority2, priority3), that, given the priorities, returns the loaded cannon with highest priority, and firedtoMiddleThird(priority1, priority2), that makes the same thing, but for only two cannons. I know that it difficult Drogo, but you can do it, we can do it: we can win this war, together."
         }
     ], 
     "colonel": [
         {
-            "answers": [], 
-            "id": 1, 
-            "text": "Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time."
-        }, 
-        {
             "answers": [
-                "1--I have no competences, Sir", 
-                "2--Yes Sir!"
-            ], 
-            "id": 2, 
-            "text": "Times have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
-        }, 
-        {
-            "answers": [], 
-            "id": 3, 
-            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
-        }, 
-        {
-            "answers": [
-                "Yes Sir!"
-            ], 
-            "id": 4, 
-            "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
-        }
-    ], 
-    "crazy_doctor": [
-        {
-            "answers": [
-                "Who are you?"
+                "That's good news, Sir!"
             ], 
             "id": 1, 
-            "text": "It seems you're in trouble, kid..."
+            "text": "Good Morning Major Drogo. We won the last battle, but unluckily, not the war. Anyway we can clearly see that the enemy is weak and demotivated. I'm quite sure that their next attack will be the last."
         }, 
         {
             "answers": [
-                "I'm Atheist", 
-                "I can't see wings"
+                "To fix it, sir?"
             ], 
             "id": 2, 
-            "text": "I'm your Guardian Angel!"
-        }, 
-        {
-            "answers": [], 
-            "id": 3, 
-            "text": "I was joking, boy, I'm Doctor Gilbert Nichols, and many many years ago, when you weren't born already and Internet Explorer was considered a good Browser, I was in the team or programmers that created your Antimissile System"
+            "text": "Not at all, Major. The fact is that during last tremendous fight, the system that governed with cannon has to shoot, got broken. A battle in such conditions is unsustainable. You know what i'm going to ask you?"
         }, 
         {
             "answers": [
-                "1--Yes, please", 
-                "2--No, I can do it by myself"
+                "Yes, Sir!"
             ], 
-            "id": 4, 
-            "text": "Let's go to the point: I see that you've been defeated many times in this mission. Do you want some help? I can give you very specific hints"
-        }, 
-        {
-            "answers": [], 
-            "id": 5, 
-            "text": "1--Okay, let's reason using phisics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
-        }, 
-        {
-            "answers": [], 
-            "id": 6, 
-            "text": "2--In that case, I'll won't say a word."
+            "id": 3, 
+            "text": "Not exactly. We lost all the schemes of that system, so you have to rebuild it from scratch. And, like always, in the battle we cannot lose a single tower: we have no resources to rebuild them. Go: this will be probably your last mission here."
         }
     ]
 }

@@ -2,95 +2,109 @@
     "assistant": [
         {
             "answers": [
-                "Sure"
-            ],
-            "id": 1,
-            "text": "Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
-        },
+                "1--More or less", 
+                "2--Don't joke, today is a dramatic day"
+            ], 
+            "id": 1, 
+            "text": "Hi, Drogo. How was speaking with Colonel today? Like walking barefoot on burning coals?"
+        }, 
+        {
+            "answers": [], 
+            "id": 2, 
+            "text": "1--If you survived to a chat with Colonel this morning, next mission will be a joke for you"
+        }, 
+        {
+            "answers": [], 
+            "id": 3, 
+            "text": "2--I was trying to make you laugh. You look very tired, today. At least, have a coffee!"
+        }, 
         {
             "answers": [
-                "1--I can do it",
-                "2--Tell me more for this mission"
-            ],
-            "id": 2,
-            "text": "The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript"
-        },
+                "Yes, Melissa"
+            ], 
+            "id": 4, 
+            "text": "Do you want a quick overview on next mission?"
+        }, 
         {
-            "answers": [],
-            "id": 3,
-            "text": "1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
-        },
-        {
-            "answers": [],
-            "id": 4,
-            "text": "2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value."
+            "answers": [
+                "Yes, please"
+            ], 
+            "id": 5, 
+            "text": "Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days."
         }
-    ],
+    ], 
     "colonel": [
         {
-            "answers": [],
-            "id": 1,
-            "text": "Good mooooorning, parapppapaaapppeees speedspeedspeedspeedspeedspeed speedspeedspeedspeed speedspeedspeed speedspeedspeedspe edspeedspeedspeed"
-        },
+            "answers": [
+                "1--How could this happen?", 
+                "2--And I've to rebuild all?"
+            ], 
+            "id": 1, 
+            "text": "Today is a very dramatic day. That cowards and uncivilized Barbarians attacked during the night time and destroyed all our towers and cannons."
+        }, 
         {
             "answers": [
-                "1--I have no competences, Sir",
-                "2--Yes Sir!"
-            ],
-            "id": 2,
-            "text": "Tiiiiiiiiiiiiiimes have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
-        },
-        {
-            "answers": [],
-            "id": 3,
-            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
-        },
+                "..."
+            ], 
+            "id": 2, 
+            "text": "1--Major Guidi fell asleep during his guard duty. He has been hanged at dawn."
+        }, 
         {
             "answers": [
-                "Yes Sir!"
-            ],
-            "id": 4,
-            "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
+                "Thank you, Sir"
+            ], 
+            "id": 3, 
+            "text": "2--I would be glad to order you this, but I'm not stupid. You're a programmer, not a bricklayer"
+        }, 
+        {
+            "answers": [
+                "Builder drones?"
+            ], 
+            "id": 4, 
+            "text": "Clearly your mission is to rebuild all our towers and cannons, but to do so, you'll reprogram our builder drones."
+        }, 
+        {
+            "answers": [
+                "What is the problem, Sir?"
+            ], 
+            "id": 5, 
+            "text": "Yes, Lieutenent, we do have builder drones. But their source code is not efficient enough: as it is, they would take at least 36 days to rebuild all."
+        }, 
+        {
+            "answers": [
+                "Yes, Sir!"
+            ], 
+            "id": 6, 
+            "text": "2--THE PROBLEM WE CAN'T SUSTAIN 36 DAYS WITHOUT ALL OUR DEFENSIVE APPARATUS. I give you 9 days, not a single minute more."
         }
-    ],
+    ], 
     "crazy_doctor": [
         {
             "answers": [
-                "Who are you?"
-            ],
-            "id": 1,
-            "text": "It seems you're in trouble, ki333333d..."
-        },
+                "I do, are you the genius who programmed those?"
+            ], 
+            "id": 1, 
+            "text": "Finding hard to play with those drones?"
+        }, 
         {
             "answers": [
-                "I'm Atheist",
-                "I can't see wings"
-            ],
-            "id": 2,
-            "text": "I'm your Guardian Angel!"
-        },
-        {
-            "answers": [],
-            "id": 3,
-            "text": "I was joking, boy, I'm Doctor Gilbert Nichols, and many many years ago, when you weren't born already and Internet Explorer was considered a good Browser, I was in the team or programmers that created your Antimissile System"
-        },
+                "1--Yes, please", 
+                "2--No, I'll search for the warranty and contact seller."
+            ], 
+            "id": 2, 
+            "text": "Nono, we bought them used on eBay, sent from China. Anyway this mission can seem a little bit obscure for you. May I help you?"
+        }, 
         {
             "answers": [
-                "1--Yes, please",
-                "2--No, I can do it by myself"
-            ],
-            "id": 4,
-            "text": "Let's go to the point: I see that you've been defeated many times in this mission. Do you want some help? I can give you very specific hints"
-        },
+                "Gilbert, you're a real genius!"
+            ], 
+            "id": 3, 
+            "text": "1--Let's put all pieces together: first, you have 9 days of time for the whole job. Every time new castle(i) or new antiMissileBattery(i) a counter gets incremented by 1, if at the end of the program it's greater than 9, the building won't take place. Second, our fortress have 18 building slots, if you choose the wrong position the building won't take place. The correct positions for towers are 3, 5, 7, 11, 13, 15; for cannons are 1, 9, 17. And please, PLEASE, use loops!"
+        }, 
         {
-            "answers": [],
-            "id": 5,
-            "text": "1--Okay, let's reason using phisics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
-        },
-        {
-            "answers": [],
-            "id": 6,
-            "text": "2--In that case, I'll won't say a word."
+            "answers": [], 
+            "id": 4, 
+            "text": "2--I like your sense of humor. Bye bye, young man."
         }
     ]
 }

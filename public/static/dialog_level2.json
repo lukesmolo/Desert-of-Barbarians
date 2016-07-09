@@ -25,14 +25,6 @@
             "answers": [], 
             "id": 4, 
             "text": "2-- Don't waste time. Enemy is close!"
-        }, 
-        {
-            "answers": [
-                "1--I would appreciate it", 
-                "2--Don't waste time, Melissa!"
-            ], 
-            "id": 5, 
-            "text": "Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle."
         }
     ], 
     "colonel": [
@@ -91,6 +83,11 @@
         {
             "answers": [], 
             "id": 4, 
+            "text": "2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore."
+        }, 
+        {
+            "answers": [], 
+            "id": 5, 
             "text": "2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore."
         }
     ]

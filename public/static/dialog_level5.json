@@ -2,95 +2,104 @@
     "assistant": [
         {
             "answers": [
-                "Sure"
-            ],
-            "id": 1,
-            "text": "Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
-        },
+                "1--No more jokes, today?", 
+                "2--Don't worry, we'll fix everything"
+            ], 
+            "id": 1, 
+            "text": "Good Morning Lieutenant, ehm, Captain"
+        }, 
         {
             "answers": [
-                "1--I can do it",
-                "2--Tell me more for this mission"
-            ],
-            "id": 2,
-            "text": "The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript"
-        },
+                "We'll fix everything, Melissa"
+            ], 
+            "id": 2, 
+            "text": "1--I'm so sorry, sigh, I thought that this program could be useful, sigh, and enemy is so close, sigh"
+        }, 
         {
-            "answers": [],
-            "id": 3,
-            "text": "1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
-        },
+            "answers": [
+                "Don't worry"
+            ], 
+            "id": 3, 
+            "text": "2--Oh, you're so kind with me, sigh"
+        }, 
         {
-            "answers": [],
-            "id": 4,
-            "text": "2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value."
+            "answers": [
+                "Any advice?"
+            ], 
+            "id": 4, 
+            "text": "Okay, let's examine the situation: we had this program, that checked if the point where you choose to shoot at was too close or too far. We have to restore that functionality and destroy all these time-flow functionalities."
+        }, 
+        {
+            "answers": [
+                "You've been very useful!"
+            ], 
+            "id": 5, 
+            "text": "I think that you should keep checking if the height, otherwise the program is completely useless and I'm not sure it will work."
         }
-    ],
+    ], 
     "colonel": [
         {
-            "answers": [],
-            "id": 1,
-            "text": "Good mooooorning, parapppapaaapppeees speedspeedspeedspeedspeedspeed speedspeedspeedspeed speedspeedspeed speedspeedspeedspe edspeedspeedspeed"
-        },
+            "answers": [
+                "Yes, Sir", 
+                "YESSIR!"
+            ], 
+            "id": 1, 
+            "text": "Good Morning Captain Drogo. You really deserved this rank promotion after last successful mission. Anyway, the enemy never sleeps: are you ready for next mission?"
+        }, 
         {
             "answers": [
-                "1--I have no competences, Sir",
-                "2--Yes Sir!"
-            ],
-            "id": 2,
-            "text": "Tiiiiiiiiiiiiiimes have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
-        },
-        {
-            "answers": [],
-            "id": 3,
-            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
-        },
+                "What effect has, this project?"
+            ], 
+            "id": 2, 
+            "text": "This time you have to repare a damage done by Sub-Lieutenant Kazushi. She found and executed and old and experimental project for our cannons, the result is that actually we are not ready to fight."
+        }, 
         {
             "answers": [
-                "Yes Sir!"
-            ],
-            "id": 4,
-            "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
+                "Are you joking, sir?"
+            ], 
+            "id": 3, 
+            "text": "I know that it will be hard to believe, for you, but it stops the flow of time."
+        }, 
+        {
+            "answers": [
+                "I'll do my best, Sir!"
+            ], 
+            "id": 4, 
+            "text": "No, I don't. It was a very dangerous and experimental experiment, done many many years ago by our team of scientists. You have to revert it to the previous behavior, when it was a simple program that decided not to shoot if the target was to close or too far."
+        }, 
+        {
+            "answers": [], 
+            "id": 5, 
+            "text": "Let's hope it's enough. I can see that Barbarians are preparing another attack."
         }
-    ],
+    ], 
     "crazy_doctor": [
         {
             "answers": [
-                "Who are you?"
-            ],
-            "id": 1,
-            "text": "It seems you're in trouble, ki333333d..."
-        },
+                "Not so much, really"
+            ], 
+            "id": 1, 
+            "text": "Hey boy, having fun with time traveling?"
+        }, 
         {
             "answers": [
-                "I'm Atheist",
-                "I can't see wings"
-            ],
-            "id": 2,
-            "text": "I'm your Guardian Angel!"
-        },
-        {
-            "answers": [],
-            "id": 3,
-            "text": "I was joking, boy, I'm Doctor Gilbert Nichols, and many many years ago, when you weren't born already and Internet Explorer was considered a good Browser, I was in the team or programmers that created your Antimissile System"
-        },
-        {
-            "answers": [
-                "1--Yes, please",
+                "1--Clearly", 
                 "2--No, I can do it by myself"
-            ],
-            "id": 4,
-            "text": "Let's go to the point: I see that you've been defeated many times in this mission. Do you want some help? I can give you very specific hints"
-        },
+            ], 
+            "id": 2, 
+            "text": "It is made by tons of lines of code. Do you need my help to figure out the solution?"
+        }, 
         {
-            "answers": [],
-            "id": 5,
-            "text": "1--Okay, let's reason using phisics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
-        },
+            "answers": [
+                "Thank you, Gilbert"
+            ], 
+            "id": 3, 
+            "text": "1--Your mission is to revert this big mess, to a simple function that checks if the x are too high or too low. I think that you can save just the two outer loops and it should work."
+        }, 
         {
-            "answers": [],
-            "id": 6,
-            "text": "2--In that case, I'll won't say a word."
+            "answers": [], 
+            "id": 4, 
+            "text": "2--Good luck, boy. We were drinking all a lot of Vodka when we programmed that stuff."
         }
     ]
 }

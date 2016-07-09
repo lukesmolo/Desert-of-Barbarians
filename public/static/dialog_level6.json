@@ -2,95 +2,96 @@
     "assistant": [
         {
             "answers": [
-                "Sure"
+                "1--I'm waitin' for invasion of locusts", 
+                "2--I'was dancing in my bed"
             ], 
             "id": 1, 
-            "text": "Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
+            "text": "Eventful night, Captain Drogo, wasn't it?"
         }, 
         {
             "answers": [
-                "1--I can do it", 
-                "2--Tell me more for this mission"
+                "Maybe is my negative influence"
             ], 
             "id": 2, 
-            "text": "The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript"
+            "text": "1--Yeah, it's been hard times, since you arrived"
         }, 
         {
-            "answers": [], 
+            "answers": [
+                "It wasn't my shift"
+            ], 
             "id": 3, 
-            "text": "1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
+            "text": "2--Oh, little princess Drogo sleeps, instead of helping his fellows in the night watch"
+        }, 
+        {
+            "answers": [
+                "Any advice?"
+            ], 
+            "id": 4, 
+            "text": "Anyway, I retrieved these new building drones. They have a different behavior than the previous ones: their source code cannot contain loops, you have to do all recursively."
         }, 
         {
             "answers": [], 
-            "id": 4, 
-            "text": "2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value."
+            "id": 5, 
+            "text": "Having the experience of previous mission, we know that towers have to be placed on slots 3, 5, 7, 11, 13, 15 and cannons on 1, 9 and 17. Dont' waste time!"
         }
     ], 
     "colonel": [
         {
-            "answers": [], 
+            "answers": [
+                "I see"
+            ], 
             "id": 1, 
-            "text": "Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time."
+            "text": "Good Morning Captain Drogo. It's not a good morning, actually. As you surely noticed this night an earthquake heavily damaged our castle and our defensive apparatus."
         }, 
         {
             "answers": [
-                "1--I have no competences, Sir", 
-                "2--Yes Sir!"
+                "What should I do?"
             ], 
             "id": 2, 
-            "text": "Times have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
-        }, 
-        {
-            "answers": [], 
-            "id": 3, 
-            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
+            "text": "Again, you have to reprogram our drones to rebuild towers and cannons. Unluckily you cannot use the same program, because drones you previously used has been damaged by earthquake."
         }, 
         {
             "answers": [
-                "Yes Sir!"
+                "Yes, Sir!"
+            ], 
+            "id": 3, 
+            "text": "Sub-Lieutenant Kazushi have found others drones, she'll explain you everything"
+        }, 
+        {
+            "answers": [
+                "I'll do my best, Sir!"
             ], 
             "id": 4, 
-            "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
+            "text": "Also this time we must rebuild everything as quick as possible. I give you 9 days."
         }
     ], 
     "crazy_doctor": [
         {
             "answers": [
-                "Who are you?"
+                "I admit it"
             ], 
             "id": 1, 
-            "text": "It seems you're in trouble, kid..."
+            "text": "Cannot figure out how recursion works, kid?"
         }, 
         {
             "answers": [
-                "I'm Atheist", 
-                "I can't see wings"
+                "1--Yes, Gilbert", 
+                "2--No, I want to try again"
             ], 
             "id": 2, 
-            "text": "I'm your Guardian Angel!"
-        }, 
-        {
-            "answers": [], 
-            "id": 3, 
-            "text": "I was joking, boy, I'm Doctor Gilbert Nichols, and many many years ago, when you weren't born already and Internet Explorer was considered a good Browser, I was in the team or programmers that created your Antimissile System"
+            "text": "It should be quite simple for you, at this point, anyway, do you need my advices?"
         }, 
         {
             "answers": [
-                "1--Yes, please", 
-                "2--No, I can do it by myself"
+                "Thank you, Gilbert"
             ], 
+            "id": 3, 
+            "text": "1--You can call me Jibi, we are friends, by now. What are you missing in this code? Do you remember that every time a constructor is called, you lose 1 day? And that you upper limit is 9? So maybe you just need to put an if for the castle costructor and an if for the AntiMissileBattery constructor, to execute them only if you are in the right slot."
+        }, 
+        {
+            "answers": [], 
             "id": 4, 
-            "text": "Let's go to the point: I see that you've been defeated many times in this mission. Do you want some help? I can give you very specific hints"
-        }, 
-        {
-            "answers": [], 
-            "id": 5, 
-            "text": "1--Okay, let's reason using phisics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
-        }, 
-        {
-            "answers": [], 
-            "id": 6, 
-            "text": "2--In that case, I'll won't say a word."
+            "text": "2--You're very touchy, I didn't want to offend you, offering my help. Bye, kid."
         }
     ]
 }

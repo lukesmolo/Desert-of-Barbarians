@@ -2,95 +2,106 @@
     "assistant": [
         {
             "answers": [
-                "Sure"
+                "1--I'm scared of nothing", 
+                "2--I'm not sure I can do it"
             ], 
             "id": 1, 
-            "text": "Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
+            "text": "Tough mission, this time, isn't it?"
         }, 
         {
             "answers": [
-                "1--I can do it", 
-                "2--Tell me more for this mission"
+                "I like your sense of humor"
             ], 
             "id": 2, 
-            "text": "The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript"
+            "text": "1--Oh, you're such a brave man, Drogo! I really admire you."
         }, 
         {
-            "answers": [], 
+            "answers": [
+                "You're right"
+            ], 
             "id": 3, 
-            "text": "1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
+            "text": "2--Oh, come on! You fixed a time travel machine, now you think you're not good enough to build a triple cannon?!?"
         }, 
         {
-            "answers": [], 
+            "answers": [
+                "Which function I must use?"
+            ], 
             "id": 4, 
-            "text": "2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value."
+            "text": "Let's be serious now. I examined the function that rules the cannon until now, it doesn't seems too difficult to replicate."
+        }, 
+        {
+            "answers": [
+                "Let's do it!"
+            ], 
+            "id": 5, 
+            "text": "You can create a missile to a given point with a command like this: new PlayerMissile(source,height,width). Such a command must be placed inside the array of your missiles, playerMissiles, with the command push. Others recommendations are: don't forget to use checkHeight, to determine the cannon which has to shoot with whichAntiMissileBattery (and to return if whichAntiMissileBattery has returned -1). Let's go and try, Captain!"
         }
     ], 
     "colonel": [
         {
-            "answers": [], 
+            "answers": [
+                "1--I'm honored by your request", 
+                "2--I fear I'm not good enough"
+            ], 
             "id": 1, 
-            "text": "Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time."
+            "text": "Good Morning Captain Drogo. I have a new kind of mission for you: until now, your mission consisted in correcting o reformulating someone else's code. Today, I'll ask you to design something entirely new, from scratch."
         }, 
         {
             "answers": [
-                "1--I have no competences, Sir", 
-                "2--Yes Sir!"
+                "I won't, Sir!"
             ], 
             "id": 2, 
-            "text": "Times have changed and nowadays their attacks are continous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
-        }, 
-        {
-            "answers": [], 
-            "id": 3, 
-            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
+            "text": "1--Don't make me regret to trust you for this fundamental task"
         }, 
         {
             "answers": [
-                "Yes Sir!"
+                "Thank you, Sir!"
+            ], 
+            "id": 3, 
+            "text": "2--Don't be modest, you already proved your valor in many battles"
+        }, 
+        {
+            "answers": [
+                "Which kind of weapon?"
             ], 
             "id": 4, 
-            "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
+            "text": "As you probably noticed, Barbarians' missiles have increased in number and speed in latest attacks. We have to build a new weapon, to counterattack."
+        }, 
+        {
+            "answers": [
+                "Yes, Sir!"
+            ], 
+            "id": 5, 
+            "text": "My suggestion is to build a triple shoot cannon, able to shoot three missiles at a time. In that way, we can destroy easily an higher number of enemy missiles. Sub-Liuetenant Kazushi will give you all the necessary details."
         }
     ], 
     "crazy_doctor": [
         {
             "answers": [
-                "Who are you?"
+                "You, old nosy!"
             ], 
             "id": 1, 
-            "text": "It seems you're in trouble, kid..."
+            "text": "Did your friend Melissa gave you all necessary instructions?"
         }, 
         {
             "answers": [
-                "I'm Atheist", 
-                "I can't see wings"
+                "1--Yes, help me Jibi", 
+                "2--No, I think I can do it"
             ], 
             "id": 2, 
-            "text": "I'm your Guardian Angel!"
-        }, 
-        {
-            "answers": [], 
-            "id": 3, 
-            "text": "I was joking, boy, I'm Doctor Gilbert Nichols, and many many years ago, when you weren't born already and Internet Explorer was considered a good Browser, I was in the team or programmers that created your Antimissile System"
+            "text": "Did you find hard to complete this job"
         }, 
         {
             "answers": [
-                "1--Yes, please", 
-                "2--No, I can do it by myself"
+                "Your help is always precious!"
             ], 
+            "id": 3, 
+            "text": "1--Let's go to the point, it seems that you had precise indications, but, as Romans used to say, \"Repetita iuvat\": to create a new missile at a specified position, call playerMissiles.push( new PlayerMissile( source, x, y ) ) . If you want to create 3 missiles at a time, it's enough to call this function three times for every click. I suggest you not to exaggerate with a fourfold or fivefold cannon: you'll only waste missiles. I suggest to shift the position of the second and third missiles adding a constant number to the x, while creating the missile."
+        }, 
+        {
+            "answers": [], 
             "id": 4, 
-            "text": "Let's go to the point: I see that you've been defeated many times in this mission. Do you want some help? I can give you very specific hints"
-        }, 
-        {
-            "answers": [], 
-            "id": 5, 
-            "text": "1--Okay, let's reason using phisics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
-        }, 
-        {
-            "answers": [], 
-            "id": 6, 
-            "text": "2--In that case, I'll won't say a word."
+            "text": "2--Okay, kid, I see you're quite confident in your knowledge. Bye byeee."
         }
     ]
 }
