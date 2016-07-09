@@ -4,7 +4,7 @@ var editor = null;
 var level_dialogs = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 //var current_level = 0;
-var current_level = 1;
+var current_level = -1;
 var current_character = "colonel";
 var current_panel = "main";
 var maximum_n_answers = 3;
@@ -31,13 +31,17 @@ $(document).ready(function() {
 
 
 	editor = ace.edit("text_editor");
-	get_level(4); //FIXME get level defined by server!
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
 	$('.replies').hide();
 	$('.send_answer').hide();
-	//$('.send_answer:contains("Next")').show();
-	$('#'+current_character+'_replies').show();
+	if(current_level == -1) {
+		$('#start_level_btn').text('Start Level 1');
+
+	} else {
+		$('#start_level_btn').text('Start Level '+current_level);
+	}
+		$('#start_level_btn').show();
 	$('.ttip').qtip({
 		position: {
 			target: 'mouse',
@@ -118,6 +122,10 @@ function makeReadonly(){
 	}*/
 
 }
+
+$('#start_level_btn').on('click', function() {
+	start_level();
+});
 
 $('#exit_btn').on('click', function() {
 	window.location.href = '/';
@@ -209,7 +217,7 @@ $('.change_panel').not("#tutorial_btn").on('click', function() {
 
 });
 
-$('.send_answer').on('click', function() {
+$('.send_answer').not('#start_level_btn').on('click', function() {
 	what = $(this).attr('id');
 	text = $('#'+what).text();
 	go_to = $("#"+what).attr('data-goto');
@@ -301,13 +309,35 @@ show_answers() {
 	}
 }
 
+
+function
+start_level() {
+	get_level(current_level);
+	$('.replies').hide();
+	$('.send_answer').hide();
+	//colonel starts to talk
+	$('#colonel_chat_btn').trigger('click');
+	$('#'+current_character+'_replies').show();
+
+}
+
+function
+end_level() {
+	$('.replies').hide();
+	$('.send_answer').hide();
+	$('#start_level_btn').text('Start Level '+current_level);
+	$('#start_level_btn').show();
+
+
+}
+
 function
 split_text(input) {
 	var len = max_chat_length;
 	var curr = len;
 	var prev = 0;
 
-	output = new Array();
+	output = [];
 
 	while (input[curr]) {
 		if (input[curr++] == ' ') {
@@ -389,7 +419,7 @@ make_dialogs(level, dialogs) {
 			obj = dialogs[key][i];
 
 			tmp_text = split_text(obj["text"]);
-			//			tmp_text = obj["text"].match(new RegExp('.{1,' + max_chat_length+ '}', 'g'));
+			//tmp_text = obj["text"].match(new RegExp('.{1,' + max_chat_length+ '}', 'g'));
 			obj["text"] = tmp_text;
 
 			index = parseInt(dialogs[key][i]['id'])-1;
@@ -417,14 +447,14 @@ make_dialogs(level, dialogs) {
 				level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
 				$('.conversations_text').append(level_text);
 				editor.setValue(data.body);
-				make_dialogs(level, data.dialogs);
+
 				$('#left_jump_level').empty();
 				$('#right_jump_level').empty();
 				$('#username_summary').empty();
 				$('#military_rank_summary').empty();
 
 				$('#username_summary').append(data.username);
-				times = current_level % 3; //3  subsets of levels
+				times = current_level % 3; //3 subsets of levels
 				if(times === 0) {
 					times = 3;
 				}
@@ -443,8 +473,9 @@ make_dialogs(level, dialogs) {
 
 				});
 			}).fail(function (jqXHR, textStatus, errorThrown) {
-				alert("E' avvenuto un errore:\n" + textStatus);
-			}).always(function() {
+				alert("Error:\n" + textStatus);
+			}).always(function(data) {
+				make_dialogs(level, data.dialogs);
 				//called after the completion of get_level, because needs to know which level we are in
 				//makeReadonly();
 			});
@@ -515,7 +546,7 @@ make_dialogs(level, dialogs) {
 		check_code = sandbox(level_code, scope);
 		if(check_code === 1) {
 			switch (level_id) {
-				case 1: check_level_code = check_level_code+'scale();';
+				case 1: check_level_code = level_code+'scale();';
 					  break;
 					  /*	   case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
 						   case 3: numMissiles = new Function(level_code); break;*/
