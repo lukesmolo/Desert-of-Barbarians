@@ -323,7 +323,8 @@ AntiMissileBattery( x, y ) {
 }
 
 AntiMissileBattery.prototype.hasMissile = function() {
-	if (current_level == 8 || current_level == 9) return 1
+	//if (current_level == 8 || current_level == 9) return 1
+	if (current_level == 8) return 1
 	else if (this.missilesLeft <= 0) return 0
 	else return 1;
 };

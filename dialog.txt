@@ -312,18 +312,167 @@
 /*assistant-6
 ""Having the experience of previous mission, we know that towers have to be placed on slots 3, 5, 7, 11, 13, 15 and cannons on 1, 9 and 17. Dont' waste time!
 
-/*crazy_doctor-5
+/*crazy_doctor-6
 ""Cannot figure out how recursion works, kid?
 --I admit it
 
-/*crazy_doctor-5
+/*crazy_doctor-6
 ""It should be quite simple for you, at this point, anyway, do you need my advices?
 --1--Yes, Gilbert
 --2--No, I want to try again
 
-/*crazy_doctor-5
+/*crazy_doctor-6
 ""1--You can call me Jibi, we are friends, by now. What are you missing in this code? Do you remember that every time a constructor is called, you lose 1 day? And that you upper limit is 9? So maybe you just need to put an if for the castle costructor and an if for the AntiMissileBattery constructor, to execute them only if you are in the right slot.
 --Thank you, Gilbert
 
-/*crazy_doctor-5
+/*crazy_doctor-6
 ""2--You're very touchy, I didn't want to offend you, offering my help. Bye, kid.
+
+/*colonel-7
+""Good Morning Captain Drogo. I have a new kind of mission for you: until now, your mission consisted in correcting o reformulating someone else's code. Today, I'll ask you to design something entirely new, from scratch.
+--1--I'm honored by your request
+--2--I fear I'm not good enough
+
+/*colonel-7
+""1--Don't make me regret to trust you for this fundamental task
+--I won't, Sir!
+
+/*colonel-7
+""2--Don't be modest, you already proved your valor in many battles
+--Thank you, Sir!
+
+/*colonel-7
+""As you probably noticed, Barbarians' missiles have increased in number and speed in latest attacks. We have to build a new weapon, to counterattack.
+--Which kind of weapon?
+
+/*colonel-7
+""My suggestion is to build a triple shoot cannon, able to shoot three missiles at a time. In that way, we can destroy easily an higher number of enemy missiles. Sub-Liuetenant Kazushi will give you all the necessary details.
+--Yes, Sir!
+
+/*assistant-7
+""Tough mission, this time, isn't it?
+--1--I'm scared of nothing
+--2--I'm not sure I can do it
+
+/*assistant-7
+""1--Oh, you're such a brave man, Drogo! I really admire you.
+--I like your sense of humor
+
+/*assistant-7
+""2--Oh, come on! You fixed a time travel machine, now you think you're not good enough to build a triple cannon?!?
+--You're right
+
+/*assistant-7
+""Let's be serious now. I examined the function that rules the cannon until now, it doesn't seems too difficult to replicate.
+--Which function I must use?
+
+/*assistant-7
+""You can create a missile to a given point with a command like this: new PlayerMissile(source,height,width). Such a command must be placed inside the array of your missiles, playerMissiles, with the command push. Others recommendations are: don't forget to use checkHeight, to determine the cannon which has to shoot with whichAntiMissileBattery (and to return if whichAntiMissileBattery has returned -1). Let's go and try, Captain!
+--Let's do it!
+
+/*crazy_doctor-7
+""Did your friend Melissa gave you all necessary instructions?
+--You, old nosy!
+
+/*crazy_doctor-7
+""Did you find hard to complete this job
+--1--Yes, help me Jibi
+--2--No, I think I can do it
+
+/*crazy_doctor-7
+""1--Let's go to the point, it seems that you had precise indications, but, as Romans used to say, "Repetita iuvat": to create a new missile at a specified position, call playerMissiles.push( new PlayerMissile( source, x, y ) ) . If you want to create 3 missiles at a time, it's enough to call this function three times for every click. I suggest you not to exaggerate with a fourfold or fivefold cannon: you'll only waste missiles. I suggest to shift the position of the second and third missiles adding a constant number to the x, while creating the missile.
+--Your help is always precious!
+
+/*crazy_doctor-7
+""2--Okay, kid, I see you're quite confident in your knowledge. Bye byeee.
+
+/*colonel-8
+""Good Morning Major Drogo. With your last invention, you earned really deserved promotion.
+--I'll honor my new rank
+
+/*colonel-8
+""I'm sure you will, son. But the showdown with the Barbarians still have to come. Ore spies informed us that the enemy is preparing a brutal attack, with all the missiles the own, to destroy Fortress Bastiani and end this long siege. This is a big threat for us, but also an opportunity to win this ware once for all.
+--What is your plan, Sir?
+
+/*colonel-8
+""Given that enemy won't save any missile, any bullet, I give you the authorization to use all the missiles we have in our deposit.
+--That's all, Sir?
+
+/*colonel-8
+""Clearly no. I order you to build a new weapon: an automatic missile defense system, that shoots missiles every second or so is strategic points over our towers and cannons. Your assistent Lieutenant Kazushi will give you the details of my plan.
+--Yes, Sir!
+
+/*assistant-8
+""Happy for our promotion, Major Drogo?
+--1--Yes, Melissa
+--2--Yes, Lieutenant
+
+/*assistant-8
+""1--Please, call me Lieutenant Kazushi
+
+/*assistant-8
+""2--Don't be so formal, Drogo, call me Melissa!
+
+/*assistant-8
+""Let's examine now Colonel's plan: he wants you to build a program that automatically shoots, every second. Any ideas?
+--Infinite loops?
+
+/*assistant-8
+""No, it would be very bad programming! Colonel, who many years ago was considered a very important web developer, suggested to use the function setInterval(function, interval), which executes given function at given intervals of time (for example, 1000 is every second). To choose the right height and width, think at our defensive apparatus as 18 slices of CANVAS_WIDTH, while you can set the height using CANVAS_HEIGHT as reference.
+--Okay, I can do it!
+
+/*crazy_doctor-8
+""Automatic shoot system, kid? Sounds very sci-fi!
+--Hi Jibi!
+
+/*crazy_doctor-8
+""I can give you a hint or two, my dear
+--1--Yes, I'm in trouble
+--2--No, thank you!
+
+/*crazy_doctor-8
+""1--I'll be brief: in javascript, you can define a function inside a function. I suggest you to create a function, call it whenever you like, and then invoke it at precise intervals with setInterval. Second, what this function must do? It should be just a loop that shoot a certain number of missiles (I think 18 are enough) at precise positions. If you forgot it, the easiest way to shoot is playerShoot(x,y). Go kid, I believe in you.
+--Your help is always precious!
+
+/*crazy_doctor-8
+""2--Okay, but be sure that everything works fine: defending from 100 missiles is very different than from 10, kid!
+
+/*colonel-9
+""Good Morning Major Drogo. We won the last battle, but unluckily, not the war. Anyway we can clearly see that the enemy is weak and demotivated. I'm quite sure that their next attack will be the last.
+--That's good news, Sir!
+
+/*colonel-9
+""Not at all, Major. The fact is that during last tremendous fight, the system that governed with cannon has to shoot, got broken. A battle in such conditions is unsustainable. You know what i'm going to ask you?
+--To fix it, sir?
+
+/*colonel-9
+""Not exactly. We lost all the schemes of that system, so you have to rebuild it from scratch. And, like always, in the battle we cannot lose a single tower: we have no resources to rebuild them. Go: this will be probably your last mission here.
+--Yes, Sir!
+
+/*assistant-9
+""Ready for your last mission, Sir?
+--Let's defeat these Barbarians!
+
+/*assistant-9
+""The system you have to rebuild, deals with choosing the right cannon to shoot to a given enemy missile. For example, if you shoot to a missile in the right hand side of the landscape, the system made the rightmost cannon shoot. The original systems took care of the case in which a cannon has no missiles loaded: if a cannon is empty, you must shoot from the nearest of the ones with loaded missiles.
+--Any advice?
+
+/*assistant-9
+""To check if a cannon has missiles, use antiMissileBatteries[index].hasMissile(). You have to use firedToOuterThird(priority1, priority2, priority3), that, given the priorities, returns the loaded cannon with highest priority, and firedtoMiddleThird(priority1, priority2), that makes the same thing, but for only two cannons. I know that it difficult Drogo, but you can do it, we can do it: we can win this war, together.
+--Yes, Melissa, let's start!
+
+/*crazy_doctor-8
+""You were walking straight to happy ending, when...
+--When you interrupted me?
+
+/*crazy_doctor-8
+""When you dealt with your low programming capacities
+--1--Help me, instead of fooling me
+--2--I don't need your help, Jibi
+
+/*crazy_doctor-8
+""1--It's very simple: your function must include three cases, one if you have to shoot in in first third of the landscape, one if you have to shoot in the second third and one, guess what, for shooting in the third third. You can obtain this easily from CANVAS_WIDTH. firedToOuterThird is useful when you want to shoot in the leftmost or in the rightmost third, same function but inverted priorities. When you shoot to the second third, the central, use always the central cannon, until it has missiles. Then you can divide the landscape in two sides and use firedtoMiddleThird.
+--
+
+/*crazy_doctor-8
+""2--If you're so sure, I will remain silent. But remember: the outcome of a decennial war depends of you.
