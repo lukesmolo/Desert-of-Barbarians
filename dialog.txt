@@ -122,7 +122,7 @@
 ""2--SO WHAT? First, always call me Sir. Second, don't dare to reply to me in such a arrogant way, or you'll be given to Barbarians as a breakfast cookie. Third, go to fix the mechanism that autoloads missiles in our cannons. NOW.
 --YESSIR!
 
-/*assistant-2
+/*assistant-3
 ""Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle.
 --1--I would appreciate it
 --2--Don't waste time, Melissa!
@@ -155,3 +155,175 @@
 
 /*crazy_doctor-3
 ""2-- The weather is sunny, with maximum degrees near to 35C. And since you're so nice with me, I won't help you for this mission.
+
+/*crazy_doctor-2
+""2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore.
+
+/*colonel-4
+""Today is a very dramatic day. That cowards and uncivilized Barbarians attacked during the night time and destroyed all our towers and cannons.
+--1--How could this happen?
+--2--And I've to rebuild all?
+
+/*colonel-4
+""1--Major Guidi fell asleep during his guard duty. He has been hanged at dawn.
+--...
+
+/*colonel-4
+""2--I would be glad to order you this, but I'm not stupid. You're a programmer, not a bricklayer
+--Thank you, Sir
+
+/*colonel-4
+""Clearly your mission is to rebuild all our towers and cannons, but to do so, you'll reprogram our builder drones.
+--Builder drones?
+
+/*colonel-4
+""Yes, Lieutenent, we do have builder drones. But their source code is not efficient enough: as it is, they would take at least 36 days to rebuild all.
+--What is the problem, Sir?
+
+/*colonel-4
+""2--THE PROBLEM WE CAN'T SUSTAIN 36 DAYS WITHOUT ALL OUR DEFENSIVE APPARATUS. I give you 9 days, not a single minute more.
+--Yes, Sir!
+
+/*assistant-4
+""Hi, Drogo. How was speaking with Colonel today? Like walking barefoot on burning coals?
+--1--More or less
+--2--Don't joke, today is a dramatic day
+
+/*assistant-4
+""1--If you survived to a chat with Colonel this morning, next mission will be a joke for you
+
+/*assistant-4
+""2--I was trying to make you laugh. You look very tired, today. At least, have a coffee!
+
+/*assistant-4
+""Do you want a quick overview on next mission?
+--Yes, Melissa
+
+/*assistant-4
+""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days.
+--Yes, please
+
+/*crazy_doctor-4
+""Finding hard to play with those drones?
+--I do, are you the genius who programmed those?
+
+/*crazy_doctor-4
+""Nono, we bought them used on eBay, sent from China. Anyway this mission can seem a little bit obscure for you. May I help you?
+--1--Yes, please
+--2--No, I'll search for the warranty and contact seller.
+
+/*crazy_doctor-4
+""1--Let's put all pieces together: first, you have 9 days of time for the whole job. Every time new castle(i) or new antiMissileBattery(i) a counter gets incremented by 1, if at the end of the program it's greater than 9, the building won't take place. Second, our fortress have 18 building slots, if you choose the wrong position the building won't take place. The correct positions for towers are 3, 5, 7, 11, 13, 15; for cannons are 1, 9, 17. And please, PLEASE, use loops!
+--Gilbert, you're a real genius!
+
+/*crazy_doctor-4
+""2--I like your sense of humor. Bye bye, young man.
+
+/*colonel-5
+""Good Morning Captain Drogo. You really deserved this rank promotion after last successful mission. Anyway, the enemy never sleeps: are you ready for next mission?
+--Yes, Sir
+--YESSIR!
+
+/*colonel-5
+""This time you have to repare a damage done by Sub-Lieutenant Kazushi. She found and executed and old and experimental project for our cannons, the result is that actually we are not ready to fight.
+--What effect has, this project?
+
+/*colonel-5
+""I know that it will be hard to believe, for you, but it stops the flow of time.
+--Are you joking, sir?
+
+/*colonel-5
+""No, I don't. It was a very dangerous and experimental experiment, done many many years ago by our team of scientists. You have to revert it to the previous behavior, when it was a simple program that decided not to shoot if the target was to close or too far.
+--I'll do my best, Sir!
+
+/*colonel-5
+""Let's hope it's enough. I can see that Barbarians are preparing another attack.
+
+/*assistant-5
+""Good Morning Lieutenant, ehm, Captain
+--1--No more jokes, today?
+--2--Don't worry, we'll fix everything
+
+/*assistant-5
+""1--I'm so sorry, sigh, I thought that this program could be useful, sigh, and enemy is so close, sigh
+--We'll fix everything, Melissa
+
+/*assistant-5
+""2--Oh, you're so kind with me, sigh
+--Don't worry
+
+/*assistant-5
+""Okay, let's examine the situation: we had this program, that checked if the point where you choose to shoot at was too close or too far. We have to restore that functionality and destroy all these time-flow functionalities.
+--Any advice?
+
+/*assistant-5
+""I think that you should keep checking if the height, otherwise the program is completely useless and I'm not sure it will work.
+--You've been very useful!
+
+/*crazy_doctor-5
+""Hey boy, having fun with time traveling?
+--Not so much, really
+
+/*crazy_doctor-5
+""It is made by tons of lines of code. Do you need my help to figure out the solution?
+--1--Clearly
+--2--No, I can do it by myself
+
+/*crazy_doctor-5
+""1--Your mission is to revert this big mess, to a simple function that checks if the x are too high or too low. I think that you can save just the two outer loops and it should work.
+--Thank you, Gilbert
+
+/*crazy_doctor-5
+""2--Good luck, boy. We were drinking all a lot of Vodka when we programmed that stuff.
+
+/*colonel-6
+""Good Morning Captain Drogo. It's not a good morning, actually. As you surely noticed this night an earthquake heavily damaged our castle and our defensive apparatus.
+--I see
+
+/*colonel-6
+""Again, you have to reprogram our drones to rebuild towers and cannons. Unluckily you cannot use the same program, because drones you previously used has been damaged by earthquake.
+--What should I do?
+
+/*colonel-6
+""Sub-Lieutenant Kazushi have found others drones, she'll explain you everything
+--Yes, Sir!
+
+/*colonel-6
+""Also this time we must rebuild everything as quick as possible. I give you 9 days.
+--I'll do my best, Sir!
+
+/*assistant-6
+""Eventful night, Captain Drogo, wasn't it?
+--1--I'm waitin' for invasion of locusts
+--2--I'was dancing in my bed
+
+/*assistant-6
+""1--Yeah, it's been hard times, since you arrived
+--Maybe is my negative influence
+
+/*assistant-6
+""2--Oh, little princess Drogo sleeps, instead of helping his fellows in the night watch
+--It wasn't my shift
+
+/*assistant-6
+""Anyway, I retrieved these new building drones. They have a different behavior than the previous ones: their source code cannot contain loops, you have to do all recursively.
+--Any advice?
+
+/*assistant-6
+""Having the experience of previous mission, we know that towers have to be placed on slots 3, 5, 7, 11, 13, 15 and cannons on 1, 9 and 17. Dont' waste time!
+
+/*crazy_doctor-5
+""Cannot figure out how recursion works, kid?
+--I admit it
+
+/*crazy_doctor-5
+""It should be quite simple for you, at this point, anyway, do you need my advices?
+--1--Yes, Gilbert
+--2--No, I want to try again
+
+/*crazy_doctor-5
+""1--You can call me Jibi, we are friends, by now. What are you missing in this code? Do you remember that every time a constructor is called, you lose 1 day? And that you upper limit is 9? So maybe you just need to put an if for the castle costructor and an if for the AntiMissileBattery constructor, to execute them only if you are in the right slot.
+--Thank you, Gilbert
+
+/*crazy_doctor-5
+""2--You're very touchy, I didn't want to offend you, offering my help. Bye, kid.
