@@ -38,7 +38,9 @@ login() {
 		data: data,
 		success: function (data, stato) {
 			if(data.status != 'ERROR') {
+
 				 window.location.href = data.redirect;
+
 			} else {
 				$('#error_alert').empty();
 				$('#error_alert').append(level_hash_key_error);
