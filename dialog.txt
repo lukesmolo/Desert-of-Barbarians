@@ -245,20 +245,85 @@
 --2--Don't worry, we'll fix everything
 
 /*assistant-5
-""1--I'm so sorry, sigh, I thought that this program could be useful, sigh, and evenmy is so close, sigh
+""1--I'm so sorry, sigh, I thought that this program could be useful, sigh, and enemy is so close, sigh
 --We'll fix everything, Melissa
 
 /*assistant-5
 ""2--Oh, you're so kind with me, sigh
---We'll fix everything, Melissa
+--Don't worry
 
 /*assistant-5
-""If you survived to a chat with Colonel this morning, next mission will be a joke for you
+""Okay, let's examine the situation: we had this program, that checked if the point where you choose to shoot at was too close or too far. We have to restore that functionality and destroy all these time-flow functionalities.
+--Any advice?
 
 /*assistant-5
-""Do you want a quick overview on next mission?
---Yes, Melissa
+""I think that you should keep checking if the height, otherwise the program is completely useless and I'm not sure it will work.
+--You've been very useful!
 
-/*assistant-5
-""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days.
---Yes, please
+/*crazy_doctor-5
+""Hey boy, having fun with time traveling?
+--Not so much, really
+
+/*crazy_doctor-5
+""It is made by tons of lines of code. Do you need my help to figure out the solution?
+--1--Clearly
+--2--No, I can do it by myself
+
+/*crazy_doctor-5
+""1--Your mission is to revert this big mess, to a simple function that checks if the x are too high or too low. I think that you can save just the two outer loops and it should work.
+--Thank you, Gilbert
+
+/*crazy_doctor-5
+""2--Good luck, boy. We were drinking all a lot of Vodka when we programmed that stuff.
+
+/*colonel-6
+""Good Morning Captain Drogo. It's not a good morning, actually. As you surely noticed this night an earthquake heavily damaged our castle and our defensive apparatus.
+--I see
+
+/*colonel-6
+""Again, you have to reprogram our drones to rebuild towers and cannons. Unluckily you cannot use the same program, because drones you previously used has been damaged by earthquake.
+--What should I do?
+
+/*colonel-6
+""Sub-Lieutenant Kazushi have found others drones, she'll explain you everything
+--Yes, Sir!
+
+/*colonel-6
+""Also this time we must rebuild everything as quick as possible. I give you 9 days.
+--I'll do my best, Sir!
+
+/*assistant-6
+""Eventful night, Captain Drogo, wasn't it?
+--1--I'm waitin' for invasion of locusts
+--2--I'was dancing in my bed
+
+/*assistant-6
+""1--Yeah, it's been hard times, since you arrived
+--Maybe is my negative influence
+
+/*assistant-6
+""2--Oh, little princess Drogo sleeps, instead of helping his fellows in the night watch
+--It wasn't my shift
+
+/*assistant-6
+""Anyway, I retrieved these new building drones. They have a different behavior than the previous ones: their source code cannot contain loops, you have to do all recursively.
+--Any advice?
+
+/*assistant-6
+""Having the experience of previous mission, we know that towers have to be placed on slots 3, 5, 7, 11, 13, 15 and cannons on 1, 9 and 17. Dont' waste time!
+
+/*crazy_doctor-5
+""Cannot figure out how recursion works, kid?
+--I admit it
+
+/*crazy_doctor-5
+""It should be quite simple for you, at this point, anyway, do you need my advices?
+--1--Yes, Gilbert
+--2--No, I want to try again
+
+/*crazy_doctor-5
+""1--You can call me Jibi, we are friends, by now. What are you missing in this code? Do you remember that every time a constructor is called, you lose 1 day? And that you upper limit is 9? So maybe you just need to put an if for the castle costructor and an if for the AntiMissileBattery constructor, to execute them only if you are in the right slot.
+--Thank you, Gilbert
+
+/*crazy_doctor-5
+""2--You're very touchy, I didn't want to offend you, offering my help. Bye, kid.
