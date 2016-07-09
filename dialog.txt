@@ -122,7 +122,7 @@
 ""2--SO WHAT? First, always call me Sir. Second, don't dare to reply to me in such a arrogant way, or you'll be given to Barbarians as a breakfast cookie. Third, go to fix the mechanism that autoloads missiles in our cannons. NOW.
 --YESSIR!
 
-/*assistant-2
+/*assistant-3
 ""Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle.
 --1--I would appreciate it
 --2--Don't waste time, Melissa!
@@ -155,3 +155,110 @@
 
 /*crazy_doctor-3
 ""2-- The weather is sunny, with maximum degrees near to 35C. And since you're so nice with me, I won't help you for this mission.
+
+/*crazy_doctor-2
+""2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore.
+
+/*colonel-4
+""Today is a very dramatic day. That cowards and uncivilized Barbarians attacked during the night time and destroyed all our towers and cannons.
+--1--How could this happen?
+--2--And I've to rebuild all?
+
+/*colonel-4
+""1--Major Guidi fell asleep during his guard duty. He has been hanged at dawn.
+--...
+
+/*colonel-4
+""2--I would be glad to order you this, but I'm not stupid. You're a programmer, not a bricklayer
+--Thank you, Sir
+
+/*colonel-4
+""Clearly your mission is to rebuild all our towers and cannons, but to do so, you'll reprogram our builder drones.
+--Builder drones?
+
+/*colonel-4
+""Yes, Lieutenent, we do have builder drones. But their source code is not efficient enough: as it is, they would take at least 36 days to rebuild all.
+--What is the problem, Sir?
+
+/*colonel-4
+""2--THE PROBLEM WE CAN'T SUSTAIN 36 DAYS WITHOUT ALL OUR DEFENSIVE APPARATUS. I give you 9 days, not a single minute more.
+--Yes, Sir!
+
+/*assistant-4
+""Hi, Drogo. How was speaking with Colonel today? Like walking barefoot on burning coals?
+--1--More or less
+--2--Don't joke, today is a dramatic day
+
+/*assistant-4
+""1--If you survived to a chat with Colonel this morning, next mission will be a joke for you
+
+/*assistant-4
+""2--I was trying to make you laugh. You look very tired, today. At least, have a coffee!
+
+/*assistant-4
+""Do you want a quick overview on next mission?
+--Yes, Melissa
+
+/*assistant-4
+""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days.
+--Yes, please
+
+/*crazy_doctor-4
+""Finding hard to play with those drones?
+--I do, are you the genius who programmed those?
+
+/*crazy_doctor-4
+""Nono, we bought them used on eBay, sent from China. Anyway this mission can seem a little bit obscure for you. May I help you?
+--1--Yes, please
+--2--No, I'll search for the warranty and contact seller.
+
+/*crazy_doctor-4
+""1--Let's put all pieces together: first, you have 9 days of time for the whole job. Every time new castle(i) or new antiMissileBattery(i) a counter gets incremented by 1, if at the end of the program it's greater than 9, the building won't take place. Second, our fortress have 18 building slots, if you choose the wrong position the building won't take place. The correct positions for towers are 3, 5, 7, 11, 13, 15; for cannons are 1, 9, 17. And please, PLEASE, use loops!
+--Gilbert, you're a real genius!
+
+/*crazy_doctor-4
+""2--I like your sense of humor. Bye bye, young man.
+
+/*colonel-5
+""Good Morning Captain Drogo. You really deserved this rank promotion after last successful mission. Anyway, the enemy never sleeps: are you ready for next mission?
+--Yes, Sir
+--YESSIR!
+
+/*colonel-5
+""This time you have to repare a damage done by Sub-Lieutenant Kazushi. She found and executed and old and experimental project for our cannons, the result is that actually we are not ready to fight.
+--What effect has, this project?
+
+/*colonel-5
+""I know that it will be hard to believe, for you, but it stops the flow of time.
+--Are you joking, sir?
+
+/*colonel-5
+""No, I don't. It was a very dangerous and experimental experiment, done many many years ago by our team of scientists. You have to revert it to the previous behavior, when it was a simple program that decided not to shoot if the target was to close or too far.
+--I'll do my best, Sir!
+
+/*colonel-5
+""Let's hope it's enough. I can see that Barbarians are preparing another attack.
+
+/*assistant-5
+""Good Morning Lieutenant, ehm, Captain
+--1--No more jokes, today?
+--2--Don't worry, we'll fix everything
+
+/*assistant-5
+""1--I'm so sorry, sigh, I thought that this program could be useful, sigh, and evenmy is so close, sigh
+--We'll fix everything, Melissa
+
+/*assistant-5
+""2--Oh, you're so kind with me, sigh
+--We'll fix everything, Melissa
+
+/*assistant-5
+""If you survived to a chat with Colonel this morning, next mission will be a joke for you
+
+/*assistant-5
+""Do you want a quick overview on next mission?
+--Yes, Melissa
+
+/*assistant-5
+""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days.
+--Yes, please
