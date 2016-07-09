@@ -108,7 +108,8 @@ initializeRec(i) {
 	}
 }
 
-function setNumMissiles(){
+function
+setNumMissiles(){
 	missilesLeft = 1;
 	return missilesLeft;
 }
@@ -498,7 +499,8 @@ playerShoot(x,y) {
 	}
 }
 
-function playerShoot3(x,y) {
+function
+playerShoot3(x,y) {
 	//cannot shoot in the lower fifth part of canvas and in the upper fifth
 	if( checkHeight(y) ) {
 		var source = whichAntiMissileBattery( x );
@@ -509,7 +511,8 @@ function playerShoot3(x,y) {
 	}
 }
 
-function shootWithOffset(x, y, offLeft, offTop){
+function
+shootWithOffset(x, y, offLeft, offTop){
 	correctedX = x - offLeft;
 	correctedY = y - offTop;
 	if (current_level == 2) {
@@ -521,7 +524,8 @@ function shootWithOffset(x, y, offLeft, offTop){
 	}
 }
 
-function checkHeight(y) {
+function
+checkHeight(y) {
 	if (y >= CANVAS_HEIGHT/8 && y <= CANVAS_HEIGHT*6/8) {
 		return true;
 	} else{
@@ -529,7 +533,8 @@ function checkHeight(y) {
 	}
 }
 
-function checkHeightObf(y) {
+function
+checkHeightObf(y) {
 	var admitted = false;
 	var admittedTop = false;
 	var admittedBottom = false;
@@ -693,7 +698,8 @@ checkEndLevel() {
 		//TODO write in some global var the number of castles (and missiles) saved
 		if (totalcastlesSaved() == 6) {
 			append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 1);
-			get_level(++current_level);
+			current_level++;
+			end_level();
 		}
 		else {
 			fail++;
