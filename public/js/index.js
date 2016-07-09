@@ -36,8 +36,7 @@ $(document).ready(function() {
 	$('.replies').hide();
 	$('.send_answer').hide();
 	if(current_level == -1) {
-		$('#start_level_btn').text('Start Level 1');
-
+		$('#start_level_btn').text('Start Level');
 	} else {
 		$('#start_level_btn').text('Start Level '+current_level);
 	}
@@ -58,6 +57,7 @@ $(document).ready(function() {
 			classes: 'ttip_css'
 		}
 	});
+	$('.change_chat').addClass('not_clickable');
 
 
 });
@@ -313,11 +313,13 @@ show_answers() {
 function
 start_level() {
 	get_level(current_level);
-	$('.replies').hide();
-	$('.send_answer').hide();
+	$('.replies').show();
+	$('#start_level_btn').hide();
+
+	$('.not_clickable').removeClass('not_clickable');
 	//colonel starts to talk
-	$('#colonel_chat_btn').trigger('click');
-	$('#'+current_character+'_replies').show();
+
+	//$('#'+current_character+'_replies').show();
 
 }
 
@@ -327,6 +329,7 @@ end_level() {
 	$('.send_answer').hide();
 	$('#start_level_btn').text('Start Level '+current_level);
 	$('#start_level_btn').show();
+	$('.change_chat').addClass('not_clickable');
 
 
 }
@@ -392,6 +395,7 @@ append_dialogs(level) {
 			}
 
 		}
+
 		$('#'+current_character+'_conversation_text').append(dialog_text);
 		tmp_chat_text_part[current_character]++;
 
@@ -472,6 +476,8 @@ make_dialogs(level, dialogs) {
 					$('#right_jump_level').append(v);
 
 				});
+				url = window.location.href;
+				window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				alert("Error:\n" + textStatus);
 			}).always(function(data) {

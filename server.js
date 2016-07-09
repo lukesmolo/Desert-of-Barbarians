@@ -1,8 +1,8 @@
 /*jshint -W069 */
 var io   = require('socket.io'),
     url  = require('url'),
-    express = require('express'),
-    http=require('http');
+    express = require('express');
+
 var path = require('path');
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
@@ -10,8 +10,6 @@ var crypto = require('crypto');
 var fs = require('fs');
 
 var app = express();
-var server = http.createServer(app);
-var socket = io.listen(server);
 
 //to be updated everytime the user changes level, so not necessary a post for reset_code
 var max_n_levels = 9;
@@ -48,17 +46,20 @@ app.post('/login', function(req, res){
 	console.log(level_hash_key);
 	make_levels_keys();
 
-	if(level_hash_key !== "" && level_hash_key in levels_hash_keys) {
+	if(level_hash_key !== "" && levels_hash_keys.indexOf(level_hash_key) > -1) {
 		level = levels_hash_keys.indexOf(level_hash_key) + 1;
+		res.send({ status: 'OK', 'redirect':'/index', 'level': level});
+		console.log('level: '+ level);
 	} else if(level_hash_key === ""){
 		level = 1;
-		res.send({ status: 'OK', 'redirect':'/index'});
+		res.send({ status: 'OK', 'redirect':'/index', 'level': level});
 	} else {
-	res.send({ status: 'ERROR'});
+		res.send({ status: 'ERROR'});
 	}
 });
 
 app.get('/reset_code', function(req, res){
+		console.log('level: '+ level);
 	console.log("reset_code");
 //  console.log('body: ' + JSON.stringify(req.body));
 	code = return_level_code(level);
@@ -72,11 +73,13 @@ app.get('/reset_code', function(req, res){
 
 
 app.post('/get_level', function(req, res){
+
 	make_levels_keys();
 	console.log('body: ' + JSON.stringify(req.body));
-	req_level = req.body.level;
+	req_level = parseInt(req.body.level);
 	if(req_level != -1)
 		level = req_level;
+	console.log(level);
 	dialogs = return_level_dialog(level);
 	code = return_level_code(level);
 	console.log(code);
@@ -109,6 +112,7 @@ app.post('/check_key', function(req, res){
 	lev = levels_hash_keys.indexOf(hash_key) + 1;
 	if(lev === 0) {
 		res.send({ 'status': 'ERROR', 'what': "key not found"});
+
 	} else {
 		res.send({ 'status': 'OK', 'level': lev});
 	}
@@ -120,6 +124,14 @@ app.get('/', function(req, res){
 });
 
 app.get('/index', function(req, res){
+
+	make_levels_keys();
+	l = req.query.l;
+	console.log(l);
+	l = levels_hash_keys.indexOf(l)+1;
+	if(l > 0) {
+		level = l;
+	}
 	res.render('index');
 });
 
