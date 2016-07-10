@@ -317,10 +317,7 @@ start_level() {
 	$('#start_level_btn').hide();
 
 	$('.not_clickable').removeClass('not_clickable');
-	//colonel starts to talk
-
-	//$('#'+current_character+'_replies').show();
-
+	
 }
 
 function
@@ -431,7 +428,7 @@ make_dialogs(level, dialogs) {
 
 		}
 		});
-	append_dialogs(level);
+	//append_dialogs(level);
 	}
 
 	function
@@ -481,7 +478,16 @@ make_dialogs(level, dialogs) {
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				alert("Error:\n" + textStatus);
 			}).always(function(data) {
+				left_text = false;
+				//re-initialize variables for dialogs
+				tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+				skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+
 				make_dialogs(level, data.dialogs);
+//colonel starts to talk
+	current_character = 'colonel';
+	$('#'+current_character+'_chat_btn').trigger('click');
+
 				//called after the completion of get_level, because needs to know which level we are in
 				//makeReadonly();
 			});
