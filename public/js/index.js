@@ -3,7 +3,6 @@
 var editor = null;
 var level_dialogs = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
-//var current_level = 0;
 var current_level = -1;
 var current_character = "colonel";
 var current_panel = "main";
@@ -444,7 +443,12 @@ make_dialogs(level, dialogs) {
 				contentType: 'application/json; charset=utf-8',
 				url: "/get_level",data: data
 			}).done( function (data, stato) {
-				current_level = data.level;
+				if(current_level == -1) {
+					current_level = data.level;
+					missileCommand();
+				} else {
+					current_level = data.level;
+				}
 				level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
 				$('.conversations_text').append(level_text);
 				editor.setValue(data.body);
@@ -475,19 +479,20 @@ make_dialogs(level, dialogs) {
 				});
 				url = window.location.href;
 				window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
-			}).fail(function (jqXHR, textStatus, errorThrown) {
-				alert("Error:\n" + textStatus);
-			}).always(function(data) {
 				left_text = false;
 				//re-initialize variables for dialogs
 				tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 				skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 
 				make_dialogs(level, data.dialogs);
-//colonel starts to talk
-	current_character = 'colonel';
-	$('#'+current_character+'_chat_btn').trigger('click');
+				//colonel starts to talk
+				current_character = 'colonel';
+				$('#'+current_character+'_chat_btn').trigger('click');
 
+
+			}).fail(function (jqXHR, textStatus, errorThrown) {
+				alert("Error:\n" + textStatus);
+			}).always(function(data) {
 				//called after the completion of get_level, because needs to know which level we are in
 				//makeReadonly();
 			});
@@ -558,10 +563,36 @@ make_dialogs(level, dialogs) {
 		check_code = sandbox(level_code, scope);
 		if(check_code === 1) {
 			switch (level_id) {
-				case 1: check_level_code = level_code+'scale();';
-					  break;
-					  /*	   case 2: shootWithOffset = new Function('x, y, offLeft, offTop',level_code); break;
-						   case 3: numMissiles = new Function(level_code); break;*/
+				case 1:
+					level_code = level_code+'scale();';
+					break;
+				case 2:
+					level_code = level_code+'shootWithOffset();';
+					break;
+				case 3:
+					level_code = level_code+'setNumMissiles();';
+					break;
+				case 4:
+	
+					level_code = level_code+'initializaObf();';
+					break;
+				case 5:
+					level_code = level_code+'checkHeightObf();';
+					break;
+				case 6:
+					level_code = level_code+'initializeRec();';
+					break;
+				case 7:
+					level_code = level_code+'playerShoot3();';
+					break;
+				case 8:
+					level_code = level_code+'autofire();';
+					break;
+				case 9:
+					level_code = level_code+'whichAntiMissileBatteryObf();';
+					break;
+				default:
+					break;
 			}
 
 			limitEval(level_code, function(success, returnValue) {
@@ -587,6 +618,8 @@ make_dialogs(level, dialogs) {
 
 
 		if(check_code === 1) {
+
+		level_code = editor.getSession().getValue();
 			switch (level_id){
 				case 1:
 					//eval('scale = '+check_level_code);

@@ -186,9 +186,12 @@ drawBeginLevel() {
 // Show current score
 function
 drawScore() {
-	ctx.fillStyle = 'red';
+	/*ctx.fillStyle = 'red';
 	ctx.font = 'bold 20px arial';
-	ctx.fillText( 'Points ' + score, CANVAS_WIDTH/20, CANVAS_HEIGHT/20 );
+	ctx.fillText( 'Points ' + score, CANVAS_WIDTH/20, CANVAS_HEIGHT/20 );*/
+
+	//append_info(score, 'assistant', 1);
+	
 }
 
 // Draw all active castles
@@ -239,7 +242,7 @@ drawBackground() {
 	ctx.lineTo( CANVAS_WIDTH,  10*h);
 	ctx.closePath();
 	ctx.fill();
-};
+}
 
 // Constructor for a castle
 function castle( x, y ) {
@@ -324,8 +327,8 @@ AntiMissileBattery( x, y ) {
 
 AntiMissileBattery.prototype.hasMissile = function() {
 	//if (current_level == 8 || current_level == 9) return 1
-	if (current_level == 8) return 1
-	else if (this.missilesLeft <= 0) return 0
+	if (current_level == 8) return 1;
+	else if (this.missilesLeft <= 0) return 0;
 	else return 1;
 };
 
@@ -421,12 +424,12 @@ Missile.prototype.explode = function() {
 
 function scale(x, y) {
 	var distance = Math.sqrt( Math.pow(x, 2) +
-			Math.pow(y, 2) )
+			Math.pow(y, 2) ),
 	distancePerFrame = 15;
 	if (current_level == 1) distancePerFrame = 3;
 
 		return distance / distancePerFrame;
-};
+}
 
 // Constructor for the Player's Missile, which is a subclass of Missile
 // and uses Missile's constructor
