@@ -14,6 +14,7 @@ var left_text = false;
 var check_code = 0;
 var info_character = 'colonel';
 var max_n_fails = 2;
+var max_n_levels = 9;
 var game_score = {};
 game_score['levels_completed'] = [];
 
