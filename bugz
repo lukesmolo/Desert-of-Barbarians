@@ -1,0 +1,7 @@
+- aumentare dimensione font console
+- bug "playerSHoot not defined" livello 2
+- bug "initializeObf not defined" livello 4
+- bug "CANVAS_HEIGHT not defined" livello 5
+- ritagliare bordi neri dalle immagini
+- conversazioni livelli successivi non caricate, se uno le legge tutte nel livello precedente
+- la ricorsione non funziona (livello 6)

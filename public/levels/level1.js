@@ -4,4 +4,4 @@ function scale(x, y) {
 	distancePerFrame = 3;
 
 		return distance / distancePerFrame;
-};
+}
