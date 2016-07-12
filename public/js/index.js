@@ -128,10 +128,10 @@ function makeReadonly(){
 }
 
 $('#start_level_btn').on('click', function() {
-	//start_level();
+	start_level();
 
-	current_level = 2;
-	end_level();
+	//current_level = 2;
+	//end_level();
 });
 
 $('#exit_btn').on('click', function() {
@@ -333,14 +333,14 @@ end_level() {
 	$('.send_answer').hide();
 	game_score["levels_completed"].push(current_level-1);
 
-/*	if(current_level < max_n_levels+1) {
+	if(current_level < max_n_levels+1) {
 		$('#start_level_btn').text('Start Level '+current_level);
 		$('#start_level_btn').show();
 		$('.change_chat').addClass('not_clickable');
 	} else { //end of game*/
 	end_game();
 
-//	}
+	}
 
 
 }
