@@ -20,6 +20,9 @@ var level = 1;
 var levels_keys = ['level1', 'level-2', 'Level3', 'LEVEL4', 'LeVel5', 'level6', 'l-evel7', 'l8', 'L-e-v-e-l9'];
 var levels_hash_keys = [];
 
+var score = {};
+var levels_completed = [];
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
 	  extended: true
@@ -34,7 +37,7 @@ function
 make_levels_keys() {
 for(var i = 0; i < max_n_levels; i++) {
 		levels_hash_keys.push(levels_keys[i]);
-//		levels_hash_keys.push(crypto.createHash('md5').update(username+levels_keys[i]).digest("hex").substring(0,8););
+//		levels_hash_keys.push(crypto.createHash('md5').update(username+levels_keys[i]).digest("hex").substring(0,8));
 	}
 }
 
@@ -45,6 +48,7 @@ app.post('/login', function(req, res){
 	level_hash_key = body.level_hash_key;
 	console.log(level_hash_key);
 	make_levels_keys();
+	score = {};
 
 	if(level_hash_key !== "" && levels_hash_keys.indexOf(level_hash_key) > -1) {
 		level = levels_hash_keys.indexOf(level_hash_key) + 1;
@@ -56,6 +60,24 @@ app.post('/login', function(req, res){
 	} else {
 		res.send({ status: 'ERROR'});
 	}
+});
+
+app.post('/score', function(req, res){
+	console.log('body: ' + JSON.stringify(req.body));
+	body = req.body;
+	d = new Date();
+	n = d.getTime();
+	diff_time = n - body['start_time'];
+	score['diff_time'] = diff_time;
+	score['levels_completed'] = body["levels_completed"];
+	score['username'] = username;
+	score['level'] = level;
+
+	res.send({ status: 'OK', 'redirect':'/score', 'diff': diff_time});
+});
+
+app.get('/get_score', function(req, res){
+	res.send(score);
 });
 
 app.get('/reset_code', function(req, res){
@@ -122,6 +144,10 @@ app.get('/', function(req, res){
 	res.render('login');
 	//res.render('index');
 });
+app.get('/score', function(req, res){
+	res.render('score');
+	//res.render('index');
+});
 
 app.get('/index', function(req, res){
 
@@ -160,7 +186,7 @@ return_level_dialog(what) {
 	}
 	if('assistant' in obj) {
 		if(what in obj['assistant']) {
-			dialogs['assistant'] = obj['assistant'][what];
+				dialogs['assistant'] = obj['assistant'][what];
 		}
 	}
 	if('crazy_doctor' in obj) {

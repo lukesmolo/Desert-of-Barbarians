@@ -14,6 +14,9 @@ var left_text = false;
 var check_code = 0;
 var info_character = 'colonel';
 var max_n_fails = 2;
+var game_score = {};
+game_score['levels_completed'] = [];
+
 
 var options = {
 	animate: true,
@@ -28,7 +31,6 @@ var options = {
 
 $(document).ready(function() {
 
-
 	editor = ace.edit("text_editor");
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
@@ -36,10 +38,13 @@ $(document).ready(function() {
 	$('.send_answer').hide();
 	if(current_level == -1) {
 		$('#start_level_btn').text('Start Level');
+		d = new Date();
+		game_score['start_time'] = d.getTime();
+
 	} else {
 		$('#start_level_btn').text('Start Level '+current_level);
 	}
-		$('#start_level_btn').show();
+	$('#start_level_btn').show();
 	$('.ttip').qtip({
 		position: {
 			target: 'mouse',
@@ -123,7 +128,10 @@ function makeReadonly(){
 }
 
 $('#start_level_btn').on('click', function() {
-	start_level();
+	//start_level();
+
+	current_level = 2;
+	end_level();
 });
 
 $('#exit_btn').on('click', function() {
@@ -316,16 +324,23 @@ start_level() {
 	$('#start_level_btn').hide();
 
 	$('.not_clickable').removeClass('not_clickable');
-	
+
 }
 
 function
 end_level() {
 	$('.replies').hide();
 	$('.send_answer').hide();
-	$('#start_level_btn').text('Start Level '+current_level);
-	$('#start_level_btn').show();
-	$('.change_chat').addClass('not_clickable');
+	game_score["levels_completed"].push(current_level-1);
+
+/*	if(current_level < max_n_levels+1) {
+		$('#start_level_btn').text('Start Level '+current_level);
+		$('#start_level_btn').show();
+		$('.change_chat').addClass('not_clickable');
+	} else { //end of game*/
+	end_game();
+
+//	}
 
 
 }
@@ -497,182 +512,207 @@ make_dialogs(level, dialogs) {
 				//makeReadonly();
 			});
 
-		}
+}
 
-	function
-		check_key(key) {
+function
+check_key(key) {
 
-			data = { "request": "change_level", "level_hash_key": key};
-			data = JSON.stringify(data);
-
-
-			return $.ajax({
-				type: "POST",
-				dataType: "json",
-				processData: false,
-				contentType: 'application/json; charset=utf-8',
-				url: "/check_key",
-				data: data,
-				success: function (data, stato) {
-					if(data.status == 'ERROR') {
-						al = '<p>Key not found. Please try to insert another one<p>';
-						$('#alert_level_hash_key').append(al);
-
-					} else {
-						lev = data.level;
-						get_level(lev);
-						$('#level_hash_key_input_text').val('');
-						$('#settings_close_btn').trigger('click');
-					}
-
-				},
-				error: function (request, stato) {
-					alert("E' avvenuto un errore:\n" + stato);
-				}});
-
-		}
+	data = { "request": "change_level", "level_hash_key": key};
+	data = JSON.stringify(data);
 
 
-	function
-		reset_code(what, where) {
+	return $.ajax({
+		type: "POST",
+		dataType: "json",
+		processData: false,
+		contentType: 'application/json; charset=utf-8',
+		url: "/check_key",
+		data: data,
+		success: function (data, stato) {
+			if(data.status == 'ERROR') {
+				al = '<p>Key not found. Please try to insert another one<p>';
+				$('#alert_level_hash_key').append(al);
 
-			data = { "request": "reset_code"};
-			data = JSON.stringify(data);
+			} else {
+				lev = data.level;
+				get_level(lev);
+				$('#level_hash_key_input_text').val('');
+				$('#settings_close_btn').trigger('click');
+			}
 
-			return $.ajax({
-				type: "GET",
-				dataType: "json",
-				processData: false,
-				contentType: 'application/json; charset=utf-8',
-				url: "/reset_code",
-				data: data,
-				success: function (data, stato) {
-					editor.setValue(data.body);
-				},
-				error: function (request, stato) {
-					alert("ERROR:\n" + stato);
-				}});
-		}
+		},
+		error: function (request, stato) {
+			alert("E' avvenuto un errore:\n" + stato);
+		}});
 
-	function send_code(level_id) {
-		check_code = 1;
-		level_code = editor.getSession().getValue();
-		error = null;
+}
 
-		/*check code*/
-		check_code = sandbox(level_code, scope);
-		if(check_code === 1) {
-			switch (level_id) {
-				case 1:
-					level_code = level_code+'scale();';
-					break;
-				case 2:
-					level_code = level_code+'shootWithOffset();';
-					break;
-				case 3:
-					level_code = level_code+'setNumMissiles();';
-					break;
-				case 4:
+
+function
+reset_code(what, where) {
+
+	data = { "request": "reset_code"};
+	data = JSON.stringify(data);
+
+	return $.ajax({
+		type: "GET",
+		dataType: "json",
+		processData: false,
+		contentType: 'application/json; charset=utf-8',
+		url: "/reset_code",
+		data: data,
+		success: function (data, stato) {
+			editor.setValue(data.body);
+		},
+		error: function (request, stato) {
+			alert("ERROR:\n" + stato);
+		}});
+}
+
+function
+end_game() {
+
+	data = game_score;
+	data = JSON.stringify(data);
+
+	return $.ajax({
+		type: "POST",
+		dataType: "json",
+		processData: false,
+		contentType: 'application/json; charset=utf-8',
+		url: "/score",
+		data: data,
+		success: function (data, stato) {
+			
+			window.location.href = data.redirect;
+
+		},
+		error: function (request, stato) {
+			alert("E' avvenuto un errore:\n" + stato);
+		}});
+
 	
-					level_code = level_code+'initializaObf();';
-					break;
-				case 5:
-					level_code = level_code+'checkHeightObf();';
-					break;
-				case 6:
-					level_code = level_code+'initializeRec();';
-					break;
-				case 7:
-					level_code = level_code+'playerShoot3();';
-					break;
-				case 8:
-					level_code = level_code+'autofire();';
-					break;
-				case 9:
-					level_code = level_code+'whichAntiMissileBatteryObf();';
-					break;
-				default:
-					break;
-			}
+}
 
-			limitEval(level_code, function(success, returnValue) {
-				if (success) {
-					if(returnValue != 1) {
+function send_code(level_id) {
+	check_code = 1;
+	level_code = editor.getSession().getValue();
+	error = null;
 
-						error = returnValue;
-						append_info(error, 'assistant', 1);
+	/*check code*/
+	check_code = sandbox(level_code, scope);
+	if(check_code === 1) {
+		switch (level_id) {
+			case 1:
+				level_code = level_code+'scale();';
+				break;
+			case 2:
+				level_code = level_code+'shootWithOffset();';
+				break;
+			case 3:
+				level_code = level_code+'setNumMissiles();';
+				break;
+			case 4:
 
-					} else {
-						check_code = 1;
-					}
-				}
-				else {
-					error = 'The code takes too long to run.  Is there is an infinite loop?';
-					append_info(error, 'assistant', 1);
-					check_code = 0;
-				}
-			}, 3000);
-		} else {
-			append_info(check_code, 'assistant', 1);
+				level_code = level_code+'initializaObf();';
+				break;
+			case 5:
+				level_code = level_code+'checkHeightObf();';
+				break;
+			case 6:
+				level_code = level_code+'initializeRec();';
+				break;
+			case 7:
+				level_code = level_code+'playerShoot3();';
+				break;
+			case 8:
+				level_code = level_code+'autofire();';
+				break;
+			case 9:
+				level_code = level_code+'whichAntiMissileBatteryObf();';
+				break;
+			default:
+				break;
 		}
 
+		limitEval(level_code, function(success, returnValue) {
+			if (success) {
+				if(returnValue != 1) {
 
-		if(check_code === 1) {
+					error = returnValue;
+					append_info(error, 'assistant', 1);
+
+				} else {
+					check_code = 1;
+				}
+			}
+			else {
+				error = 'The code takes too long to run.  Is there is an infinite loop?';
+				append_info(error, 'assistant', 1);
+				check_code = 0;
+			}
+		}, 3000);
+	} else {
+		append_info(check_code, 'assistant', 1);
+	}
+
+
+	if(check_code === 1) {
 
 		level_code = editor.getSession().getValue();
-			switch (level_id){
-				case 1:
-					//eval('scale = '+check_level_code);
-					scale = new Function('return '+level_code+';')();
-					break;
-				case 2:
-					shootWithOffset = new Function('return ' +level_code+';')();
-					break;
-				case 3: setNumMissiles = new Function('return '+level_code+';')();
-					  break;
-				case 4:
-					  //check how many times constructor is called
-					  count = (level_code.match(/push/g) || []).length;
-					  if (count <= 3 )
-						  initializeObf = new Function('return '+level_code+';')();
-					  else {
-						  error = 'too many constructor invocations!';
-						  append_info(error, 'assistant', 1);
-					  }
-					  break;
-				case 5:
-					  checkHeightObf = new Function('return ' + level_code+';')();
-					  break;
-				case 6:
-					  //check how many times constructor is called
-					  count = (level_code.match(/push/g) || []).length;
-					  if (count <= 3 ){
-						  //check if player used loops
-						  if ( (level_code.match(/for/g) || []).length == 0 && (level_code.match(/while/g) || []).length == 0 ) {
-							  initializeRec = new Function('return ',level_code+';')();
-						  }
-						  else {
-							  error = 'Loops are not allowed in this level!';
-							  append_info(error, 'assistant', 1);
-						  }
+		switch (level_id){
+			case 1:
+				//eval('scale = '+check_level_code);
+				scale = new Function('return '+level_code+';')();
+				break;
+			case 2:
+				shootWithOffset = new Function('return ' +level_code+';')();
+				break;
+			case 3: setNumMissiles = new Function('return '+level_code+';')();
+				  break;
+			case 4:
+				  //check how many times constructor is called
+				  count = (level_code.match(/push/g) || []).length;
+				  if (count <= 3 )
+					  initializeObf = new Function('return '+level_code+';')();
+				  else {
+					  error = 'too many constructor invocations!';
+					  append_info(error, 'assistant', 1);
+				  }
+				  break;
+			case 5:
+				  checkHeightObf = new Function('return ' + level_code+';')();
+				  break;
+			case 6:
+				  //check how many times constructor is called
+				  count = (level_code.match(/push/g) || []).length;
+				  if (count <= 3 ){
+					  //check if player used loops
+					  if ( (level_code.match(/for/g) || []).length == 0 && (level_code.match(/while/g) || []).length == 0 ) {
+						  initializeRec = new Function('return ',level_code+';')();
 					  }
 					  else {
-						  error = 'too many constructor invocations!';
+						  error = 'Loops are not allowed in this level!';
 						  append_info(error, 'assistant', 1);
 					  }
-					  break;
-				case 7:
-					  playerShoot3 = new Function('return '+ level_code + ';')();
-					  break;
-				case 8:
-					  autofire = new Function('return '+level_code+';')();
-					  break;
-				case 9:
-					  whichAntiMissileBatteryObf = new Function('return'+level_code+';')();
-					  break;
-			}
-			missileCommand();
+				  }
+				  else {
+					  error = 'too many constructor invocations!';
+					  append_info(error, 'assistant', 1);
+				  }
+				  break;
+			case 7:
+				  playerShoot3 = new Function('return '+ level_code + ';')();
+				  break;
+			case 8:
+				  autofire = new Function('return '+level_code+';')();
+				  break;
+			case 9:
+				  whichAntiMissileBatteryObf = new Function('return'+level_code+';')();
+				  break;
 		}
-
-
+		missileCommand();
 	}
+
+
+}
