@@ -1,7 +1,14 @@
 - aumentare dimensione font console
-- bug "playerSHoot not defined" livello 2
-- bug "initializeObf not defined" livello 4
-- bug "CANVAS_HEIGHT not defined" livello 5
 - ritagliare bordi neri dalle immagini
 - conversazioni livelli successivi non caricate, se uno le legge tutte nel livello precedente
 - la ricorsione non funziona (livello 6)
+
+-scremare errori nel worker
+-missili nel 3 da aumentare
+-diminuire nel livello 3 missili partenza
+-dottore deve suggerire di usare console log per sapere quanto valgono le
+variabili
+-dialogo livello 9 parola troppo lunga
+-disabilitare tasti send e reset mentre dialoghi e dopo aver finito livello
+-quando l'utente vince, controllare che il codice sia diverso da quello di
+inizio

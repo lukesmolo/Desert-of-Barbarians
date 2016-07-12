@@ -1,4 +1,56 @@
+var sandbox_context = new Array(max_n_levels);
 var check = 1;
+
+
+sandbox_context[0] = `
+	scale();
+`;
+
+sandbox_context[1] = `
+	function playerShoot(x, y) {};
+	shootWithOffset();
+`;
+
+sandbox_context[2] = `
+	setNumMissiles();
+`;
+
+sandbox_context[3] = `
+	initializeObf();
+`;
+
+sandbox_context[4] = `
+	checkHeightObf();
+
+`;
+
+sandbox_context[5] = `
+	function AntiMissileBattery(x){};
+	function castle(x){};
+	function initializeLevel(){};
+	var antiMissileBatteries = [];
+	var castles = [];
+	initializeRec(17);
+`;
+
+sandbox_context[6] = `
+	function checkHeight(x) {};
+	function PlayerMissile(x){};
+	PlayerMissiles = [];
+	playerShoot3();
+`;
+
+sandbox_context[7] = `
+	CANVAS_WIDTH = 0;
+	CANVAS_HEIGHT = 0;
+	function playerShoot(x, y){};
+	autofire();
+`;
+
+sandbox_context[8] = `
+`;
+
+
 var NOT_ALLOWED = function(name){
 
 	return function(){
@@ -39,7 +91,6 @@ function sandbox(script, context){
 	return check;
 
 }
-
 
 function limitEval(code, fnOnStop, opt_timeoutInMS) {
 	var id = Math.random() + 1,

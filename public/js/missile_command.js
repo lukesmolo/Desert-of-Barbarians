@@ -44,7 +44,7 @@ missileCommand() {
 	if (current_level == 4) {
 		initializeObf();
 	} else if (current_level == 6) {
-		initializeRec(0);
+		initializeRec(17);
 	} else {
 		initialize();
 	}
@@ -96,7 +96,7 @@ initializeObf() {
 // Create castles and anti missile batteries at the start of the game
 function
 initializeRec(i) {
-	if (i == 18){
+	if (i === 0){
 		castles.push( new castle( i) );
 		antiMissileBatteries.push( new AntiMissileBattery(i) );
 		initializeLevel();
@@ -104,7 +104,7 @@ initializeRec(i) {
 	else {
 		castles.push( new castle( i) );
 		antiMissileBatteries.push( new AntiMissileBattery(i) );
-		initializeRec(i+1);
+		initializeRec(i-1);
 	}
 }
 
@@ -127,7 +127,11 @@ initializeLevel() {
 			}
 		});
 	}
-	else {
+	else if(current_level == 6) {
+		//reverse array since recursion inserts elements from the left
+		antiMissileBatteries.reverse();
+
+	} else {
 		$.each( antiMissileBatteries, function( index, amb ) {
 			if (index == 1) {amb.missilesLeft = 10;}
 			else {amb.missilesLeft = 10;}
