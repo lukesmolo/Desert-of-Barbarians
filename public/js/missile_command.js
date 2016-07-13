@@ -162,9 +162,9 @@ createEmemyMissiles(){
 	var targets = viableTargets();
 	switch (current_level){
 			case 1: numMissiles = 7; break;
-			case 7: numMissiles = 25; break;
+			case 7: numMissiles = 16; break;
 			case 8: numMissiles = 100; break;
-			case 9: numMissiles = 15; break;
+			case 9: numMissiles = 12; break;
 			default: numMissiles = 10;
 	}
 	for( var i = 0; i < numMissiles; i++ ) {
@@ -520,7 +520,7 @@ playerShoot(x,y) {
 }
 
 function
-playerShoot3(x,y) {
+playershoot2(x,y) {
 	//cannot shoot in the lower fifth part of canvas and in the upper fifth
 	if( checkHeight(y) ) {
 		var source = whichAntiMissileBattery( x );
@@ -538,7 +538,7 @@ shootWithOffset(x, y, offLeft, offTop){
 	if (current_level == 2) {
 		playerShoot(1.5*correctedX, correctedY+45);
 	} else if(current_level == 7) {
-		playerShoot3(correctedX, correctedY);
+		playershoot2(correctedX, correctedY);
 	} else {
 		playerShoot(correctedX, correctedY);
 	}

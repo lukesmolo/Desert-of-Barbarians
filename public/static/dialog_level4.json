@@ -27,7 +27,7 @@
         }, 
         {
             "answers": [
-                "Yes, please"
+                "I can do it!"
             ], 
             "id": 5, 
             "text": "Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days."

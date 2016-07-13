@@ -18,17 +18,15 @@ function checkHeightObf(y) {
 
 //level 6
 
-function initializeRec(i) {
-	if (i === 0){
-		initializeLevel();
-		return;
+function playerShoot2(x,y) {
+	if( checkHeight(y) ) {
+		var source = whichAntiMissileBattery( x );
+		if( source === -1 ){
+			return;
+		}
+		playerMissiles.push( new PlayerMissile( source, x, y ) );
+		playerMissiles.push( new PlayerMissile( source, x + 20, y ) );
 	}
-	else if (i == 3 || i == 5 || i == 7 || i == 11 || i == 13 || i == 15) {
-		    castles.push( new castle( i) );
-	} else if (i == 1 || i == 9 || i == 17) {
-		    antiMissileBatteries.push( new AntiMissileBattery(i));
-	}
-	initializeRec(i-1);
 }
 
 //level 8
