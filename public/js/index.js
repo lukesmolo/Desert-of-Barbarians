@@ -680,7 +680,7 @@ exec_code() {
 			  autofire = new Function('return '+level_code+';')();
 			  break;
 		case 9:
-			  whichAntiMissileBatteryObf = new Function('return'+level_code+';')();
+			  whichAntiMissileBatteryObf = new Function('return '+level_code+';')();
 			  break;
 	}
 	missileCommand();
