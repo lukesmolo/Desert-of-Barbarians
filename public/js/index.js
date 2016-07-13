@@ -5,6 +5,7 @@ var level_dialogs = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var current_level = -1;
 var current_character = "colonel";
+var current_chat = 'colonel';
 var current_panel = "main";
 var maximum_n_answers = 3;
 var max_chat_length = 140;
@@ -16,6 +17,7 @@ var info_character = 'colonel';
 var max_n_fails = 2;
 var max_n_levels = 9;
 var game_score = {};
+
 var chat_buttons_index = { "colonel": 1, "assistant": 2, "info": 3};
 var reverse_chat_buttons_index = { "1": "colonel" , "2": "assistant", "3": "info"};
 
@@ -176,12 +178,17 @@ $('#reset_level_hash_key_btn').on('click', function() {
 
 
 $(document).keypress(function(e) {
+
 	if(e.keyCode == 13) {
 		what = $('.dialog_focus_btn').attr('id');
 		text = $('#'+what).text();
+		chat_id = $('.chat_focus_btn').attr('id');
 
 		if($('#start_level_btn').is(":visible")) {
 			start_level();
+		} else if(current_chat != who) {
+			id = $('.chat_focus_btn').attr('id');
+			$('#'+id).trigger('click');
 		} else {
 			send_answer(what);
 		}
@@ -191,9 +198,11 @@ $(document).keypress(function(e) {
 $('.change_chat').on('click', function() {
 	if(!$(this).hasClass('not_clickable')) {
 		$('.dialog_focus_btn').removeClass('dialog_focus_btn');
+
 		stop_talking();
 		what = $(this).attr('id');
 		what = what.replace("_chat_btn", "");
+		current_chat = what;
 		if(what != "info") {
 			$('.div_chat_image').hide();
 			$('.chat_text').hide();
@@ -221,6 +230,7 @@ $('.change_chat').on('click', function() {
 
 
 		}
+
 	}
 });
 
@@ -749,22 +759,23 @@ $(document).keypress(function(e){
 		id = $('.chat_focus_btn').attr('id');
 		who = id.replace('_chat_btn', "");
 		index = parseInt(chat_buttons_index[who]);
+		if(proceedToGame === true) {
 
-		if(e.keyCode == 37) {
+			if(e.keyCode == 37) {
 
-			if(index != 1) {
-				$('.chat_focus_btn').removeClass('chat_focus_btn');
-				who  = reverse_chat_buttons_index[(index-1).toString()];
-				id = who+'_chat_btn';
-				$('#'+id).addClass('chat_focus_btn');
-			}
-		} else if(e.keyCode == 39) {
-			if(index != 3) {
-				$('.chat_focus_btn').removeClass('chat_focus_btn');
-				who  = reverse_chat_buttons_index[(index+1).toString()];
-				alert(who);
-				id = who+'_chat_btn';
-				$('#'+id).addClass('chat_focus_btn');
+				if(index != 1) {
+					$('.chat_focus_btn').removeClass('chat_focus_btn');
+					who  = reverse_chat_buttons_index[(index-1).toString()];
+					id = who+'_chat_btn';
+					$('#'+id).addClass('chat_focus_btn');
+				}
+			} else if(e.keyCode == 39) {
+				if(index != 3) {
+					$('.chat_focus_btn').removeClass('chat_focus_btn');
+					who  = reverse_chat_buttons_index[(index+1).toString()];
+					id = who+'_chat_btn';
+					$('#'+id).addClass('chat_focus_btn');
+				}
 			}
 		}
 
