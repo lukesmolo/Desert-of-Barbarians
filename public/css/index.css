@@ -218,7 +218,8 @@ height: 100%;
 .code_buttons_img {
 	width: 45%;;
 	margin-left: auto;
-	    margin-right: auto;
+	margin-right: auto;
+	cursor: pointer;
 }
 
 .div_code_controller {
@@ -231,3 +232,6 @@ height: 100%;
 	width: 100%;
 }
 
+.not_clickable {
+	cursor: not-allowed !important;
+}
