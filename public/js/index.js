@@ -183,10 +183,11 @@ $(document).keypress(function(e) {
 		what = $('.dialog_focus_btn').attr('id');
 		text = $('#'+what).text();
 		chat_id = $('.chat_focus_btn').attr('id');
+		chat_id = chat_id.replace('_chat_btn', '');
 
 		if($('#start_level_btn').is(":visible")) {
 			start_level();
-		} else if(current_chat != who) {
+		} else if(current_chat != chat_id) {
 			id = $('.chat_focus_btn').attr('id');
 			$('#'+id).trigger('click');
 		} else {
