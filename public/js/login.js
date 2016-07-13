@@ -23,6 +23,12 @@ $(document).ready(function() {
 	});
 });
 
+$(document).keypress(function(e) {
+	if(e.which == 13) {
+		$('#send_login').trigger('click');
+	}
+});
+
 function
 login() {
 
@@ -45,13 +51,10 @@ login() {
 				$('#error_alert').empty();
 				$('#error_alert').append(level_hash_key_error);
 			}
-			
+
 		},
 		error: function (request, stato) {
 			alert("An error occured:\n" + stato);
 	}});
 
 }
-
-
-

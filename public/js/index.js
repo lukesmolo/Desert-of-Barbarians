@@ -63,6 +63,7 @@ $(document).ready(function() {
 		}
 	});
 	$('.change_chat').addClass('not_clickable');
+	$('.code_buttons_img').addClass('not_clickable');
 
 
 });
@@ -145,11 +146,16 @@ $('#tutorial_btn').on('click', function() {
 });
 
 $('#send_code_btn').on('click', function() {
-	send_code();
+
+	if(!$(this).hasClass('not_clickable')) {
+		send_code();
+	}
 });
 $('#reset_code_btn').on('click', function() {
 
-	reset_code(null, null);
+	if(!$(this).hasClass('not_clickable')) {
+		reset_code();
+	}
 });
 
 $('#send_level_hash_key_btn').on('click', function() {
@@ -165,13 +171,20 @@ $('#reset_level_hash_key_btn').on('click', function() {
 	lev = $('#level_hash_key_input_text').val('');
 });
 
-$('#reset_code_btn').on('click', function() {
 
-	reset_code(null, null);
+$(document).keypress(function(e) {
+	if(e.which == 13) {
+		what = current_character+'_answer_1';
+		text = $('#'+what).text();
+
+		if($('#start_level_btn').is(":visible")) {
+			start_level();
+		}
+		else if(text == 'Next') {
+			send_answer(what);
+		}
+	}
 });
-
-
-
 
 $('.change_chat').on('click', function() {
 	if(!$(this).hasClass('not_clickable')) {
@@ -227,6 +240,12 @@ $('.change_panel').not("#tutorial_btn").on('click', function() {
 
 $('.send_answer').not('#start_level_btn').on('click', function() {
 	what = $(this).attr('id');
+	send_answer(what);
+});
+
+
+function
+send_answer(what) {
 	text = $('#'+what).text();
 	go_to = $("#"+what).attr('data-goto');
 
@@ -254,7 +273,7 @@ $('.send_answer').not('#start_level_btn').on('click', function() {
 	//take all buttons of replies and hide them
 	$('#'+current_character+'_replies').children('.send_answer').hide();
 	append_dialogs(current_level);
-});
+}
 
 
 
@@ -282,12 +301,14 @@ stop_talking() {
 	$('#'+info_character+'_div_chat_image').removeClass('tv_effect');
 	$('#'+current_character+'_div_chat_image').removeClass('tv_effect');
 	$('style[id^="grained-animation"]').remove();
+	$('.code_buttons_img').removeClass('not_clickable');
 }
 
 function
 show_answers() {
 
 	$('.not_clickable').removeClass('not_clickable');
+	$('.code_buttons_img').removeClass('not_clickable');
 	stop_talking();
 	n_answers = (level_dialogs[current_character][n_dialog[current_character]]['answers']).length;
 	if(n_answers > maximum_n_answers) {
@@ -325,13 +346,18 @@ start_level() {
 	$('#start_level_btn').hide();
 
 	$('.not_clickable').removeClass('not_clickable');
+	$('.code_buttons_img').removeClass('not_clickable');
 
 }
 
 function
 end_level() {
+	tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+	skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+	n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 	$('.replies').hide();
 	$('.send_answer').hide();
+	$('.code_buttons_img').addClass('not_clickable');
 	game_score["levels_completed"].push(current_level-1);
 
 	if(current_level < max_n_levels+1) {
@@ -339,7 +365,7 @@ end_level() {
 		$('#start_level_btn').show();
 		$('.change_chat').addClass('not_clickable');
 	} else { //end of game*/
-	end_game();
+		end_game();
 
 	}
 
@@ -415,8 +441,11 @@ append_dialogs(level) {
 
 		$('.change_chat').addClass('not_clickable');
 		$('.send_code_btn').addClass('not_clickable');
+		$('.code_buttons_img').addClass('not_clickable');
 
 		grained('.tv_effect',options);
+
+
 		$('#'+id).typewrite({
 			'delay': 10,
 			'callback': show_answers
@@ -442,68 +471,67 @@ make_dialogs(level, dialogs) {
 			level_dialogs[key].splice(index, 0, obj);
 
 		}
-		});
+	});
 	//append_dialogs(level);
-	}
+}
 
-	function
-		get_level(level) {
+function
+get_level(level) {
 
-			data = { "request": "get_level", "level": level};
-			data = JSON.stringify(data);
+	data = { "request": "get_level", "level": level};
+	data = JSON.stringify(data);
 
-			return $.ajax( {
-				type: "POST",
-				dataType: "json",
-				processData: false,
-				contentType: 'application/json; charset=utf-8',
-				url: "/get_level",data: data
-			}).done( function (data, stato) {
-				if(current_level == -1) {
-					current_level = data.level;
-					missileCommand();
-				} else {
-					current_level = data.level;
-				}
-				level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
-				$('.conversations_text').append(level_text);
-				editor.setValue(data.body);
+	return $.ajax( {
+		type: "POST",
+		dataType: "json",
+		processData: false,
+		contentType: 'application/json; charset=utf-8',
+		url: "/get_level",data: data
+	}).done( function (data, stato) {
+		if(current_level == -1) {
+			current_level = data.level;
+			missileCommand();
+		} else {
+			current_level = data.level;
+		}
+		level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
+		$('.conversations_text').append(level_text);
+		editor.setValue(data.body);
 
-				$('#left_jump_level').empty();
-				$('#right_jump_level').empty();
-				$('#username_summary').empty();
-				$('#military_rank_summary').empty();
+		$('#left_jump_level').empty();
+		$('#right_jump_level').empty();
+		$('#username_summary').empty();
+		$('#military_rank_summary').empty();
 
-				$('#username_summary').append(data.username);
-				times = current_level % 3; //3 subsets of levels
-				if(times === 0) {
-					times = 3;
-				}
-				medal_n = parseInt(current_level/3-0.5)+1;
-				for(i = 0; i < times; i++) {
-					img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
-					$('#military_rank_summary').append(img);
-				}
+		$('#username_summary').append(data.username);
+		times = current_level % 3; //3 subsets of levels
+		if(times === 0) {
+			times = 3;
+		}
+		medal_n = parseInt(current_level/3-0.5)+1;
+		for(i = 0; i < times; i++) {
+			img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
+			$('#military_rank_summary').append(img);
+		}
 
-				$.each(data.keys, function(index, value) {
-					k = '<p>Level '+(parseInt(index)+1)+'</p>';
-					v = '<p>'+value+'</p>';
+		$.each(data.keys, function(index, value) {
+			k = '<p>Level '+(parseInt(index)+1)+'</p>';
+			v = '<p>'+value+'</p>';
 
-					$('#left_jump_level').append(k);
-					$('#right_jump_level').append(v);
+			$('#left_jump_level').append(k);
+			$('#right_jump_level').append(v);
 
-				});
-				url = window.location.href;
-				window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
-				left_text = false;
-				//re-initialize variables for dialogs
-				tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
-				skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+		});
+		url = window.location.href;
+		window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
+		left_text = false;
+		//re-initialize variables for dialogs
 
-				make_dialogs(level, data.dialogs);
-				//colonel starts to talk
-				current_character = 'colonel';
-				$('#'+current_character+'_chat_btn').trigger('click');
+
+		make_dialogs(level, data.dialogs);
+		//colonel starts to talk
+		current_character = 'colonel';
+		$('#'+current_character+'_chat_btn').trigger('click');
 
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
@@ -551,7 +579,7 @@ check_key(key) {
 
 
 function
-reset_code(what, where) {
+reset_code() {
 
 	data = { "request": "reset_code"};
 	data = JSON.stringify(data);
@@ -565,6 +593,8 @@ reset_code(what, where) {
 		data: data,
 		success: function (data, stato) {
 			editor.setValue(data.body);
+			append_info('We reverted again the system to its original state. Better it\'s the last time!', 'colonel', 1);
+
 		},
 		error: function (request, stato) {
 			alert("ERROR:\n" + stato);
@@ -613,6 +643,8 @@ function send_code() {
 					append_info(error, 'assistant', 1);
 
 				} else {
+
+					append_info('We properly received your code. Now let\'s win!', 'colonel', 1);
 					exec_code();
 				}
 			}
