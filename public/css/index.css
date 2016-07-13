@@ -56,6 +56,8 @@ body {
 
 html {
 	height: 100%;
+	width: 100%;
+	position: fixed;
 }
 #text_editor {
 	font-family: vt323;
@@ -234,4 +236,8 @@ height: 100%;
 
 .not_clickable {
 	cursor: not-allowed !important;
+}
+
+.dialog_focus_btn, .chat_focus_btn {
+	border-color: red !important;
 }
