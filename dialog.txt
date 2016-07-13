@@ -201,7 +201,7 @@
 
 /*assistant-4
 ""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days.
---Yes, please
+--I can do it!
 
 /*crazy_doctor-4
 ""Finding hard to play with those drones?

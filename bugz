@@ -1,18 +1,9 @@
 - aumentare dimensione font console
 - ritagliare bordi neri dalle immagini
 
-<<<<<<< HEAD
--scremare errori nel worker
--controllare nel livello 3 che non setti a più di 10 i missili
-
--disabilitare tasti send e reset mentre dialoghi e dopo aver finito livello
--quando l'utente vince, controllare che il codice sia diverso da quello di
-inizio
-
--far partire il gioco dalla schermata iniziale (ed il next) con enter
 -giocabilità
-=======
--in about you mettere tutte le informazioni
--poter giocare livello solo dopo averlo iniziato
--frecce su e giu' per dialoghi
->>>>>>> 63b24ab2001dc73b7fa242c72d00f3dc2a30850c
+-9 missili nei cannoni laterali livello 3
+
+-comportamento livello 4 e 6 senza castelli e cannoni
+
+- limite massimo velocità missili livello 1

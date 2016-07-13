@@ -38,6 +38,7 @@ var buildTime = 0;
 var fail = 0;
 var timerAutofire = 0;
 var defaultCode = null;
+var proceedToGame = false;
 
 function
 missileCommand() {
@@ -161,6 +162,7 @@ createEmemyMissiles(){
 	var targets = viableTargets();
 	switch (current_level){
 			case 1: numMissiles = 7; break;
+			case 7: numMissiles = 25; break;
 			case 8: numMissiles = 100; break;
 			case 9: numMissiles = 15; break;
 			default: numMissiles = 10;
@@ -871,22 +873,21 @@ function autofire(x, y){
 // Attach event Listeners to handle the player's input
 function
 setupListeners() {
-	$( '#game_canvas' ).one( 'click', function() {
-		startLevel();
+		$( '#game_canvas' ).one( 'click', function() {
+			if (proceedToGame) startLevel();
 
-		if (current_level == 8){
-			$( '#game_canvas' ).on( 'click', function( event ) {
-				autofire(event.pageX - $("#game_canvas").offset().left, event.pageY - $("#game_canvas").offset().top);
-			});
-		}
-		else {
-			//subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
-			$( '#game_canvas' ).on( 'click', function( event ) {
-				shootWithOffset(event.pageX, event.pageY, $("#game_canvas").offset().left, $("#game_canvas").offset().top);
-			});
-		}
-
-	});
+			if (current_level == 8){
+				$( '#game_canvas' ).on( 'click', function( event ) {
+					autofire(event.pageX - $("#game_canvas").offset().left, event.pageY - $("#game_canvas").offset().top);
+				});
+			}
+			else {
+				//subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
+				$( '#game_canvas' ).on( 'click', function( event ) {
+					shootWithOffset(event.pageX, event.pageY, $("#game_canvas").offset().left, $("#game_canvas").offset().top);
+				});
+			}
+		});
 }
 
 $( document ).ready( function() {

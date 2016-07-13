@@ -1,5 +1,5 @@
 function initializeRec(i) {
-	if (i == 0){
+	if (i === 0){
 		initializeLevel();
 		return;
 	}

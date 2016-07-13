@@ -347,11 +347,12 @@ start_level() {
 
 	$('.not_clickable').removeClass('not_clickable');
 	$('.code_buttons_img').removeClass('not_clickable');
-
+	proceedToGame = true;
 }
 
 function
 end_level() {
+	proceedToGame = false;
 	tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 	skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 	n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
@@ -539,6 +540,8 @@ get_level(level) {
 			}).always(function(data) {
 				//called after the completion of get_level, because needs to know which level we are in
 				//makeReadonly();
+				//to avoid that all the editor is selected by default
+				editor.selection.moveTo(0, 0);
 				defaultCode = editor.getSession().getValue();
 			});
 

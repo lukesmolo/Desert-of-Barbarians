@@ -16,21 +16,27 @@ sandbox_context[2] = `
 `;
 
 sandbox_context[3] = `
-	initializeObf();
-`;
-
-sandbox_context[4] = `
-	checkHeightObf();
-
-`;
-
-sandbox_context[5] = `
 	function AntiMissileBattery(x){};
 	function castle(x){};
 	function initializeLevel(){};
 	var antiMissileBatteries = [];
 	var castles = [];
-	initializeRec(17);
+	initializeObf();
+`;
+
+sandbox_context[4] = `
+var CANVAS_HEIGHT;
+var CANVAS_WIDTH;
+checkHeightObf();
+`;
+
+sandbox_context[6] = `
+function AntiMissileBattery(x){};
+function castle(x){};
+function initializeLevel(){};
+var antiMissileBatteries = [];
+var castles = [];
+initializeRec(18);
 `;
 
 sandbox_context[6] = `
@@ -88,7 +94,7 @@ function sandbox(script, context){
 				lines[i] = lines[i].replace(/for\(([^\)]*\))/g, "");
 				console.log(lines[i]);
 				eval("with (context){ " + lines[i]+ " }");
-			
+
 		} catch(e) {
 		}
 	}
@@ -125,4 +131,3 @@ function limitEval(code, fnOnStop, opt_timeoutInMS) {
 
 	myWorker.postMessage({ c: code, i: id });
 }
-

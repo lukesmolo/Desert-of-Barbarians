@@ -19,7 +19,7 @@ function checkHeightObf(y) {
 //level 6
 
 function initializeRec(i) {
-	if (i == 0){
+	if (i === 0){
 		initializeLevel();
 		return;
 	}
@@ -27,7 +27,7 @@ function initializeRec(i) {
 		    castles.push( new castle( i) );
 	} else if (i == 1 || i == 9 || i == 17) {
 		    antiMissileBatteries.push( new AntiMissileBattery(i));
-	} 
+	}
 	initializeRec(i-1);
 }
 
