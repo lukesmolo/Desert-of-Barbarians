@@ -90,33 +90,6 @@
             "answers": [], 
             "id": 4, 
             "text": "2--Okay, but be sure that everything works fine: defending from 100 missiles is very different than from 10, kid!"
-        }, 
-        {
-            "answers": [
-                "When you interrupted me?"
-            ], 
-            "id": 5, 
-            "text": "You were walking straight to happy ending, when..."
-        }, 
-        {
-            "answers": [
-                "1--Help me, instead of fooling me", 
-                "2--I don't need your help, Jibi"
-            ], 
-            "id": 6, 
-            "text": "When you dealt with your low programming capacities"
-        }, 
-        {
-            "answers": [
-                ""
-            ], 
-            "id": 7, 
-            "text": "1--It's very simple: your function must include three cases, one if you have to shoot in in first third of the landscape, one if you have to shoot in the second third and one, guess what, for shooting in the third third. You can obtain this easily from CANVAS_WIDTH. firedToOuterThird is useful when you want to shoot in the leftmost or in the rightmost third, same function but inverted priorities. When you shoot to the second third, the central, use always the central cannon, until it has missiles. Then you can divide the landscape in two sides and use firedtoMiddleThird."
-        }, 
-        {
-            "answers": [], 
-            "id": 8, 
-            "text": "2--If you're so sure, I will remain silent. But remember: the outcome of a decennial war depends of you."
         }
     ]
 }

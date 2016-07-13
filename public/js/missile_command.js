@@ -36,6 +36,8 @@ var enemyMissiles = [];
 var timerID;
 var buildTime = 0;
 var fail = 0;
+var timerAutofire = 0;
+var defaultCode = null;
 
 function
 missileCommand() {
@@ -44,7 +46,7 @@ missileCommand() {
 	if (current_level == 4) {
 		initializeObf();
 	} else if (current_level == 6) {
-		initializeRec(17);
+		initializeRec(18);
 	} else {
 		initialize();
 	}
@@ -119,11 +121,20 @@ function
 initializeLevel() {
 	if (current_level == 3){
 		$.each( antiMissileBatteries, function( index, amb ) {
-			if (index == 1) {
-				amb.missilesLeft = setNumMissiles();
+			//player has set number of missiles grater that allowed
+			if (setNumMissiles() > 10){
+				$.each( antiMissileBatteries, function( index, amb ) {
+					amb.missilesLeft = 10;
+					append_info("We can't load this number of missiles. We foresee that 10 are enough for this battle.", 'assistant', 1);
+				});
 			}
 			else {
-				amb.missilesLeft = setNumMissiles() - 1;
+				if (index == 1) {
+					amb.missilesLeft = setNumMissiles();
+				}
+				else {
+					amb.missilesLeft = setNumMissiles() - 1;
+				}
 			}
 		});
 	}
@@ -133,8 +144,7 @@ initializeLevel() {
 
 	} else {
 		$.each( antiMissileBatteries, function( index, amb ) {
-			if (index == 1) {amb.missilesLeft = 10;}
-			else {amb.missilesLeft = 10;}
+			amb.missilesLeft = 10;
 		});
 	}
 	playerMissiles = [];
@@ -195,7 +205,7 @@ drawScore() {
 	ctx.fillText( 'Points ' + score, CANVAS_WIDTH/20, CANVAS_HEIGHT/20 );*/
 
 	//append_info(score, 'assistant', 1);
-	
+
 }
 
 // Draw all active castles
@@ -705,9 +715,14 @@ checkEndLevel() {
 
 		//TODO write in some global var the number of castles (and missiles) saved
 		if (totalcastlesSaved() == 6) {
-			append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 1);
-			current_level++;
-			end_level();
+			if(defaultCode != editor.getSession().getValue() ){
+				append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 1);
+				current_level++;
+				end_level();
+			}
+			else {//if player accidentally won the level, without coding
+				append_info("Battle is won, but it was just luck. We need you to code a long lasting solution!", 'colonel', 1);
+			}
 		}
 		else {
 			fail++;
@@ -718,6 +733,7 @@ checkEndLevel() {
 
 			}
 		}
+		clearInterval(timerAutofire);
 		missileCommand();
 	}
 }

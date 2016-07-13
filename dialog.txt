@@ -310,7 +310,7 @@
 --Any advice?
 
 /*assistant-6
-""Having the experience of previous mission, we know that towers have to be placed on slots 3, 5, 7, 11, 13, 15 and cannons on 1, 9 and 17. Dont' waste time!
+""Having the experience of previous mission, we know that towers have to be placed on slots 3, 5, 7, 11, 13, 15 and cannons on 1, 9 and 17. Don't waste time!
 
 /*crazy_doctor-6
 ""Cannot figure out how recursion works, kid?
@@ -322,7 +322,7 @@
 --2--No, I want to try again
 
 /*crazy_doctor-6
-""1--You can call me Jibi, we are friends, by now. What are you missing in this code? Do you remember that every time a constructor is called, you lose 1 day? And that you upper limit is 9? So maybe you just need to put an if for the castle costructor and an if for the AntiMissileBattery constructor, to execute them only if you are in the right slot.
+""1--You can call me Jibi, we are friends, by now. What are you missing in this code? Do you remember that every time a constructor is called, you lose 1 day? And that you upper limit is 9? So maybe you just need to put an if for the castle constructor and an if for the AntiMissileBattery constructor, to execute them only if you are in the right slot. Another useful function is console.log(x): it prints in browser's console the value of x. In this case you can use it to discover the value passed to the function, when it's called.
 --Thank you, Gilbert
 
 /*crazy_doctor-6
@@ -458,7 +458,7 @@
 --Any advice?
 
 /*assistant-9
-""To check if a cannon has missiles, use antiMissileBatteries[index].hasMissile(). You have to use firedToOuterThird(priority1, priority2, priority3), that, given the priorities, returns the loaded cannon with highest priority, and firedtoMiddleThird(priority1, priority2), that makes the same thing, but for only two cannons. I know that it difficult Drogo, but you can do it, we can do it: we can win this war, together.
+""To check if a cannon has missiles, use use the method hasMissile() on an cannon; you can select a cannon with antiMissileBatteries[index]. You have to use firedToOuterThird(x, y, z), with x, y and z priorities that you choose to assign to cannons. This method returns the loaded cannon with highest priority. Another method is firedtoMiddleThird(x, y), that makes the same thing, but for only two cannons. I know that it difficult Drogo, but you can do it, we can do it: we can win this war, together.
 --Yes, Melissa, let's start!
 
 /*crazy_doctor-9

@@ -1,12 +1,9 @@
 function initializeRec(i) {
-	if (i == 18){
-		castles.push( new castle( i) );
-		antiMissileBatteries.push( new AntiMissileBattery(i) );
+	if (i == 0){
 		initializeLevel();
+		return;
 	}
-	else {
-		castles.push( new castle( i) );
-		antiMissileBatteries.push( new AntiMissileBattery(i) );
-		initializeRec(i+1);
-	}
+	castles.push( new castle( i) );
+	antiMissileBatteries.push( new AntiMissileBattery(i));
+	initializeRec(i-1);
 }

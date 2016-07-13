@@ -32,7 +32,7 @@
         {
             "answers": [], 
             "id": 5, 
-            "text": "Having the experience of previous mission, we know that towers have to be placed on slots 3, 5, 7, 11, 13, 15 and cannons on 1, 9 and 17. Dont' waste time!"
+            "text": "Having the experience of previous mission, we know that towers have to be placed on slots 3, 5, 7, 11, 13, 15 and cannons on 1, 9 and 17. Don't waste time!"
         }
     ], 
     "colonel": [
@@ -86,7 +86,7 @@
                 "Thank you, Gilbert"
             ], 
             "id": 3, 
-            "text": "1--You can call me Jibi, we are friends, by now. What are you missing in this code? Do you remember that every time a constructor is called, you lose 1 day? And that you upper limit is 9? So maybe you just need to put an if for the castle costructor and an if for the AntiMissileBattery constructor, to execute them only if you are in the right slot."
+            "text": "1--You can call me Jibi, we are friends, by now. What are you missing in this code? Do you remember that every time a constructor is called, you lose 1 day? And that you upper limit is 9? So maybe you just need to put an if for the castle constructor and an if for the AntiMissileBattery constructor, to execute them only if you are in the right slot. Another useful function is console.log(x): it prints in browser's console the value of x. In this case you can use it to discover the value passed to the function, when it's called."
         }, 
         {
             "answers": [], 

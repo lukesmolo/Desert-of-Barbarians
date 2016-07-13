@@ -1,4 +1,4 @@
 funtion setNumMissiles(){
-		missilesLeft = 10
+		missilesLeft = 1
 		return missilesLeft
 }

@@ -511,6 +511,7 @@ make_dialogs(level, dialogs) {
 			}).always(function(data) {
 				//called after the completion of get_level, because needs to know which level we are in
 				//makeReadonly();
+				defaultCode = editor.getSession().getValue();
 			});
 
 }
@@ -584,7 +585,7 @@ end_game() {
 		url: "/score",
 		data: data,
 		success: function (data, stato) {
-			
+
 			window.location.href = data.redirect;
 
 		},
@@ -592,7 +593,7 @@ end_game() {
 			alert("E' avvenuto un errore:\n" + stato);
 		}});
 
-	
+
 }
 
 function send_code() {
@@ -685,5 +686,3 @@ exec_code() {
 	}
 	missileCommand();
 }
-
-
