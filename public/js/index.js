@@ -353,6 +353,9 @@ start_level() {
 
 function
 end_level() {
+	tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+	skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+	n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 	$('.replies').hide();
 	$('.send_answer').hide();
 	$('.code_buttons_img').addClass('not_clickable');
@@ -524,8 +527,7 @@ get_level(level) {
 		window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
 		left_text = false;
 		//re-initialize variables for dialogs
-		tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
-		skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
+		
 
 		make_dialogs(level, data.dialogs);
 		//colonel starts to talk
