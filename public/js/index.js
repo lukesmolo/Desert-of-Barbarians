@@ -176,8 +176,15 @@ $('#reset_level_hash_key_btn').on('click', function() {
 	lev = $('#level_hash_key_input_text').val('');
 });
 
+if (navigator.userAgent.match(/Firefox/i)) {
+	alert("here");
+	    $(document).keypress(press_key);
+} else {
+	    $(document).keydown(press_key);
+}
 
-$(document).keypress(function(e) {
+function
+press_key(e) {
 
 	if(e.keyCode == 13) {
 		what = $('.dialog_focus_btn').attr('id');
@@ -193,8 +200,48 @@ $(document).keypress(function(e) {
 		} else {
 			send_answer(what);
 		}
+	} else if(e.keyCode == 38 || e.keyCode == 40) {
+		index = $('.dialog_focus_btn').attr('id');
+		id = current_character+'_answer_';
+		index = parseInt(index.replace(id, ''));
+		if(e.keyCode == 38) {
+
+			if(index != 1) {
+				$('.dialog_focus_btn').removeClass('dialog_focus_btn');
+				$('#'+id+(index-1)).addClass('dialog_focus_btn');
+			}
+		} else if(e.keyCode == 40) {
+			if(index != 3 && $('#'+id+(index+1)).is(":visible")) {
+
+				$('.dialog_focus_btn').removeClass('dialog_focus_btn');
+				$('#'+id+(index+1)).addClass('dialog_focus_btn');
+			}
+		}
+	} else if(e.keyCode == 37 || e.keyCode == 39) {
+		id = $('.chat_focus_btn').attr('id');
+		who = id.replace('_chat_btn', "");
+		index = parseInt(chat_buttons_index[who]);
+		if(proceedToGame === true) {
+
+			if(e.keyCode == 37) {
+
+				if(index != 1) {
+					$('.chat_focus_btn').removeClass('chat_focus_btn');
+					who  = reverse_chat_buttons_index[(index-1).toString()];
+					id = who+'_chat_btn';
+					$('#'+id).addClass('chat_focus_btn');
+				}
+			} else if(e.keyCode == 39) {
+				if(index != 3) {
+					$('.chat_focus_btn').removeClass('chat_focus_btn');
+					who  = reverse_chat_buttons_index[(index+1).toString()];
+					id = who+'_chat_btn';
+					$('#'+id).addClass('chat_focus_btn');
+				}
+			}
+		}
 	}
-});
+}
 
 $('.change_chat').on('click', function() {
 	if(!$(this).hasClass('not_clickable')) {
@@ -737,54 +784,5 @@ exec_code() {
 	}
 	missileCommand();
 }
-
-$(document).keypress(function(e){
-	if(e.keyCode == 38 || e.keyCode == 40) {
-		index = $('.dialog_focus_btn').attr('id');
-		id = current_character+'_answer_';
-		index = parseInt(index.replace(id, ''));
-		if(e.keyCode == 38) {
-
-			if(index != 1) {
-				$('.dialog_focus_btn').removeClass('dialog_focus_btn');
-				$('#'+id+(index-1)).addClass('dialog_focus_btn');
-			}
-		} else if(e.keyCode == 40) {
-			if(index != 3 && $('#'+id+(index+1)).is(":visible")) {
-
-				$('.dialog_focus_btn').removeClass('dialog_focus_btn');
-				$('#'+id+(index+1)).addClass('dialog_focus_btn');
-			}
-		}
-	} else if(e.keyCode == 37 || e.keyCode == 39) {
-		id = $('.chat_focus_btn').attr('id');
-		who = id.replace('_chat_btn', "");
-		index = parseInt(chat_buttons_index[who]);
-		if(proceedToGame === true) {
-
-			if(e.keyCode == 37) {
-
-				if(index != 1) {
-					$('.chat_focus_btn').removeClass('chat_focus_btn');
-					who  = reverse_chat_buttons_index[(index-1).toString()];
-					id = who+'_chat_btn';
-					$('#'+id).addClass('chat_focus_btn');
-				}
-			} else if(e.keyCode == 39) {
-				if(index != 3) {
-					$('.chat_focus_btn').removeClass('chat_focus_btn');
-					who  = reverse_chat_buttons_index[(index+1).toString()];
-					id = who+'_chat_btn';
-					$('#'+id).addClass('chat_focus_btn');
-				}
-			}
-		}
-
-
-	}
-});
-
-
-
 
 
