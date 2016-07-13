@@ -51,7 +51,7 @@ sandbox_context[8] = `
 	CANVAS_WIDTH = 0;
 	CANVAS_HEIGHT = 0;
 	function firedToOuterThird(x, y){};
-	whichAntiMissileBattery();
+	whichAntiMissileBatteryObf();
 `;
 
 

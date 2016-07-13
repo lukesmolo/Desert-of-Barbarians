@@ -1,4 +1,4 @@
-function whichAntiMissileBattery(x) {
+function whichAntiMissileBatteryObf(x) {
 	if( x <= CANVAS_WIDTH / 3 ){
 		return firedToOuterThird( 0, 1, 2 );
 	} else if( x <= (2 * CANVAS_WIDTH / 3) ) {
