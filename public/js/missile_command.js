@@ -39,6 +39,8 @@ var fail = 0;
 var timerAutofire = 0;
 var defaultCode = null;
 var proceedToGame = false;
+var originalSWO = shootWithOffset;
+var originalScale = scale;
 
 function
 missileCommand() {
@@ -215,12 +217,14 @@ drawScore() {
 
 // Draw all active castles
 var drawcastles = function() {
-	if (buildTime <= 9)
+	if (buildTime <= 9){
 		$.each( castles, function( index, castle ) {
 			if( castle.active ) {
 				castle.draw();
 			}
 		});
+	}
+	else proceedToGame = false;
 };
 
 // Draw missiles in all anti missile batteries
@@ -523,7 +527,7 @@ playerShoot(x,y) {
 }
 
 function
-playershoot2(x,y) {
+playerShoot2(x,y) {
 	//cannot shoot in the lower fifth part of canvas and in the upper fifth
 	if( checkHeight(y) ) {
 		var source = whichAntiMissileBattery( x );
@@ -538,10 +542,12 @@ function
 shootWithOffset(x, y, offLeft, offTop){
 	correctedX = x - offLeft;
 	correctedY = y - offTop;
+	totalMissilesUsed++;
 	if (current_level == 2) {
 		playerShoot(1.5*correctedX, correctedY+45);
 	} else if(current_level == 7) {
-		playershoot2(correctedX, correctedY);
+		playerShoot2(correctedX, correctedY);
+		totalMissilesUsed++;
 	} else {
 		playerShoot(correctedX, correctedY);
 	}

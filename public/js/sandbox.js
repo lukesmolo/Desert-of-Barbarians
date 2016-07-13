@@ -43,7 +43,7 @@ sandbox_context[6] = `
 	function checkHeight(x) {};
 	function PlayerMissile(x){};
 	PlayerMissiles = [];
-	playerShoot3();
+	playerShoot2();
 `;
 
 sandbox_context[7] = `
