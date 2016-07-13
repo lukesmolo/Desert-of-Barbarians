@@ -17,6 +17,7 @@ var info_character = 'colonel';
 var max_n_fails = 2;
 var max_n_levels = 9;
 var game_score = {};
+var coding = false;
 
 var chat_buttons_index = { "colonel": 1, "assistant": 2, "info": 3};
 var reverse_chat_buttons_index = { "1": "colonel" , "2": "assistant", "3": "info"};
@@ -45,7 +46,6 @@ $(document).ready(function() {
 	if(current_level == -1) {
 		$('#start_level_btn').text('Start Level');
 		d = new Date();
-		game_score['start_time'] = d.getTime();
 
 	} else {
 		$('#start_level_btn').text('Start Level '+current_level);
@@ -69,6 +69,13 @@ $(document).ready(function() {
 	});
 	$('.change_chat').addClass('not_clickable');
 	$('.code_buttons_img').addClass('not_clickable');
+	setInterval(function() {
+		sec = parseInt((new Date() - d) / 1000);
+		min = parseInt(sec/60);
+		game_score["total_time"] = sec;
+		sec = parseInt(sec%60);
+		$('#total_time_summary').text(min+" m " + sec +" s");
+	}, 1000);
 
 
 });
@@ -163,6 +170,14 @@ $('#reset_code_btn').on('click', function() {
 	}
 });
 
+$(document).click(function(e) {
+	if ($(e.target).closest("#coding").length) {
+		coding = true;
+	} else {
+		coding = false;
+	}
+});
+
 $('#send_level_hash_key_btn').on('click', function() {
 	$('#alert_level_hash_key').empty();
 
@@ -177,7 +192,6 @@ $('#reset_level_hash_key_btn').on('click', function() {
 });
 
 if (navigator.userAgent.match(/Firefox/i)) {
-	alert("here");
 	    $(document).keypress(press_key);
 } else {
 	    $(document).keydown(press_key);
@@ -186,7 +200,7 @@ if (navigator.userAgent.match(/Firefox/i)) {
 function
 press_key(e) {
 
-	if(e.keyCode == 13) {
+	if(e.keyCode == 13 && !coding) {
 		what = $('.dialog_focus_btn').attr('id');
 		text = $('#'+what).text();
 		chat_id = $('.chat_focus_btn').attr('id');
@@ -345,6 +359,10 @@ append_info(what, who, show) {
 
 	$('#info_chat_text').empty();
 	$('#info_chat_text').append(what);
+	$('.chat_focus_btn').removeClass('chat_focus_btn');
+	$('#info_chat_btn').addClass('chat_focus_btn');
+
+	stop_talking();
 	info_character = who;
 	if(show == 1) {
 		$('#info_chat_btn').trigger('click');
@@ -416,13 +434,29 @@ start_level() {
 function
 end_level() {
 	proceedToGame = false;
+
+	//re-initialize variables for dialogs
+	left_text = false;
 	tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 	skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 	n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 	$('.replies').hide();
 	$('.send_answer').hide();
 	$('.code_buttons_img').addClass('not_clickable');
+	$('#levels_completed_summary').empty();
 	game_score["levels_completed"].push(current_level-1);
+	l_completed = '<p>';
+		for(i = 0; i < game_score['levels_completed'].length; i++) {
+			if(i == game_score['levels_completed'].length-1) {
+				l_completed += game_score['levels_completed'][i];
+
+			} else {
+				l_completed += game_score['levels_completed'][i]+',';
+			}
+		}
+		l_completed += '</p>';
+		$('#levels_completed_summary').append(l_completed);
+
 
 	if(current_level < max_n_levels+1) {
 		$('#start_level_btn').text('Start Level '+current_level);
@@ -567,6 +601,9 @@ get_level(level) {
 		$('#username_summary').empty();
 		$('#military_rank_summary').empty();
 
+		$('#avg_time_summary').empty();
+		$('#missiles_used_summary').empty();
+
 		$('#username_summary').append(data.username);
 		times = current_level % 3; //3 subsets of levels
 		if(times === 0) {
@@ -586,10 +623,13 @@ get_level(level) {
 			$('#right_jump_level').append(v);
 
 		});
+		
+
+
+
 		url = window.location.href;
 		window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
-		left_text = false;
-		//re-initialize variables for dialogs
+
 
 
 		make_dialogs(level, data.dialogs);
@@ -598,15 +638,15 @@ get_level(level) {
 		$('#'+current_character+'_chat_btn').trigger('click');
 
 
-			}).fail(function (jqXHR, textStatus, errorThrown) {
-				alert("Error:\n" + textStatus);
-			}).always(function(data) {
-				//called after the completion of get_level, because needs to know which level we are in
-				//makeReadonly();
-				//to avoid that all the editor is selected by default
-				editor.selection.moveTo(0, 0);
-				defaultCode = editor.getSession().getValue();
-			});
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+		alert("Error:\n" + textStatus);
+	}).always(function(data) {
+		//called after the completion of get_level, because needs to know which level we are in
+		//makeReadonly();
+		//to avoid that all the editor is selected by default
+		editor.selection.moveTo(0, 0);
+		defaultCode = editor.getSession().getValue();
+	});
 
 }
 
@@ -729,6 +769,7 @@ exec_code() {
 
 
 	level_code = editor.getSession().getValue();
+
 	switch (current_level){
 		case 1:
 			//eval('scale = '+check_level_code);
