@@ -134,7 +134,10 @@ initializeLevel() {
 					amb.missilesLeft = setNumMissiles();
 				}
 				else {
-					amb.missilesLeft = setNumMissiles() - 1;
+					if (setNumMissiles() == 1)
+						amb.missilesLeft = setNumMissiles() - 1;
+					else
+						amb.missilesLeft = setNumMissiles();
 				}
 			}
 		});

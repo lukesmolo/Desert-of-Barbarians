@@ -738,7 +738,7 @@ exec_code() {
 	missileCommand();
 }
 
-$(document).keypress(function(e){
+$('body').keypress(function(e){
 	if(e.keyCode == 38 || e.keyCode == 40) {
 		index = $('.dialog_focus_btn').attr('id');
 		id = current_character+'_answer_';
@@ -783,8 +783,3 @@ $(document).keypress(function(e){
 
 	}
 });
-
-
-
-
-
