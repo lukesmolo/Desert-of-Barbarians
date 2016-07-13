@@ -12,3 +12,4 @@ variabili
 -disabilitare tasti send e reset mentre dialoghi e dopo aver finito livello
 -quando l'utente vince, controllare che il codice sia diverso da quello di
 inizio
+-far partire il gioco dalla schermata iniziale (ed il next) con enter
