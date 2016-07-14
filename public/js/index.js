@@ -17,6 +17,7 @@ var info_character = 'colonel';
 var max_n_fails = 2;
 var max_n_levels = 9;
 var game_score = {};
+var totalMissilesUsed = 0;
 var coding = false;
 
 var chat_buttons_index = { "colonel": 1, "assistant": 2, "info": 3};
@@ -639,15 +640,18 @@ get_level(level) {
 		$('#'+current_character+'_chat_btn').trigger('click');
 
 
-	}).fail(function (jqXHR, textStatus, errorThrown) {
-		alert("Error:\n" + textStatus);
-	}).always(function(data) {
-		//called after the completion of get_level, because needs to know which level we are in
-		//makeReadonly();
-		//to avoid that all the editor is selected by default
-		editor.selection.moveTo(0, 0);
-		defaultCode = editor.getSession().getValue();
-	});
+			}).fail(function (jqXHR, textStatus, errorThrown) {
+				alert("Error:\n" + textStatus);
+			}).always(function(data) {
+				//called after the completion of get_level, because needs to know which level we are in
+				//makeReadonly();
+				//to avoid that all the editor is selected by default
+				editor.selection.moveTo(0, 0);
+				//revert modified function to original ones
+				scale = originalScale;
+				shootWithOffset = originalSWO;
+				defaultCode = editor.getSession().getValue();
+			});
 
 }
 
@@ -784,8 +788,11 @@ exec_code() {
 		case 4:
 			  //check how many times constructor is called
 			  count = (level_code.match(/push/g) || []).length;
-			  if (count <= 3 )
+			  if (count <= 3 ){
+					buildTime = 0;
 				  initializeObf = new Function('return '+level_code+';')();
+					if (buildTime <= 9) proceedToGame = true;
+				}
 			  else {
 				  error = 'too many constructor invocations!';
 				  append_info(error, 'assistant', 1);
@@ -801,8 +808,9 @@ exec_code() {
 				  //check if player used loops
 				  if ( (level_code.match(/for/g) || []).length == 0 && (level_code.match(/while/g) || []).length === 0 ) {
 					  console.log(level_code);
-
+						buildTime = 0;
 					  initializeRec = new Function('return '+level_code+';')();
+						if (buildTime <= 9) proceedToGame = true;
 				  }
 				  else {
 					  error = 'Loops are not allowed in this level!';
@@ -815,7 +823,7 @@ exec_code() {
 			  }
 			  break;
 		case 7:
-			  playerShoot3 = new Function('return '+ level_code + ';')();
+			  playerShoot2 = new Function('return '+ level_code + ';')();
 			  break;
 		case 8:
 			  autofire = new Function('return '+level_code+';')();

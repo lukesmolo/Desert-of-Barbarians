@@ -17,6 +17,21 @@ function checkHeightObf(y) {
 }
 
 //level 6
+function initializeRec(i) {
+ 	if (i === 0){
+         initializeLevel();
+         return;
+ 		 }
+ 	 else if (i == 3 || i == 5 || i == 7 || i == 11 || i == 13 || i == 15) {
+             castles.push( new castle( i) );
+ 				 }
+ 	else if (i == 1 || i == 9 || i == 17) {
+             antiMissileBatteries.push( new AntiMissileBattery(i));
+		}
+		initializeRec(i-1);
+}
+
+//level 7
 
 function playerShoot2(x,y) {
 	if( checkHeight(y) ) {
