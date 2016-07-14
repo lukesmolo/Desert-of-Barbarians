@@ -1,7 +1,12 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: black;
+}
+
+@font-face {
+	font-family: vt323;
+	src: url(../fonts/VT323-Regular.ttf);
 }
 
 .form-signin {
@@ -36,4 +41,14 @@ body {
 	margin-top: 3%;
 	color: red;
 	font-weight: bold;
+}
+
+.container {
+  font-family: vt323;
+  color: green;
+}
+
+.btn{
+  background-color: green !important;
+  border-color: green !important;
 }

@@ -9,6 +9,7 @@
 	font-family: vt323;
 	src: url(../fonts/VT323-Regular.ttf);
 }
+
 #container {
 	padding-top:10px;
 	height: 100%;
@@ -50,7 +51,6 @@ body {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	/*background-color: #0f895e !important*/
 	background-image: url("../images/neon_grid.jpg");
 	background-size: 100%;
 }
@@ -76,6 +76,8 @@ html {
 }
 #chat{
 	height: 93%;
+	padding: 4px;
+	background-color: rgba(0, 0, 0, 0.75);
 }
 .div_chat_image{
 	height: 70%;
@@ -267,7 +269,7 @@ height: 100%;
 }
 
 .dialog_focus_btn, .chat_focus_btn, .start_focus_btn {
-	border-color: red !important;
+	border-color: white !important;
 }
 
 #cover_canvas {
@@ -310,4 +312,18 @@ height: 100%;
 .left_info_summary{
 	font-size: 22px;
 	font-weight: bold;
+}
+
+.btn{
+	font-family: vt323 !important;
+	font-size: 18px !important;
+	border-width: 2px !important;
+}
+
+.my_btn{
+	background-color: white;
+	color: green;
+	width: 32%;
+	font-family: vt323 !important;
+	font-size: 20px !important;
 }
