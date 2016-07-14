@@ -79,7 +79,7 @@ $(document).ready(function() {
 	setInterval(function() {
 		min = parseInt(sec/60);
 		tmp_sec = parseInt(sec%60);
-		$('#total_time_summary').text(min+" m " + tmp_sec +" s");
+		$('#total_time_summary').text(min+"m " + tmp_sec +"s");
 		sec++;
 	}, 1000);
 
@@ -404,14 +404,17 @@ stop_talking() {
 	$('#'+info_character+'_div_chat_image').removeClass('tv_effect');
 	$('#'+current_character+'_div_chat_image').removeClass('tv_effect');
 	$('style[id^="grained-animation"]').remove();
-	$('.code_buttons_img').removeClass('not_clickable');
+	//if it is not the beginning of a new level
+	if(proceedToGame) {
+		$('.code_buttons_img').removeClass('not_clickable');
+	}
 }
 
 function
 show_answers() {
 
 	$('.not_clickable').removeClass('not_clickable');
-	$('.code_buttons_img').removeClass('not_clickable');
+	//$('.code_buttons_img').removeClass('not_clickable');
 
 	$('.dialog_focus_btn').removeClass('dialog_focus_btn');
 	$('#'+current_character+'_answer_1').addClass('dialog_focus_btn');
@@ -459,7 +462,7 @@ start_level() {
 	$('#start_level_btn').hide();
 
 	$('.not_clickable').removeClass('not_clickable');
-	$('.code_buttons_img').removeClass('not_clickable');
+	//$('.code_buttons_img').removeClass('not_clickable');
 	if (current_level != 4 && current_level != 6)
 		proceedToGame = true;
 }
@@ -502,6 +505,7 @@ end_level() {
 		$('#avg_time_summary').text(avg_time);
 	}
 
+	$('#missiles_used_summary').text(totalMissilesUsed);
 	if(current_level < max_n_levels+1) {
 		$('#start_level_btn').text('Start Level '+current_level);
 		$('#start_level_btn').show();
@@ -648,7 +652,7 @@ make_dialogs(level, dialogs) {
 				$('#missiles_used_summary').empty();
 
 				$('#username_summary').append(data.username);
-				$('#missiles_used_summary').text(totalMissilesUsed);
+
 
 
 

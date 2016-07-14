@@ -742,8 +742,9 @@ checkEndLevel() {
 			if(defaultCode != editor.getSession().getValue() ){
 				append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 1);
 				fail = 0;
-				end_level();
 				current_level++;
+				end_level();
+
 			}
 			else {//if player accidentally won the level, without coding
 				append_info("Battle is won, but it was just luck. We need you to code a long lasting solution!", 'colonel', 1);
