@@ -90,7 +90,8 @@ tr.introjs-showElement > th {
 
 .introjs-helperNumberLayer {
   position: absolute;
-  visibility: visible;
+  /*visibility: visible;*/
+
   top: -16px;
   left: -16px;
   z-index: 9999999999 !important;

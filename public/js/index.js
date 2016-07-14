@@ -22,6 +22,7 @@ var coding = false;
 
 var chat_buttons_index = { "colonel": 1, "assistant": 2, "info": 3};
 var reverse_chat_buttons_index = { "1": "colonel" , "2": "assistant", "3": "info"};
+var tot_sec = 0;
 
 game_score['levels_completed'] = [];
 
@@ -47,6 +48,7 @@ $(document).ready(function() {
 	if(current_level == -1) {
 		$('#start_level_btn').text('Start Level');
 		d = new Date();
+		sec = 0;
 
 	} else {
 		$('#start_level_btn').text('Start Level '+current_level);
@@ -71,11 +73,10 @@ $(document).ready(function() {
 	$('.change_chat').addClass('not_clickable');
 	$('.code_buttons_img').addClass('not_clickable');
 	setInterval(function() {
-		sec = parseInt((new Date() - d) / 1000);
 		min = parseInt(sec/60);
-		game_score["total_time"] = sec;
-		sec = parseInt(sec%60);
-		$('#total_time_summary').text(min+" m " + sec +" s");
+		tmp_sec = parseInt(sec%60);
+		$('#total_time_summary').text(min+" m " + tmp_sec +" s");
+		sec++;
 	}, 1000);
 
 
@@ -391,6 +392,7 @@ show_answers() {
 
 	$('.not_clickable').removeClass('not_clickable');
 	$('.code_buttons_img').removeClass('not_clickable');
+	
 	stop_talking();
 	n_answers = (level_dialogs[current_character][n_dialog[current_character]]['answers']).length;
 	if(n_answers > maximum_n_answers) {
@@ -606,7 +608,20 @@ get_level(level) {
 		$('#missiles_used_summary').empty();
 
 		$('#username_summary').append(data.username);
-		$('#missiles_used_summary').text(tot);
+		$('#missiles_used_summary').text(totalMissilesUsed);
+
+		avg_time = 'n.a';
+		if(game_score['levels_completed'].length !== 0) {
+			avg_time = parseInt((new Date() - d) / 1000);
+			avg_time /= game_score['levels_completed'].length;
+			m = parseInt(avg_time/60);
+			s = parseInt(avg_time%60);
+			$('#avg_time_summary').text(m+" m " + s +" s");
+		} else {
+			$('#avg_time_summary').text(avg_time);
+		}
+
+
 		times = current_level % 3; //3 subsets of levels
 		if(times === 0) {
 			times = 3;
@@ -715,6 +730,7 @@ reset_code() {
 function
 end_game() {
 
+	game_score["total_time"] = parseInt((new Date() - d) / 1000);
 	data = game_score;
 	data = JSON.stringify(data);
 
