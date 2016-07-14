@@ -4,11 +4,22 @@ var elements = ["info_summary_title", "username_summary", "military_rank_summary
 
 $(document).ready(function() {
 
+$('#prize').on('click', function() {
+	var win = window.open('https://www.youtube.com/watch?v=voj7brTmcqU', '_blank');
+	if (win) {
+		    //Browser has allowed it to be opened
+		    win.focus();
+	}
+});
 	$('#info_summary').children().hide();	
+	$('#info_summary_title').hide();
 	$('#credits').hide();	
+	$('#prize').hide();	
 	get_score();	
 
 });
+
+
 
 
 
@@ -71,10 +82,10 @@ append_text() {
 			//$('#'+elements[i]).before().show();
 			if(elements[i] != 'credits') {
 
-			$('#'+elements[i]).prev().typewrite({
-				'delay': 50,
-				'callback': append_text
-			});
+				$('#'+elements[i]).prev().typewrite({
+					'delay': 50,
+					'callback': append_text
+				});
 			} else {
 				append_text();
 			}
@@ -94,6 +105,9 @@ append_text() {
 			}
 
 		}
+	} else {
+		$('#prize').show();	
+
 	}
 
 
