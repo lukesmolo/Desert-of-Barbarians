@@ -224,7 +224,17 @@ var drawcastles = function() {
 			}
 		});
 	}
-	else proceedToGame = false;
+	else {
+		proceedToGame = false;
+		//for level 4 and 6 crazy doctor is triggered when player cannot build castles for 2 times
+		if (current_level == 4 || current_level == 6){
+			fail++;
+			//max_n_fails+1, because called first time automatically with buildTime 36
+			if(fail == max_n_fails+2) {
+				$('#crazy_doctor_chat_btn').trigger('click');
+			}
+		}
+	}
 };
 
 // Draw missiles in all anti missile batteries

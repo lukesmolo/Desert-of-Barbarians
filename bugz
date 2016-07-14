@@ -1,12 +1,15 @@
 - aumentare dimensione font console
-- ritagliare bordi neri dalle immagini
 -giocabilità
 
 -togliere codice giusto da 7 8 9
 -leggere tutti i dialoghi
 
+<<<<<<< HEAD
 -aggiungere div sopra canvas per far partire gioco
 -bug dialoghi: quando risposta 2 deve tornare su risposta 1, quando si clicca
 non cambia focus chat
 -crazy doctor non va invio
 -se crazy doctor non va l'append info
+=======
+-livello 4 e 6: quando spunta il dottore, si rompe la chat
+>>>>>>> refs/remotes/origin/master
