@@ -239,6 +239,18 @@ height: 100%;
 	cursor: not-allowed !important;
 }
 
-.dialog_focus_btn, .chat_focus_btn {
+.dialog_focus_btn, .chat_focus_btn, .start_focus_btn {
 	border-color: red !important;
+}
+
+#cover_canvas {
+	background-color: green;
+	opacity: 0.6 !important;
+
+	
+}
+
+#canvas_play_game {
+	cursor: pointer;
+	width: 5%;
 }

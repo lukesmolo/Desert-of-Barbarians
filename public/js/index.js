@@ -80,6 +80,13 @@ $(document).ready(function() {
 		sec++;
 	}, 1000);
 
+	$('#cover_canvas').width(CANVAS_WIDTH);
+	$('#cover_canvas').height(CANVAS_HEIGHT);
+	$('#cover_canvas').offset($('canvas').offset());
+	x_coordinate = $('canvas').offset().left+CANVAS_WIDTH/2-($('#canvas_play_game').width()/2);
+	y_coordinate = $('canvas').offset().top+CANVAS_HEIGHT/2-($('#canvas_play_game').height()/2);
+	$('#canvas_play_game').offset({'left': x_coordinate, 'top': y_coordinate});
+
 
 });
 
@@ -207,14 +214,15 @@ press_key(e) {
 		what = $('.dialog_focus_btn').attr('id');
 		text = $('#'+what).text();
 		chat_id = $('.chat_focus_btn').attr('id');
-		chat_id = chat_id.replace('_chat_btn', '');
+		if(chat_id !== undefined)
+			chat_id = chat_id.replace('_chat_btn', '');
 
 		if($('#start_level_btn').is(":visible")) {
 			start_level();
-		} else if(current_chat != chat_id) {
+		} else if(chat_id !== undefined && current_chat != chat_id && current_character != 'crazy_doctor') {
 			id = $('.chat_focus_btn').attr('id');
 			$('#'+id).trigger('click');
-		} else {
+		} else if($('#'+what).is(":visible")){
 			send_answer(what);
 		}
 	} else if(e.keyCode == 38 || e.keyCode == 40) {
@@ -236,24 +244,29 @@ press_key(e) {
 		}
 	} else if(e.keyCode == 37 || e.keyCode == 39) {
 		id = $('.chat_focus_btn').attr('id');
-		who = id.replace('_chat_btn', "");
-		index = parseInt(chat_buttons_index[who]);
-		if(proceedToGame === true) {
+		if(id === undefined) {
+			id = 'colonel_chat_btn';
+			$('#'+id).addClass('chat_focus_btn');
+		} else {
+			who = id.replace('_chat_btn', "");
+			index = parseInt(chat_buttons_index[who]);
+			if(proceedToGame === true) {
 
-			if(e.keyCode == 37) {
+				if(e.keyCode == 37) {
 
-				if(index != 1) {
-					$('.chat_focus_btn').removeClass('chat_focus_btn');
-					who  = reverse_chat_buttons_index[(index-1).toString()];
-					id = who+'_chat_btn';
-					$('#'+id).addClass('chat_focus_btn');
-				}
-			} else if(e.keyCode == 39) {
-				if(index != 3) {
-					$('.chat_focus_btn').removeClass('chat_focus_btn');
-					who  = reverse_chat_buttons_index[(index+1).toString()];
-					id = who+'_chat_btn';
-					$('#'+id).addClass('chat_focus_btn');
+					if(index != 1) {
+						$('.chat_focus_btn').removeClass('chat_focus_btn');
+						who  = reverse_chat_buttons_index[(index-1).toString()];
+						id = who+'_chat_btn';
+						$('#'+id).addClass('chat_focus_btn');
+					}
+				} else if(e.keyCode == 39) {
+					if(index != 3) {
+						$('.chat_focus_btn').removeClass('chat_focus_btn');
+						who  = reverse_chat_buttons_index[(index+1).toString()];
+						id = who+'_chat_btn';
+						$('#'+id).addClass('chat_focus_btn');
+					}
 				}
 			}
 		}
@@ -263,6 +276,8 @@ press_key(e) {
 $('.change_chat').on('click', function() {
 	if(!$(this).hasClass('not_clickable')) {
 		$('.dialog_focus_btn').removeClass('dialog_focus_btn');
+		$('.chat_focus_btn').removeClass('chat_focus_btn');
+
 
 		stop_talking();
 		what = $(this).attr('id');
@@ -359,23 +374,24 @@ send_answer(what) {
 
 function
 append_info(what, who, show) {
+	if(current_character != 'crazy_doctor') {
+		$('#info_chat_text').empty();
+		$('#info_chat_text').append(what);
+		$('.chat_focus_btn').removeClass('chat_focus_btn');
+		$('#info_chat_btn').addClass('chat_focus_btn');
 
-	$('#info_chat_text').empty();
-	$('#info_chat_text').append(what);
-	$('.chat_focus_btn').removeClass('chat_focus_btn');
-	$('#info_chat_btn').addClass('chat_focus_btn');
-
-	stop_talking();
-	info_character = who;
-	if(show == 1) {
-		$('#info_chat_btn').trigger('click');
 		stop_talking();
-		$('#'+info_character+'_div_chat_image').addClass('tv_effect');
-		grained('.tv_effect',options);
-		$('#info_chat_text').typewrite({
-			'delay': 10,
-			'callback': stop_talking
-		});
+		info_character = who;
+		if(show == 1) {
+			$('#info_chat_btn').trigger('click');
+			stop_talking();
+			$('#'+info_character+'_div_chat_image').addClass('tv_effect');
+			grained('.tv_effect',options);
+			$('#info_chat_text').typewrite({
+				'delay': 10,
+				'callback': stop_talking
+			});
+		}
 	}
 
 
@@ -394,16 +410,25 @@ show_answers() {
 	$('.not_clickable').removeClass('not_clickable');
 	$('.code_buttons_img').removeClass('not_clickable');
 
+	$('.dialog_focus_btn').removeClass('dialog_focus_btn');
+	$('#'+current_character+'_answer_1').addClass('dialog_focus_btn');
+
+
 	stop_talking();
 	n_answers = (level_dialogs[current_character][n_dialog[current_character]]['answers']).length;
 	if(n_answers > maximum_n_answers) {
 		alert("Too many answers for this dialog");
 	} else {
 		if(n_answers === 0 || left_text === true) {
+
+			//if we have still dialogs left for the character
+			if(level_dialogs[current_character].length !== parseInt(parseInt(n_dialog[current_character])+2)) {
+
 			id = current_character+'_answer_1';
 			$('#'+id).prop('value', 'Next');
 			$('#'+id).text('Next');
 			$('#'+id).show();
+			}
 
 		} else {
 			for(var i = 1; i < n_answers+1; i++) {
@@ -499,8 +524,7 @@ append_dialogs(level) {
 
 	id = current_character+'_chat_text';
 
-	if(level_dialogs[current_character][n_dialog[current_character]]['text'].length !== 0 || level_dialogs[current_character][n_dialog[current_character]]['text'].length !== 0) {
-		$('#next_dialog_img').hide();
+	if(level_dialogs[current_character][n_dialog[current_character]] !== undefined && level_dialogs[current_character][n_dialog[current_character]]['text'].length !== 0) {
 		$('#'+id).empty();
 		text = level_dialogs[current_character][n_dialog[current_character]]['text'][tmp_chat_text_part[current_character]];
 		if(skip_dialog[current_character] == 1 && tmp_chat_text_part[current_character] === 0) {
@@ -772,7 +796,9 @@ make_dialogs(level, dialogs) {
 
 					} else {
 
-						append_info('We properly received your code. Now let\'s win!', 'colonel', 1);
+						if(!((current_level == 4 || current_level == 6) && fail > 1)) {
+							append_info('We properly received your code. Now let\'s win!', 'colonel', 1);
+						}
 						exec_code();
 					}
 				}
