@@ -13,8 +13,8 @@ var app = express();
 
 //to be updated everytime the user changes level, so not necessary a post for reset_code
 var max_n_levels = 9;
-//var username = null;
-var username = 'ale';
+var username = null;
+//var username = 'ale';
 var level = 1;
 
 var levels_keys = ['level1', 'level-2', 'Level3', 'LEVEL4', 'LeVel5', 'level6', 'l-evel7', 'l8', 'L-e-v-e-l9'];
@@ -138,30 +138,48 @@ app.post('/check_key', function(req, res){
 
 app.get('/', function(req, res){
 	res.render('login');
-	//res.render('index');
 });
 app.get('/score', function(req, res){
 	res.render('score');
-	//res.render('index');
 });
 
 app.get('/index', function(req, res){
+	if(username === null) {
+	res.render('login');
+
+	} else {
 
 	make_levels_keys();
 	l = req.query.l;
-	console.log(l);
 	l = levels_hash_keys.indexOf(l)+1;
-	if(l > 0) {
+	if(l !== undefined && parseInt(l) > 0) {
 		level = l;
 	}
 	res.render('index');
+	}
+});
+
+app.get('*', function(req, res) {
+	res.status(404);
+	if (req.accepts('html')) {
+		res.render('404', { url: req.url });
+		return;
+	}
+
+	// respond with json
+	if (req.accepts('json')) {
+		res.send({ error: 'Not found' });
+		return;
+	}
+
+	// default to plain-text. send()
+	res.type('txt').send('Not found');
 });
 
 function
 return_level_code(what) {
 	code_level = null;
 	code_level = fs.readFileSync( __dirname + '/public/levels/level'+what+'.js', 'utf8');
-//	console.log(code_level);
 	return code_level;
 
 }
@@ -171,29 +189,7 @@ return_level_dialog(what) {
 	dialogs = {};
 	var obj = {};
 	obj = JSON.parse(fs.readFileSync('public/static/dialog_level'+what+'.json', 'utf8'));
-	/*
-	dialogs['colonel'] = [];
-	dialogs['assistant'] = [];
-	dialogs['crazy_doctor'] = [];
-	if('colonel' in obj) {
-		if(what in obj['colonel']) {
-			dialogs['colonel'] = obj['colonel'][what];
-		}
-	}
-	if('assistant' in obj) {
-		if(what in obj['assistant']) {
-				dialogs['assistant'] = obj['assistant'][what];
-		}
-	}
-	if('crazy_doctor' in obj) {
-		if(what in obj['crazy_doctor']) {
-			dialogs['crazy_doctor'] = obj['crazy_doctor'][what];
-		}
-	}
-*/
 	return obj;
-
-
 }
 
 app.listen(8000);
