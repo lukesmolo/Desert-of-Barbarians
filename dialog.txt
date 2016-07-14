@@ -8,7 +8,7 @@
 --2--Yes Sir!
 
 /*colonel-1
-""1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa.
+""1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa. You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle.
 
 /*colonel-1
 ""2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle.
@@ -18,7 +18,6 @@
 /*assistant-1
 ""Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask.
 --Sure
-
 
 
 /*assistant-1
@@ -51,13 +50,13 @@
 --2--No, I can do it by myself
 
 /*crazy_doctor-1
-""1--Okay, let's reason using physics: think that the function called "scale" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?
+""1--Okay, let's reason using physics: think that the function called "scale" should return the time that a missile takes to reach the target. If you want to lower this time, what do you have to increase?
 
 /*crazy_doctor-1
 ""2--In that case, I'll won't say a word.
 
 /*colonel-2
-""Good morning, Lieutenent Drogo, and congratulations for completing previous mission. Unluckily, your lack of experience damaged our Antimissile System: your missiles were too fast for our old System and last battle damaged the targeting system.
+""Good morning, Lieutenant Drogo, and congratulations for completing previous mission. Unluckily, your lack of experience damaged our Antimissile System: your missiles were too fast for our old cannons and it ended up damaging the whole targeting component of our Anti Missilistic System.
 --I'm so sorry, Sir
 --I'll fix it, Sir
 
@@ -84,7 +83,7 @@
 --2--No, just wanted to say hi
 
 /*assistant-2
-""1-- If you look at the code, it seems that some operations are performed on the coordinates you choose to shoot at, but I'm not sure they're all necessary. Start checking this!
+""1-- If you look at the code, it seems that some operations are performed on the coordinates you choose to shoot at, but I'm not sure they're all necessaries. Start checking this!
 
 /*assistant-2
 ""2-- Don't waste time. Enemy is close!
@@ -99,7 +98,7 @@
 --2--You're not my favorite in any field
 
 /*crazy_doctor-2
-""1--First rule of modifying someone else's code: understand what the code does. event.pageX and event.pageY are the coordinates - $eccecc are correction for the screen positioning, but what's the sense of these other numbers, it there's any?
+""1--First rule of modifying someone else's code: understand what the code does. event.pageX and event.pageY are the coordinates, we subtract to them offLeft and offTop, to correct the screen positioning, but what's the sense of these other numbers, it there's any? Reflect kid, reflect.
 --Got it
 
 /*crazy_doctor-2
@@ -150,7 +149,7 @@
 --2--No, please, talk me about the weather
 
 /*crazy_doctor-3
-""1--I'll let you know something that will be very useful also in next missions: you code console is smart. Not smart as its creator -me, modestly- but cant help you while you're coding: it highlights key words and, on the left of line numbers, tells you if there's something wrong. I said enough, for today
+""1--I'll let you know something that will be very useful also in next missions: your code console is smart. Not smart as its creator -me, modestly- but cant help you while you're coding: it highlights key words and, on the left of line numbers, tells you if there's something wrong in that line. I said enough, for today
 --1--Thank you Gilbert!
 
 /*crazy_doctor-3
@@ -200,7 +199,7 @@
 --Yes, Melissa
 
 /*assistant-4
-""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days.
+""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days. Apparently, there are 18 areas where you can build towers or cannons, ordered from left to right, but you have to discover by yourself the right positions.s
 --I can do it!
 
 /*crazy_doctor-4
@@ -210,10 +209,10 @@
 /*crazy_doctor-4
 ""Nono, we bought them used on eBay, sent from China. Anyway this mission can seem a little bit obscure for you. May I help you?
 --1--Yes, please
---2--No, I'll search for the warranty and contact seller.
+--2--No, I'll contact the seller.
 
 /*crazy_doctor-4
-""1--Let's put all pieces together: first, you have 9 days of time for the whole job. Every time new castle(i) or new antiMissileBattery(i) a counter gets incremented by 1, if at the end of the program it's greater than 9, the building won't take place. Second, our fortress have 18 building slots, if you choose the wrong position the building won't take place. The correct positions for towers are 3, 5, 7, 11, 13, 15; for cannons are 1, 9, 17. And please, PLEASE, use loops!
+""1--Let's put all pieces together: first, you have 9 days of time for the whole job. Every time you invoke "new castle(i)" or "new antiMissileBattery(i)" a counter gets incremented by 1, if at the end of the program it's greater than 9, the building won't take place. Second, our fortress have 18 building slots, if you choose the wrong position the building won't take place. The correct positions for towers are 3, 5, 7, 11, 13, 15; for cannons are 1, 9, 17. And please, PLEASE, use loops!
 --Gilbert, you're a real genius!
 
 /*crazy_doctor-4
@@ -229,7 +228,7 @@
 --What effect has,this project?
 
 /*colonel-5
-""I know that it will be hard to believe, for you, but it stops the flow of time.
+""I know that it will be hard to believe, for you, but it stops the regular flow of time.
 --Are you joking, sir?
 
 /*colonel-5
@@ -270,7 +269,7 @@
 --2--No, I can do it by myself
 
 /*crazy_doctor-5
-""1--Your mission is to revert this big mess, to a simple function that checks if the x are too high or too low. I think that you can save just the two outer loops and it should work.
+""1--Your mission is to revert this big mess, to a simple function that checks if the x are too high or too low. I think that you can save just the two outer loops and it should work. Ah, I almost forget: you have also to change the if: they should just check that the clicked point is in the valid interval, that is that i is equal to...which variable? 
 --Thank you, Gilbert
 
 /*crazy_doctor-5

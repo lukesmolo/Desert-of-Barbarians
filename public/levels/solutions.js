@@ -9,8 +9,45 @@ function initializeObf() {
 	initializeLevel();
 }
 
-//level 5
+//level5
 
+function checkHeightObf(y) {
+	var admitted = false;
+	var admittedTop = false;
+	var admittedBottom = false;
+	var alreadySetTop = false;
+	var alreadySetBottom = false;
+	for (i = 0; i <= CANVAS_HEIGHT*6/8; i++){
+				if (i == y) {
+					admittedBottom = true;
+					alreadySetBottom = true;
+				}
+				else {
+					if (!alreadySetBottom){
+						admittedBottom = false;
+					}
+				}
+	}
+	for (i = CANVAS_HEIGHT; i >= CANVAS_HEIGHT/8; i--){
+				if (i == y) {
+					admittedTop = true;
+					alreadySetTop = true;
+				}
+				else {
+					if (!alreadySetTop){
+						admittedTop = false;
+					}
+				}
+	}
+	console.log(admittedTop);
+		console.log(admittedBottom);
+
+	admitted = admittedTop && admittedBottom;
+	return admitted;
+}
+
+
+//level 5
 function checkHeightObf(y) {
 	if (y >= CANVAS_HEIGHT/8 && y <= CANVAS_HEIGHT*6/8) {return true}
 	else return false;

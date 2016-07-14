@@ -43,7 +43,7 @@
         {
             "answers": [], 
             "id": 3, 
-            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa."
+            "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa. You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
         }, 
         {
             "answers": [
@@ -85,7 +85,7 @@
         {
             "answers": [], 
             "id": 5, 
-            "text": "1--Okay, let's reason using physics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what you have to increase?"
+            "text": "1--Okay, let's reason using physics: think that the function called \"scale\" should return the time that a missile takes to reach the target. If you want to lower this time, what do you have to increase?"
         }, 
         {
             "answers": [], 

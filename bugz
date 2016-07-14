@@ -2,7 +2,8 @@
 -giocabilità
 
 -togliere codice giusto da 7 8 9
--leggere tutti i dialoghi
+
+-hash per i livelli
 
 <<<<<<< HEAD
 -aggiungere div sopra canvas per far partire gioco
@@ -11,5 +12,3 @@ non cambia focus chat
 -crazy doctor non va invio
 -se crazy doctor non va l'append info
 =======
--livello 4 e 6: quando spunta il dottore, si rompe la chat
->>>>>>> refs/remotes/origin/master

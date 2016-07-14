@@ -167,9 +167,9 @@ createEmemyMissiles(){
 	var targets = viableTargets();
 	switch (current_level){
 			case 1: numMissiles = 7; break;
-			case 7: numMissiles = 16; break;
+			case 7: numMissiles = 15; break;
 			case 8: numMissiles = 100; break;
-			case 9: numMissiles = 12; break;
+			case 9: numMissiles = 11; break;
 			default: numMissiles = 10;
 	}
 	for( var i = 0; i < numMissiles; i++ ) {
@@ -229,8 +229,8 @@ var drawcastles = function() {
 		//for level 4 and 6 crazy doctor is triggered when player cannot build castles for 2 times
 		if (current_level == 4 || current_level == 6){
 			fail++;
-			//max_n_fails+1, because called first time automatically with buildTime 36
-			if(fail == max_n_fails+2) {
+			//max_n_fails+3, because called first time automatically with buildTime 36
+			if(fail == max_n_fails+3) {
 				$('#crazy_doctor_chat_btn').trigger('click');
 			}
 		}
@@ -554,7 +554,7 @@ shootWithOffset(x, y, offLeft, offTop){
 	correctedY = y - offTop;
 	totalMissilesUsed++;
 	if (current_level == 2) {
-		playerShoot(1.5*correctedX, correctedY+45);
+		playerShoot(1.5*correctedX, correctedY+75);
 	} else if(current_level == 7) {
 		playerShoot2(correctedX, correctedY);
 		totalMissilesUsed++;
@@ -739,6 +739,7 @@ checkEndLevel() {
 			if(defaultCode != editor.getSession().getValue() ){
 				append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 1);
 				current_level++;
+				fail = 0;
 				end_level();
 			}
 			else {//if player accidentally won the level, without coding
@@ -747,7 +748,7 @@ checkEndLevel() {
 		}
 		else {
 			fail++;
-			if(fail == max_n_fails) {
+			if(fail == max_n_fails && current_level != 4 && current_level != 6) {
 				$('#crazy_doctor_chat_btn').trigger('click');
 			} else {
 				append_info("We can't surrender! Are you ready to fight again?", 'colonel', 1);
