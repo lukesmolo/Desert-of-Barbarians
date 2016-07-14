@@ -474,18 +474,30 @@ end_level() {
 	$('.code_buttons_img').addClass('not_clickable');
 	$('#levels_completed_summary').empty();
 	game_score["levels_completed"].push(current_level-1);
+
 	l_completed = '<p>';
 	for(i = 0; i < game_score['levels_completed'].length; i++) {
 		if(i == game_score['levels_completed'].length-1) {
 			l_completed += game_score['levels_completed'][i];
 
 		} else {
-			l_completed += game_score['levels_completed'][i]+',';
+			l_completed += game_score['levels_completed'][i]+', ';
 		}
 	}
 	l_completed += '</p>';
 	$('#levels_completed_summary').append(l_completed);
+	$('#avg_time_summary').empty();
+	avg_time = 'n.a';
 
+	if(game_score['levels_completed'].length !== 0) {
+		avg_time = parseInt((new Date() - d) / 1000);
+		avg_time /= game_score['levels_completed'].length;
+		m = parseInt(avg_time/60);
+		s = parseInt(avg_time%60);
+		$('#avg_time_summary').text(m+" m " + s +" s");
+	} else {
+		$('#avg_time_summary').text(avg_time);
+	}
 
 	if(current_level < max_n_levels+1) {
 		$('#start_level_btn').text('Start Level '+current_level);
@@ -629,22 +641,13 @@ make_dialogs(level, dialogs) {
 				$('#username_summary').empty();
 				$('#military_rank_summary').empty();
 
-				$('#avg_time_summary').empty();
+
 				$('#missiles_used_summary').empty();
 
 				$('#username_summary').append(data.username);
 				$('#missiles_used_summary').text(totalMissilesUsed);
 
-				avg_time = 'n.a';
-				if(game_score['levels_completed'].length !== 0) {
-					avg_time = parseInt((new Date() - d) / 1000);
-					avg_time /= game_score['levels_completed'].length;
-					m = parseInt(avg_time/60);
-					s = parseInt(avg_time%60);
-					$('#avg_time_summary').text(m+" m " + s +" s");
-				} else {
-					$('#avg_time_summary').text(avg_time);
-				}
+
 
 
 				times = current_level % 3; //3 subsets of levels
@@ -755,7 +758,9 @@ make_dialogs(level, dialogs) {
 	function
 		end_game() {
 
-			game_score["total_time"] = parseInt((new Date() - d) / 1000);
+			game_score["total_time"] = $('#total_time_summary').text();
+			game_score["avg_time"] = $('#avg_time_summary').text();
+			game_score["totalMissilesUsed"] = totalMissilesUsed;
 			data = game_score;
 			data = JSON.stringify(data);
 

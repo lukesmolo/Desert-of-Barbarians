@@ -21,7 +21,6 @@ var levels_keys = ['level1', 'level-2', 'Level3', 'LEVEL4', 'LeVel5', 'level6', 
 var levels_hash_keys = [];
 
 var score = {};
-var levels_completed = [];
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
@@ -65,18 +64,15 @@ app.post('/login', function(req, res){
 app.post('/score', function(req, res){
 	console.log('body: ' + JSON.stringify(req.body));
 	body = req.body;
-	d = new Date();
-	n = d.getTime();
-	diff_time = n - body['start_time'];
-	score['diff_time'] = diff_time;
-	score['levels_completed'] = body["levels_completed"];
-	score['username'] = username;
-	score['level'] = level;
+	body['username'] = username;
+	body['level'] = level;
+	console.log('body: ' + JSON.stringify(body));
 
-	res.send({ status: 'OK', 'redirect':'/score', 'diff': diff_time});
+	res.send({ status: 'OK', 'redirect':'/score'});
 });
 
 app.get('/get_score', function(req, res){
+	score = {"levels_completed":[3, 4, 5, 9],"total_time":"1 m 23 s","avg_time":"0 m 2 s","totalMissilesUsed":53,"username":"ale","level":9};
 	res.send(score);
 });
 
