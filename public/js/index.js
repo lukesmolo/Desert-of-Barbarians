@@ -605,6 +605,7 @@ get_level(level) {
 		$('#missiles_used_summary').empty();
 
 		$('#username_summary').append(data.username);
+		$('#missiles_used_summary').text(tot);
 		times = current_level % 3; //3 subsets of levels
 		if(times === 0) {
 			times = 3;
