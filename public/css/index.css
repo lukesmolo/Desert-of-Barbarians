@@ -59,6 +59,9 @@ html {
 	height: 100%;
 	width: 100%;
 	position: fixed;
+	background-image: url("../images/neon_grid.jpg");
+	background-size: 100%;
+
 }
 #text_editor {
 	font-family: vt323;

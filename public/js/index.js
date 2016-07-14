@@ -8,7 +8,7 @@ var current_character = "colonel";
 var current_chat = 'colonel';
 var current_panel = "main";
 var maximum_n_answers = 3;
-var max_chat_length = 140;
+var max_chat_length = 135;
 var tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var left_text = false;
@@ -425,13 +425,13 @@ show_answers() {
 		if(n_answers === 0 || left_text === true) {
 
 			//if we have still dialogs left for the character
-			if(level_dialogs[current_character].length !== parseInt(parseInt(n_dialog[current_character])+2)) {
+			//if(level_dialogs[current_character].length !== parseInt(parseInt(n_dialog[current_character])+2)) {
 
 			id = current_character+'_answer_1';
 			$('#'+id).prop('value', 'Next');
 			$('#'+id).text('Next');
 			$('#'+id).show();
-			}
+			//}
 
 		} else {
 			for(var i = 1; i < n_answers+1; i++) {
