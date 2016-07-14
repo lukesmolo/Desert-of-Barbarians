@@ -34,9 +34,11 @@ app.set('view engine', 'html');
 
 function
 make_levels_keys() {
+		levels_hash_keys = [];
 for(var i = 0; i < max_n_levels; i++) {
-		levels_hash_keys.push(levels_keys[i]);
-//		levels_hash_keys.push(crypto.createHash('md5').update(username+levels_keys[i]).digest("hex").substring(0,8));
+		//levels_hash_keys.push(levels_keys[i]);
+
+		levels_hash_keys.push(crypto.createHash('md5').update(username+levels_keys[i]).digest("hex").substring(0,8));
 	}
 }
 
@@ -72,7 +74,7 @@ app.post('/score', function(req, res){
 });
 
 app.get('/get_score', function(req, res){
-	score = {"levels_completed":[3, 4, 5, 9],"total_time":"1 m 23 s","avg_time":"0 m 2 s","totalMissilesUsed":53,"username":"ale","level":9};
+	//score = {"levels_completed":[3, 4, 5, 9],"total_time":"1 m 23 s","avg_time":"0 m 2 s","totalMissilesUsed":53,"username":"ale","level":9};
 	res.send(score);
 });
 
@@ -92,7 +94,6 @@ app.get('/reset_code', function(req, res){
 
 app.post('/get_level', function(req, res){
 
-	make_levels_keys();
 	console.log('body: ' + JSON.stringify(req.body));
 	req_level = parseInt(req.body.level);
 	if(req_level != -1)
@@ -149,7 +150,6 @@ app.get('/index', function(req, res){
 
 	} else {
 
-	make_levels_keys();
 	l = req.query.l;
 	l = levels_hash_keys.indexOf(l)+1;
 	if(l !== undefined && parseInt(l) > 0) {
