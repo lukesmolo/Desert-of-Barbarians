@@ -324,8 +324,9 @@ height: 100%;
 }
 
 .my_btn{
-	background-color: white;
-	color: green;
+	background-color: rgba(0, 50, 0, 0.85);
+	color: white;
+	border-color: green;
 	width: 32%;
 	font-family: vt323 !important;
 	font-size: 20px !important;
