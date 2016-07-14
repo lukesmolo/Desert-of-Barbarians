@@ -379,7 +379,7 @@ AntiMissileBattery.prototype.draw = function() {
 		y = this.y + delta[i][1];
 
 		// Draw a missile
-		ctx.strokeStyle = 'blue';
+		ctx.strokeStyle = 'black';
 		ctx.lineWidth = 2;
 		ctx.beginPath();
 		ctx.moveTo( x, y );
@@ -475,7 +475,7 @@ function PlayerMissile( source, endX, endY ) {
 
 	Missile.call( this, { startX: amb.x,  startY: amb.y,
 		endX: endX,     endY: endY,
-		color: 'green', trailColor: 'blue' } );
+		color: 'green', trailColor: 'black' } );
 
 	var xDistance = this.endX - this.startX,
 	yDistance = this.endY - this.startY;
