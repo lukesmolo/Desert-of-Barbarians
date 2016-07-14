@@ -43,6 +43,7 @@ $(document).ready(function() {
 	editor = ace.edit("text_editor");
 	editor.setTheme("ace/theme/terminal");
 	editor.getSession().setMode("ace/mode/javascript");
+	make_tutorial();
 	$('.replies').hide();
 	$('.send_answer').hide();
 	if(current_level == -1) {
@@ -83,65 +84,49 @@ $(document).ready(function() {
 });
 
 
-function makeReadonly(){
-	var Range = ace.require('ace/range').Range;
-	var range1    = new Range(0,0,0,100);
-	switch (current_level) {
-		case -1:   var range2  = new Range(6, 0, 14 ,100);
-		case 1:   var range2  = new Range(10, 0, 14 ,100);
+function
+make_tutorial(){
+$('#main_btn').first().attr('data-step', '1');
+$('#main_btn').first().attr('data-intro', 'This is the home. Here you can play the game.');
+$('#main_btn').first().attr('data-position', 'right');
 
-	}
-	var markerId1 = editor.getSession().addMarker(range1, "readonly-highlight");
-	var markerId2 = editor.getSession().addMarker(range2, "readonly-highlight");
 
-	editor.keyBinding.addKeyboardHandler({
-		handleKeyboard : function(data, hash, keyString, keyCode, event) {
-			if (hash === -1 || (keyCode <= 40 && keyCode >= 37)) return false;
+$('canvas').attr('data-step', '2');
+$('canvas').attr('data-intro', 'This is the game screen.  Click here to play!');
+$('canvas').attr('data-position', 'right');
 
-			if (intersects(range1)) {
-				return {command:"null", passEvent:false};
-			}
+$('#coding').attr('data-step', '3');
+$('#coding').attr('data-intro', 'This is the game console.  Write here your code!');
+$('#coding').attr('data-position', 'right');
 
-			if (intersects(range2)) {
-				return {command:"null", passEvent:false};
-			}
-		}
-	});
+$('#chat_window').attr('data-step', '4');
+$('#chat_window').attr('data-intro', 'This is the chat window. Here you will receive orders and tips.');
+$('#chat_window').attr('data-position', 'left');
 
-	function intersects(range) {
-		return editor.getSelectionRange().intersects(range);
-	}
+$('#replies').attr('data-step', '5');
+$('#replies').attr('data-intro', 'This is the answer console. Here you can send your answer during a conversation.');
+$('#replies').attr('data-position', 'left');
 
-	/*
-	//FIXME to prevent cut and paste
-	//prevent keyboard editing
-	range1.start  = editor.getSession().doc.createAnchor(range1.start);
-	range1.end = editor.getSession().doc.createAnchor(range1.end);
-	range1.end.$insertRight = true;
-	//prevent keyboard editing
-	range2.start  = editor.getSession().doc.createAnchor(range2.start);
-	range2.end = editor.getSession().doc.createAnchor(range2.end);
-	range2.end.$insertRight = true;
+$('#send_code_btn').attr('data-step', '6');
+$('#send_code_btn').attr('data-intro', 'Press this button when your code is ready to be executed.');
+$('#send_code_btn').attr('data-position', 'top');
 
-	function before(obj, method, wrapper) {
-	var orig = obj[method];
-	obj[method] = function() {
-	var args = Array.prototype.slice.call(arguments);
-	return wrapper.call(this, function(){
-	return orig.apply(obj, args);
-	}, args);
-	}
+$('#reset_code_btn').attr('data-step', '7');
+$('#reset_code_btn').attr('data-intro', 'Press this button when you need to reset the level code.');
+$('#reset_code_btn').attr('data-position', 'top');
 
-	return obj[method];
-	}
+$('#conversations_btn').first().attr('data-step', '8');
+$('#conversations_btn').first().attr('data-intro', 'This is the conversations panel. Here you can read all the previous conversations.');
+$('#conversations_btn').first().attr('data-position', 'right');
 
-	function preventReadonly(next, args) {
-	if (intersects(range1)) return;
-	if (intersects(range2)) return;
-	next();
-	}*/
+$('#settings_btn').first().attr('data-step', '9');
+$('#settings_btn').first().attr('data-intro', 'This is the settings panel. Here you can see your progress and you can change level.');
+$('#settings_btn').first().attr('data-position', 'right');
+
 
 }
+
+
 
 $('#start_level_btn').on('click', function() {
 	start_level();
@@ -156,7 +141,23 @@ $('#exit_btn').on('click', function() {
 
 $('#tutorial_btn').on('click', function() {
 	$('#main_btn').trigger('click');
-	introJs().start();
+	introJs().onchange(function(targetElement) {
+		id = $(targetElement).attr('id');
+		if(id == 'conversations_btn') {
+			$('#'+id).trigger('click');
+		} else if(id == 'settings_btn') {
+			$('#'+id).trigger('click');
+		}
+
+	}).onexit(function(){
+		$('#main_btn').trigger('click');
+
+	}).oncomplete(function(){
+		$('#main_btn').trigger('click');
+
+	}).start();
+
+
 });
 
 $('#send_code_btn').on('click', function() {
@@ -194,9 +195,9 @@ $('#reset_level_hash_key_btn').on('click', function() {
 });
 
 if (navigator.userAgent.match(/Firefox/i)) {
-	    $(document).keypress(press_key);
+	$(document).keypress(press_key);
 } else {
-	    $(document).keydown(press_key);
+	$(document).keydown(press_key);
 }
 
 function
@@ -392,7 +393,7 @@ show_answers() {
 
 	$('.not_clickable').removeClass('not_clickable');
 	$('.code_buttons_img').removeClass('not_clickable');
-	
+
 	stop_talking();
 	n_answers = (level_dialogs[current_character][n_dialog[current_character]]['answers']).length;
 	if(n_answers > maximum_n_answers) {
@@ -449,16 +450,16 @@ end_level() {
 	$('#levels_completed_summary').empty();
 	game_score["levels_completed"].push(current_level-1);
 	l_completed = '<p>';
-		for(i = 0; i < game_score['levels_completed'].length; i++) {
-			if(i == game_score['levels_completed'].length-1) {
-				l_completed += game_score['levels_completed'][i];
+	for(i = 0; i < game_score['levels_completed'].length; i++) {
+		if(i == game_score['levels_completed'].length-1) {
+			l_completed += game_score['levels_completed'][i];
 
-			} else {
-				l_completed += game_score['levels_completed'][i]+',';
-			}
+		} else {
+			l_completed += game_score['levels_completed'][i]+',';
 		}
-		l_completed += '</p>';
-		$('#levels_completed_summary').append(l_completed);
+	}
+	l_completed += '</p>';
+	$('#levels_completed_summary').append(l_completed);
 
 
 	if(current_level < max_n_levels+1) {
@@ -572,87 +573,87 @@ make_dialogs(level, dialogs) {
 			level_dialogs[key].splice(index, 0, obj);
 
 		}
-	});
-	//append_dialogs(level);
-}
-
-function
-get_level(level) {
-
-	data = { "request": "get_level", "level": level};
-	data = JSON.stringify(data);
-
-	return $.ajax( {
-		type: "POST",
-		dataType: "json",
-		processData: false,
-		contentType: 'application/json; charset=utf-8',
-		url: "/get_level",data: data
-	}).done( function (data, stato) {
-		if(current_level == -1) {
-			current_level = data.level;
-			missileCommand();
-		} else {
-			current_level = data.level;
-		}
-		level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
-		$('.conversations_text').append(level_text);
-		editor.setValue(data.body);
-
-		$('#left_jump_level').empty();
-		$('#right_jump_level').empty();
-		$('#username_summary').empty();
-		$('#military_rank_summary').empty();
-
-		$('#avg_time_summary').empty();
-		$('#missiles_used_summary').empty();
-
-		$('#username_summary').append(data.username);
-		$('#missiles_used_summary').text(totalMissilesUsed);
-
-		avg_time = 'n.a';
-		if(game_score['levels_completed'].length !== 0) {
-			avg_time = parseInt((new Date() - d) / 1000);
-			avg_time /= game_score['levels_completed'].length;
-			m = parseInt(avg_time/60);
-			s = parseInt(avg_time%60);
-			$('#avg_time_summary').text(m+" m " + s +" s");
-		} else {
-			$('#avg_time_summary').text(avg_time);
-		}
-
-
-		times = current_level % 3; //3 subsets of levels
-		if(times === 0) {
-			times = 3;
-		}
-		medal_n = parseInt(current_level/3-0.5)+1;
-		for(i = 0; i < times; i++) {
-			img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
-			$('#military_rank_summary').append(img);
-		}
-
-		$.each(data.keys, function(index, value) {
-			k = '<p>Level '+(parseInt(index)+1)+'</p>';
-			v = '<p>'+value+'</p>';
-
-			$('#left_jump_level').append(k);
-			$('#right_jump_level').append(v);
-
 		});
-		
+	//append_dialogs(level);
+	}
+
+	function
+		get_level(level) {
+
+			data = { "request": "get_level", "level": level};
+			data = JSON.stringify(data);
+
+			return $.ajax( {
+				type: "POST",
+				dataType: "json",
+				processData: false,
+				contentType: 'application/json; charset=utf-8',
+				url: "/get_level",data: data
+			}).done( function (data, stato) {
+				if(current_level == -1) {
+					current_level = data.level;
+					missileCommand();
+				} else {
+					current_level = data.level;
+				}
+				level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
+				$('.conversations_text').append(level_text);
+				editor.setValue(data.body);
+
+				$('#left_jump_level').empty();
+				$('#right_jump_level').empty();
+				$('#username_summary').empty();
+				$('#military_rank_summary').empty();
+
+				$('#avg_time_summary').empty();
+				$('#missiles_used_summary').empty();
+
+				$('#username_summary').append(data.username);
+				$('#missiles_used_summary').text(totalMissilesUsed);
+
+				avg_time = 'n.a';
+				if(game_score['levels_completed'].length !== 0) {
+					avg_time = parseInt((new Date() - d) / 1000);
+					avg_time /= game_score['levels_completed'].length;
+					m = parseInt(avg_time/60);
+					s = parseInt(avg_time%60);
+					$('#avg_time_summary').text(m+" m " + s +" s");
+				} else {
+					$('#avg_time_summary').text(avg_time);
+				}
+
+
+				times = current_level % 3; //3 subsets of levels
+				if(times === 0) {
+					times = 3;
+				}
+				medal_n = parseInt(current_level/3-0.5)+1;
+				for(i = 0; i < times; i++) {
+					img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
+					$('#military_rank_summary').append(img);
+				}
+
+				$.each(data.keys, function(index, value) {
+					k = '<p>Level '+(parseInt(index)+1)+'</p>';
+					v = '<p>'+value+'</p>';
+
+					$('#left_jump_level').append(k);
+					$('#right_jump_level').append(v);
+
+				});
 
 
 
-		url = window.location.href;
-		window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
+
+				url = window.location.href;
+				window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
 
 
 
-		make_dialogs(level, data.dialogs);
-		//colonel starts to talk
-		current_character = 'colonel';
-		$('#'+current_character+'_chat_btn').trigger('click');
+				make_dialogs(level, data.dialogs);
+				//colonel starts to talk
+				current_character = 'colonel';
+				$('#'+current_character+'_chat_btn').trigger('click');
 
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
@@ -668,185 +669,185 @@ get_level(level) {
 				defaultCode = editor.getSession().getValue();
 			});
 
-}
+		}
 
-function
-check_key(key) {
+	function
+		check_key(key) {
 
-	data = { "request": "change_level", "level_hash_key": key};
-	data = JSON.stringify(data);
-
-
-	return $.ajax({
-		type: "POST",
-		dataType: "json",
-		processData: false,
-		contentType: 'application/json; charset=utf-8',
-		url: "/check_key",
-		data: data,
-		success: function (data, stato) {
-			if(data.status == 'ERROR') {
-				al = '<p>Key not found. Please try to insert another one<p>';
-				$('#alert_level_hash_key').append(al);
-
-			} else {
-				lev = data.level;
-				get_level(lev);
-				$('#level_hash_key_input_text').val('');
-				$('#settings_close_btn').trigger('click');
-			}
-
-		},
-		error: function (request, stato) {
-			alert("E' avvenuto un errore:\n" + stato);
-		}});
-
-}
+			data = { "request": "change_level", "level_hash_key": key};
+			data = JSON.stringify(data);
 
 
-function
-reset_code() {
+			return $.ajax({
+				type: "POST",
+				dataType: "json",
+				processData: false,
+				contentType: 'application/json; charset=utf-8',
+				url: "/check_key",
+				data: data,
+				success: function (data, stato) {
+					if(data.status == 'ERROR') {
+						al = '<p>Key not found. Please try to insert another one<p>';
+						$('#alert_level_hash_key').append(al);
 
-	data = { "request": "reset_code"};
-	data = JSON.stringify(data);
+					} else {
+						lev = data.level;
+						get_level(lev);
+						$('#level_hash_key_input_text').val('');
+						$('#settings_close_btn').trigger('click');
+					}
 
-	return $.ajax({
-		type: "GET",
-		dataType: "json",
-		processData: false,
-		contentType: 'application/json; charset=utf-8',
-		url: "/reset_code",
-		data: data,
-		success: function (data, stato) {
-			editor.setValue(data.body);
-			append_info('We reverted again the system to its original state. Better it\'s the last time!', 'colonel', 1);
+				},
+				error: function (request, stato) {
+					alert("E' avvenuto un errore:\n" + stato);
+				}});
 
-		},
-		error: function (request, stato) {
-			alert("ERROR:\n" + stato);
-		}});
-}
-
-function
-end_game() {
-
-	game_score["total_time"] = parseInt((new Date() - d) / 1000);
-	data = game_score;
-	data = JSON.stringify(data);
-
-	return $.ajax({
-		type: "POST",
-		dataType: "json",
-		processData: false,
-		contentType: 'application/json; charset=utf-8',
-		url: "/score",
-		data: data,
-		success: function (data, stato) {
-
-			window.location.href = data.redirect;
-
-		},
-		error: function (request, stato) {
-			alert("E' avvenuto un errore:\n" + stato);
-		}});
+		}
 
 
-}
+	function
+		reset_code() {
 
-function send_code() {
-	check_code = 1;
-	level_code = editor.getSession().getValue();
-	error = null;
+			data = { "request": "reset_code"};
+			data = JSON.stringify(data);
 
-	/*check code*/
-	check_code = sandbox(level_code, scope);
-	if(parseInt(check_code) === 1) {
+			return $.ajax({
+				type: "GET",
+				dataType: "json",
+				processData: false,
+				contentType: 'application/json; charset=utf-8',
+				url: "/reset_code",
+				data: data,
+				success: function (data, stato) {
+					editor.setValue(data.body);
+					append_info('We reverted again the system to its original state. Better it\'s the last time!', 'colonel', 1);
 
-		limitEval(level_code + sandbox_context[current_level-1], function(success, returnValue) {
-			if (success) {
-				if(returnValue != 1) {
+				},
+				error: function (request, stato) {
+					alert("ERROR:\n" + stato);
+				}});
+		}
 
-					error = returnValue;
+	function
+		end_game() {
+
+			game_score["total_time"] = parseInt((new Date() - d) / 1000);
+			data = game_score;
+			data = JSON.stringify(data);
+
+			return $.ajax({
+				type: "POST",
+				dataType: "json",
+				processData: false,
+				contentType: 'application/json; charset=utf-8',
+				url: "/score",
+				data: data,
+				success: function (data, stato) {
+
+					window.location.href = data.redirect;
+
+				},
+				error: function (request, stato) {
+					alert("E' avvenuto un errore:\n" + stato);
+				}});
+
+
+		}
+
+	function send_code() {
+		check_code = 1;
+		level_code = editor.getSession().getValue();
+		error = null;
+
+		/*check code*/
+		check_code = sandbox(level_code, scope);
+		if(parseInt(check_code) === 1) {
+
+			limitEval(level_code + sandbox_context[current_level-1], function(success, returnValue) {
+				if (success) {
+					if(returnValue != 1) {
+
+						error = returnValue;
+						append_info(error, 'assistant', 1);
+
+					} else {
+
+						append_info('We properly received your code. Now let\'s win!', 'colonel', 1);
+						exec_code();
+					}
+				}
+				else {
+					error = 'The code takes too long to run.  Is there an infinite loop?';
 					append_info(error, 'assistant', 1);
-
-				} else {
-
-					append_info('We properly received your code. Now let\'s win!', 'colonel', 1);
-					exec_code();
 				}
-			}
-			else {
-				error = 'The code takes too long to run.  Is there an infinite loop?';
-				append_info(error, 'assistant', 1);
-			}
-		}, 3000);
-	} else {
-		append_info(check_code, 'assistant', 1);
+			}, 3000);
+		} else {
+			append_info(check_code, 'assistant', 1);
+		}
 	}
-}
 
-function
-exec_code() {
+	function
+		exec_code() {
 
 
-	level_code = editor.getSession().getValue();
+			level_code = editor.getSession().getValue();
 
-	switch (current_level){
-		case 1:
-			//eval('scale = '+check_level_code);
-			scale = new Function('return '+level_code+';')();
-			break;
-		case 2:
-			shootWithOffset = new Function('return ' +level_code+';')();
-			break;
-		case 3: setNumMissiles = new Function('return '+level_code+';')();
-			  break;
-		case 4:
-			  //check how many times constructor is called
-			  count = (level_code.match(/push/g) || []).length;
-			  if (count <= 3 ){
-					buildTime = 0;
-				  initializeObf = new Function('return '+level_code+';')();
-					if (buildTime <= 9) proceedToGame = true;
-				}
-			  else {
-				  error = 'too many constructor invocations!';
-				  append_info(error, 'assistant', 1);
-			  }
-			  break;
-		case 5:
-			  checkHeightObf = new Function('return ' + level_code+';')();
-			  break;
-		case 6:
-			  //check how many times constructor is called
-			  count = (level_code.match(/push/g) || []).length;
-			  if (count <= 3 ){
-				  //check if player used loops
-				  if ( (level_code.match(/for/g) || []).length == 0 && (level_code.match(/while/g) || []).length === 0 ) {
-					  console.log(level_code);
-						buildTime = 0;
-					  initializeRec = new Function('return '+level_code+';')();
-						if (buildTime <= 9) proceedToGame = true;
-				  }
-				  else {
-					  error = 'Loops are not allowed in this level!';
-					  append_info(error, 'assistant', 1);
-				  }
-			  }
-			  else {
-				  error = 'too many constructor invocations!';
-				  append_info(error, 'assistant', 1);
-			  }
-			  break;
-		case 7:
-			  playerShoot2 = new Function('return '+ level_code + ';')();
-			  break;
-		case 8:
-			  autofire = new Function('return '+level_code+';')();
-			  break;
-		case 9:
-			  whichAntiMissileBatteryObf = new Function('return '+level_code+';')();
-			  break;
-	}
-	missileCommand();
-}
+			switch (current_level){
+				case 1:
+					//eval('scale = '+check_level_code);
+					scale = new Function('return '+level_code+';')();
+					break;
+				case 2:
+					shootWithOffset = new Function('return ' +level_code+';')();
+					break;
+				case 3: setNumMissiles = new Function('return '+level_code+';')();
+					  break;
+				case 4:
+					  //check how many times constructor is called
+					  count = (level_code.match(/push/g) || []).length;
+					  if (count <= 3 ){
+						  buildTime = 0;
+						  initializeObf = new Function('return '+level_code+';')();
+						  if (buildTime <= 9) proceedToGame = true;
+					  }
+					  else {
+						  error = 'too many constructor invocations!';
+						  append_info(error, 'assistant', 1);
+					  }
+					  break;
+				case 5:
+					  checkHeightObf = new Function('return ' + level_code+';')();
+					  break;
+				case 6:
+					  //check how many times constructor is called
+					  count = (level_code.match(/push/g) || []).length;
+					  if (count <= 3 ){
+						  //check if player used loops
+						  if ( (level_code.match(/for/g) || []).length == 0 && (level_code.match(/while/g) || []).length === 0 ) {
+							  console.log(level_code);
+							  buildTime = 0;
+							  initializeRec = new Function('return '+level_code+';')();
+							  if (buildTime <= 9) proceedToGame = true;
+						  }
+						  else {
+							  error = 'Loops are not allowed in this level!';
+							  append_info(error, 'assistant', 1);
+						  }
+					  }
+					  else {
+						  error = 'too many constructor invocations!';
+						  append_info(error, 'assistant', 1);
+					  }
+					  break;
+				case 7:
+					  playerShoot2 = new Function('return '+ level_code + ';')();
+					  break;
+				case 8:
+					  autofire = new Function('return '+level_code+';')();
+					  break;
+				case 9:
+					  whichAntiMissileBatteryObf = new Function('return '+level_code+';')();
+					  break;
+			}
+			missileCommand();
+		}
