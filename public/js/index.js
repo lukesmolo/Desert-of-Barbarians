@@ -253,7 +253,7 @@ press_key(e) {
 		} else {
 			who = id.replace('_chat_btn', "");
 			index = parseInt(chat_buttons_index[who]);
-			if(proceedToGame === true) {
+			if(proceedToGame === true || current_level == 4 || current_level == 6) {
 
 				if(e.keyCode == 37) {
 
@@ -460,13 +460,13 @@ start_level() {
 
 	$('.not_clickable').removeClass('not_clickable');
 	$('.code_buttons_img').removeClass('not_clickable');
-	proceedToGame = true;
+	if (current_level != 4 && current_level != 6)
+		proceedToGame = true;
 }
 
 function
 end_level() {
 	proceedToGame = false;
-
 	//re-initialize variables for dialogs
 	left_text = false;
 	tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};

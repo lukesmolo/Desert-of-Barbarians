@@ -170,6 +170,7 @@ createEmemyMissiles(){
 	var targets = viableTargets();
 	switch (current_level){
 			case 1: numMissiles = 7; break;
+			case 3: numMissiles = 8; break;
 			case 7: numMissiles = 15; break;
 			case 8: numMissiles = 100; break;
 			case 9: numMissiles = 11; break;
@@ -228,7 +229,6 @@ var drawcastles = function() {
 		});
 	}
 	else {
-		proceedToGame = false;
 		//for level 4 and 6 crazy doctor is triggered when player cannot build castles for 2 times
 		if (current_level == 4 || current_level == 6){
 			fail++;
@@ -741,9 +741,9 @@ checkEndLevel() {
 		if (totalcastlesSaved() == 6) {
 			if(defaultCode != editor.getSession().getValue() ){
 				append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 1);
-				current_level++;
 				fail = 0;
 				end_level();
+				current_level++;
 			}
 			else {//if player accidentally won the level, without coding
 				append_info("Battle is won, but it was just luck. We need you to code a long lasting solution!", 'colonel', 1);
