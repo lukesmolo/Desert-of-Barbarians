@@ -303,12 +303,12 @@ height: 100%;
 }
 
 .settings-input{
-	width: 50% !important;
+	width: 100% !important;
 }
 
 .settings-title{
 	color: white;
-	font-size: 26px;
+	font-size: 20pt;
 	font-weight: bold;
 }
 
@@ -319,7 +319,7 @@ height: 100%;
 
 .btn{
 	font-family: vt323 !important;
-	font-size: 18px !important;
+	font-size: 14pt !important;
 	border-width: 2px !important;
 }
 
@@ -329,5 +329,13 @@ height: 100%;
 	border-color: green;
 	width: 32%;
 	font-family: vt323 !important;
-	font-size: 20px !important;
+	font-size: 16pt !important;
+}
+
+.right_settings{
+	font-size: 14pt;
+}
+
+.right-header{
+	color: white;
 }

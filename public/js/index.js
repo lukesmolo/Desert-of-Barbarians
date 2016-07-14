@@ -43,7 +43,7 @@ $(document).ready(function() {
 	editor = ace.edit("text_editor");
 	editor.setTheme("ace/theme/terminal");
 	editor.setOptions({
-  fontSize: "16pt"
+  fontSize: "14	pt"
 	});
 	editor.getSession().setMode("ace/mode/javascript");
 	make_tutorial();
