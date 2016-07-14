@@ -47,11 +47,15 @@
 	border: 1px;
 	border-style: solid;
 	height: 30%;
-
+	background-color: rgba(0, 0, 0, 0.85);
 }
 body {
+	width: 100%;
 	height: 100%;
 	overflow: hidden;
+	/*background-color: #0f895e !important*/
+	background-image: url("../images/neon_grid.jpg");
+	background-size: 100%;
 }
 
 html {
@@ -123,6 +127,8 @@ html {
 		margin-right: 0;
 		margin-left: 0;
 		height:100%;
+		background-color: rgba(0, 0, 0, 0.75) !important;
+		border-color: green !important;
 	}
 
 	.navbar-nav,
@@ -150,20 +156,41 @@ html {
 }
 
 .close_img {
-	width: 5%;
+	width: 3%;
 	cursor: pointer;
 }
+
+.conv_img {
+	height: 100%;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 .summary_conversation {
+	background-color: rgba(0, 0, 0, 0.95);
+	font-family: vt323;
+	color: green;
 	top: 20%;
-	height: 60%;
+	height: 75%;
+	width: 27% !important;
 	border: 1px;
 	border-style: solid;
-	margin-left: 5% ;
+	margin-top: -6% !important;
+	margin-left: 3% ;
 	padding-left: 5px !important;
 	padding-right: 3px !important;
-
 }
+
+
+#colonel_conversation{
+	margin-left: 6%;
+}
+
 .settings_panels {
+	background-color: rgba(0, 0, 0, 0.95);
+	font-family: vt323;
+	color: green;
 	top: 15%;
 	height: 70%;
 	border: 1px;
@@ -179,11 +206,14 @@ height: 100%;
 
 
 .conversations_text {
-	height: 90%;
+	padding-top: 3px;
+	height: 75%;
 	width: 100%;
 	overflow-y: auto;
 }
 .conversations_header{
+	font-size: 24px;
+	font-weight: bold;
 	height: 10%;
 	width: 100%;
 }
@@ -239,6 +269,48 @@ height: 100%;
 	cursor: not-allowed !important;
 }
 
-.dialog_focus_btn, .chat_focus_btn {
+.dialog_focus_btn, .chat_focus_btn, .start_focus_btn {
 	border-color: red !important;
+}
+
+#cover_canvas {
+	background-color: green;
+	opacity: 0.6 !important;
+
+
+}
+
+#canvas_play_game {
+	cursor: pointer;
+	width: 5%;
+}
+
+.level_text{
+	color:white;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.conversations_header{
+	height: 25%;
+}
+
+.character_name{
+	color:white;
+	font-size: 16px;
+}
+
+.settings-input{
+	width: 50% !important;
+}
+
+.settings-title{
+	color: white;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.left_info_summary{
+	font-size: 22px;
+	font-weight: bold;
 }

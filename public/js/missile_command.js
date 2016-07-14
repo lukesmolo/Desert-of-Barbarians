@@ -53,7 +53,6 @@ missileCommand() {
 	} else {
 		initialize();
 	}
-	setupListeners();
 }
 
 function
@@ -67,6 +66,10 @@ resetVars() {
 	enemyMissiles = [];
 	clearInterval( timerID ); //FIXME praticamente rimane un piccoli bug: quando l'utente fa il send code senza giocare prima, si rirompe
  	$( '#game_canvas' ).off( 'click' );
+	if(!($('#canvas_play_game').is(":visible"))) {
+		$( '#canvas_play_game').show();
+		$( '#cover_canvas').show();
+	}
 }
 
 
@@ -891,24 +894,29 @@ function autofire(x, y){
 }
 
 // Attach event Listeners to handle the player's input
-function
-setupListeners() {
-		$( '#game_canvas' ).one( 'click', function() {
-			if (proceedToGame) startLevel();
 
-			if (current_level == 8){
-				$( '#game_canvas' ).on( 'click', function( event ) {
-					autofire(event.pageX - $("#game_canvas").offset().left, event.pageY - $("#game_canvas").offset().top);
-				});
-			}
-			else {
-				//subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
-				$( '#game_canvas' ).on( 'click', function( event ) {
-					shootWithOffset(event.pageX, event.pageY, $("#game_canvas").offset().left, $("#game_canvas").offset().top);
-				});
-			}
+$( '#canvas_play_game:visible' ).click( 'click', function(event) {
+	if (proceedToGame) {
+		$( '#canvas_play_game').hide();
+		$( '#cover_canvas').hide();
+		startLevel();
+
+
+
+	}
+
+	if (current_level == 8){
+		$( '#game_canvas' ).on( 'click', function( event ) {
+			autofire(event.pageX - $("#game_canvas").offset().left, event.pageY - $("#game_canvas").offset().top);
 		});
-}
+	}
+	else {
+		//subtractions are necessaries to correct the position of the click (error dependent on left and top offset)
+		$( '#game_canvas' ).on( 'click', function( event ) {
+			shootWithOffset(event.pageX, event.pageY, $("#game_canvas").offset().left, $("#game_canvas").offset().top);
+		});
+	}
+});
 
 $( document ).ready( function() {
 	function respondCanvas(){

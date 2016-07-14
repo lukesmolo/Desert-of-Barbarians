@@ -65,9 +65,9 @@ panel"><img
 			  summary_conversation">
 				  <div id="colonel_conversation_img_div"
 					  class="conversations_header">
-					  <img class="pull-left close_img"
-		src="images/circle.png"
-						    alt="close panel"> COLONEL
+					  <img class="pull-left conv_img"
+		src="images/colonel.png"
+						    alt="colonel"> COLONEL
 				  </div>
 				  <div id="colonel_conversation_text"
 	     class="conversations_text">
@@ -76,9 +76,9 @@ panel"><img
 			  <div id="assistant_conversation" class="col-md-3
 			  summary_conversation">
 				  <div id="assistant_conversation_img_div" class="conversations_header">
-					  <img class="pull-left close_img"
-		src="images/circle.png"
-						    alt="close panel">ASSISTANT
+					  <img class="pull-left conv_img"
+		src="images/assistant.png"
+						    alt="assistant">ASSISTANT
 				  </div>
 				  <div id="assistant_conversation_text"
 	     class="conversations_text">
@@ -88,9 +88,9 @@ panel"><img
 			  <div id="crazy_doctor_conversation" class="col-md-3
 			  summary_conversation">
 				  <div id="crazy_doctor_conversation_img_div" class="conversations_header">
-					  <img class="pull-left close_img"
-		src="images/circle.png"
-						    alt="close panel">CRAZY_DOCTOR
+					  <img class="pull-left conv_img"
+		src="images/crazy_doctor.png"
+						    alt="crazy doctor">CRAZY DOCTOR
 				  </div>
 				  <div id="crazy_doctor_conversation_text"
 	     class="conversations_text">
@@ -118,36 +118,35 @@ panel"><img
     alt="close_panel"></div>
 
 			  <div id="info_summary" class="col-md-5 settings_panels">
-				  <p id="info_summary_title" class="text-center"> About you </p>
+				  <p id="info_summary_title" class="text-center settings-title"> About you </p>
 				  <div id="info_summary" class="col-md-12">
 					  <p class="left_info_summary col-md-6">Username</p>
-					  <p class="col-md-6" id="username_summary">n.a.</p>
+					  <p class="left_info_summary col-md-6" id="username_summary">n.a.</p>
 					  <p class=" left_info_summary col-md-6">Military Rank</p>
-					  <p class="col-md-6"
+					  <p class="left_info_summary col-md-6"
 					  id="military_rank_summary">n.a.</p>
 					  <p class=" left_info_summary col-md-6">Levels Completed</p>
-					  <p class="col-md-6"
+					  <p class="left_info_summary col-md-6"
 					  id="levels_completed_summary">n.a.</p>
 					  <p class=" left_info_summary col-md-6">Total Time</p>
-					  <p class="col-md-6" id="total_time_summary">n.a.</p>
+					  <p class="left_info_summary col-md-6" id="total_time_summary">n.a.</p>
 					  <p class=" left_info_summary col-md-6">Avg Time For Level</p>
-					  <p class="col-md-6" id="avg_time_summary">n.a.</p>
+					  <p class="left_info_summary col-md-6" id="avg_time_summary">n.a.</p>
 					  <p class=" left_info_summary col-md-6">Missiles Used</p>
-					  <p class="col-md-6"
+					  <p class="left_info_summary col-md-6"
 					  id="missiles_used_summary">n.a.</p>
 				  </div>
 
 		  	</div>
 			  <div id="jump_level" class="col-md-5 settings_panels">
-				  <p id="jump_level_summary_title" class="text-center">
+				  <p id="jump_level_summary_title" class="text-center settings-title">
 				  Levels Settings</p>
 
-				  <br>
-				  Please, insert a level you want to play.
 				  <div class="form-group col-xs-12">
-
+            Please, insert a level you want to play.
+            <br>
 					  <label for="level_hash_key_input_text">Level Key:</label>
-					  <input type="text" maxlength="8" class="form-control"
+					  <input type="text" maxlength="8" class="form-control settings-input"
 						    id="level_hash_key_input_text">
 					  <br>
 					  <button id="reset_level_hash_key_btn"  type="button" class="btn
@@ -184,6 +183,14 @@ panel"><img
 						  <div class="crosshair"></div>
 					  </div>
 					  <canvas id="game_canvas"></canvas>
+					  <div id="cover_canvas">
+									  </div>
+<img id="canvas_play_game" class=""
+						src="images/circle.png"
+					alt="play game">
+
+
+
 				  </div>
 				  <div id="coding">
 					  <pre id="text_editor"></pre>
@@ -251,8 +258,9 @@ panel"><img
 					  <div id="replies">
 	<button id="start_level_btn" type="button"
 						   class="send_answer btn btn-success
+						   start_focus_btn
 						   "></button>
-					
+
 						  <div id="colonel_replies" class="replies">
 							  <button id="colonel_answer_1" type="button"
 						   class="send_answer btn btn-success
