@@ -19,6 +19,7 @@ var max_n_levels = 9;
 var game_score = {};
 var totalMissilesUsed = 0;
 var coding = false;
+var tutorial_done = false;
 
 var chat_buttons_index = { "colonel": 1, "assistant": 2, "info": 3};
 var reverse_chat_buttons_index = { "1": "colonel" , "2": "assistant", "3": "info"};
@@ -45,6 +46,20 @@ $(document).ready(function() {
 	editor.setOptions({fontSize: "14pt "});
 	editor.getSession().setMode("ace/mode/javascript");
 	make_tutorial();
+	setInterval(function() {
+		if(current_level == -1 && tutorial_done === false) {
+			if($('#tutorial_btn').hasClass('to_highlight')) {
+				$('#tutorial_btn').removeClass('to_highlight');
+			} else {
+				$('#tutorial_btn').addClass('to_highlight');
+			}
+
+		} else {
+				$('#tutorial_btn').removeClass('to_highlight');
+
+		}
+	}, 1000);
+
 	$('.replies').hide();
 	$('.send_answer').hide();
 	if(current_level == -1) {
@@ -148,6 +163,7 @@ $('#exit_btn').on('click', function() {
 });
 
 $('#tutorial_btn').on('click', function() {
+	tutorial_done = true;
 	$('#main_btn').trigger('click');
 	introJs().onchange(function(targetElement) {
 		id = $(targetElement).attr('id');

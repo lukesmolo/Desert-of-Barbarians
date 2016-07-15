@@ -326,7 +326,7 @@ height: 100%;
 }
 
 .my_btn{
-	background-color: rgba(0, 50, 0, 0.85);
+	background-color: rgba(0, 50, 0, 0.55);
 	color: white;
 	border-color: green;
 	width: 32%;
@@ -344,4 +344,8 @@ height: 100%;
 
 .settings_btn{
 	border-color: green !important;
+}
+
+.to_highlight{
+	background-color: rgba(0, 200, 0, 0.75);
 }

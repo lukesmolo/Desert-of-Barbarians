@@ -1,9 +1,10 @@
-/*colonel-1
-""Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time.
+﻿/*colonel-1
+""Good morning, Lieutenant Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time.
 
 
 /*colonel-1
-""Times have changed and nowadays their attacks are continuous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly
+""Times have changed, and nowadays their attacks are continuous. We need your
+help and your competence. Our Anti-missile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly.
 --1--I have no competences, Sir
 --2--Yes Sir!
 
@@ -16,17 +17,17 @@
 
 
 /*assistant-1
-""Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask.
+""Hi newbie, I'm your assistant, Sub-Lieutenant Melissa Kazushi. I've been here at the front since last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask.
 --Sure
 
 
 /*assistant-1
-""The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript
+""The whole system is written in an ancient and mysterious programming language, that many years ago computer scientists use to call Javascript
 --1--I can do it
 --2--Tell me more for this mission
 
 /*assistant-1
-""1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game.
+""1--We'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game.
 
 /*assistant-1
 ""2--You have to increase the speed of our missiles. Looks like it's enough to find the right variable, in this portion of the system code, and change its value.
@@ -105,8 +106,8 @@
 ""2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore.
 
 /*colonel-3
-""Good morning, Lieutenent Drogo, this time you completed last mission without any unpleasant sideffect. Are you ready for next mission?
---I'm born ready, sir!
+""Good morning, Lieutenant Drogo, this time you completed last mission without any unpleasant side effect. Are you ready for next mission?
+--I was born ready, sir!
 
 /*colonel-3
 ""Peace is temporary in these dangerous times. As you can see, after latest battles, we only have one missile in our cannons.
@@ -114,23 +115,23 @@
 --2--So what?
 
 /*colonel-3
-""1--Your mission is to adjust and run the mechanism that autoloads the missiles in our cannons.
+""1--Your mission is to adjust and run the mechanism that auto loads the missiles in our cannons.
 --Yes Sir! Consider it as done!
 
 /*colonel-3
-""2--SO WHAT? First, always call me Sir. Second, don't dare to reply to me in such a arrogant way, or you'll be given to Barbarians as a breakfast cookie. Third, go to fix the mechanism that autoloads missiles in our cannons. NOW.
+""2--SO WHAT? First, always call me Sir. Second, don't dare to reply to me in such a arrogant way, or you'll be given to Barbarians as a breakfast cookie. Third, go to fix the mechanism that auto loads missiles in our cannons. NOW.
 --YESSIR!
 
 /*assistant-3
-""Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle.
+""Hi newbie, or maybe I shall start to call you Lieutenant. It's been a while since your first battle.
 --1--I would appreciate it
 --2--Don't waste time, Melissa!
 
 /*assistant-3
-""1--Okay, Lieutenent, are you ready for the new mission? As you'll already know, we have to fix that old and rusty autoload mechanism
+""1--Okay, Lieutenant, are you ready for the new mission? As you'll already know, we have to fix that old and rusty auto load mechanism
 
 /*assistant-3
-""2--As you prefer, newbie. So, let's ignore formalities. As you'll already know, we have to fix that old and rusty autoload mechanism
+""2--As you prefer, newbie. So, let's ignore formalities. As you'll already know, we have to fix that old and rusty auto load mechanism
 
 /*assistant-3
 ""After a couple of battles, I think that you can trust me. Shall I give you my opinion?
@@ -140,7 +141,7 @@
 ""The code seems generally correct, maybe there are just some details to be fixed and some little things that are missing
 
 /*crazy_doctor-3
-""Are you waitin' for an advice, boy?
+""Are you waiting' for an advice, boy?
 --Hi Gilbert, just in time!
 
 /*crazy_doctor-3
@@ -164,7 +165,7 @@
 --2--And I've to rebuild all?
 
 /*colonel-4
-""1--Major Guidi fell asleep during his guard duty. He has been hanged at dawn.
+""1--Major Guido fell asleep during his guard duty. He has been hanged at dawn.
 --...
 
 /*colonel-4
@@ -176,7 +177,7 @@
 --Builder drones?
 
 /*colonel-4
-""Yes, Lieutenent, we do have builder drones. But their source code is not efficient enough: as it is, they would take at least 36 days to rebuild all.
+""Yes, Lieutenant, we do have builder drones. But their source code is not efficient enough: as it is, they would take at least 36 days to rebuild all.
 --What is the problem, Sir?
 
 /*colonel-4
@@ -199,7 +200,7 @@
 --Yes, Melissa
 
 /*assistant-4
-""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days. Apparently, there are 18 areas where you can build towers or cannons, ordered from left to right, but you have to discover by yourself the right positions.
+""Oh, you called with my name! You learned good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days. Apparently, there are 18 areas where you can build towers or cannons, ordered from left to right, but you have to discover by yourself the right positions.
 --I can do it!
 
 /*crazy_doctor-4
@@ -224,7 +225,7 @@
 --YESSIR!
 
 /*colonel-5
-""This time you have to repare a damage done by Sub-Lieutenant Kazushi. She found and executed and old and experimental project for our cannons, the result is that actually we are not ready to fight.
+""This time you have to repair a damage done by Sub-Lieutenant Kazushi. She found and executed and old and experimental project for our cannons, the result is that actually we are not ready to fight.
 --What effect has,this project?
 
 /*colonel-5
@@ -345,7 +346,7 @@
 --Which kind of weapon?
 
 /*colonel-7
-""My suggestion is to build a double shoot cannon, able to shoot two missiles at a time. In that way, we can destroy easily an higher number of enemy missiles. Sub-Liuetenant Kazushi will give you all the necessary details.
+""My suggestion is to build a double shoot cannon, able to shoot two missiles at a time. In that way, we can destroy easily an higher number of enemy missiles. Sub-Lieutenant Kazushi will give you all the necessary details.
 --Yes, Sir!
 
 /*assistant-7
@@ -379,7 +380,7 @@
 --2--No, I think I can do it
 
 /*crazy_doctor-7
-""1--Let's go to the point, it seems that you had precise indications, but, as Romans used to say, "Repetita iuvat": to create a new missile at a specified position, call playerMissiles.push( new PlayerMissile( source, x, y ) ) . If you want to create 2 missiles at a time, it's enough to call this function two times for every click. I suggest you not to exaggerate with a triple or foufold cannon: you'll only waste missiles. I also suggest to shift the position of the second missile adding a constant number to the x, while creating the missile.
+""1--Let's go to the point, it seems that you had precise indications, but, as Romans used to say, "Repetita iuvat": to create a new missile at a specified position, call playerMissiles.push( new PlayerMissile( source, x, y ) ) . If you want to create 2 missiles at a time, it's enough to call this function two times for every click. I suggest you not to exaggerate with a triple or fourfold cannon: you'll only waste missiles. I also suggest to shift the position of the second missile adding a constant number to the x, while creating the missile.
 --Your help is always precious!
 
 /*crazy_doctor-7
@@ -398,7 +399,7 @@
 --That's all, Sir?
 
 /*colonel-8
-""Clearly no. I order you to build a new weapon: an automatic missile defense system, that shoots missiles every second or so is strategic points over our towers and cannons. Your assistent Lieutenant Kazushi will give you the details of my plan.
+""Clearly no. I order you to build a new weapon: an automatic missile defense system, that shoots missiles every second or so is strategic points over our towers and cannons. Your assistant Lieutenant Kazushi will give you the details of my plan.
 --Yes, Sir!
 
 /*assistant-8
@@ -441,7 +442,7 @@
 --That's good news, Sir!
 
 /*colonel-9
-""Not at all, Major. The fact is that during last tremendous fight, the system that governed with cannon has to shoot, got broken. A battle in such conditions is unsustainable. You know what i'm going to ask you?
+""Not at all, Major. The fact is that during last tremendous fight, the system that governed with cannon has to shoot, got broken. A battle in such conditions is unsustainable. You know what I'm going to ask you?
 --To fix it, sir?
 
 /*colonel-9
