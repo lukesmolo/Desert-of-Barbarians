@@ -5,6 +5,6 @@ function playerShoot2(x,y) {
 			return;
 		}
 		playerMissiles.push( new PlayerMissile( source, x, y ) );
-		playerMissiles.push( new PlayerMissile( source, x + 20, y ) );
+		playerMissiles.push( new PlayerMissile( source, x + 35, y ) );
 	}
 }

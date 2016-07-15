@@ -77,15 +77,29 @@ function playerShoot2(x,y) {
 			return;
 		}
 		playerMissiles.push( new PlayerMissile( source, x, y ) );
-		playerMissiles.push( new PlayerMissile( source, x + 20, y ) );
+		playerMissiles.push( new PlayerMissile( source, x + 35, y ) );
 	}
 }
 
 //level 8
 function autofire() {
-		timerAutofire = setInterval(
-		function autofire(){
-			for (i = 0; i <= 18; i++)
-				playerShoot(CANVAS_WIDTH*i/18,CANVAS_HEIGHT/2);}
-		, 500);
+        function autofire(){
+            for (i = 0; i <= 18; i++) playerShoot(CANVAS_WIDTH*i/18,CANVAS_HEIGHT/2);
+        }
+		timerAutofire = setInterval(autofire , 500);
+}
+
+//level 9
+function whichAntiMissileBatteryObf(x) {
+	if( x <= CANVAS_WIDTH / 3 ){
+		return firedToOuterThird( 0, 1, 2 );
+	} else if( x <= (2 * CANVAS_WIDTH / 3) ) {
+		if ( antiMissileBatteries[1].hasMissile() ) {
+			return 1;
+		} else {
+			return ( x <= CANVAS_WIDTH / 2 ) ? firedtoMiddleThird( 0, 2 )	: firedtoMiddleThird( 2, 0 );
+		}
+	} else {
+		return firedToOuterThird( 2, 1, 0 );
+	}
 }

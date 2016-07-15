@@ -346,7 +346,7 @@ send_answer(what) {
 	go_to = $("#"+what).attr('data-goto');
 
 
-	answer_text = '<p class="answer_text">YOU:'+text+'</p>';
+	answer_text = '<p><span class="answer_text character_name">YOU</span>:'+text+'</p>';
 	if(text != 'Next') {
 		$('#'+current_character+'_conversation_text').append(answer_text);
 		if(go_to != "undefined") {

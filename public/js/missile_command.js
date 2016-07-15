@@ -741,7 +741,8 @@ checkEndLevel() {
 		//TODO write in some global var the number of castles (and missiles) saved
 		if (totalcastlesSaved() == 6) {
 			if(defaultCode != editor.getSession().getValue() ){
-				append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 2);
+				if (current_level != 9)
+					append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 2);
 				fail = 0;
 				current_level++;
 				end_level();
@@ -905,7 +906,7 @@ $( '#canvas_play_game:visible' ).click( 'click', function(event) {
 	}
 
 	if (current_level == 8){
-		$( '#game_canvas' ).on( 'click', function( event ) {
+		$( '#game_canvas' ).one( 'click', function( event ) {
 			autofire(event.pageX - $("#game_canvas").offset().left, event.pageY - $("#game_canvas").offset().top);
 		});
 	}
