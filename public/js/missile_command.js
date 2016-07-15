@@ -740,7 +740,7 @@ checkEndLevel() {
 		//TODO write in some global var the number of castles (and missiles) saved
 		if (totalcastlesSaved() == 6) {
 			if(defaultCode != editor.getSession().getValue() ){
-				append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 1);
+				append_info("Congrats, you succesfully completed level "+ current_level, 'colonel', 2);
 				fail = 0;
 				current_level++;
 				end_level();

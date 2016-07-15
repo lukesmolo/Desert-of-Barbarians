@@ -68,6 +68,7 @@ app.post('/score', function(req, res){
 	body = req.body;
 	body['username'] = username;
 	body['level'] = level;
+	score = body;
 	console.log('body: ' + JSON.stringify(body));
 
 	res.send({ status: 'OK', 'redirect':'/score'});

@@ -377,7 +377,7 @@ send_answer(what) {
 
 function
 append_info(what, who, show) {
-	if(current_character != 'crazy_doctor') {
+	if(current_character != 'crazy_doctor' || show > 1) {
 		$('#info_chat_text').empty();
 		$('#info_chat_text').append(what);
 		$('.chat_focus_btn').removeClass('chat_focus_btn');
@@ -385,7 +385,7 @@ append_info(what, who, show) {
 
 		stop_talking();
 		info_character = who;
-		if(show == 1) {
+		if(show > 0) {
 			$('#info_chat_btn').trigger('click');
 			stop_talking();
 			$('#'+info_character+'_div_chat_image').addClass('tv_effect');
@@ -500,11 +500,13 @@ end_level() {
 		avg_time /= game_score['levels_completed'].length;
 		m = parseInt(avg_time/60);
 		s = parseInt(avg_time%60);
-		$('#avg_time_summary').text(m+" m " + s +" s");
+		$('#avg_time_summary').text(m+"m " + s +"s");
 	} else {
 		$('#avg_time_summary').text(avg_time);
 	}
 
+
+	$('#missiles_used_summary').empty();
 	$('#missiles_used_summary').text(totalMissilesUsed);
 	if(current_level < max_n_levels+1) {
 		$('#start_level_btn').text('Start Level '+current_level);
@@ -646,12 +648,14 @@ make_dialogs(level, dialogs) {
 				$('#left_jump_level').empty();
 				$('#right_jump_level').empty();
 				$('#username_summary').empty();
+				$('#level_summary').empty();
 				$('#military_rank_summary').empty();
 
 
-				$('#missiles_used_summary').empty();
+
 
 				$('#username_summary').append(data.username);
+				$('#level_summary').append(current_level);
 
 
 
@@ -808,7 +812,7 @@ make_dialogs(level, dialogs) {
 
 					} else {
 
-						if(!((current_level == 4 || current_level == 6) && fail > 1)) {
+						if(!((current_level == 4 || current_level == 6) && fail > 1) || current_character != 'crazy_doctor') {
 							append_info('We properly received your code. Now let\'s win!', 'colonel', 1);
 						}
 						exec_code();
