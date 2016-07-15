@@ -186,7 +186,7 @@
 /*assistant-4
 ""Hi, Drogo. How was speaking with Colonel today? Like walking barefoot on burning coals?
 --1--More or less
---2--Don't joke, today is a dramatic day
+--2--Don't joke,today is a dramatic day
 
 /*assistant-4
 ""1--If you survived to a chat with Colonel this morning, next mission will be a joke for you
@@ -199,7 +199,7 @@
 --Yes, Melissa
 
 /*assistant-4
-""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days. Apparently, there are 18 areas where you can build towers or cannons, ordered from left to right, but you have to discover by yourself the right positions.s
+""Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days. Apparently, there are 18 areas where you can build towers or cannons, ordered from left to right, but you have to discover by yourself the right positions.
 --I can do it!
 
 /*crazy_doctor-4
@@ -269,7 +269,7 @@
 --2--No, I can do it by myself
 
 /*crazy_doctor-5
-""1--Your mission is to revert this big mess, to a simple function that checks if the x are too high or too low. I think that you can save just the two outer loops and it should work. Ah, I almost forget: you have also to change the if: they should just check that the clicked point is in the valid interval, that is that i is equal to...which variable? 
+""1--Your mission is to revert this big mess, to a simple function that checks if the x are too high or too low. I think that you can save just the two outer loops and it should work. Ah, I almost forget: you have also to change the if: they should just check that the clicked point is in the valid interval, that is that i is equal to...which variable?
 --Thank you, Gilbert
 
 /*crazy_doctor-5
