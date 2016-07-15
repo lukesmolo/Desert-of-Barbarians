@@ -170,6 +170,7 @@ createEmemyMissiles(){
 	var targets = viableTargets();
 	switch (current_level){
 			case 1: numMissiles = 7; break;
+			case 2: numMissiles = 9; break;
 			case 3: numMissiles = 8; break;
 			case 7: numMissiles = 15; break;
 			case 8: numMissiles = 100; break;
@@ -901,9 +902,6 @@ $( '#canvas_play_game:visible' ).click( 'click', function(event) {
 		$( '#canvas_play_game').hide();
 		$( '#cover_canvas').hide();
 		startLevel();
-
-
-
 	}
 
 	if (current_level == 8){
