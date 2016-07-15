@@ -6,17 +6,17 @@
                 "2--Don't waste time, Melissa!"
             ], 
             "id": 1, 
-            "text": "Hi newbie, or maybe I shall start to call you Lieutenent. It's been a while since your first battle."
+            "text": "Hi newbie, or maybe I shall start to call you Lieutenant. It's been a while since your first battle."
         }, 
         {
             "answers": [], 
             "id": 2, 
-            "text": "1--Okay, Lieutenent, are you ready for the new mission? As you'll already know, we have to fix that old and rusty autoload mechanism"
+            "text": "1--Okay, Lieutenant, are you ready for the new mission? As you'll already know, we have to fix that old and rusty auto load mechanism"
         }, 
         {
             "answers": [], 
             "id": 3, 
-            "text": "2--As you prefer, newbie. So, let's ignore formalities. As you'll already know, we have to fix that old and rusty autoload mechanism"
+            "text": "2--As you prefer, newbie. So, let's ignore formalities. As you'll already know, we have to fix that old and rusty auto load mechanism"
         }, 
         {
             "answers": [
@@ -34,10 +34,10 @@
     "colonel": [
         {
             "answers": [
-                "I'm born ready, sir!"
+                "I was born ready, sir!"
             ], 
             "id": 1, 
-            "text": "Good morning, Lieutenent Drogo, this time you completed last mission without any unpleasant sideffect. Are you ready for next mission?"
+            "text": "Good morning, Lieutenant Drogo, this time you completed last mission without any unpleasant side effect. Are you ready for next mission?"
         }, 
         {
             "answers": [
@@ -52,14 +52,14 @@
                 "Yes Sir! Consider it as done!"
             ], 
             "id": 3, 
-            "text": "1--Your mission is to adjust and run the mechanism that autoloads the missiles in our cannons."
+            "text": "1--Your mission is to adjust and run the mechanism that auto loads the missiles in our cannons."
         }, 
         {
             "answers": [
                 "YESSIR!"
             ], 
             "id": 4, 
-            "text": "2--SO WHAT? First, always call me Sir. Second, don't dare to reply to me in such a arrogant way, or you'll be given to Barbarians as a breakfast cookie. Third, go to fix the mechanism that autoloads missiles in our cannons. NOW."
+            "text": "2--SO WHAT? First, always call me Sir. Second, don't dare to reply to me in such a arrogant way, or you'll be given to Barbarians as a breakfast cookie. Third, go to fix the mechanism that auto loads missiles in our cannons. NOW."
         }
     ], 
     "crazy_doctor": [
@@ -68,7 +68,7 @@
                 "Hi Gilbert, just in time!"
             ], 
             "id": 1, 
-            "text": "Are you waitin' for an advice, boy?"
+            "text": "Are you waiting' for an advice, boy?"
         }, 
         {
             "answers": [

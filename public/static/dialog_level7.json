@@ -72,7 +72,7 @@
                 "Yes, Sir!"
             ], 
             "id": 5, 
-            "text": "My suggestion is to build a double shoot cannon, able to shoot two missiles at a time. In that way, we can destroy easily an higher number of enemy missiles. Sub-Liuetenant Kazushi will give you all the necessary details."
+            "text": "My suggestion is to build a double shoot cannon, able to shoot two missiles at a time. In that way, we can destroy easily an higher number of enemy missiles. Sub-Lieutenant Kazushi will give you all the necessary details."
         }
     ], 
     "crazy_doctor": [
@@ -96,7 +96,7 @@
                 "Your help is always precious!"
             ], 
             "id": 3, 
-            "text": "1--Let's go to the point, it seems that you had precise indications, but, as Romans used to say, \"Repetita iuvat\": to create a new missile at a specified position, call playerMissiles.push( new PlayerMissile( source, x, y ) ) . If you want to create 2 missiles at a time, it's enough to call this function two times for every click. I suggest you not to exaggerate with a triple or foufold cannon: you'll only waste missiles. I also suggest to shift the position of the second missile adding a constant number to the x, while creating the missile."
+            "text": "1--Let's go to the point, it seems that you had precise indications, but, as Romans used to say, \"Repetita iuvat\": to create a new missile at a specified position, call playerMissiles.push( new PlayerMissile( source, x, y ) ) . If you want to create 2 missiles at a time, it's enough to call this function two times for every click. I suggest you not to exaggerate with a triple or fourfold cannon: you'll only waste missiles. I also suggest to shift the position of the second missile adding a constant number to the x, while creating the missile."
         }, 
         {
             "answers": [], 

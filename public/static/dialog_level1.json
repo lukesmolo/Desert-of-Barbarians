@@ -5,7 +5,7 @@
                 "Sure"
             ], 
             "id": 1, 
-            "text": "Hi newbie, I'm your assistant, Sub-Lieutenent Melissa Kazushi. I'm here at the front from last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
+            "text": "Hi newbie, I'm your assistant, Sub-Lieutenant Melissa Kazushi. I've been here at the front since last year, so I had the time to document myself on our Antimissile System. If you need some generic help on the mission, you just need to ask."
         }, 
         {
             "answers": [
@@ -13,12 +13,12 @@
                 "2--Tell me more for this mission"
             ], 
             "id": 2, 
-            "text": "The whole system is written in an ancient and misterious programming language, that many years ago, computer scientist use to call Javascript"
+            "text": "The whole system is written in an ancient and mysterious programming language, that many years ago computer scientists use to call Javascript"
         }, 
         {
             "answers": [], 
             "id": 3, 
-            "text": "1--We we'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
+            "text": "1--We'll see. Hope you are as bold as lucky. Fighting Barbarians is not a game."
         }, 
         {
             "answers": [], 
@@ -28,28 +28,23 @@
     ], 
     "colonel": [
         {
-            "answers": [], 
-            "id": 1, 
-            "text": "Good morning, Lieutenent Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time."
-        }, 
-        {
             "answers": [
                 "1--I have no competences, Sir", 
                 "2--Yes Sir!"
             ], 
-            "id": 2, 
-            "text": "Times have changed and nowadays their attacks are continuous. We need your help and your competence. Our Antimissile System is old and rusty, not adequate to face these tremendous attacks. You have to fix it, and quickly"
+            "id": 1, 
+            "text": "Times have changed, and nowadays their attacks are continuous. We need your"
         }, 
         {
             "answers": [], 
-            "id": 3, 
+            "id": 2, 
             "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa. You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
         }, 
         {
             "answers": [
                 "Yes Sir!"
             ], 
-            "id": 4, 
+            "id": 3, 
             "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
         }
     ], 

@@ -30,7 +30,7 @@
                 "I can do it!"
             ], 
             "id": 5, 
-            "text": "Oh, you called with my name! You learnt good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days. Apparently, there are 18 areas where you can build towers or cannons, ordered from left to right, but you have to discover by yourself the right positions."
+            "text": "Oh, you called with my name! You learned good manners! Anyway, let's be serious: we need to rebuild all that stuff, and quickly. Every time you call a constructor on a point, drones take a day to start the building, but complete it only if it is in the right position and if the whole schedule doesn't take more than 9 days. Apparently, there are 18 areas where you can build towers or cannons, ordered from left to right, but you have to discover by yourself the right positions."
         }
     ], 
     "colonel": [
@@ -47,7 +47,7 @@
                 "..."
             ], 
             "id": 2, 
-            "text": "1--Major Guidi fell asleep during his guard duty. He has been hanged at dawn."
+            "text": "1--Major Guido fell asleep during his guard duty. He has been hanged at dawn."
         }, 
         {
             "answers": [
@@ -68,7 +68,7 @@
                 "What is the problem, Sir?"
             ], 
             "id": 5, 
-            "text": "Yes, Lieutenent, we do have builder drones. But their source code is not efficient enough: as it is, they would take at least 36 days to rebuild all."
+            "text": "Yes, Lieutenant, we do have builder drones. But their source code is not efficient enough: as it is, they would take at least 36 days to rebuild all."
         }, 
         {
             "answers": [
