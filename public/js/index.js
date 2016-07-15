@@ -466,7 +466,6 @@ start_level() {
 function
 end_level() {
 	proceedToGame = false;
-	alert('end '+proceedToGame);
 	//re-initialize variables for dialogs
 	left_text = false;
 	tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
@@ -703,9 +702,7 @@ make_dialogs(level, dialogs) {
 				shootWithOffset = originalSWO;
 				defaultCode = editor.getSession().getValue();
 				//have to wait the end of ajax call, otherwise can't have level
-				alert('current_level '+current_level);
 				if (current_level != 4 && current_level != 6) proceedToGame = true;
-					alert('start '+proceedToGame);
 			});
 
 		}
