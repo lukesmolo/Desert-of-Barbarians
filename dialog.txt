@@ -1,6 +1,6 @@
-﻿/*colonel-1
-""Good morning, Lieutenant Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time.
 
+/*colonel-1
+""Good morning, Lieutenant Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time.
 
 /*colonel-1
 ""Times have changed, and nowadays their attacks are continuous. We need your

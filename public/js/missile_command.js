@@ -7,6 +7,7 @@ var ctx = canvas.getContext('2d');
 
 //Set canvas size
 var background = new Image();
+//load background image
 background.addEventListener('load', onImageLoad);
 background.src = "../images/fondale.png";
 
@@ -42,6 +43,7 @@ var proceedToGame = false;
 var originalSWO = shootWithOffset;
 var originalScale = scale;
 
+//main function of the game (for their structure, level 4 and 6 need different initalization)
 function
 missileCommand() {
 	//go_on = 1;
@@ -55,6 +57,7 @@ missileCommand() {
 	}
 }
 
+//reset the game variables, called everytime game is reinitialized (new level, match lost)
 function
 resetVars() {
 	// Variables
@@ -91,7 +94,7 @@ initialize() {
 	initializeLevel();
 }
 
-// Create castles and anti missile batteries at the start of the game
+// Create castles and anti missile batteries at the start of the game for level 4: nothing is built because of buildTime
 function
 initializeObf() {
 	for (i=1; i <=18; i+=1){
@@ -101,7 +104,7 @@ initializeObf() {
 	initializeLevel();
 }
 
-// Create castles and anti missile batteries at the start of the game
+// Create castles and anti missile batteries at the start of the game (recursively) for level 6: nothing is built because of buildTime
 function
 initializeRec(i) {
 	if (i === 0){
@@ -116,13 +119,14 @@ initializeRec(i) {
 	}
 }
 
+//basic function for setting num of missiles in cannons. necessary for level 3
 function
 setNumMissiles(){
 	missilesLeft = 1;
 	return missilesLeft;
 }
 
-// Reset various variables at the start of a new level
+// Reset in-game variables at the start of a new level
 function
 initializeLevel() {
 	if (current_level == 3){
@@ -174,7 +178,7 @@ createEmemyMissiles(){
 			case 3: numMissiles = 8; break;
 			case 7: numMissiles = 15; break;
 			case 8: numMissiles = 100; break;
-			case 9: numMissiles = 11; break;
+			case 9: numMissiles = 3; break;
 			default: numMissiles = 10;
 	}
 	for( var i = 0; i < numMissiles; i++ ) {
@@ -197,19 +201,20 @@ onImageLoad(e) {
 	drawScore();
 }
 
-// Show various graphics shown on most game screens
+// Show various graphics shown on most game screens, as soon as background image is loaded
 function
 drawGameState() {
 	onImageLoad(background);
 }
 
+//Used in original game to load level message
 function
 drawBeginLevel() {
 	onImageLoad(background);
 	//drawLevelMessage();
 }
 
-// Show current score
+// Show current score on canvas
 function
 drawScore() {
 	/*ctx.fillStyle = 'red';
@@ -288,7 +293,7 @@ function castle( x, y ) {
 	this.y = y;
 	this.active = true;
 	}
-	else if (arguments.length === 1){
+	else if (arguments.length === 1){//invoked in this way on level 4 and 6, takes as input only the slot in which build the castle
 		castleY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10);
 		slot = CANVAS_WIDTH/18;
 		if (x == 3 || x == 5 || x == 7 || x == 11 || x == 13 || x == 15) {
@@ -348,7 +353,7 @@ AntiMissileBattery( x, y ) {
 		this.y = y;
 		this.missilesLeft = 10;
 	}
-	else if (arguments.length === 1){
+	else if (arguments.length === 1){//invoked in this way on level 4 and 6, takes as input only the slot in which build the cannon
 		slot = CANVAS_WIDTH/18;
 		antiMissileY = CANVAS_HEIGHT-(CANVAS_HEIGHT/10)-28 ;
 
@@ -362,8 +367,9 @@ AntiMissileBattery( x, y ) {
 	}
 }
 
+//Returns true if a certain cannon has missiles left, false otherwise
 AntiMissileBattery.prototype.hasMissile = function() {
-	//if (current_level == 8 || current_level == 9) return 1
+	//Unlimited number of missiles for level 8
 	if (current_level == 8) return 1;
 	else if (this.missilesLeft <= 0) return 0;
 	else return 1;
@@ -459,6 +465,7 @@ Missile.prototype.explode = function() {
 	}
 };
 
+//returns the time that a missile will take to reach the target
 function scale(x, y) {
 	var distance = Math.sqrt( Math.pow(x, 2) +
 			Math.pow(y, 2) ),
@@ -512,7 +519,8 @@ PlayerMissile.prototype.update = function() {
 // Create a missile that will be shot at indicated location
 function
 playerShoot(x,y) {
-	//cannot shoot in the lower fifth part of canvas and in the upper fifth
+	//cannot shoot in the two lower eighths part of canvas and in the upper eighth
+	//in level 5 this check is done by player's code
 	if (current_level == 5){
 		if( checkHeightObf(y) ) {
 			var source = whichAntiMissileBattery( x );
@@ -540,9 +548,9 @@ playerShoot(x,y) {
 	}
 }
 
+//base function to be modified by the player in level 7, in order to shot 2 missiles for every click
 function
 playerShoot2(x,y) {
-	//cannot shoot in the lower fifth part of canvas and in the upper fifth
 	if( checkHeight(y) ) {
 		var source = whichAntiMissileBattery( x );
 		if( source === -1 ){ // No missiles left
@@ -552,11 +560,13 @@ playerShoot2(x,y) {
 	}
 }
 
+//auxiliary function that calls playerShoot considering the offsets of canvas. Player has to fix its behaviour in level 2
 function
 shootWithOffset(x, y, offLeft, offTop){
 	correctedX = x - offLeft;
 	correctedY = y - offTop;
 	totalMissilesUsed++;
+	//Player has to fix its behaviour in level 2, given its inaccurate shot
 	if (current_level == 2) {
 		playerShoot(1.5*correctedX, correctedY+75);
 	} else if(current_level == 7) {
@@ -567,6 +577,7 @@ shootWithOffset(x, y, offLeft, offTop){
 	}
 }
 
+//checks if the point where missile have to be shot at is not too far away or too near to castles
 function
 checkHeight(y) {
 	if (y >= CANVAS_HEIGHT/8 && y <= CANVAS_HEIGHT*6/8) {
@@ -576,6 +587,7 @@ checkHeight(y) {
 	}
 }
 
+//Same behaviour, but obfuscated, in order to slow down the game every time a missile is shot
 function
 checkHeightObf(y) {
 	var admitted = false;
@@ -761,6 +773,7 @@ checkEndLevel() {
 
 			}
 		}
+		//to stop the eventual timer set by user in level 8
 		clearInterval(timerAutofire);
 		missileCommand();
 	}
@@ -841,6 +854,8 @@ startLevel() {
 	timerID = setInterval( nextFrame, 1000 / fps );
 }
 
+//given the indexes of the cannons in the cannons vector (antiMissileBatteries[]), in order of decreasing priority
+//returns the one with highest priority and missiles left
 function firedToOuterThird( priority1, priority2, priority3) {
 	if( antiMissileBatteries[priority1].hasMissile() ) {
 		return priority1;
@@ -851,6 +866,8 @@ function firedToOuterThird( priority1, priority2, priority3) {
 	} else return -1;
 };
 
+//given the indexes of the cannons in the cannons vector (antiMissileBatteries[]), in order of decreasing priority
+//returns the one with highest priority and missiles left. Only two parameters because intented to be used when central cannon has no missiles
 function firedtoMiddleThird ( priority1, priority2 ) {
 	if( antiMissileBatteries[priority1].hasMissile() ) {
 		return priority1;
@@ -880,7 +897,7 @@ whichAntiMissileBattery(x) {
 	}
 }
 
-//obfuscated for level 9
+//Same function, but obfuscated (inverted priorities) for level 9
 function
 whichAntiMissileBatteryObf(x) {
 	if( x <= CANVAS_WIDTH / 3 ){
@@ -892,6 +909,7 @@ whichAntiMissileBatteryObf(x) {
 	}
 }
 
+//Template of the function that in level 8 will be replaced with the autofire function
 function autofire(x, y){
 		shootWithOffset(event.pageX, event.pageY, $("#game_canvas").offset().left, $("#game_canvas").offset().top);
 }

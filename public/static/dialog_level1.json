@@ -28,23 +28,28 @@
     ], 
     "colonel": [
         {
+            "answers": [], 
+            "id": 1, 
+            "text": "Good morning, Lieutenant Drogo, and welcome to the Fortress Bastiani. It's been hard times, fighting against the Barbarians. Brace yourself: this war is going to last for a long time."
+        }, 
+        {
             "answers": [
                 "1--I have no competences, Sir", 
                 "2--Yes Sir!"
             ], 
-            "id": 1, 
+            "id": 2, 
             "text": "Times have changed, and nowadays their attacks are continuous. We need your"
         }, 
         {
             "answers": [], 
-            "id": 2, 
+            "id": 3, 
             "text": "1--In this case, we have to pray God. Anyway you can ask some help to your Assistant Melissa. You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
         }, 
         {
             "answers": [
                 "Yes Sir!"
             ], 
-            "id": 3, 
+            "id": 4, 
             "text": "2--You'll soon discover that our missiles are shoot very slowly. Your first mission is to find the reason, fix it and guide the defense against the Barbarians. But pay attention: we cannot afford to lose any of our towers in this battle."
         }
     ], 
