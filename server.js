@@ -88,7 +88,8 @@ function
 initialize_user(req, level) {
 
 	req.session.user = username;
-	users.push(username);
+	if(users.indexOf(username) == -1)
+		users.push(username);
 	users_ttl[username] = new Date().getTime();
 	users_data[username] = {};
 	users_data[username]['level'] = default_level;
@@ -105,8 +106,18 @@ app.post('/login', function(req, res){
 	level_hash_key = body.level_hash_key;
 
 	levels_hash_keys = make_levels_keys(username, false);
+	if(req.session.user == username && users.indexOf(username) > -1) {
+		if(level_hash_key !== "" && levels_hash_keys.indexOf(level_hash_key) > -1) {
+			level = levels_hash_keys.indexOf(level_hash_key) + 1;
+		} else {
 
-	if(users.indexOf(username) > -1) {
+			level = users_data['level'];
+		}
+		initialize_user(req, level);
+		res.send({ status: 'OK', 'redirect':'/index', 'level': level});
+
+
+	} else if(users.indexOf(username) > -1 ) {
 		console.log("error");
 		res.send({ status: 'ERROR', 'what':'Username already used. Please try another one.' });
 	} else {
@@ -134,7 +145,7 @@ app.post('/score', function(req, res){
 	users_data[username]['score'] = body;
 	console.log('body: ' + JSON.stringify(body));
 
-	res.send({ status: 'OK', 'redirect':'/score'})
+	res.send({ status: 'OK', 'redirect':'/score'});
 });
 
 app.get('/logout', function(req, res) {
@@ -147,7 +158,7 @@ app.get('/logout', function(req, res) {
 
 	}
 	req.session.reset();
-	res.redirect('/');
+	res.send({ status: 'OK', 'redirect':'/'});
 });
 
 app.get('/get_score', function(req, res){
@@ -178,7 +189,7 @@ app.post('/get_level', function(req, res){
 	if(req_level != -1)
 		level = req_level;
 	username = req.session.user;
-
+	users_data['level'] = level;
 	index = users.indexOf(username);
 	if (index > -1 || req_level == -1) {
 		//console.log(level);

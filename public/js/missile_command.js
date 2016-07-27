@@ -173,7 +173,7 @@ createEmemyMissiles(){
 			case 3: numMissiles = 8; break;
 			case 7: numMissiles = 15; break;
 			case 8: numMissiles = 100; break;
-			case 9: numMissiles = 3; break;
+			case 9: numMissiles = 12; break;
 			default: numMissiles = 10;
 	}
 	for( var i = 0; i < numMissiles; i++ ) {

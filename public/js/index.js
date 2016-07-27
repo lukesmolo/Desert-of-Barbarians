@@ -162,13 +162,13 @@ $('#start_level_btn').on('click', function() {
 
 $('#exit_btn').on('click', function() {
 	return $.ajax({
-		type: "POST",
+		type: "GET",
 		dataType: "json",
 		processData: false,
 		contentType: 'application/json; charset=utf-8',
 		url: "/logout",
-		data: data,
 		success: function (data, stato) {
+			window.location.href = data.redirect;
 		},
 		error: function (request, stato) {
 			alert("An error occured:\n" + stato);
