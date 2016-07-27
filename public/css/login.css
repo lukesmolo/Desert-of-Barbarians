@@ -52,3 +52,11 @@ body {
   background-color: green !important;
   border-color: green !important;
 }
+#session_login {
+	width: 100%;
+}
+#session_btn{
+	width: 20%;
+	margin-left: auto;
+	margin-right: auto;
+}

@@ -17,9 +17,11 @@ var info_character = 'colonel';
 var max_n_fails = 2;
 var max_n_levels = 9;
 var game_score = {};
+var total_score = 0;
 var totalMissilesUsed = 0;
 var coding = false;
 var tutorial_done = false;
+var username = null;
 
 var chat_buttons_index = { "colonel": 1, "assistant": 2, "info": 3};
 var reverse_chat_buttons_index = { "1": "colonel" , "2": "assistant", "3": "info"};
@@ -28,7 +30,7 @@ var tot_sec = 0;
 game_score['levels_completed'] = [];
 
 
-var options = {
+var animation_options = {
 	animate: true,
 	patternWidth: 100,
 	patternHeight: 100,
@@ -55,7 +57,7 @@ $(document).ready(function() {
 			}
 
 		} else {
-				$('#tutorial_btn').removeClass('to_highlight');
+			$('#tutorial_btn').removeClass('to_highlight');
 
 		}
 	}, 1000);
@@ -109,42 +111,42 @@ $(document).ready(function() {
 
 function
 make_tutorial(){
-$('#main_btn').first().attr('data-step', '1');
-$('#main_btn').first().attr('data-intro', 'This is the home. Here you can play the game.');
-$('#main_btn').first().attr('data-position', 'right');
+	$('#main_btn').first().attr('data-step', '1');
+	$('#main_btn').first().attr('data-intro', 'This is the home. Here you can play the game.');
+	$('#main_btn').first().attr('data-position', 'right');
 
 
-$('canvas').attr('data-step', '2');
-$('canvas').attr('data-intro', 'This is the game screen.  Click here to play!');
-$('canvas').attr('data-position', 'right');
+	$('canvas').attr('data-step', '2');
+	$('canvas').attr('data-intro', 'This is the game screen.  Click here to play!');
+	$('canvas').attr('data-position', 'right');
 
-$('#coding').attr('data-step', '3');
-$('#coding').attr('data-intro', 'This is the game console.  Write here your code!');
-$('#coding').attr('data-position', 'right');
+	$('#coding').attr('data-step', '3');
+	$('#coding').attr('data-intro', 'This is the game console.  Write here your code!');
+	$('#coding').attr('data-position', 'right');
 
-$('#chat_window').attr('data-step', '4');
-$('#chat_window').attr('data-intro', 'This is the chat window. Here you will receive orders and tips.');
-$('#chat_window').attr('data-position', 'left');
+	$('#chat_window').attr('data-step', '4');
+	$('#chat_window').attr('data-intro', 'This is the chat window. Here you will receive orders and tips.');
+	$('#chat_window').attr('data-position', 'left');
 
-$('#replies').attr('data-step', '5');
-$('#replies').attr('data-intro', 'This is the answer console. Here you can send your answer during a conversation.');
-$('#replies').attr('data-position', 'left');
+	$('#replies').attr('data-step', '5');
+	$('#replies').attr('data-intro', 'This is the answer console. Here you can send your answer during a conversation.');
+	$('#replies').attr('data-position', 'left');
 
-$('#send_code_btn').attr('data-step', '6');
-$('#send_code_btn').attr('data-intro', 'Press this button when your code is ready to be executed.');
-$('#send_code_btn').attr('data-position', 'top');
+	$('#send_code_btn').attr('data-step', '6');
+	$('#send_code_btn').attr('data-intro', 'Press this button when your code is ready to be executed.');
+	$('#send_code_btn').attr('data-position', 'top');
 
-$('#reset_code_btn').attr('data-step', '7');
-$('#reset_code_btn').attr('data-intro', 'Press this button when you need to reset the level code.');
-$('#reset_code_btn').attr('data-position', 'top');
+	$('#reset_code_btn').attr('data-step', '7');
+	$('#reset_code_btn').attr('data-intro', 'Press this button when you need to reset the level code.');
+	$('#reset_code_btn').attr('data-position', 'top');
 
-$('#conversations_btn').first().attr('data-step', '8');
-$('#conversations_btn').first().attr('data-intro', 'This is the conversations panel. Here you can read all the previous conversations.');
-$('#conversations_btn').first().attr('data-position', 'right');
+	$('#conversations_btn').first().attr('data-step', '8');
+	$('#conversations_btn').first().attr('data-intro', 'This is the conversations panel. Here you can read all the previous conversations.');
+	$('#conversations_btn').first().attr('data-position', 'right');
 
-$('#settings_btn').first().attr('data-step', '9');
-$('#settings_btn').first().attr('data-intro', 'This is the settings panel. Here you can see your progress and you can change level.');
-$('#settings_btn').first().attr('data-position', 'right');
+	$('#settings_btn').first().attr('data-step', '9');
+	$('#settings_btn').first().attr('data-intro', 'This is the settings panel. Here you can see your progress and you can change level.');
+	$('#settings_btn').first().attr('data-position', 'right');
 
 
 }
@@ -159,7 +161,20 @@ $('#start_level_btn').on('click', function() {
 });
 
 $('#exit_btn').on('click', function() {
-	window.location.href = '/';
+	return $.ajax({
+		type: "POST",
+		dataType: "json",
+		processData: false,
+		contentType: 'application/json; charset=utf-8',
+		url: "/logout",
+		data: data,
+		success: function (data, stato) {
+		},
+		error: function (request, stato) {
+			alert("An error occured:\n" + stato);
+		}});
+
+
 });
 
 $('#tutorial_btn').on('click', function() {
@@ -314,7 +329,7 @@ $('.change_chat').on('click', function() {
 				$('#'+current_character+'_div_chat_image').addClass('tv_effect');
 
 
-				grained('.tv_effect',options);
+				grained('.tv_effect',animation_options);
 				append_dialogs(current_character);
 			}
 		} else {
@@ -391,7 +406,7 @@ send_answer(what) {
 
 function
 append_info(what, who, show) {
-	if(current_character != 'crazy_doctor' || show > 1) {
+	if(current_character != 'crazy_doctor' ) {
 		$('#info_chat_text').empty();
 		$('#info_chat_text').append(what);
 		$('.chat_focus_btn').removeClass('chat_focus_btn');
@@ -399,11 +414,12 @@ append_info(what, who, show) {
 
 		stop_talking();
 		info_character = who;
+		$('#info_chat_btn').trigger('click');
 		if(show > 0) {
-			$('#info_chat_btn').trigger('click');
+
 			stop_talking();
 			$('#'+info_character+'_div_chat_image').addClass('tv_effect');
-			grained('.tv_effect',options);
+			grained('.tv_effect',animation_options);
 			$('#info_chat_text').typewrite({
 				'delay': 10,
 				'callback': stop_talking
@@ -481,6 +497,7 @@ start_level() {
 
 function
 end_level() {
+	total_score += score;
 	proceedToGame = false;
 	//re-initialize variables for dialogs
 	left_text = false;
@@ -518,6 +535,8 @@ end_level() {
 	}
 
 
+	$('#total_score_summary').empty();
+	$('#total_score_summary').text(total_score);
 	$('#missiles_used_summary').empty();
 	$('#missiles_used_summary').text(totalMissilesUsed);
 	if(current_level < max_n_levels+1) {
@@ -602,7 +621,7 @@ append_dialogs(level) {
 		$('.send_code_btn').addClass('not_clickable');
 		$('.code_buttons_img').addClass('not_clickable');
 
-		grained('.tv_effect',options);
+		grained('.tv_effect',animation_options);
 
 
 		$('#'+id).typewrite({
@@ -637,7 +656,7 @@ make_dialogs(level, dialogs) {
 	function
 		get_level(level) {
 
-			data = { "request": "get_level", "level": level};
+			data = {"username": username, "level": level};
 			data = JSON.stringify(data);
 
 			return $.ajax( {
@@ -645,69 +664,75 @@ make_dialogs(level, dialogs) {
 				dataType: "json",
 				processData: false,
 				contentType: 'application/json; charset=utf-8',
-				url: "/get_level",data: data
+				url: "/get_level",
+				data: data
 			}).done( function (data, stato) {
-				if(current_level == -1) {
-					current_level = data.level;
-					missileCommand();
+				if(data.status == 'ERROR') {
+					window.location.href = data.redirect;
+
 				} else {
-					current_level = data.level;
+					if(current_level == -1) {
+						current_level = data.level;
+						username = data.username;
+						missileCommand();
+					} else {
+						current_level = data.level;
+					}
+					level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
+					$('.conversations_text').append(level_text);
+					editor.setValue(data.body);
+
+					$('#left_jump_level').empty();
+					$('#right_jump_level').empty();
+					$('#username_summary').empty();
+					$('#level_summary').empty();
+					$('#military_rank_summary').empty();
+
+
+
+
+					$('#username_summary').append(data.username);
+					$('#level_summary').append(current_level);
+
+
+
+
+
+					times = current_level % 3; //3 subsets of levels
+					if(times === 0) {
+						times = 3;
+					}
+					medal_n = parseInt(current_level/3-0.5)+1;
+					for(i = 0; i < times; i++) {
+						img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
+						$('#military_rank_summary').append(img);
+					}
+
+					$.each(data.keys, function(index, value) {
+						k = '<p>Level '+(parseInt(index)+1)+'</p>';
+						v = '<p>'+value+'</p>';
+
+						$('#left_jump_level').append(k);
+						$('#right_jump_level').append(v);
+
+					});
+
+
+
+
+					url = window.location.href;
+					window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
+
+
+
+					make_dialogs(level, data.dialogs);
+					//colonel starts to talk
+					current_character = 'colonel';
+					$('#'+current_character+'_chat_btn').trigger('click');
 				}
-				level_text = '<p class="level_text">LEVEL:'+current_level+'</p>';
-				$('.conversations_text').append(level_text);
-				editor.setValue(data.body);
-
-				$('#left_jump_level').empty();
-				$('#right_jump_level').empty();
-				$('#username_summary').empty();
-				$('#level_summary').empty();
-				$('#military_rank_summary').empty();
-
-
-
-
-				$('#username_summary').append(data.username);
-				$('#level_summary').append(current_level);
-
-
-
-
-
-				times = current_level % 3; //3 subsets of levels
-				if(times === 0) {
-					times = 3;
-				}
-				medal_n = parseInt(current_level/3-0.5)+1;
-				for(i = 0; i < times; i++) {
-					img = '<img class="rank_image" src="images/medal'+medal_n+'.png" alt="colonel">';
-					$('#military_rank_summary').append(img);
-				}
-
-				$.each(data.keys, function(index, value) {
-					k = '<p>Level '+(parseInt(index)+1)+'</p>';
-					v = '<p>'+value+'</p>';
-
-					$('#left_jump_level').append(k);
-					$('#right_jump_level').append(v);
-
-				});
-
-
-
-
-				url = window.location.href;
-				window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
-
-
-
-				make_dialogs(level, data.dialogs);
-				//colonel starts to talk
-				current_character = 'colonel';
-				$('#'+current_character+'_chat_btn').trigger('click');
-
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
-				alert("Error:\n" + textStatus);
+				alert("An error occurred:\n" + textStatus);
 			}).always(function(data) {
 				//called after the completion of get_level, because needs to know which level we are in
 				//makeReadonly();
@@ -745,13 +770,14 @@ make_dialogs(level, dialogs) {
 					} else {
 						lev = data.level;
 						get_level(lev);
+						start_level();
 						$('#level_hash_key_input_text').val('');
 						$('#settings_close_btn').trigger('click');
 					}
 
 				},
 				error: function (request, stato) {
-					alert("E' avvenuto un errore:\n" + stato);
+					alert("An error occurred:\n" + stato);
 				}});
 
 		}
@@ -786,6 +812,8 @@ make_dialogs(level, dialogs) {
 			game_score["total_time"] = $('#total_time_summary').text();
 			game_score["avg_time"] = $('#avg_time_summary').text();
 			game_score["totalMissilesUsed"] = totalMissilesUsed;
+			game_score["total_score"] = total_score;
+			game_score["username"] = username;
 			data = game_score;
 			data = JSON.stringify(data);
 
@@ -799,10 +827,9 @@ make_dialogs(level, dialogs) {
 				success: function (data, stato) {
 
 					window.location.href = data.redirect;
-
 				},
 				error: function (request, stato) {
-					alert("E' avvenuto un errore:\n" + stato);
+					alert("An error occurred:\n" + stato);
 				}});
 
 

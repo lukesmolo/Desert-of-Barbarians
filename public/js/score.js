@@ -1,6 +1,6 @@
 var current_level = -1;
 var count = -1;
-var elements = ["info_summary_title", "username_summary", "military_rank_summary", "levels_completed_summary", "total_time_summary", "avg_time_summary", "missiles_used_summary", "credits"];
+var elements = ["info_summary_title", "username_summary", "total_score_summary", "military_rank_summary", "levels_completed_summary", "total_time_summary", "avg_time_summary", "missiles_used_summary", "credits"];
 
 $(document).ready(function() {
 
@@ -36,6 +36,7 @@ get_score() {
 		success: function (data, stato) {
 			$('#username_summary').append(data.username);
 
+			$('#total_score_summary').append(data.total_score);
 			current_level = data.level;
 			//	append_text();
 			times = current_level % 3; //3 subsets of levels
@@ -57,6 +58,7 @@ get_score() {
 				}
 			}
 			l_completed += '</p>';
+
 			$('#levels_completed_summary').append(l_completed);
 			$('#total_time_summary').append(data.total_time);
 			$('#avg_time_summary').append(data.avg_time);

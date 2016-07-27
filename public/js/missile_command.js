@@ -1,6 +1,3 @@
-/*TODO runtime changing size of canvas*/
-/*FIXME check max number of missiles */
-
 // Missile Command
 var canvas = $('#game_canvas')[0];
 var ctx = canvas.getContext('2d');
@@ -13,7 +10,6 @@ background.src = "../images/fondale.png";
 
 var bool = 1;
 var code_length = 1;
-//var go_on = 1;
 
 $(canvas).attr('width', ($('#game_canvas').parent().width()));
 $(canvas).attr('height', ($('#game_canvas').parent().height()));
@@ -46,7 +42,6 @@ var originalScale = scale;
 //main function of the game (for their structure, level 4 and 6 need different initalization)
 function
 missileCommand() {
-	//go_on = 1;
 	resetVars();
 	if (current_level == 4) {
 		initializeObf();
@@ -67,7 +62,7 @@ resetVars() {
 	antiMissileBatteries = [];
 	playerMissiles = [];
 	enemyMissiles = [];
-	clearInterval( timerID ); //FIXME praticamente rimane un piccoli bug: quando l'utente fa il send code senza giocare prima, si rirompe
+	clearInterval( timerID );
  	$( '#game_canvas' ).off( 'click' );
 	if(!($('#canvas_play_game').is(":visible"))) {
 		$( '#canvas_play_game').show();
@@ -220,8 +215,8 @@ drawScore() {
 	/*ctx.fillStyle = 'red';
 	ctx.font = 'bold 20px arial';
 	ctx.fillText( 'Points ' + score, CANVAS_WIDTH/20, CANVAS_HEIGHT/20 );*/
-
-	//append_info(score, 'assistant', 1);
+	score_text = 'Score:\t'+score;
+	append_info(score_text, 'assistant', 0);
 
 }
 
@@ -850,6 +845,7 @@ stopLevel() {
 function
 startLevel() {
 	var fps = 30;
+	drawScore();
 	//calls a function or evaluates an expression at specified intervals
 	timerID = setInterval( nextFrame, 1000 / fps );
 }
@@ -864,7 +860,7 @@ function firedToOuterThird( priority1, priority2, priority3) {
 	} else if ( antiMissileBatteries[priority3].hasMissile() ){
 		return priority3;
 	} else return -1;
-};
+}
 
 //given the indexes of the cannons in the cannons vector (antiMissileBatteries[]), in order of decreasing priority
 //returns the one with highest priority and missiles left. Only two parameters because intented to be used when central cannon has no missiles

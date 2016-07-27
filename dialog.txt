@@ -103,7 +103,7 @@ help and your competence. Our Anti-missile System is old and rusty, not adequate
 --Got it
 
 /*crazy_doctor-2
-""2-- Calm down boy, there's a solution for everything. If you too proud to listen to me, I won't annoy you anymore.
+""2-- Calm down boy, there's a solution for everything. If you are too proud for listening to me, I won't annoy you anymore.
 
 /*colonel-3
 ""Good morning, Lieutenant Drogo, this time you completed last mission without any unpleasant side effect. Are you ready for next mission?

@@ -1,7 +1,6 @@
 var username = null;
 var level_hash_key = null;
 
-var level_hash_key_error = '<p>Level code is wrong. Please try another one.</p>';
 var empty_username_error = '<p>Field Username is required</p>';
 
 $(document).ready(function() {
@@ -49,7 +48,7 @@ login() {
 
 			} else {
 				$('#error_alert').empty();
-				$('#error_alert').append(level_hash_key_error);
+				$('#error_alert').append('<p>'+data.what+'</p>');
 			}
 
 		},
