@@ -21,9 +21,6 @@ $('#prize').on('click', function() {
 
 
 
-
-
-
 function
 get_score() {
 
@@ -38,7 +35,6 @@ get_score() {
 
 			$('#total_score_summary').append(data.total_score);
 			current_level = data.level;
-			//	append_text();
 			times = current_level % 3; //3 subsets of levels
 			if(times === 0) {
 				times = 3;
@@ -77,11 +73,10 @@ get_score() {
 function
 append_text() {
 	count++;
+	/*alternately, show right and then left side*/
 	if(count < 2*elements.length) {
 		if(count%2 !== 0) {
 			i = parseInt((parseInt((count))+parseInt(1))/2);
-			//alert('#'+elements[i]);
-			//$('#'+elements[i]).before().show();
 			if(elements[i] != 'credits') {
 
 				$('#'+elements[i]).prev().typewrite({
@@ -94,8 +89,6 @@ append_text() {
 
 		} else {
 			i = parseInt(parseInt(count)/2);
-			//alert('#'+elements[i]);
-			//$('#'+elements[i]).show();
 			if(elements[i] != 'military_rank_summary') {
 				$('#'+elements[i]).typewrite({
 					'delay': 50,

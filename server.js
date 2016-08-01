@@ -1,33 +1,26 @@
 /*jshint -W069 */
 var url  = require('url');
 var express = require('express');
-
 var path = require('path');
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
 var session = require('client-sessions');
 var fs = require('fs');
-
 var app = express();
-
-//to be updated everytime the user changes level, so not necessary a post for reset_code
 var max_n_levels = 9;
-//var username = 'ale';
 var default_level = 1;
-
 var levels_keys = ['level1', 'level-2', 'Level3', 'LEVEL4', 'LeVel5', 'level6', 'l-evel7', 'l8', 'L-e-v-e-l9'];
-
 var users = [];
 var users_ttl = {};
 var users_data = {};
 var ttl = 30 * 60 * 1000;
-//var ttl = 10 * 1000;
 
 app.set('trust proxy', true);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
 	  extended: true
 }));
+
 app.use(session({
 	cookieName: 'session',
 	secret: 'g[isfd-8yF9-7w2315df{}+Ijsli;;to8',
@@ -36,6 +29,13 @@ app.use(session({
 	httpOnly: true,
 	ephemeral: true
 }));
+
+app.use(bodyParser.json());
+app.engine('.html', require('ejs').__express);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'html');
+
+server = app.listen(8000);
 
 app.use(function(req, res, next) {
 
@@ -48,55 +48,9 @@ app.use(function(req, res, next) {
 			res.locals.user = username;
 		}
 	}
-		next();
+	next();
 });
 
-function
-requireLogin (req, res, next) {
-	if (!req.user) {
-		res.redirect('/session');
-	} else {
-
-		next();
-	}
-}
-
-app.use(bodyParser.json());
-app.engine('.html', require('ejs').__express);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'html');
-
-server = app.listen(8000);
-
-function
-make_levels_keys(who, store) {
-	levels_hash_keys = [];
-	for(var i = 0; i < max_n_levels; i++) {
-		//levels_hash_keys.push(levels_keys[i]);
-
-		levels_hash_keys.push(crypto.createHash('md5').update(who+levels_keys[i]).digest("hex").substring(0,8));
-	}
-	if(store) {
-		users_data[who]['levels_hash_keys'] = levels_hash_keys;
-	} else {
-		console.log(levels_hash_keys);
-		return levels_hash_keys;
-	}
-}
-
-function
-initialize_user(req, level) {
-
-	req.session.user = username;
-	if(users.indexOf(username) == -1)
-		users.push(username);
-	users_ttl[username] = new Date().getTime();
-	users_data[username] = {};
-	users_data[username]['level'] = default_level;
-	make_levels_keys(username, true);
-	users_data[username]['score'] = {};
-
-}
 
 app.post('/login', function(req, res){
 
@@ -106,21 +60,23 @@ app.post('/login', function(req, res){
 	level_hash_key = body.level_hash_key;
 
 	levels_hash_keys = make_levels_keys(username, false);
+	//if a session is valid and username is already stored
 	if(req.session.user == username && users.indexOf(username) > -1) {
+		//if user has inserted a level key
 		if(level_hash_key !== "" && levels_hash_keys.indexOf(level_hash_key) > -1) {
 			level = levels_hash_keys.indexOf(level_hash_key) + 1;
-		} else {
-
+		} else { //restore game from level in memory
 			level = users_data['level'];
 		}
-		initialize_user(req, level);
+		initialize_user(req, level); //save user data in memory
 		res.send({ status: 'OK', 'redirect':'/index', 'level': level});
 
-
+	//if there is already this username in memory but not the session, someone else is using the same username
 	} else if(users.indexOf(username) > -1 ) {
 		console.log("error");
 		res.send({ status: 'ERROR', 'what':'Username already used. Please try another one.' });
 	} else {
+		//if user has inserted a level key
 		if(level_hash_key !== "" && levels_hash_keys.indexOf(level_hash_key) > -1) {
 			level = levels_hash_keys.indexOf(level_hash_key) + 1;
 			initialize_user(req, level);
@@ -131,7 +87,6 @@ app.post('/login', function(req, res){
 			initialize_user(req, level);
 			res.send({ status: 'OK', 'redirect':'/index', 'level': level});
 		} else {
-
 			res.send({ status: 'ERROR', 'what':'Level code is wrong. Please try another one.' });
 		}
 	}
@@ -162,7 +117,6 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/get_score', function(req, res){
-	//score = {"levels_completed":[3, 4, 5, 9],"total_time":"1 m 23 s","avg_time":"0 m 2 s","totalMissilesUsed":53,"username":"ale","level":9};
 	res.send(users_data[req.session.user]['score']);
 });
 
@@ -171,7 +125,6 @@ app.get('/reset_code', function(req, res){
 	console.log("reset_code");
 	username = req.session.user;
 
-	//  console.log('body: ' + JSON.stringify(req.body));
 	code = return_level_code(users_data[username]['level']);
 	if(code !== null) {
 		res.send({ 'status': 'SUCCESS', 'body': code });
@@ -186,20 +139,19 @@ app.post('/get_level', function(req, res){
 
 	console.log('body: ' + JSON.stringify(req.body));
 	req_level = parseInt(req.body.level);
+	//if user is not requiring a specific level..
 	if(req_level != -1)
 		level = req_level;
 	username = req.session.user;
 	users_data['level'] = level;
 	index = users.indexOf(username);
 	if (index > -1 || req_level == -1) {
-		//console.log(level);
 		dialogs = return_level_dialog(level);
 		code = return_level_code(level);
 		//collect keys to send
 		tmp_keys = [];
 		for(i = 0; i < level; i++) {
 			tmp_keys.push(levels_hash_keys[i]);
-			console.log(levels_hash_keys[i]);
 		}
 		if(code !== null) {
 			res.send ({
@@ -246,32 +198,68 @@ app.get('/score', requireLogin, function(req, res){
 
 app.get('/index',  requireLogin, function(req, res){
 
-
 	l = req.query.l;
-	l = levels_hash_keys.indexOf(l)+1;
+	username = req.session.user;
+	l = users_data[username]['levels_hash_keys'].indexOf(l) + 1;
+
 	if(l !== undefined && parseInt(l) > 0) {
-		level = l;
+		users_data[username]['level'] = l;
+		console.log(users_data[username]['level']);
 	}
 	res.render('index');
 });
 
+//catch bad request
 app.get('*', function(req, res) {
 	res.status(404);
 	if (req.accepts('html')) {
 		res.render('404', { url: req.url });
 		return;
 	}
-
-	// respond with json
-	if (req.accepts('json')) {
-		res.send({ error: 'Not found' });
-		return;
-	}
-
-	// default to plain-text. send()
-	res.type('txt').send('Not found');
 });
 
+function
+requireLogin (req, res, next) {
+	if (!req.user) {
+		res.redirect('/session');
+	} else {
+
+		next();
+	}
+}
+
+//create custom user keys
+function
+make_levels_keys(who, store) {
+	levels_hash_keys = [];
+	for(var i = 0; i < max_n_levels; i++) {
+
+		levels_hash_keys.push(crypto.createHash('md5').update(who+levels_keys[i]).digest("hex").substring(0,8));
+	}
+	if(store) {
+		users_data[who]['levels_hash_keys'] = levels_hash_keys;
+	} else {
+		console.log(levels_hash_keys);
+		return levels_hash_keys;
+	}
+}
+
+//store user data when user login
+function
+initialize_user(req, level) {
+
+	req.session.user = username;
+	if(users.indexOf(username) == -1)
+		users.push(username);
+	users_ttl[username] = new Date().getTime();
+	users_data[username] = {};
+	users_data[username]['level'] = default_level;
+	make_levels_keys(username, true);
+	users_data[username]['score'] = {};
+
+}
+
+//read level from file
 function
 return_level_code(what) {
 	code_level = null;
@@ -280,6 +268,7 @@ return_level_code(what) {
 
 }
 
+//read dialogs from file
 function
 return_level_dialog(what) {
 	dialogs = {};
@@ -288,6 +277,7 @@ return_level_dialog(what) {
 	return obj;
 }
 
+//check if some session is expired and delete data
 setInterval(function() {
 	console.log("Current users: "+users);
 	for(var key in users_ttl) {
@@ -300,7 +290,6 @@ setInterval(function() {
 
 			}
 		}
-
 
 	}
 }, 10000);

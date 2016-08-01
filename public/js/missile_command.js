@@ -641,7 +641,6 @@ EnemyMissile(targets) {
 		color: 'yellow', trailColor: 'red' } );
 
 	//lower is this value, higher will be the speed of the missiles
-	//TODO put in back level!
 	framesToTarget = ( 390 - 10 * current_level ) / offSpeed;
 	if( framesToTarget < 20 ) {
 		framesToTarget = 20;

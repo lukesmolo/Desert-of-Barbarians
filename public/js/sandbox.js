@@ -71,7 +71,6 @@ var NOT_ALLOWED = function(name){
 };
 
 var scope = {
-//	"alert": function(message){ console.log(message); },
 	"alert": NOT_ALLOWED("alert"),
 	"eval": NOT_ALLOWED("eval"),
 	"Function": NOT_ALLOWED("Function")

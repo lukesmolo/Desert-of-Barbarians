@@ -20,11 +20,17 @@ $(document).ready(function() {
 			login();
 		}
 	});
+	$('#session_login').on('click', function() {
+		window.location.href = '/';
+	});
+
 });
 
 $(document).keypress(function(e) {
 	if(e.which == 13) {
 		$('#send_login').trigger('click');
+		$('#session_login').trigger('click');
+
 	}
 });
 

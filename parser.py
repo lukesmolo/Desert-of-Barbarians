@@ -3,9 +3,6 @@ import sys
 import json
 import copy
 
-
-
-
 def main(file):
     obj = {}
     id = 0
@@ -21,12 +18,9 @@ def main(file):
                 if line[:2] == '/*': #case character and level
                     if id > 0:
                         obj[key]['what'].append(copy.deepcopy(tmp_text))
-                        #print(tmp_obj)
-                        #obj[key].append(copy.deepcopy(tmp_obj))
                         tmp_obj = {}
                     key = line[2:]
                     who = line[2:].partition("-")[0]
-
 
                     if key not in obj:
                         id += 1

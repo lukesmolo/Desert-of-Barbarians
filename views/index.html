@@ -1,354 +1,406 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	  <meta charset="utf-8">
-	  <title>Desert of Barbarians</title>
-	  <link rel="stylesheet" href="css/index.css">
-	  <link rel="stylesheet" href="css/qtip.css">
-	  <link rel="stylesheet" href="css/introjs.css">
-	  <link rel="stylesheet" href="css/bootstrap.min.css">
-	  <link rel="icon shortcut" href="images/circle.png">
-  </head>
-  <body>
-	  <div id="navbar" class="pull-left" >
-		  <nav  class="navbar navbar-default" id="nav_navbar" role="navigation">
+	<head>
+		<meta charset="utf-8">
+		<title>Desert of Barbarians</title>
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/qtip.css">
+		<link rel="stylesheet" href="css/introjs.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="icon shortcut" href="images/circle.png">
+	</head>
+	<body>
+		<div id="navbar" class="pull-left" >
+			<nav  class="navbar navbar-default" id="nav_navbar" role="navigation">
+				<ul class="nav navbar-nav">
+					<li>
+						<a id="main_btn" class="change_panel" href="#game"  aria-label="game panel">
+							<img class="navbar_img ttip" title="Home" src="images/home.png" alt="game navbar button">
+						</a>
+							<a id="conversations_btn" class="change_panel" href="#conversations" aria-label="conversations panel" >
+								<img class="navbar_img ttip"
+		 title="Conversations"  src="images/conversations.png" alt="conversations navbar button">
+							</a>
+								<!--					  <a id="manual_btn" class="change_panel"
+		  href="#manual"  aria-label="manual panel" >
+		  <img class="navbar_img ttip"
+		  title="Manual"
+		  src="images/manual.png" alt="manual navbar button"></a>-->
+			<a id="tutorial_btn" class="change_panel to_highlight" href="#tutorial"
+									    data-toggle="tooltip"
+		 aria-label="tutorial" ><img class="navbar_img ttip" title="Tutorial"
+									 src="images/tutorial.png" alt="tutorial navbar button"></a>
+			<a id="settings_btn" class="change_panel" href="#settings" aria-label="settings
+			panel"><img
+										  class="navbar_img ttip"
+		title="Settings"
+  src="images/settings.png"
+  alt="settings navbar button" aria-label="logout panel"></a>
 
-			  <ul class="nav navbar-nav" 	  >
-				  <li >
-					  <a id="main_btn" class="change_panel"
-				href="#game"  aria-label="game panel" >
-						  <img class="navbar_img ttip" title="Home"
-		 src="images/home.png" alt="game navbar button" ></a>
+			<a id="exit_btn"
+	href="#log_out">
+				<img class="navbar_img ttip" title="Logout"
+					   src="images/logout.png" alt="log out navbar button"></a>
 
-					  <a id="conversations_btn" class="change_panel"
-					   href="#conversations"
-					   aria-label="conversations panel" >
-						  <img class="navbar_img ttip"
-		 title="Conversations"
-		 src="images/conversations.png" alt="conversations navbar button"></a>
-<!--					  <a id="manual_btn" class="change_panel"
-				  href="#manual"  aria-label="manual panel" >
-						  <img class="navbar_img ttip"
-						  title="Manual"
-						  src="images/manual.png" alt="manual navbar button"></a>-->
-					  <a id="tutorial_btn" class="change_panel
-				    to_highlight"
-				    href="#tutorial" data-toggle="tooltip"
-				aria-label="tutorial" ><img
-								 class="navbar_img ttip"
-								 title="Tutorial"
-	   src="images/tutorial.png"
-    alt="tutorial navbar button"></a>
-<a id="settings_btn" class="change_panel" href="#settings" aria-label="settings
-panel"><img
-								 class="navbar_img ttip"
-								 title="Settings"
-	   src="images/settings.png"
-    alt="settings navbar button" aria-label="logout panel"></a>
+					
+					</li>
+				</ul>
+			</nav>
+		</div>
 
-<a id="exit_btn"
-				href="#log_out">
-						  <img class="navbar_img ttip" title="Logout"
-		 src="images/logout.png" alt="log out navbar button"></a>
-				  </li>
-			  </ul>
-		  </nav>
-	  </div>
+		<div id="container" class="fill pull-right col-md-12">
 
-	  <div id="container" class="fill pull-right col-md-12">
+			<div id="conversations_panel" class="col-md-12 hiddens panels">
+				<div id="conversations_close_btn" class="change_panel">
+					<img class="pull-right close_img" src="images/close.png"
+						   alt="close panel">
+				</div>
+				<div id="colonel_conversation" class="col-md-3
+				summary_conversation">
+					<div id="colonel_conversation_img_div"
+	    class="conversations_header">
+						<img class="pull-left conv_img"
+	     src="images/colonel.png"
+	alt="colonel"> COLONEL
+					</div>
+					<div id="colonel_conversation_text"
+	    class="conversations_text">
+					</div>
+				</div>
+				<div id="assistant_conversation" class="col-md-3
+				summary_conversation">
+					<div id="assistant_conversation_img_div" class="conversations_header">
+						<img class="pull-left conv_img"
+	     src="images/assistant.png"
+	alt="assistant">ASSISTANT
+					</div>
+					<div id="assistant_conversation_text"
+	    class="conversations_text">
+					</div>
 
-		  <div id="conversations_panel" class="col-md-12 hiddens panels">
-			  <div id="conversations_close_btn" class="change_panel">
-				  <img class="pull-right close_img" src="images/close.png"
-						    alt="close panel">
-			  </div>
-			  <div id="colonel_conversation" class="col-md-3
-			  summary_conversation">
-				  <div id="colonel_conversation_img_div"
-					  class="conversations_header">
-					  <img class="pull-left conv_img"
-		src="images/colonel.png"
-						    alt="colonel"> COLONEL
-				  </div>
-				  <div id="colonel_conversation_text"
-	     class="conversations_text">
-				  </div>
-			  </div>
-			  <div id="assistant_conversation" class="col-md-3
-			  summary_conversation">
-				  <div id="assistant_conversation_img_div" class="conversations_header">
-					  <img class="pull-left conv_img"
-		src="images/assistant.png"
-						    alt="assistant">ASSISTANT
-				  </div>
-				  <div id="assistant_conversation_text"
-	     class="conversations_text">
-				  </div>
+				</div>
+				<div id="crazy_doctor_conversation" class="col-md-3
+				summary_conversation">
+					<div id="crazy_doctor_conversation_img_div" class="conversations_header">
+						<img class="pull-left conv_img"
+	     src="images/crazy_doctor.png"
+	alt="crazy doctor">CRAZY DOCTOR
+					</div>
+					<div id="crazy_doctor_conversation_text"
+	    class="conversations_text">
+					</div>
 
-			  </div>
-			  <div id="crazy_doctor_conversation" class="col-md-3
-			  summary_conversation">
-				  <div id="crazy_doctor_conversation_img_div" class="conversations_header">
-					  <img class="pull-left conv_img"
-		src="images/crazy_doctor.png"
-						    alt="crazy doctor">CRAZY DOCTOR
-				  </div>
-				  <div id="crazy_doctor_conversation_text"
-	     class="conversations_text">
-				  </div>
-
-			  </div>
+				</div>
 
 
-		  </div>
-		  <div id="manual_panel" class="col-md-12 hiddens panels">
-			  <div id="manual_close_btn" class="change_panel"><img
-					  class="pull-right close_img"
+			</div>
+			<div id="manual_panel" class="col-md-12 hiddens panels">
+				<div id="manual_close_btn" class="change_panel"><img
+					 class="pull-right close_img"
 
-	 src="images/close.png"
-  alt="colonel"></div>
+	src="images/close.png"
+ alt="colonel"></div>
 
-			  MANUAL
+				MANUAL
 
-		  </div>
-		  <div id="settings_panel" class="col-md-12 hiddens panels">
-			  <div id="settings_close_btn" class="change_panel"><img
-					    class="pull-right close_img"
+			</div>
+			<div id="settings_panel" class="col-md-12 hiddens panels">
+				<div id="settings_close_btn" class="change_panel"><img
+					   class="pull-right close_img"
 
-	   src="images/close.png"
-    alt="close_panel"></div>
+	  src="images/close.png"
+   alt="close_panel"></div>
 
-			  <div id="info_summary" class="col-md-5 settings_panels">
-				  <p id="info_summary_title" class="text-center settings-title"> About you </p>
-				  <div id="info_summary" class="col-md-12">
-					  <p class="left_info_summary col-md-6">Username</p>
-					  <p class="left_info_summary col-md-6" id="username_summary">n.a.</p>
-					<p class="left_info_summary col-md-6">Current
-					Level</p>
-					  <p class="left_info_summary col-md-6" id="level_summary">n.a.</p>
-<p class="left_info_summary col-md-6">Total Score
-					</p>
-					  <p class="left_info_summary col-md-6"
-					  id="total_score_summary">0</p>
+				<div id="info_summary" class="col-md-5 settings_panels">
+					<p id="info_summary_title" class="text-center settings-title"> About you </p>
+					<div id="info_summary" class="col-md-12">
+						<p class="left_info_summary col-md-6">Username</p>
+						<p class="left_info_summary col-md-6" id="username_summary">n.a.</p>
+						<p class="left_info_summary col-md-6">Current
+						Level</p>
+						<p class="left_info_summary col-md-6" id="level_summary">n.a.</p>
+						<p class="left_info_summary col-md-6">Total Score
+						</p>
+						<p class="left_info_summary col-md-6"
+	   id="total_score_summary">0</p>
 
 
-					  <p class=" left_info_summary col-md-6">Military Rank</p>
-					  <p class="left_info_summary col-md-6"
-					  id="military_rank_summary">n.a.</p>
-					  <p class=" left_info_summary col-md-6">Levels Completed</p>
-					  <p class="left_info_summary col-md-6"
-					  id="levels_completed_summary">n.a.</p>
-					  <p class=" left_info_summary col-md-6">Total Time</p>
-					  <p class="left_info_summary col-md-6" id="total_time_summary">n.a.</p>
-					  <p class=" left_info_summary col-md-6">Avg Time For Level</p>
-					  <p class="left_info_summary col-md-6" id="avg_time_summary">n.a.</p>
-					  <p class=" left_info_summary col-md-6">Missiles Used</p>
-					  <p class="left_info_summary col-md-6"
-					  id="missiles_used_summary">n.a.</p>
-				  </div>
+						<p class=" left_info_summary col-md-6">Military Rank</p>
+						<p class="left_info_summary col-md-6"
+	   id="military_rank_summary">n.a.</p>
+						<p class=" left_info_summary col-md-6">Levels Completed</p>
+						<p class="left_info_summary col-md-6"
+	   id="levels_completed_summary">n.a.</p>
+						<p class=" left_info_summary col-md-6">Total Time</p>
+						<p class="left_info_summary col-md-6" id="total_time_summary">n.a.</p>
+						<p class=" left_info_summary col-md-6">Avg Time For Level</p>
+						<p class="left_info_summary col-md-6" id="avg_time_summary">n.a.</p>
+						<p class=" left_info_summary col-md-6">Missiles Used</p>
+						<p class="left_info_summary col-md-6"
+	   id="missiles_used_summary">n.a.</p>
+					</div>
 
-		  	</div>
-			  <div id="jump_level" class="col-md-5 settings_panels right_settings">
-				  <p id="jump_level_summary_title" class="text-center settings-title">
-				  Levels Settings</p>
+				</div>
+				<div id="jump_level" class="col-md-5 settings_panels right_settings">
+					<p id="jump_level_summary_title" class="text-center settings-title">
+					Levels Settings</p>
 
-				  <div class="form-group col-xs-12">
-            Please, insert the key of a level you want to play.
-            <br>
-            <br>
-<!--					  <label for="level_hash_key_input_text">Level
-	Key:</label>-->
-            <div>
-          <div class="col-md-6">
-					  <input type="text" maxlength="8" class="form-control settings-input"
-						    id="level_hash_key_input_text">
-          </div>
-          <div class="col-md-6">
-					  <button id="reset_level_hash_key_btn"  type="button" class="btn
-					  btn-success settings_btn">Reset</button>
-					  <button id="send_level_hash_key_btn" type="button" class="btn
-					  btn-success settings_btn">Send</button>
-          </div>
-        </div>
+					<div class="form-group col-xs-12">
+						Please, insert the key of a level you want to play.
+						<br>
+						<br>
+						<!--					  <label for="level_hash_key_input_text">Level
+		Key:</label>-->
+	<div>
+		<div class="col-md-6">
+			<input type="text" maxlength="8" class="form-control settings-input"
+						id="level_hash_key_input_text">
+		</div>
+		<div class="col-md-6">
+			<button id="reset_level_hash_key_btn"  type="button" class="btn
+			btn-success settings_btn">Reset</button>
+			<button id="send_level_hash_key_btn" type="button" class="btn
+			btn-success settings_btn">Send</button>
+		</div>
+	</div>
 
-				  </div>
-			<br>
-				  <div id="alert_level_hash_key">
-				  </div>
+					</div>
+					<br>
+					<div id="alert_level_hash_key">
+					</div>
 
-				  <div class="col-md-6">
-				  <p id="" class="text-center right-header">
-				  Level</p>
-<div id="left_jump_level" class="col-md-6">
+					<div class="col-md-6">
+						<p id="" class="text-center right-header">
+						Level</p>
+						<div id="left_jump_level" class="col-md-6">
 
-				  </div>
-				  </div>
-				  <div id="" class="col-md-6">
-				<p id="" class="text-center right-header">
-				  Key</p>
-				  <div id="right_jump_level" class="col-md-6">
-				  </div>
-				  </div>
+						</div>
+					</div>
+					<div id="" class="col-md-6">
+						<p id="" class="text-center right-header">
+						Key</p>
+						<div id="right_jump_level" class="col-md-6">
+						</div>
+					</div>
 
-			  </div>
-		  </div>
+				</div>
+			</div>
 
-		  <div id="main_panel" class="panels">
-			  <div id="left" class="col-md-9">
-				  <div id="game">
-					  <div >
-						  <div class="crosshair"></div>
-					  </div>
-					  <canvas id="game_canvas"></canvas>
-					  <div id="cover_canvas">
-									  </div>
-<img id="canvas_play_game" class=""
-						src="images/circle.png"
-					alt="play game">
+			<div id="main_panel" class="panels">
+				<div id="left" class="col-md-9">
+					<div id="game">
+						<div >
+							<div class="crosshair"></div>
+						</div>
+						<canvas id="game_canvas"></canvas>
+						<div id="cover_canvas">
+						</div>
+						<img id="canvas_play_game" class=""
+					   src="images/circle.png"
+	  alt="play game">
 
 
 
-				  </div>
-				  <div id="coding">
-					  <pre id="text_editor"></pre>
+					</div>
+					<div id="coding">
+						<pre id="text_editor"></pre>
 
-				  </div>
+					</div>
 
-			  </div>
-			  <div id="right" class="col-md-3 pull-right">
-				  <div id="chat_window">
-						     <div id="chat_controller">
-							     <button id="colonel_chat_btn" type="button"
-							class="change_chat chat_focus_btn my_btn
-							">Colonel</button>
-							     <button id="assistant_chat_btn" type="button"
-							  class="change_chat
-							  my_btn">Assistant</button>
-							     <button id="info_chat_btn" type="button"
+				</div>
+				<div id="right" class="col-md-3 pull-right">
+					<div id="chat_window">
+						<div id="chat_controller">
+							<button id="colonel_chat_btn" type="button"
+						 class="change_chat chat_focus_btn my_btn
+						 ">Colonel</button>
+							<button id="assistant_chat_btn" type="button"
 						   class="change_chat
-						   my_btn">info</button>
-							     <button id="crazy_doctor_chat_btn" type="button"
-							     class="change_chat btn
-							     btn-success hidden">Crazy Doctor</button>
+						   my_btn">Assistant</button>
+							<button id="info_chat_btn" type="button"
+					    class="change_chat
+					    my_btn">info</button>
+							<button id="crazy_doctor_chat_btn" type="button"
+							class="change_chat btn
+							btn-success hidden">Crazy Doctor</button>
 
-						     </div>
-						     <div id="chat">
+						</div>
+						<div id="chat">
 
-							     <div class="div_chat_image"
-		     id="colonel_div_chat_image">
-								     <img class="chat_image"
-			src="images/colonel.png" alt="colonel">
-							     </div>
+							<div class="div_chat_image"
+		id="colonel_div_chat_image">
+								<img class="chat_image"
+		 src="images/colonel.png" alt="colonel">
+							</div>
 
-							     <div class="chat_text typewriter" id="colonel_chat_text">
-								     Colonel
-							     </div>
+							<div class="chat_text typewriter" id="colonel_chat_text">
+								Colonel
+							</div>
 
-							     <div class="div_chat_image hiddens"
-		     id="assistant_div_chat_image">
-								     <img class="chat_image"
-			src="images/assistant.png"
+							<div class="div_chat_image hiddens"
+		id="assistant_div_chat_image">
+								<img class="chat_image"
+		 src="images/assistant.png"
    alt="Assistant">
-							     </div>
-							     <div class="chat_text typewriter hiddens" id="assistant_chat_text">
-								     Assistant
-							     </div>
-							     <div class="div_chat_image hiddens"
-		     id="crazy_doctor_div_chat_image">
-								     <img class="chat_image"
-			src="images/crazy_doctor.png" alt="crazy
-			doctor">
-							     </div>
-							     <div class="chat_text typewriter hiddens" id="crazy_doctor_chat_text">
-								     Crazy Doctor
-							     </div>
-							     <div class="chat_text typewriter hiddens"
-		     id="info_chat_text">
-								     There are no messages for you.
-							     </div>
+							</div>
+							<div class="chat_text typewriter hiddens" id="assistant_chat_text">
+								Assistant
+							</div>
+							<div class="div_chat_image hiddens"
+		id="crazy_doctor_div_chat_image">
+								<img class="chat_image"
+		 src="images/crazy_doctor.png" alt="crazy
+		 doctor">
+							</div>
+							<div class="chat_text typewriter hiddens" id="crazy_doctor_chat_text">
+								Crazy Doctor
+							</div>
+							<div class="chat_text typewriter hiddens"
+		id="info_chat_text">
+								There are no messages for you.
+							</div>
 
-						     </div>
+						</div>
 
-				  </div>
-				  <div id="replies_div">
+					</div>
+					<div id="replies_div">
 
-					  <div id="replies">
-	<button id="start_level_btn" type="button"
-						   class="send_answer btn btn-success
-						   start_focus_btn
-						   "></button>
+						<div id="replies">
+							<button id="start_level_btn" type="button"
+						class="send_answer btn btn-success
+						start_focus_btn
+						"></button>
 
-						  <div id="colonel_replies" class="replies">
-							  <button id="colonel_answer_1" type="button"
-						   class="send_answer btn btn-success
-						   focus_btn hiddens">Next</button>
-							  <button id="colonel_answer_2" type="button"
-						   class="btn
-						   btn-success hiddens send_answer"></button>
-							  <button id="colonel_answer_3" type="button"
-						   class="btn
-						   btn-success hiddens send_answer"></button>
-						  </div>
-						  <div id="assistant_replies" class="replies">
-							  <button id="assistant_answer_1" type="button"
-						     class="send_answer btn btn-success hiddens">Next</button>
-							  <button id="assistant_answer_2" type="button"
-						     class="btn
-						     btn-success hiddens send_answer"></button>
-							  <button id="assistant_answer_3" type="button"
-						     class="btn
-						     btn-success hiddens send_answer"></button>
-						  </div>
-						  <div id="crazy_doctor_replies" class="replies">
-							  <button id="crazy_doctor_answer_1" type="button"
-							  class="send_answer btn btn-success hiddens">Next</button>
-							  <button id="crazy_doctor_answer_2" type="button"
-							  class="btn
-							  btn-success hiddens send_answer"></button>
-							  <button id="crazy_doctor_answer_3" type="button"
-							  class="btn
-							  btn-success hiddens send_answer"></button>
-						  </div>
-					  </div>
-					  <div id="code_buttons_controller">
+							<div id="colonel_replies" class="replies">
+								<button id="colonel_answer_1" type="button"
+						  class="send_answer btn btn-success
+						  focus_btn hiddens">Next</button>
+								<button id="colonel_answer_2" type="button"
+						  class="btn
+						  btn-success hiddens send_answer"></button>
+								<button id="colonel_answer_3" type="button"
+						  class="btn
+						  btn-success hiddens send_answer"></button>
+							</div>
+							<div id="assistant_replies" class="replies">
+								<button id="assistant_answer_1" type="button"
+						    class="send_answer btn btn-success hiddens">Next</button>
+								<button id="assistant_answer_2" type="button"
+						    class="btn
+						    btn-success hiddens send_answer"></button>
+								<button id="assistant_answer_3" type="button"
+						    class="btn
+						    btn-success hiddens send_answer"></button>
+							</div>
+							<div id="crazy_doctor_replies" class="replies">
+								<button id="crazy_doctor_answer_1" type="button"
+							 class="send_answer btn btn-success hiddens">Next</button>
+								<button id="crazy_doctor_answer_2" type="button"
+							 class="btn
+							 btn-success hiddens send_answer"></button>
+								<button id="crazy_doctor_answer_3" type="button"
+							 class="btn
+							 btn-success hiddens send_answer"></button>
+							</div>
+						</div>
+						<div id="code_buttons_controller">
 
-						  <div id="div_send_code_btn"
-						  class="div_code_controller col-md-6">
-							  <img id="send_code_btn" title="Exec
-							  Code"
-		  class="code_buttons_img center-block ttip "
-    src="images/save.png" alt="send code controller button">
-						  </div>
-						  <div id="div_reset_code_btn"
-		 class="div_code_controller col-md-6">
-							  <img id="reset_code_btn"
-		  class="code_buttons_img center-block ttip" title="Reset Level"
-    src="images/discard.png" alt="reset code controller button">
-						  </div>
-					  </div>
-
-
+							<div id="div_send_code_btn"
+		class="div_code_controller col-md-6">
+								<img id="send_code_btn" title="Exec
+								Code"
+					  class="code_buttons_img center-block ttip "
+	 src="images/save.png" alt="send code controller button">
+							</div>
+							<div id="div_reset_code_btn"
+		class="div_code_controller col-md-6">
+								<img id="reset_code_btn"
+		 class="code_buttons_img center-block ttip" title="Reset Level"
+							    src="images/discard.png" alt="reset code controller button">
+							</div>
+						</div>
 
 
-				  </div>
 
-			  </div>
-		  </div>
 
-	  </div>
+					</div>
 
-	  <script src="js/jquery-2.1.0.min.js"></script>
-	  <script src="js/index.js"></script>
-	  <script src="js/jquery.cookie.js"></script>
-	  <script src="js/qtip.js"></script>
-	  <script src="js/sandbox.js"></script>
-	  <script src="js/intro.js"></script>
-	  <script src="js/grained.js"></script>
-	  <script src="js/bootstrap.min.js"></script>
-	  <script type="text/javascript" src="js/jquerytypewriter.js"></script>
-	  <script src="js/missile_command.js"></script>
-	  <script src="ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+				</div>
+			</div>
 
-  </body>
+		</div>
+		<div id="donate">
+			<div id="donate_div">
+<a href="https://your-url" class="github-corner">
+	<svg class="pull-left" id="github_svg"				    viewBox="0 0 250 250"
+	  ><path fill="green" style="transform-origin: 130px
+	  106px;"
+		class="octo-arm"
+		d="M 99.612927,185.29787 C 62.277675,194.63165 56.055129,169.74149
+		56.055129,169.74149 49.832583,154.18513 42.054417,149.51823
+		42.054417,149.51823 c -12.44507,-9.3338 1.555642,-7.77816 1.555642,-7.77816
+		14.000712,1.55564 20.223236,14.0007 20.223236,14.0007 10.889432,20.22326
+		31.112692,15.55636 38.890875,10.88946"
+
+  inkscape:connector-curvature="0" />
+	</path><path
+  class="octo-body" fill="green"
+			  d="m 91.457487,226.14425 c 0,0 9.327403,-3.14188 7.79332,-7.7933 l
+			  0.1718,-43.47056 c 1.583183,-7.76876 4.712783,-13.9911
+			  7.830103,-17.10844 -29.479503,-4.54094 -60.493065,-13.7333
+			  -60.284373,-66.519013 0.06138,-15.525202
+			  4.761922,-26.411242 14.11388,-35.763208 -1.534104,-4.65142
+			  -6.148714,-15.500656 1.693692,-35.714106 0,0
+			  12.432438,-3.154148 35.652698,13.83152 9.327423,-3.141886
+			  20.201183,-4.73736 32.621363,-4.786472 12.42016,-0.0491
+			  23.28166,1.46046 32.58452,4.52867 26.46036,-17.18208
+			  37.32186,-15.672524 37.32186,-15.672524 6.13642,18.605694
+			  2.98228,31.038144 -0.135,34.155464 9.27828,9.27828
+			  13.89288,20.127514 13.8315,35.652716 -0.1964,49.680653
+			  -31.29592,62.223593 -60.81222,66.997773 4.63914,4.63914
+			  9.266,12.38334 9.2169,24.8035 l -1.6937,35.7141 c
+			  -0.014,3.10506 9.29058,6.17328 9.29058,6.17328 z"
+     inkscape:connector-curvature="0" />
+	</svg></a><style>.github-corner:hover
+.octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes
+octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media
+(max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner
+	.octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+		<form  action="https://www.paypal.com/cgi-bin/webscr" method="post"
+									 target="_top">
+			<input type="hidden" name="cmd" value="_donations">
+			<input type="hidden" name="business"
+				value="lukesmolo@gmail.com">
+			<input type="hidden" name="lc" value="GB">
+			<input type="hidden" name="item_name" value="Desert of
+			Barbarians">
+			<input type="hidden" name="currency_code" value="EUR">
+			<input type="hidden" name="bn"
+				value="PP-DonationsBF:btn_donate_SM.gif:NonHosted">
+			<input type="image" id="donate_form"
+	    src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"
+     border="0" name="submit" alt="PayPal – The safer, easier way
+     to pay online!">
+			<img alt="" border="0"
+		   src="https://www.paypalobjects.com/it_IT/i/scr/pixel.gif"
+     width="1" height="1">
+		</form>
+
+			</div>
+		</div>
+
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/qtip.js"></script>
+		<script src="js/sandbox.js"></script>
+		<script src="js/intro.js"></script>
+		<script src="js/grained.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquerytypewriter.js"></script>
+		<script src="js/missile_command.js"></script>
+		<script src="ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+	</body>
 
 </html>
