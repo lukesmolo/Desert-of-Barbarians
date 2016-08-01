@@ -2,6 +2,11 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: black;
+  height: 100%;
+}
+
+html {
+	height: 100%;
 }
 
 @font-face {
@@ -44,13 +49,40 @@ body {
 }
 
 .container {
-  font-family: vt323;
-  color: green;
+	font-family: vt323;
+	color: green;
+	height: 95%;
 }
 
+#donate {
+	height: 5%;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+#donate_div {
+	display: block;
+	margin: auto;
+	height: 100%;
+	width: 10%;
+
+}
+
+#donate_form {
+	vertical-align: middle;
+	padding-top: 5%;
+
+}
+
+#github_svg {
+	height: 110%;
+	margin-right: 5%;
+}
+
+
 .btn{
-  background-color: green !important;
-  border-color: green !important;
+	background-color: green !important;
+	border-color: green !important;
 }
 #session_login {
 	width: 100%;

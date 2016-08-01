@@ -118,6 +118,8 @@ app.get('/logout', function(req, res) {
 
 app.get('/get_score', function(req, res){
 	res.send(users_data[req.session.user]['score']);
+	//score = {"levels_completed":[3, 4, 5, 9],"total_time":"1 m 23 s","avg_time":"0 m 2 s","totalMissilesUsed":53,"username":"ale","level":9};
+	//res.send(score);
 });
 
 app.get('/reset_code', function(req, res){
@@ -142,11 +144,13 @@ app.post('/get_level', function(req, res){
 	//if user is not requiring a specific level..
 	if(req_level != -1)
 		level = req_level;
+	else
+		level = default_level;
 	username = req.session.user;
 	users_data['level'] = level;
 	index = users.indexOf(username);
 	if (index > -1 || req_level == -1) {
-		dialogs = return_level_dialog(level);
+		dialogues = return_level_dialog(level);
 		code = return_level_code(level);
 		//collect keys to send
 		tmp_keys = [];
@@ -158,7 +162,7 @@ app.post('/get_level', function(req, res){
 				'status': 'SUCCESS',
 				'username': req.session.user,
 				'body': code,
-				'dialogs': dialogs,
+				'dialogues': dialogues,
 				'level': level,
 				'keys': tmp_keys
 			});
@@ -268,10 +272,10 @@ return_level_code(what) {
 
 }
 
-//read dialogs from file
+//read dialogues from file
 function
 return_level_dialog(what) {
-	dialogs = {};
+	dialogues = {};
 	var obj = {};
 	obj = JSON.parse(fs.readFileSync('public/static/dialog_level'+what+'.json', 'utf8'));
 	return obj;

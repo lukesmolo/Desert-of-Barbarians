@@ -1,7 +1,7 @@
 /*jshint -W069 */
 
 var editor = null;
-var level_dialogs = {};
+var level_dialogues = {};
 var n_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 var current_level = -1;
 var current_character = "colonel";
@@ -335,7 +335,7 @@ $('.change_chat').on('click', function() {
 
 
 				grained('.tv_effect',animation_options);
-				append_dialogs(current_character);
+				append_dialogues(current_character);
 			}
 		} else {
 			$('.div_chat_image').hide();
@@ -391,7 +391,7 @@ send_answer(what) {
 		tmp_chat_text_part[current_character] = 0;
 
 	} else {
-		if(tmp_chat_text_part[current_character] == level_dialogs[current_character][n_dialog[current_character]]['text'].length) {
+		if(tmp_chat_text_part[current_character] == level_dialogues[current_character][n_dialog[current_character]]['text'].length) {
 			n_dialog[current_character]++;
 			tmp_chat_text_part[current_character] = 0;
 		}
@@ -400,7 +400,7 @@ send_answer(what) {
 
 	//take all buttons of replies and hide them
 	$('#'+current_character+'_replies').children('.send_answer').hide();
-	append_dialogs(current_level);
+	append_dialogues(current_level);
 }
 
 
@@ -449,7 +449,7 @@ show_answers() {
 	$('#'+current_character+'_answer_1').addClass('dialog_focus_btn');
 
 	stop_talking();
-	n_answers = (level_dialogs[current_character][n_dialog[current_character]]['answers']).length;
+	n_answers = (level_dialogues[current_character][n_dialog[current_character]]['answers']).length;
 	if(n_answers > maximum_n_answers) {
 		alert("Too many answers for this dialog");
 	} else {
@@ -463,7 +463,7 @@ show_answers() {
 		} else {
 			for(var i = 1; i < n_answers+1; i++) {
 				id = current_character+'_answer_'+i;
-				text = level_dialogs[current_character][n_dialog[current_character]]['answers'][i-1];
+				text = level_dialogues[current_character][n_dialog[current_character]]['answers'][i-1];
 				index = "undefined";
 				if(text.substring(1,3) == "--") {
 					index = parseInt(text.charAt(0));
@@ -493,7 +493,7 @@ end_level() {
 	total_score += score;
 	proceedToGame = false;
 
-	//re-initialize variables for dialogs
+	//re-initialize variables for dialogues
 	left_text = false;
 	tmp_chat_text_part = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
 	skip_dialog = { "colonel": 0, "assistant": 0, "crazy_doctor": 0};
@@ -566,17 +566,17 @@ split_text(input) {
 
 
 function
-append_dialogs(level) {
+append_dialogues(level) {
 
 	id = current_character+'_chat_text';
 
-	if(level_dialogs[current_character][n_dialog[current_character]] !== undefined && level_dialogs[current_character][n_dialog[current_character]]['text'].length !== 0) {
+	if(level_dialogues[current_character][n_dialog[current_character]] !== undefined && level_dialogues[current_character][n_dialog[current_character]]['text'].length !== 0) {
 		$('#'+id).empty();
-		text = level_dialogs[current_character][n_dialog[current_character]]['text'][tmp_chat_text_part[current_character]];
+		text = level_dialogues[current_character][n_dialog[current_character]]['text'][tmp_chat_text_part[current_character]];
 		if(skip_dialog[current_character] == 1 && tmp_chat_text_part[current_character] === 0) {
 
 			while(skip_dialog[current_character] == 1) {
-				text = level_dialogs[current_character][n_dialog[current_character]]['text'][tmp_chat_text_part[current_character]];
+				text = level_dialogues[current_character][n_dialog[current_character]]['text'][tmp_chat_text_part[current_character]];
 				if(text.substring(1,3) == "--") {
 					index = parseInt(text.charAt(0));
 					n_dialog[current_character]++;
@@ -590,7 +590,7 @@ append_dialogs(level) {
 		}
 		$('#'+id).append(text);
 		/*detect if there still left text to show later*/
-		if(tmp_chat_text_part[current_character] == level_dialogs[current_character][n_dialog[current_character]]['text'].length-1) {
+		if(tmp_chat_text_part[current_character] == level_dialogues[current_character][n_dialog[current_character]]['text'].length-1) {
 			left_text = false;
 		} else {
 			left_text = true;
@@ -629,18 +629,18 @@ append_dialogs(level) {
 }
 
 function
-make_dialogs(level, dialogs) {
-	$.each(dialogs, function( key, value ) {
+make_dialogues(level, dialogues) {
+	$.each(dialogues, function( key, value ) {
 		tmp_array = [];
-		level_dialogs[key] = [];
-		for(var i = 0; i < dialogs[key].length; i++) {
-			obj = dialogs[key][i];
+		level_dialogues[key] = [];
+		for(var i = 0; i < dialogues[key].length; i++) {
+			obj = dialogues[key][i];
 
 			tmp_text = split_text(obj["text"]);
 			obj["text"] = tmp_text;
 
-			index = parseInt(dialogs[key][i]['id'])-1;
-			level_dialogs[key].splice(index, 0, obj);
+			index = parseInt(dialogues[key][i]['id'])-1;
+			level_dialogues[key].splice(index, 0, obj);
 
 		}
 	});
@@ -708,7 +708,7 @@ get_level(level) {
 			url = window.location.href;
 			window.history.pushState("", "", 'index?l='+data.keys[data.keys.length -1]);
 
-			make_dialogs(level, data.dialogs);
+			make_dialogues(level, data.dialogues);
 			//colonel starts to talk
 			current_character = 'colonel';
 			$('#'+current_character+'_chat_btn').trigger('click');
