@@ -1,4 +1,4 @@
-#Desert of Barbarians
+# Desert of Barbarians
 
 
 Desert of Barbarians is a funny meta-Javascript game set in the [The Tartar Steppe](https://en.wikipedia.org/wiki/The_Tartar_Steppe) world, inspired by the classic [Missile Command](https://en.wikipedia.org/wiki/Missile_Command) game.
@@ -7,22 +7,22 @@ You are a young recruit with the goal to defense your castle from Barbarians
 attacks. The more you improve your defenses, the more you have chance to
 survive.
 
-##Overview
+## Overview
 The game presents a board for playing the game and a board for writing your
 code. You are welcome to follow suggestions and hints from the chat box on the right.
 
-##Goal
+## Goal
 Try to finish all the game for getting your final score. You can try to improve
 it as many times as you want!
 
 
 
 
-##Usage
+## Usage
 Just go to [Desert of Barbarians](http://annina.cs.unibo.it:8000) and insert
 your username for playing.
 
-##Local Usage
+## Local Usage
 For the local usage you just need to install [NodeJs](http://nodejs.org/en/).
 Then:
 
@@ -38,7 +38,7 @@ $ nodejs server.js
 
 Open a browser to [127.0.0.1:8000](http://127.0.0.1:8000) and play the game!
 
-##Contributing
+## Contributing
 We would be very glad if you want to contribute to improving this project.
 Please fork it and submit a pull request! :sunglasses:
 
@@ -99,7 +99,7 @@ $ python2 parser.py dialogues
 ```
 
 
-##Credits
+## Credits
 Desert of Barbarians is a game by [Alessandro Cocilova](https://github.com/akira002?tab=repositories) and [Luca Sciullo](https://github.com/lukesmolo/).
 
 We would like to thank all authors of these libraries:
@@ -114,6 +114,6 @@ We would like to thank all authors of these libraries:
 
 Icons were [Designed by Madebyoliver and distributed by Flaticon](http://www.flaticon.com/authors/madebyoliver)
 
-##License
+## License
 Desert of Barbarians is released under the GPLv2 License.
 
